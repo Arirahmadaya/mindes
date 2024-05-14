@@ -1,7 +1,9 @@
 export default function About() {
     return (
         <div>
-            <h1>Registerdddddddddds</h1>
+            <h1>Selamat Datang di desa kalinyamat kulon</h1>
+            <img src="" alt="" />
+            
         </div>
     )
 }
