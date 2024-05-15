@@ -45,7 +45,6 @@ export default {
         },
       },
     },
-   
     fontFamily: {
       sans: 'open-sans, sans-serif',
     },

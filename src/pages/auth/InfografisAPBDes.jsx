@@ -2,7 +2,7 @@ import React from 'react'
 
 const InfografisAPBDes = () => {
   return (
-    <div>InfografisAPBDes</div>
+    <div></div>
   )
 }
 

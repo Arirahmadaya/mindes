@@ -88,7 +88,7 @@ export default App;
 //           <Route path="/" element={<Home />} />
 //           <Route path="/login" element={<Login />} />
 //           <Route path="/register" element={<Register />} />
-//         {/* <h1 className="text-3xl font-bold text-gradient-60 underline">Hello React</h1> */}
+//         {/* <h1 className="text-3xl font-bold underline text-gradient-60">Hello React</h1> */}
 //         </Routes>
 //       </div>
 //     </BrowserRouter>
