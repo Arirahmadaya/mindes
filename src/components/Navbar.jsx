@@ -3,106 +3,32 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <>
-            <div className="w-[1440px] h-[100px] px-[75px] py-4 bg-blue-800 shadow flex-col justify-center items-center gap-2.5 inline-flex">
-                <Link to="/" className="nav-link">
+        <div className="w-full bg-primary-40 p-4 flex justify-between items-center">
+            <div className="flex items-center space-x-10 ">
+                <img src="logo_light.png" alt="Logo" className="h-8" />
+                <div>
+                    <p className="text-white font-bold">Desa Kalinyamat Kulon</p>
+                    <p className="text-white">Kota Tegal</p>
+                </div>
+                <Link to="/" className="text-white hover:text-gray-300">
                     Beranda
-                </Link> 
-                <Link to="/profile" className="nav-link">
+                </Link>
+                <Link to="/profile" className="text-white hover:text-gray-300">
                     Profile
                 </Link>
-                <Link to="/infografis" className="nav-link">
+                <Link to="/infografis" className="text-white hover:text-gray-300">
                     Infografis
                 </Link>
-                <Link to="/contact" className="nav-link">
+                <Link to="/berita" className="text-white hover:text-gray-300">
                     Berita
-                </Link>         
+                </Link>
             </div>
-        </>
-    )
+            <button className="bg-primary-30 text-grayscale-10 px-4 py-2 rounded-md hover:bg-primary-50">
+                Login
+            </button>
+        </div>
+    );
 }
 
-export default Navbar
+export default Navbar;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const Navbar = () => {
-//   return ( 
-//     <>
-//     <div className="navbar bg-base-100">
-//   <div className="navbar-start">
-//     <div className="dropdown"> {/*  */}
-//       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-//         <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-//       </div>
-//       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-//         <li><a>Item 1</a></li>
-//         <li>
-//           <a>Parent</a>
-//           <ul className="p-2">
-//             <li><a>Submenu 1</a></li>
-//             <li><a>Submenu 2</a></li>
-//           </ul>
-//         </li>
-//         <li><a>Item 3</a></li>
-//       </ul>
-//     </div>
-//     <a className="text-xl btn btn-ghost">daisyUI</a>
-//   </div>
-//   <div className="hidden navbar-center lg:flex">
-//     <ul className="px-1 menu menu-horizontal">
-//       <li><a>Item 1</a></li>
-//       <li>
-//         <details>
-//           <summary>Parent</summary>
-//           <ul className="p-2">
-//             <li><a>Submenu 1</a></li>
-//             <li><a>Submenu 2</a></li>
-//           </ul>
-//         </details>
-//       </li>
-//       <li><a>Item 3</a></li>
-//     </ul>
-//   </div>
-//   <div className="navbar-end">
-//     <a className="btn">Button</a>
-//   </div>
-// </div>
-//     </>   
-//   )
-// }
-
-// export default Navbar;
