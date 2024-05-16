@@ -1,14 +1,16 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-
-import { CarouselTransition } from "../../components/Carousel";
+import Carousel from "../../components/Carousel";
 
 const Home = () => {
   return (
     <>
       <Navbar />
-      <CarouselTransition />
+
+
+      <Carousel />
+
       <div>
         <div>
           <img src="" alt="" />
@@ -48,12 +50,18 @@ const Home = () => {
           Demografi Kalinyamat Kulon
         </div>
 
-        <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">Perangkat Desa Kalinyamat Kulon</div>
+        <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">
+          Perangkat Desa Kalinyamat Kulon
+        </div>
         <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">
           Penduduk Kalinyamat Kulon
         </div>
-        <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">Berita Terhangat di Kalinyamat Kulon</div>
-        <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">Galeri Kalinyamat Kulon</div>
+        <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">
+          Berita Terhangat di Kalinyamat Kulon
+        </div>
+        <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">
+          Galeri Kalinyamat Kulon
+        </div>
       </div>
 
       <Footer />
