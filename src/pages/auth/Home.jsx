@@ -16,7 +16,7 @@ const Home = () => {
       <div>
         <div>
           <img src="" alt="" />
-          <h1 className="text-center">Selamat datang di halaman Beranda</h1>
+          <h1 className="text-center text-display-1 text-blue">Selamat datang di halaman Beranda</h1>
         </div>
 
         <div className="mb-80">

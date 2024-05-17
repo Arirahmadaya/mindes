@@ -11,6 +11,11 @@ export default {
       lg: '976px',
       xl: '1440px',
     },
+    textColor: {
+      'white': '#F4F9FE',
+      'black': '#000D17',
+      'blue' : '#1A5C92',
+    },
     extend: { 
       colors: {
         primary: {
