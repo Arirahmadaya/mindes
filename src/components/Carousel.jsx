@@ -1,4 +1,4 @@
-import React, { useState, use, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather"
 
 const Carousel = () => {

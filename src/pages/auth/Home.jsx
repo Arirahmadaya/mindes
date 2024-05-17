@@ -1,14 +1,16 @@
 import React from "react";
-import Navbar from "../../components/Navbar";
+
 import Footer from "../../components/Footer";
 import Carousel from "../../components/Carousel";
+import Navbar from "../../components/Navbar";
+import { CardBerita } from "../../components/Card";
+import CarouselPerangkatDesa from "../../components/CarouselPD";
+import Maps from "../../components/Maps";
 
 const Home = () => {
   return (
     <>
       <Navbar />
-
-
       <Carousel />
 
       <div>
@@ -49,15 +51,28 @@ const Home = () => {
         <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">
           Demografi Kalinyamat Kulon
         </div>
+        <div> <Maps /></div>
 
-        <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">
+        <div>
+          <div className="text-center font-semibold text-display-2 text-secondary-50 mb-2">
           Perangkat Desa Kalinyamat Kulon
+          </div>
+          <div>
+            <CarouselPerangkatDesa/>
+          </div>
         </div>
+
         <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">
           Penduduk Kalinyamat Kulon
         </div>
-        <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">
-          Berita Terhangat di Kalinyamat Kulon
+        <div>
+          <div className="text-center font-semibold text-display-2 text-secondary-50 mb-2">
+            Berita Terhangat di Kalinyamat Kulon
+          </div>
+          <div className="flex justify-center mx-3">
+          <CardBerita />  <CardBerita />  <CardBerita />
+          </div>
+        
         </div>
         <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">
           Galeri Kalinyamat Kulon
