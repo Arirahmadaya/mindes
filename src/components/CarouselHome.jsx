@@ -36,7 +36,7 @@ const Carousel = () => {
       <div className="max-lg[1400px] h-[780px] w-full m-auto relative group">
         <div
           style={{ backgroundImage: `url(${slides[currIndex].url})` }}
-          className="w-full h-full bg-center bg-cover duration-500"
+          className="w-full h-full duration-500 bg-center bg-cover"
         ></div>
 
         <div className=" hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[50%] left-5 text-heading-2 rounded-s-full p-2  text-grayscale-10  cursor-pointer ">

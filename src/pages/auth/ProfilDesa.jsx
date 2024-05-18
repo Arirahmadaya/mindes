@@ -1,14 +1,17 @@
-import React from 'react'
-import Cards from '../../components/Galery'
-import NavbarNext from '../../components/NavbarNext'
+import React from "react";
+import Cards from "../../components/CardGalery";
+import NavbarNext from "../../components/NavbarNext";
 
 const ProfilDesa = () => {
   return (
     <>
-    <div className='mb-96'> <NavbarNext /> <Cards />   </div>
-    <div className='mb-96'>asasa</div>
+      <div className="mb-96">
+        {" "}
+        <NavbarNext /> <Cards />{" "}
+      </div>
+      <div className="mb-96">asasa</div>
     </>
-  )
-}
+  );
+};
 
-export default ProfilDesa
+export default ProfilDesa;
