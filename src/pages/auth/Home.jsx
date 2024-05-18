@@ -6,19 +6,18 @@ import CardBerita from "../../components/Card";
 import CarouselPerangkatDesa from "../../components/CarouselPD";
 import Maps from "../../components/Maps";
 import NavbarDai from "../../components/Navbardaisy";
-
+import Galery from "../../components/Galery";
 
 const Home = () => {
   return (
     <>
-  
-    <NavbarDai />
+      <NavbarDai />
       <Carousel />
-
-      <div>
         <div>
           <img src="" alt="" />
-          <h1 className="text-center text-display-1 text-blue">Selamat datang di halaman Beranda</h1>
+          <h1 className="text-center text-display-1 text-blue">
+            Selamat datang di halaman Beranda
+          </h1>
         </div>
 
         <div className="mb-80">
@@ -53,34 +52,50 @@ const Home = () => {
         <div className="font-semibold text-center text-display-2 text-secondary-50 mb-80">
           Demografi Kalinyamat Kulon
         </div>
-        <div> <Maps /></div>
+        <div>
+          {" "}
+          <Maps />
+        </div>
 
         <div>
           <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50">
-          Perangkat Desa Kalinyamat Kulon
+            Perangkat Desa Kalinyamat Kulon
           </div>
           <div>
-            <CarouselPerangkatDesa/>
+            <CarouselPerangkatDesa />
           </div>
         </div>
 
-        <div className="font-semibold text-center text-display-2 text-secondary-50 mb-80">
-          Penduduk Kalinyamat Kulon
+        
+      <div className="mb-80">
+        <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50">
+        Penduduk Kalinyamat Kulon
         </div>
         <div>
-          <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50">
-            Berita Terhangat di Kalinyamat Kulon
-          </div>
-          <div className="flex justify-center mx-3">
-          <CardBerita />  <CardBerita />  <CardBerita />
-          </div>
-        
+        <h1> Penduduk</h1>
         </div>
-        <div className="font-semibold text-center text-display-2 text-secondary-50 mb-80">
-          Galeri Kalinyamat Kulon
+      </div>
+      
+           
+
+      <div className="mb-10">
+        <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50">
+        Berita Terhangat di Kalinyamat Kulon
+        </div>
+        <div>
+        <CardBerita />
         </div>
       </div>
 
+      <div className="mb-10">
+        <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50">
+          Galeri Kalinyamat Kulon
+        </div>
+        <div>
+          <Galery />
+        </div>
+      </div>
+      
       <Footer />
     </>
   );

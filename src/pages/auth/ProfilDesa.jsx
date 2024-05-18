@@ -1,5 +1,5 @@
 import React from 'react'
-import Cards from '../../components/CardNext'
+import Cards from '../../components/Galery'
 import NavbarNext from '../../components/NavbarNext'
 
 const ProfilDesa = () => {

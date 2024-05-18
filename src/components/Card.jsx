@@ -1,48 +1,92 @@
-// import { Card, CardHeader, CardBody, CardFooter, Typography,Button, } from "@material-tailwind/react";
-   
-//   export function CardBerita() {
-//     return (
-//       <Card className="my-6 mr-3 w-96 ">
-//         <CardHeader color="blue-gray" className="relative h-56">
-//           <img
-//             src="https:source.unsplash.com/random"
-//             alt="card-image"
-//           />
-//         </CardHeader>
-//         <CardBody>
-//           <Typography variant="h5" color="blue-gray" className="mb-2">
-//             UI/UX Review Check
-//           </Typography>
-//           <Typography>
-//             The place is close to Barceloneta Beach and bus stop just 2 min by
-//             walk and near to &quot;Naviglio&quot; where you can enjoy the main
-//             night life in Barcelona.
-//           </Typography>
-//         </CardBody>
-//         <CardFooter className="pt-0">
-//           <Button>Read More</Button>
-//         </CardFooter>
-//       </Card>
-//     );
-//   }
+import React from "react";
+import { Card, CardBody, CardFooter, Image, Button } from "@nextui-org/react";
 
-import React from 'react'
+export default function CardBerita() {
+  const list = [
+    {
+      title: "KANTOR PELAYANAN MASYARAKAT",
+      artikel:
+        "Senin, 06 Mei 2024. Kantor Pelayanan Masyarakat Kalinyamat Kulon telah beroperasi kembali seperti pada hari biasanya, kembali dibukanya ini masyarakat dapat melakukan administrasi seperti biasanya ...",
+      img: "/img_berita/berita1.jpg",
+      kunjungan: "1.000",
+      penulis: "ferianta",
+      tanggal: "6 Mei 2025",
+    },
+    {
+      title: "KANTOR PELAYANAN MASYARAKAT",
+      artikel:
+        "Senin, 06 Mei 2024. Kantor Pelayanan Masyarakat Kalinyamat Kulon telah beroperasi kembali seperti pada hari biasanya, kembali dibukanya ini masyarakat dapat melakukan administrasi seperti biasanya ...",
+      img: "/img_berita/berita2.jpg",
+      kunjungan: "1.000",
+      penulis: "ferianta",
+      tanggal: "6 Mei 2025",
+    },
+    {
+      title: "KANTOR PELAYANAN MASYARAKAT",
+      artikel:
+        "Senin, 06 Mei 2024. Kantor Pelayanan Masyarakat Kalinyamat Kulon telah beroperasi kembali seperti pada hari biasanya, kembali dibukanya ini masyarakat dapat melakukan administrasi seperti biasanya ...",
+      img: "/img_berita/berita3.jpg",
+      kunjungan: "1.000",
+      penulis: "ferianta",
+      tanggal: "6 Mei 2025",
+    },
+  ];
 
-const CardBerita = () => {
   return (
-    <div>
-      <div className="shadow-xl card card-compact w-96 bg-base-100">
-    <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-    <div className="card-body">
-      <h2 className="card-title">Shoes!</h2>
-      <p>If a dog chews shoes whose shoes does he choose?</p>
-      <div className="justify-end card-actions">
-        <button className="btn btn-primary">Buy Now</button>
-      </div>
-    </div>
-  </div>
-  </div>
-  )
-}
+    <div className="grid grid-cols-3 gap-2 mx-16 sm:grid-cols-3">
+      {list.map((item, index) => (
+        <Card
+          shadow="sm"
+          key={index}
+          isPressable
+          onPress={() => console.log("item pressed")}
+        >
+          <CardBody className="p-0 overflow-visible">
+            <Image
+              shadow="sm"
+              radius="lg"
+              width="100%"
+              alt={item.title}
+              className="w-full object-cover h-[240px]"
+              src={item.img}
+            />
+            <div className="px-3 py-5">
+              <b className="py-12">{item.title}</b>
+              <div className="py-2">
+                <p className="text-default-500">{item.artikel}</p>
+              </div>
+            </div>
+          </CardBody>
+          <CardFooter>
+            <div className="items-center flex-grow ">
+              <div className="flex gap-2">
+                <Image
+                  alt="Breathing app icon"
+                  className="w-4 h-4"
+                  src="https://nextui.org/images/breathing-app-icon.jpeg"
+                />
+                <div className="flex flex-col">
+                  <p className="text-black text-tiny">{item.penulis}</p>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <Image
+                  alt="Breathing app icon"
+                  className="w-4 h-4"
+                  src="https://nextui.org/images/breathing-app-icon.jpeg"
+                />
+                <div className="flex flex-col">
+                  <p className="text-black text-tiny">{item.kunjungan}</p>
+                </div>
+              </div>
+            </div>
 
-export default CardBerita
+            <Button size="sm" className="bg-primary-30" rounded="">
+              {item.tanggal}
+            </Button>
+          </CardFooter>
+        </Card>
+      ))}
+    </div>
+  );
+}
