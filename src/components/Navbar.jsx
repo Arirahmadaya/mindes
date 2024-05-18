@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <div className="flex items-center justify-between w-auto px-16 py-4 bg-primary-40">
+        <div className="flex items-center justify-between w-auto px-[70px] py-4 bg-primary-40">
             <div className="flex items-center space-x-10 ">
                 <img src="logo/logo_light.png" alt="Logo" className="h-12 " />
                 <div>
-                    <p className="font-bold text-white">Desa Kalinyamat Kulon</p>
+                    <p className="font-bold text-white">Desaaaaaa Kalinyamat Kulon</p>
                     <p className="text-white">Kota Tegal</p>
                 </div>
                

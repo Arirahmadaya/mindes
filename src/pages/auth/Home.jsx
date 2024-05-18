@@ -2,15 +2,17 @@ import React from "react";
 
 import Footer from "../../components/Footer";
 import Carousel from "../../components/Carousel";
-import Navbar from "../../components/Navbar";
-import { CardBerita } from "../../components/Card";
+import CardBerita from "../../components/Card";
 import CarouselPerangkatDesa from "../../components/CarouselPD";
 import Maps from "../../components/Maps";
+import NavbarDai from "../../components/Navbardaisy";
+
 
 const Home = () => {
   return (
     <>
-      <Navbar />
+  
+    <NavbarDai />
       <Carousel />
 
       <div>
@@ -20,17 +22,17 @@ const Home = () => {
         </div>
 
         <div className="mb-80">
-          <h1 className="text-heading-1 font-semibold">
+          <h1 className="font-semibold text-heading-1">
             {" "}
             Jelajahi Kalinyamat Kulon{" "}
           </h1>
         </div>
 
         <section className="text-center">
-          <h1 className="text-display-2 font-semibold text-secondary-50 ">
+          <h1 className="font-semibold text-display-2 text-secondary-50 ">
             Sambutan Kepala Desa
           </h1>
-          <div className="text-display-2 font-semibold">ARIANTO, S.AP.</div>
+          <div className="font-semibold text-display-2">ARIANTO, S.AP.</div>
           <p className="text-body-1 ">
             Website ini merupakan wujud komitmen kami untuk meningkatkan <br />
             transparansi, akuntabilitas, dan partisipasi masyarakat dalam
@@ -48,13 +50,13 @@ const Home = () => {
           </p>
         </section>
 
-        <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">
+        <div className="font-semibold text-center text-display-2 text-secondary-50 mb-80">
           Demografi Kalinyamat Kulon
         </div>
         <div> <Maps /></div>
 
         <div>
-          <div className="text-center font-semibold text-display-2 text-secondary-50 mb-2">
+          <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50">
           Perangkat Desa Kalinyamat Kulon
           </div>
           <div>
@@ -62,11 +64,11 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">
+        <div className="font-semibold text-center text-display-2 text-secondary-50 mb-80">
           Penduduk Kalinyamat Kulon
         </div>
         <div>
-          <div className="text-center font-semibold text-display-2 text-secondary-50 mb-2">
+          <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50">
             Berita Terhangat di Kalinyamat Kulon
           </div>
           <div className="flex justify-center mx-3">
@@ -74,7 +76,7 @@ const Home = () => {
           </div>
         
         </div>
-        <div className="text-center font-semibold text-display-2 text-secondary-50 mb-80">
+        <div className="font-semibold text-center text-display-2 text-secondary-50 mb-80">
           Galeri Kalinyamat Kulon
         </div>
       </div>

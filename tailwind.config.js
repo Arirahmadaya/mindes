@@ -12,7 +12,7 @@ export default {
       xl: '1440px',
     },
     textColor: {
-      'white': '#F4F9FE',
+      'white': '#F9FCFF',
       'black': '#000D17',
       'blue' : '#1A5C92',
     },
@@ -70,6 +70,8 @@ export default {
       'display-1': '72px',
     },
   },
-  plugins: [],
+  plugins: [
+    require('daisyui'),
+  ],
 }
 
