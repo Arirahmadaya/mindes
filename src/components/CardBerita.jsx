@@ -60,28 +60,20 @@ export default function CardBerita() {
           <CardFooter>
             <div className="items-center flex-grow ">
               <div className="flex gap-2">
-                <Image
-                  alt="Breathing app icon"
-                  className="w-4 h-4"
-                  src="https://nextui.org/images/breathing-app-icon.jpeg"
-                />
+                <p>👨🏻‍⚕️</p>
                 <div className="flex flex-col">
                   <p className="text-black text-tiny">{item.penulis}</p>
                 </div>
               </div>
               <div className="flex gap-2">
-                <Image
-                  alt="Breathing app icon"
-                  className="w-4 h-4"
-                  src="https://nextui.org/images/breathing-app-icon.jpeg"
-                />
+                <p>🎗</p>
                 <div className="flex flex-col">
                   <p className="text-black text-tiny">{item.kunjungan}</p>
                 </div>
               </div>
             </div>
 
-            <Button size="sm" className="bg-primary-30" rounded="">
+            <Button size="sm" className="text-white bg-primary-30" rounded="">
               {item.tanggal}
             </Button>
           </CardFooter>

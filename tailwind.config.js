@@ -22,6 +22,13 @@ export default {
     },
 
     extend: {
+      margin: {
+        70: "70px",
+      },
+      padding: {
+        70: "70px",
+      },
+     
       colors: {
         primary: {
           50: "#072A55",

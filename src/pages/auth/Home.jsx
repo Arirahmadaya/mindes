@@ -8,6 +8,7 @@ import Maps from "../../components/Maps";
 import NavbarDai from "../../components/Navbardaisy";
 import Galery from "../../components/CardGalery";
 import PendudukHome from "../../components/Pendudukan";
+import Jelajahi from "../../components/Jelajahi";
 
 const Home = () => {
   return (
@@ -21,14 +22,14 @@ const Home = () => {
         </h1>
       </div>
 
-      <div className="mb-80">
+      <div className="">
         <h1 className="font-semibold text-heading-1">
-          {" "}
-          Jelajahi Kalinyamat Kulon{" "}
+          Jelajahi Kalinyamat Kulon
         </h1>
+        <Jelajahi />
       </div>
 
-      <section className="text-center">
+      <section className="text-center mb-28">
         <h1 className="font-semibold text-display-2 text-secondary-50 ">
           Sambutan Kepala Desa
         </h1>
@@ -50,12 +51,13 @@ const Home = () => {
         </p>
       </section>
 
-      <div className="font-semibold text-center text-display-2 text-secondary-50 mb-80">
+      <div className="mb-28">
+        <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50 ">
         Demografi Kalinyamat Kulon
-      </div>
-      <div>
-        {" "}
-        <Maps />
+        </div>
+        <div className=" border-red-500">
+          <Maps />
+        </div>
       </div>
 
       <div>
@@ -67,7 +69,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mb-80">
+      <div className="mb-28">
         <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50">
           Penduduk Kalinyamat Kulon
         </div>
@@ -76,7 +78,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mb-10">
+      <div className="mb-28">
         <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50">
           Berita Terhangat di Kalinyamat Kulon
         </div>
@@ -85,7 +87,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mb-10">
+      <div className="mb-28">
         <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50">
           Galeri Kalinyamat Kulon
         </div>

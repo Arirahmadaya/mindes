@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const NavbarDai = () => {
   return (
-    <div className="lg:px-16 navbar bg-primary-40 ">
+    <div className="lg:px-70 navbar bg-primary-40 ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
