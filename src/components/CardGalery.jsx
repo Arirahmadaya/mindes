@@ -33,7 +33,8 @@ export default function Galery() {
               shadow="sm"
               radius="lg"
               width="100%"
-              className="w-full object-cover h-[280px]"
+              className="w-full lg:h-72 sm:h-52 object-cover "
+          
               src={item.img}
             />
           </CardBody>

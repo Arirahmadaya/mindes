@@ -2,14 +2,14 @@ import React from "react";
 
 const Maps = () => {
   return (
-    <div className="flex justify-center mr-10">
+    <div className="flex justify-center">
       <div className="">
         <div
           id="embed-ded-map-canvas"
           className="w-auto h-auto rounded-xl"
         >
           <iframe
-            className="w-[1000px] h-[500px] rounded-xl"
+            className="lg:w-[1000px] lg:h-[500px] md:w-[700px] md:h-[300px]  rounded-xl"
             frameborder=""
             src="https://www.google.com/maps/embed/v1/place?q=Kalinyamat+Kulon,+Kota+Tegal,+Jawa+Tengah,+Indonesia&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
           ></iframe>

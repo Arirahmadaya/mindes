@@ -33,7 +33,7 @@ export default function CardBerita() {
   ];
 
   return (
-    <div className="grid grid-cols-3 gap-2 mx-16 sm:grid-cols-3">
+    <div className=" gap-2 mx-16 grid  md:grid-cols-2 lg:grid-cols-3 ">
       {list.map((item, index) => (
         <Card
           shadow="sm"
@@ -41,7 +41,7 @@ export default function CardBerita() {
           isPressable
           onPress={() => console.log("item pressed")}
         >
-          <CardBody className="p-0 overflow-visible">
+          <CardBody className="p-0 overflow-visible ">
             <Image
               shadow="sm"
               radius="lg"

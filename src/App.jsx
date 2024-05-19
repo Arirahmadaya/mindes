@@ -30,7 +30,7 @@ const App = () => {
           <Route path="/berita" element={<Berita />} />
           <Route path="/berita/judulberita" element={<DetailBerita />} />{" "}
           {/*buat agar judul berita sesuai dengan judul berita yang sedang dibaca*/}
-          <Route path="/profil/kalinyamat-kulon" element={<ProfilDesa />} />
+          <Route path="/profil" element={<ProfilDesa />} />
           <Route path="/about/mindes" element={<Mindes />} />
           {/* Infografis Menus */}
           <Route path="/infografis/apbdes" element={<InfografisAPBDes />} />

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "react-feather"
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "react-feather";
+import Typical from 'react-typical';
 
 const Carousel = () => {
   const slides = [
-    { url: "http://source.unsplash.com/random" },
-    { url: "http://source.unsplash.com/education" },
-    { url: "http://source.unsplash.com/random"},
-    { url: "http://source.unsplash.com/education" },
+    { url: "/img_berita/berita1.jpg" },
+    { url: "/img_berita/berita2.jpg" },
+    { url: "/img/login_img.jpeg" },
+    { url: "https://source.unsplash.com/random" },
+    { url: "https://source.unsplash.com/random" },
   ];
 
   const [currIndex, setCurrIndex] = useState(0);
@@ -16,6 +19,7 @@ const Carousel = () => {
     const newIndex = isFirstSlide ? slides.length - 1 : currIndex - 1;
     setCurrIndex(newIndex);
   };
+
   const nextSlide = () => {
     const isLastSlide = currIndex === slides.length - 1;
     const newIndex = isLastSlide ? 0 : currIndex + 1;
@@ -25,28 +29,38 @@ const Carousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [currIndex]);
-  
-
 
   return (
- 
-      <div className="max-lg[1400px] h-[780px] w-full m-auto relative group">
-        <div
-          style={{ backgroundImage: `url(${slides[currIndex].url})` }}
-          className="w-full h-full duration-500 bg-center bg-cover"
-        ></div>
+    <div className="relative m-auto group">
+      <div
+        style={{ backgroundImage: `url(${slides[currIndex].url})`, filter: "blur(5px)",borderBottomLeftRadius: "15px",
+        borderBottomRightRadius: "15px", }}
+        className="w-full h-96 md:h-[580px] duration-500 bg-center bg-cover"
+      ></div>
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="absolute inset-0 flex items-center justify-center"
+      >
+        <h1 className="text-center font-bold lg:text-display-1 text-display-2 text-white px-5 sm:px-70">
+          <Typical
+            steps={['Selamat datang di halaman Beranda', 500]}
+            wrapper="span"
+          />
+        </h1>
+      </motion.div>
 
-        <div className=" hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[50%] left-5 text-heading-2 rounded-s-full p-2  text-grayscale-10  cursor-pointer ">
-          <ChevronLeft onClick={prevSlide} size={30} />
-        </div>
-        <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[50%] right-5 text-heading-2 rounded-s-full p-2 text-grayscale-10  cursor-pointer ">
-          <ChevronRight onClick={nextSlide} size={30} />
-        </div>
+      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[50%] left-5 text-heading-2 rounded-s-full lg:p-2 text-white/70 cursor-pointer">
+        <ChevronLeft onClick={prevSlide} size={40} />
       </div>
-
+      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[50%] right-5 text-heading-2 rounded-s-full lg:p-2 text-white/70 cursor-pointer">
+        <ChevronRight onClick={nextSlide} size={40} />
+      </div>
+    </div>
   );
 };
 

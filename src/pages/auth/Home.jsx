@@ -5,22 +5,20 @@ import Carousel from "../../components/CarouselHome";
 import CardBerita from "../../components/CardBerita";
 import CarouselPerangkatDesa from "../../components/CarouselPD";
 import Maps from "../../components/Maps";
-import NavbarDai from "../../components/Navbardaisy";
 import Galery from "../../components/CardGalery";
 import PendudukHome from "../../components/Pendudukan";
 import Jelajahi from "../../components/Jelajahi";
+import NavbarN from "../../components/Navbar";
 
 const Home = () => {
   return (
     <>
-      <NavbarDai />
-      <Carousel />
-      <div>
-        <img src="" alt="" />
-        <h1 className="text-center text-display-1 text-blue">
-          Selamat datang di halaman Beranda
-        </h1>
-      </div>
+      <NavbarN className="absolute" />
+      
+        <Carousel />
+       
+        <hr />
+        <br />
 
       <div className="">
         <h1 className="font-semibold text-heading-1">
@@ -53,7 +51,7 @@ const Home = () => {
 
       <div className="mb-28">
         <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50 ">
-        Demografi Kalinyamat Kulon
+          Demografi Kalinyamat Kulon
         </div>
         <div className=" border-red-500">
           <Maps />

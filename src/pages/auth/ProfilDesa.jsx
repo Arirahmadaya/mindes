@@ -1,17 +1,10 @@
-import React from "react";
-import Cards from "../../components/CardGalery";
-import NavbarNext from "../../components/NavbarNext";
+import React from 'react'
+import { DefaultSidebar } from '../../components/Sidebar'
 
 const ProfilDesa = () => {
   return (
-    <>
-      <div className="mb-96">
-        {" "}
-        <NavbarNext /> <Cards />{" "}
-      </div>
-      <div className="mb-96">asasa</div>
-    </>
-  );
-};
+    <div> <DefaultSidebar />fsfsfs</div>
+  )
+}
 
-export default ProfilDesa;
+export default ProfilDesa

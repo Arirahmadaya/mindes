@@ -1,20 +1,19 @@
-const {nextui} = require("@nextui-org/react");
+const { nextui } = require("@nextui-org/react");
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}",
-  "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
-    daisyui: {
-      themes: "light",
-    },
-
-    screens: {
-      sm: "480px",
-      md: "768px",
-      lg: "976px",
-      xl: "1440px",
-    },
+    // screens: {
+    //   sm: "640px",
+    //   md: "768px",
+    //   lg: "976px",
+    //   xl: "1440px",
+    // },
     textColor: {
       white: "#F9FCFF",
       black: "#000D17",
@@ -28,11 +27,10 @@ export default {
       padding: {
         70: "70px",
       },
-     
       colors: {
         primary: {
-          50: "#072A55",
-          40: "#0A3C79",
+          50: "#1F308B",
+          40: "#2A40B9",
           30: "#3450E7",
           20: "#5D73EC",
           10: "#8596F1",
@@ -83,5 +81,7 @@ export default {
     },
   },
   darkMode: "class",
-  plugins: [require("daisyui"), nextui()],
+  plugins: [
+    nextui(),
+  ],
 };
