@@ -1,4 +1,7 @@
 import React from "react";
+import * as Icon from "react-feather";
+import { Link } from "react-router-dom";
+
 
 const Footer = () => {
   return (
@@ -45,69 +48,12 @@ export const Medsos = () => {
     <div className="">
       <p className="text-xl font-bold mb-2">Media Sosial</p>
       <div className="flex space-x-4">
-        <div className="w-10 h-10 bg-white" />
-        <div className="w-10 h-10 bg-white" />
-        <div className="w-10 h-10 bg-white" />
-        <div className="w-10 h-10 bg-white" />
-        <div className="w-10 h-10 bg-white" />
-      </div>
-    </div>
-  );
-};
-export const KontakPenting = () => {
-  return (
-    <div className="">
-      <p className="text-body-1 font-bold">Kontak Penting</p>
-      <div className="text-body-2">
-        <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 bg-white" />
-          <p>
-            Pemadam Kebakaran
-            <br />
-            (0283) 325429
-          </p>
-        </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 bg-white" />
-          <p>
-            Polsek Sumurpanggang
-            <br />
-            (0283) 353453
-          </p>
-        </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 bg-white" />
-          <p>
-            Puskesmas Margadana
-            <br />
-            (0283) 358604
-          </p>
-        </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 bg-white" />
-          <p>
-            KPAI
-            <br />
-            021-319015
-          </p>
-        </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 bg-white" />
-          <p>
-            KOMNAS Perempuan
-            <br />
-            021-3903963
-          </p>
-        </div>
-
-        <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 bg-white" />
-          <p>
-            KOMNAS HAM
-            <br />
-            021-3925230
-          </p>
-        </div>
+        <Link to="facebook.com">
+          <Icon.Facebook className="text-white w-10 h-10" />
+        </Link>
+        <Icon.Twitter className="text-white w-10 h-10" />
+        <Icon.Instagram className="text-white w-10 h-10" />
+        <Icon.Youtube className="text-white w-10 h-10" />
       </div>
     </div>
   );
@@ -117,17 +63,18 @@ export const KontakKelurahan = () => {
   return (
     <div className="">
       <p className="text-body-1 font-bold">Kontak Kelurahan</p>
+
       <div className="text-body-2">
         <div className="flex items-center space-x-2 py-1">
-          <div className="w-6 h-6 bg-white" />
+          <Icon.Phone className="text-white w-6 h-6" />
           <p>+62283 311354</p>
         </div>
         <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 bg-white" />
+          <Icon.Mail className="text-white w-6 h-6" />
           <p>kelkalinyamatkulon@tegalkota.go.id</p>
         </div>
         <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 bg-white" />
+          <Icon.Calendar className="text-white w-6 h-6" />
           <p>
             Senin - Jumat
             <br />
@@ -135,7 +82,7 @@ export const KontakKelurahan = () => {
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 bg-white" />
+          <Icon.Briefcase className="text-white w-6 h-6" />
           <p>
             Jalan Ki Hajar Dewantoro <br />
             No. 109, Tegal 52144{" "}
@@ -146,6 +93,57 @@ export const KontakKelurahan = () => {
   );
 };
 
+const ListKontak = [
+  {
+    icon: "src/assets/icon/flame.svg",
+    title: "Pemadam Kebakaran",
+    number: "(0283) 325429",
+  },
+  {
+    icon: "src/assets/icon/police.svg",
+    title: "Polsek Sumur Panggang",
+    number: "(0283) 353453",
+  },
+  {
+    icon: "src/assets/icon/hospital.svg",
+    title: "Puskesmas Margadana",
+    number: "(0283) 358604",
+  },
+  {
+    icon: "src/assets/icon/tuyul.svg",
+    title: "KPAI",
+    number: "021-319015",
+  },
+  {
+    icon: "src/assets/icon/pregnant.svg",
+    title: "KOMNAS Perempuan",
+    number: "021-3903963",
+  },
+  {
+    icon: "/src/assets/icon/ham.svg",
+    title: "KOMNAS HAM",
+    number: "021-3925230",
+  },
+];
+
+export const KontakPenting = () => {
+  return (
+    <div className="p-4">
+      <p className="text-body-1 font-bold mb-4">Kontak Penting</p>
+      <div className="space-y-4">
+        {ListKontak.map((kontak, index) => (
+          <div key={index} className="flex items-center space-x-2">
+            <img src={kontak.icon} alt={kontak.title} className="w-6 h-6" />
+            <div>
+              <p className="font-semibold">{kontak.title}</p>
+              <p>{kontak.number}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 export const Jelajahi = () => {
   return (
     <div>
