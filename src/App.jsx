@@ -19,6 +19,7 @@ import Infografis from "./pages/admin/Infografis";
 import Laporan from "./pages/admin/Laporan";
 import Realisasi from "./pages/admin/Realisasi";
 import User from "./pages/admin/User";
+// import DetailAgenda from "./pages/auth/DetailAgenda";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/berita" element={<Berita />} />
           <Route path="/berita/judulberita" element={<DetailBerita />} />{" "}
+          {/* <Route path="/detail/agenda" element={<DetailAgenda />} /> */}
           {/*buat agar judul berita sesuai dengan judul berita yang sedang dibaca*/}
           <Route path="/profil" element={<ProfilDesa />} />
           <Route path="/about/mindes" element={<Mindes />} />
@@ -41,6 +43,7 @@ const App = () => {
           {/* login and register */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          
           {/* ADMIN */}
           <Route path="/admin/beranda" element={<Beranda />} />
           <Route path="/admin/berita" element={<BeritaAdmin />} />

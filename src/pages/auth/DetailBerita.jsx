@@ -1,8 +1,16 @@
 import React from 'react'
+import NavbarN from '../../components/Navbar'
+import Footer from '../../components/Footer'
 
 const DetailBerita = () => {
   return (
-    <div>DetailBerita</div>
+    <>
+    
+    <NavbarN className="absolute" />
+    
+    <Footer />
+
+    </>
   )
 }
 

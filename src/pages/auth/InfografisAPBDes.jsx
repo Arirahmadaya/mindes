@@ -1,11 +1,18 @@
-import React from 'react'
-import Example from '../../components/Chart'
+import React from "react";
+
+import NavbarN from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import Example from "../../components/Chart";
 const InfografisAPBDes = () => {
   return (
     <div>
-      <Example />
-    </div>
-  )
-}
+      <NavbarN className="absolute" />
 
-export default InfografisAPBDes
+      <Example />
+
+      <Footer />
+    </div>
+  );
+};
+
+export default InfografisAPBDes;
