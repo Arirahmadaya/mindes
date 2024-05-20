@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "react-feather";
-import Typical from 'react-typical';
+import Typical from "react-typical";
 
 const Carousel = () => {
   const slides = [
@@ -36,11 +36,14 @@ const Carousel = () => {
   return (
     <div className="relative m-auto group">
       <div
-        style={{ backgroundImage: `url(${slides[currIndex].url})`, filter: "blur(5px)",borderBottomLeftRadius: "15px",
-        borderBottomRightRadius: "15px", }}
+        style={{
+          backgroundImage: `url(${slides[currIndex].url})`,
+          borderBottomLeftRadius: "15px",
+          borderBottomRightRadius: "15px",
+        }}
         className="w-full h-96 md:h-[580px] duration-500 bg-center bg-cover"
       ></div>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -48,7 +51,7 @@ const Carousel = () => {
       >
         <h1 className="text-center font-bold lg:text-display-1 text-display-2 text-white px-5 sm:px-70">
           <Typical
-            steps={['Selamat datang di halaman Beranda', 500]}
+            steps={["Selamat datang di halaman Beranda", 500]}
             wrapper="span"
           />
         </h1>
@@ -65,3 +68,4 @@ const Carousel = () => {
 };
 
 export default Carousel;
+// filter: "blur(5px)", Untuk Blur

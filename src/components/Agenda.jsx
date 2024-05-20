@@ -1,6 +1,4 @@
 import React from "react";
-import { Timeline, TimelineItem } from "react-daisyui";
-
 const Agenda = () => {
   return (
     <Timeline>

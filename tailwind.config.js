@@ -1,5 +1,4 @@
-// const { nextui } = require("@nextui-org/react");
-import { nextui } from "@nextui-org/react";
+const { nextui } = require("@nextui-org/react");
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -7,21 +6,33 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
-    // "./node_modules/react-daisyui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    // screens: {
-    //   sm: "640px",
-    //   md: "768px",
-    //   lg: "976px",
-    //   xl: "1440px",
-    // },
+
     textColor: {
       white: "#F9FCFF",
       black: "#000D17",
       blue: "#1A5C92",
     },
-
+    fontFamily: {
+      sans: "open-sans, sans-serif",
+    },
+    fontSize: {
+      "overline-2": "10px",
+      "overline-1": "12px",
+      "caption-2": "12px",
+      "caption-1": "14px",
+      "body-2": "16px",
+      "body-1": "18px",
+      "heading-6": "20px",
+      "heading-5": "24px",
+      "heading-4": "28px",
+      "heading-3": "32px",
+      "heading-2": "38px",
+      "heading-1": "48px",
+      "display-2": "54px",
+      "display-1": "72px",
+    },
     extend: {
       margin: {
         70: "70px",
@@ -62,28 +73,7 @@ export default {
         },
       },
     },
-    fontFamily: {
-      sans: "open-sans, sans-serif",
-    },
-    fontSize: {
-      "overline-2": "10px",
-      "overline-1": "12px",
-      "caption-2": "12px",
-      "caption-1": "14px",
-      "body-2": "16px",
-      "body-1": "18px",
-      "heading-6": "20px",
-      "heading-5": "24px",
-      "heading-4": "28px",
-      "heading-3": "32px",
-      "heading-2": "38px",
-      "heading-1": "48px",
-      "display-2": "54px",
-      "display-1": "72px",
-    },
   },
   darkMode: "class",
-  plugins: [
-    nextui(),
-  ],
+  plugins: [require("daisyui"), nextui()],
 };
