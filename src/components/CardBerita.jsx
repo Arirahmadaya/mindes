@@ -30,6 +30,33 @@ export default function CardBerita() {
       penulis: "ferianta",
       tanggal: "6 Mei 2025",
     },
+    {
+      title: "KANTOR PELAYANAN MASYARAKAT",
+      artikel:
+        "Senin, 06 Mei 2024. Kantor Pelayanan Masyarakat Kalinyamat Kulon telah beroperasi kembali seperti pada hari biasanya, kembali dibukanya ini masyarakat dapat melakukan administrasi seperti biasanya ...",
+      img: "/img_berita/berita1.jpg",
+      kunjungan: "1.000",
+      penulis: "ferianta",
+      tanggal: "6 Mei 2025",
+    },
+    {
+      title: "KANTOR PELAYANAN MASYARAKAT",
+      artikel:
+        "Senin, 06 Mei 2024. Kantor Pelayanan Masyarakat Kalinyamat Kulon telah beroperasi kembali seperti pada hari biasanya, kembali dibukanya ini masyarakat dapat melakukan administrasi seperti biasanya ...",
+      img: "/img_berita/berita2.jpg",
+      kunjungan: "1.000",
+      penulis: "ferianta",
+      tanggal: "6 Mei 2025",
+    },
+    {
+      title: "KANTOR PELAYANAN MASYARAKAT",
+      artikel:
+        "Senin, 06 Mei 2024. Kantor Pelayanan Masyarakat Kalinyamat Kulon telah beroperasi kembali seperti pada hari biasanya, kembali dibukanya ini masyarakat dapat melakukan administrasi seperti biasanya ...",
+      img: "/img_berita/berita3.jpg",
+      kunjungan: "1.000",
+      penulis: "ferianta",
+      tanggal: "6 Mei 2025",
+    },
   ];
 
   return (
