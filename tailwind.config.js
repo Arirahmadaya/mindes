@@ -20,8 +20,10 @@ export default {
       white: "#F9FCFF",
       black: "#000D17",
       blue: "#1A5C92",
+      bluenight: "#244967", //biarinajagini
+    
     },
-
+    
     extend: {
       margin: {
         70: "70px",
@@ -38,6 +40,7 @@ export default {
           10: "#8596F1",
         },
         secondary: {
+          60: "#1F2F3C",
           50: "#1A5C92",
           40: "#5087B5",
           30: "#97C1E4",

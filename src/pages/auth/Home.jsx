@@ -21,17 +21,18 @@ const Home = () => {
       <br />
 
       <div className="">
-        <h1 className="font-semibold text-heading-1">
+        <h1 className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
           Jelajahi Kalinyamat Kulon
         </h1>
         <Jelajahi />
       </div>
 
       <section className="text-center mb-28">
-        <h1 className="font-semibold text-display-2 text-secondary-50 ">
+        <h1 className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
           Sambutan Kepala Desa
         </h1>
-        <div className="font-semibold text-display-2">ARIANTO, S.AP.</div>
+        <img src="/img/lurah_img.png" alt="Image Kepala Desa" />
+        <div className="font-bold text-display-2">ARIANTO, S.AP.</div>
         <p className="text-body-1 ">
           Website ini merupakan wujud komitmen kami untuk meningkatkan <br />
           transparansi, akuntabilitas, dan partisipasi masyarakat dalam
@@ -50,7 +51,7 @@ const Home = () => {
       </section>
 
       <div className="mb-28">
-        <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50 ">
+        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
           Demografi Kalinyamat Kulon
         </div>
         <div className=" border-red-500">
@@ -59,7 +60,7 @@ const Home = () => {
       </div>
 
       <div>
-        <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50">
+        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
           Perangkat Desa Kalinyamat Kulon
         </div>
         <div>
@@ -68,7 +69,7 @@ const Home = () => {
       </div>
 
       <div className="mb-28">
-        <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50">
+        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
           Penduduk Kalinyamat Kulon
         </div>
         <div>
@@ -77,7 +78,7 @@ const Home = () => {
       </div>
 
       <div className="mb-28">
-        <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50">
+        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
           Berita Terhangat di Kalinyamat Kulon
         </div>
         <div>
@@ -86,7 +87,7 @@ const Home = () => {
       </div>
 
       <div className="mb-28">
-        <div className="mb-2 font-semibold text-center text-display-2 text-secondary-50">
+        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
           Galeri Kalinyamat Kulon
         </div>
         <div>

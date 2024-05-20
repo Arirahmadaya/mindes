@@ -62,6 +62,7 @@ export default function NavbarN() {
         className="hidden sm:flex gap-10 text-white"
         justify="center"
       >
+        {/* isactive didnt work in navbar */}
         <NavbarItem isActive>
           <Link href="/" color="foreground">
             Beranda

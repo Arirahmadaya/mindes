@@ -12,11 +12,11 @@ const ProfilDesa = () => {
       <div className="">
         Kelurahan Kalinyamat Kulon Kecamatan Margadana Kota Tegal
       </div>
-      <div className="">Visi</div>
+      <div className="mb-2 font-bold text-center text-heading-2 text-blue hover:text-bluenight">Visi</div>
       <div className="">
         Mewujudkan Kota Tegal yang Sejahtera, Maju, dan Berbudaya
       </div>
-      <div className="">Misi</div>
+      <div className="mb-2 font-bold text-center text-heading-2 text-blue hover:text-bluenight">Misi</div>
       <ul>
         <li>1. Mewujudkan tata kelola pemerintahan yang baik dan bersih.</li>
         <li>2. Meningkatkan kualitas dan daya saing ekonomi daerah.</li>
@@ -26,6 +26,7 @@ const ProfilDesa = () => {
         <li>4. Meningkatkan kualitas sumber daya manusia.</li>
         <li>5. Melestarikan budaya dan nilai-nilai luhur bangsa.</li>
       </ul>
+      <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">Perangkat Desa</div>
       <div className="">PRIMA</div>
       <div>Nilai Budaya Kerja Aparatur Pemerintah Kota Tegal</div>
       {/* make card */}
