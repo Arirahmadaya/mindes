@@ -1,6 +1,5 @@
 import React from "react";
 
-import NavbarN from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Carousel from "../../components/CarouselHome";
 import CardBerita from "../../components/CardBerita";
@@ -9,15 +8,13 @@ import Maps from "../../components/Maps";
 import Galery from "../../components/CardGalery";
 import PendudukHome from "../../components/Pendudukan";
 import Jelajahi from "../../components/Jelajahi";
+import NavbarUser from "../../components/NavbarUser";
 
 const Home = () => {
   return (
     <>
-      <NavbarN className="absolute" />
-
+      <NavbarUser className="absolute" />
       <Carousel />
-
-      <hr />
       <br />
 
       <div className="">

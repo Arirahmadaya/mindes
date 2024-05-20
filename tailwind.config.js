@@ -56,6 +56,7 @@ export default {
           10: "#EBF5FE",
         },
         grayscale: {
+          90: "#F3F2F7",
           60: "#161616",
           50: "#4D4E50",
           40: "#323232",
@@ -71,6 +72,7 @@ export default {
           20: "linear-gradient(90deg, #3450E7 0%, #8596F1 100%)",
           10: "linear-gradient(90deg, #3450E7 0%, #8596F1 100%)",
         },
+        
       },
     },
   },

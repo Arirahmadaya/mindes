@@ -1,15 +1,18 @@
-import React from 'react'
-
-
-import { DefaultSidebar } from '../../components/Sidebar'
+import React from "react";
+import Sidebares from "../../components/Sidebar2";
+import NavbarAdmin from "../../components/NavbarAdmin";
+import Tablenih from "../../components/Table";
 
 const Beranda = () => {
   return (
-    <>
-    <div>Beranda</div>
-    <DefaultSidebar />
-    </>
-  )
-}
+    <div className="bg-grayscale-90 w-full h-auto">
+      <NavbarAdmin />
 
-export default Beranda
+      <Sidebares />
+
+      <Tablenih />
+    </div>
+  );
+};
+
+export default Beranda;

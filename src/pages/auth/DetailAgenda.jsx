@@ -5,6 +5,8 @@ const DetailAgenda = () => {
   return (
     <>
       <Agenda />
+      <TestDaisy />
+
       <div>DetailAgenda</div>
     </>
   );

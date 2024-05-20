@@ -1,17 +1,14 @@
 import React from "react";
 
-import NavbarN from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Maps from "../../components/Maps";
-import TestDaisy from "../../components/TestDaisy";
+import NavbarUser from "../../components/NavbarUser";
 
 const ProfilDesa = () => {
   return (
     <>
-      <NavbarN />
-      <TestDaisy />
-      
-
+      <NavbarUser />
+     
       <img src="/img/kota_tegal.png" alt="" />
       <div className="">
         Kelurahan Kalinyamat Kulon Kecamatan Margadana Kota Tegal

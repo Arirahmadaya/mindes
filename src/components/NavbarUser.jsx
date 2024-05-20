@@ -20,7 +20,7 @@ import {
   LogIn,
 } from "react-feather";
 
-export default function NavbarN() {
+export default function NavbarUser() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
