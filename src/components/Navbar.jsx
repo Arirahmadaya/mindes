@@ -18,15 +18,15 @@ import {
   LogOut,
   Key,
   LogIn,
-} from "react-feather"; // Mengganti BarChart menjadi BarChart2
+} from "react-feather";
 
 export default function NavbarN() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
     { name: "Beranda", icon: Home, href: "/" },
-    { name: "Profil", icon: User },
-    { name: "Infografis", icon: BarChart2, href: "/profil" }, // Menggunakan BarChart2 dari Feather Icons
+    { name: "Profil", icon: User, href: "/profil" },
+    { name: "Infografis", icon: BarChart2, href: "/infografis/apbdes" },
     { name: "Berita", icon: BookOpen, href: "/berita" },
     { name: "Log Out", icon: LogOut, href: "/login" },
     { name: "Login", icon: Key, href: "/login" },
@@ -51,8 +51,9 @@ export default function NavbarN() {
             className="md:w-12 md:h-12 pr-2 blok w-10 h-10 "
           />
           <div className="text-white hover:text-white/80">
-        
-            <p className="font-bold lg:text-heading-6 text-body-2">Desa Kalinyamat Kulon</p>
+            <p className="font-bold lg:text-heading-6 text-body-2">
+              Desa Kalinyamat Kulon
+            </p>
             <p className="md:text-body-2 text-caption-1">Kota Tegal</p>
           </div>
         </NavbarBrand>
