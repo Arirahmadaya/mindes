@@ -16,7 +16,7 @@ const chartConfig = {
         show: false,
       },
     },
-    
+   
     dataLabels: {
       enabled: false,
     },
@@ -34,19 +34,22 @@ const chartConfig = {
         "Penyelengaraan Dana Desa",
         "Pelaksanaan Desa",
         "Pembinaan Kemasyarakatan Desa",
-        "Pemberdayaan Masyarakat Desa",
+        "Pemberdayaan<br>Masyarakat Desa",
         "Penanggulangan Bencana",
-        "Keadaan Darurat/Mendesak Desa",
+        "Keadaan Darurat/<br>Mendesak Desa",
       ],
       labels: {
         style: {
           colors: "#616161",
-          fontSize: "10px", 
+          fontSize: "12px", // Menjaga ukuran font tetap sama
           fontFamily: "inherit",
           fontWeight: 400,
-          fontStyle: "medium",
+          fontStyle: "normal", // Memastikan font tidak miring
         },
-        rotate: 0,
+        rotate: 0, // Mengatur rotasi ke 0 derajat
+        formatter: (val) => {
+          return val.replace(/<br>/g, "\n"); // Mengganti <br> dengan newline
+        },
       },
     },
     yaxis: {
@@ -60,7 +63,7 @@ const chartConfig = {
       },
       min: 0,
       max: 700000000,
-      tickAmount: 4, 
+      tickAmount: 4, // Menampilkan 5 kategori (0, 175000000, 350000000, 525000000, 700000000)
       forceNiceScale: true,
     },
     grid: {
@@ -87,7 +90,7 @@ const chartConfig = {
   },
 };
 
-export default function ChartBelanja() {
+export default function ChartAdmin() {
   return (
     <div className="flex justify-center mx-5 md:mx-10 lg:mx-70 my-5 ">
       <div className="bg-white rounded-lg w-full">
@@ -101,11 +104,11 @@ export default function ChartBelanja() {
             options={chartConfig.options}
             series={chartConfig.series}
             type={chartConfig.type}
-            height="420"
+            height="350"
+            width="100%" // Menambahkan properti ini untuk membuat chart responsif
           />
         </div>
       </div>
     </div>
   );
 }
-

@@ -101,7 +101,7 @@ export default function CardBerita() {
               </div>
             </div>
 
-            <Button size="sm" className="text-white bg-primary-30" rounded="">
+            <Button size="sm" className="text-white bg-primary-30" >
               {item.tanggal}
             </Button>
           </CardFooter>
