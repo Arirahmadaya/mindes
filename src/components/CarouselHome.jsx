@@ -34,12 +34,11 @@ const Carousel = () => {
   }, [currIndex]);
 
   return (
-    <div className="relative m-auto group">
+    <div className="relative m-auto group ">
       <div
         style={{
-          backgroundImage: `url(${slides[currIndex].url})`,
-          borderBottomLeftRadius: "15px",
-          borderBottomRightRadius: "15px",
+          backgroundImage: `url(${slides[currIndex].url}) `,
+          filter: "blur(1.5px)"
         }}
         className="w-full h-96 md:h-[580px] duration-500 bg-center bg-cover"
       ></div>

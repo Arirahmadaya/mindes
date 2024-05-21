@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardBody, CardFooter, Image, Button } from "@nextui-org/react";
+import { Monitor, User } from "react-feather";
 
 export default function CardBerita() {
   const list = [
@@ -87,13 +88,13 @@ export default function CardBerita() {
           <CardFooter>
             <div className="items-center flex-grow ">
               <div className="flex gap-2">
-                <p>👨🏻‍⚕️</p>
+                <User size={15}/>
                 <div className="flex flex-col">
                   <p className="text-black text-tiny">{item.penulis}</p>
                 </div>
               </div>
-              <div className="flex gap-2">
-                <p>🎗</p>
+              <div className="flex gap-2 mt-1">
+                <Monitor size={15}/>
                 <div className="flex flex-col">
                   <p className="text-black text-tiny">{item.kunjungan}</p>
                 </div>

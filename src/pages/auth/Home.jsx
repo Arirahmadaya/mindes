@@ -24,35 +24,46 @@ const Home = () => {
         <Jelajahi />
       </div>
 
-      <section className="text-center mb-28">
-        <h1 className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
-          Sambutan Kepala Desa
-        </h1>
-        <img src="/img/lurah_img.png" alt="Image Kepala Desa" />
-        <div className="font-bold text-display-2">ARIANTO, S.AP.</div>
-        <p className="text-body-1 ">
-          Website ini merupakan wujud komitmen kami untuk meningkatkan <br />
-          transparansi, akuntabilitas, dan partisipasi masyarakat dalam
-          <br />
-          membangun desa. Di sini, Anda dapat menemukan informasi lengkap
-          <br />
-          tentang desa, program, kegiatan, pelayanan publik, dan lain
-          <br />
-          sebagainya. Kami harap website ini dapat bermanfaat bagi seluruh
-          <br />
-          warga Desa Kalinyamat Kulon. Kritik dan saran membangun demi
-          <br />
-          kemajuan website dan desa kami persilahkan.
-          <br />
-        </p>
-      </section>
+      <div>
+        <section className="relative text-center mb-28">
+          <div
+            className="absolute inset-0 w-full h-full bg-gradient-to-b from-blue-50/70 to-blue-10 rounded-t-full"
+            style={{
+              top: "50%",
+              height: "120%",
+              zIndex: -1,
+            }}
+          ></div>
 
-      <div className="mb-28">
-        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
-          Demografi Kalinyamat Kulon
-        </div>
-        <div className=" border-red-500">
-          <Maps />
+          <h1 className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight relative z-20">
+            Sambutan Kepala Desa
+          </h1>
+          <div className="font-bold text-display-2 relative z-20">
+            ARIANTO, S.AP.
+          </div>
+          <p className="text-body-1 relative z-20 font-medium">
+            Website ini merupakan wujud komitmen kami untuk meningkatkan 
+            transparansi, akuntabilitas, dan <br />partisipasi masyarakat dalam
+            membangun desa. Di sini, Anda dapat menemukan informasi <br /> lengkap
+            
+            tentang desa, program, kegiatan, pelayanan publik, dan lain
+            sebagainya. <br /> Kami harap website ini dapat bermanfaat bagi seluruh
+           
+            warga Desa  <br />Kalinyamat Kulon. Kritik dan saran membangun demi 
+            <br />
+          </p>
+          <div className="flex justify-center mb-4 relative z-20">
+            <img src="/img/lurah_img.png" alt="Image Kepala Desa" />
+          </div>
+        </section>
+
+        <div className="mb-28 relative z-20">
+          <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
+            Demografi Kalinyamat Kulon
+          </div>
+          <div>
+            <Maps />
+          </div>
         </div>
       </div>
 
