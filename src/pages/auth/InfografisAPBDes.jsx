@@ -1,13 +1,17 @@
 import React from "react";
 
-import NavbarN from "../../components/NavbarUser";
+
 import Footer from "../../components/Footer";
-import Example from "../../components/Chart";
+import NavbarUser from "../../components/NavbarUser";
+import ChartAPBDes from "../../components/Chart";
+import ChartBelanja from "../../components/ChartBelanja";
 
 const InfografisAPBDes = () => {
   return (
-    <div>
-      <Example />
+    <div className="bg-grayscale-90">
+      <NavbarUser />
+      <ChartAPBDes />
+      <ChartBelanja />
 
       <Footer />
     </div>
@@ -15,3 +19,5 @@ const InfografisAPBDes = () => {
 };
 
 export default InfografisAPBDes;
+
+

@@ -1,139 +1,174 @@
-import {
-    Card,
-    CardBody,
-    CardHeader,
-    Typography,
-  } from "@material-tailwind/react";
-  import Chart from "react-apexcharts";
-  import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
+import React from "react";
+import Chart from "react-apexcharts";
+import { Typography } from "@material-tailwind/react";
 
-  // If you're using Next.js please use the dynamic import for react-apexcharts and remove the import from the top for the react-apexcharts
-  // import dynamic from "next/dynamic";
-  // const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-
-  const chartConfig = {
-    type: "bar",
-    height: 240,
-    series: [
-      {
-        name: "Sales",
-        data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+const chartConfig = {
+  type: "bar",
+  series: [
+    {
+      name: "Pendapatan",
+      data: [
+        750000000, 820000000, 900000000, 1000000000, 1100000000, 1150000000,
+        1200000000, 1250000000, 1300000000, 1350000000, 1400000000,
+      ],
+    },
+    {
+      name: "Belanja",
+      data: [
+        700000000, 800000000, 850000000, 950000000, 1050000000, 1120000000,
+        1180000000, 1230000000, 1280000000, 1320000000, 1380000000,
+      ],
+    },
+  ],
+  options: {
+    chart: {
+      toolbar: {
+        show: false,
       },
-    ],
-    options: {
-      chart: {
-        toolbar: {
-          show: false,
-        },
-      },
-      title: {
-        show: "",
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      colors: ["#020617"],
-      plotOptions: {
-        bar: {
-          columnWidth: "40%",
-          borderRadius: 2,
-        },
-      },
-      xaxis: {
-        axisTicks: {
-          show: false,
-        },
-        axisBorder: {
-          show: false,
-        },
-        labels: {
-          style: {
-            colors: "#616161",
-            fontSize: "12px",
-            fontFamily: "inherit",
-            fontWeight: 400,
+      responsive: [
+        {
+          breakpoint: 1024,
+          options: {
+            plotOptions: {
+              bar: {
+                columnWidth: "50%",
+              },
+            },
           },
         },
-        categories: [
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ],
-      },
-      yaxis: {
-        labels: {
-          style: {
-            colors: "#616161",
-            fontSize: "12px",
-            fontFamily: "inherit",
-            fontWeight: 400,
+        {
+          breakpoint: 768,
+          options: {
+            plotOptions: {
+              bar: {
+                columnWidth: "60%",
+              },
+            },
           },
         },
-      },
-      grid: {
-        show: true,
-        borderColor: "#dddddd",
-        strokeDashArray: 5,
-        xaxis: {
-          lines: {
-            show: true,
+        {
+          breakpoint: 480,
+          options: {
+            plotOptions: {
+              bar: {
+                columnWidth: "70%",
+              },
+            },
           },
         },
-        padding: {
-          top: 5,
-          right: 20,
-        },
-      },
-      fill: {
-        opacity: 0.8,
-      },
-      tooltip: {
-        theme: "dark",
+      ],
+    },
+    title: {
+      show: false,
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    colors: ["#97C1E4", "#3450E7"],
+    plotOptions: {
+      bar: {
+        columnWidth: "40%",
+        borderRadius: 2,
       },
     },
-  };
+    xaxis: {
+      axisTicks: {
+        show: false,
+      },
+      axisBorder: {
+        show: false,
+      },
+      labels: {
+        style: {
+          colors: "#616161",
+          fontSize: "12px",
+          fontFamily: "inherit",
+          fontWeight: 400,
+        },
+      },
+      categories: [
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+      ],
+    },
+    yaxis: {
+      labels: {
+        style: {
+          colors: "#616161",
+          fontSize: "12px",
+          fontFamily: "inherit",
+          fontWeight: 400,
+        },
+      },
+      min: 0,
+      max: 1600000000,
+      tickAmount: 5, // Menampilkan 5 kategori
+      forceNiceScale: true,
+    },
+    grid: {
+      show: true,
+      borderColor: "#dddddd",
+      strokeDashArray: 5,
+      xaxis: {
+        lines: {
+          show: true,
+        },
+      },
+      padding: {
+        top: 5,
+        right: 20,
+      },
+    },
+    fill: {
+      opacity: 0.8,
+      type: "gradient",
+      gradient: {
+        shade: "light",
+        type: "vertical",
+        shadeIntensity: 0.25,
+        gradientToColors: ["#FFFFFF", "#FFFFFF"],
+        inverseColors: false,
+        opacityFrom: 0.85,
+        opacityTo: 0.85,
+        stops: [0, 100],
+      },
+    },
+    tooltip: {
+      theme: "dark",
+    },
+  },
+};
 
-  export default function Example() {
-    return (
-      <Card>
-        <CardHeader
-          floated={false}
-          shadow={false}
-          color="transparent"
-          className="flex flex-col gap-4 rounded-none md:flex-row md:items-center">
-            
-          <div>
-            <Typography variant="h6" color="blue-gray">
-              Bar Chartt
-            </Typography>
-            <Typography
-              variant="small"
-              color="gray"
-              className="max-w-sm font-normal"
-            >
-   
-            </Typography>
-          </div>
-        </CardHeader>
-        <CardBody className="px-2 pb-0">
-          <Chart {...chartConfig} />
-        </CardBody>
-      </Card>
-    );
-  }
+export default function ChartAPBDes() {
+  return (
+    <div className="flex justify-center mx-5 md:mx-10 lg:mx-70 my-5 ">
+      <div className="bg-white rounded-lg w-full">
+        <div className="bg-blue-100 rounded-tl-lg rounded-br-[20px] inline-block min-w-max">
+          <Typography className="text-heading-4 font-semibold text-center text-blue p-5">
+            Anggaran Pendapatan dan Belanja Desa
+          </Typography>
+        </div>
+        <div className="p-4">
+          <Chart
+            options={chartConfig.options}
+            series={chartConfig.series}
+            type={chartConfig.type}
+            height="420"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
 
-// import React from 'react'
 
-// const Example = () => {
-//   return (
-//     <div>Chart</div>
-//   )
-// }
 
-// export default Chart
