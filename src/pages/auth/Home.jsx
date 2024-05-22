@@ -4,7 +4,7 @@ import Footer from "../../components/Footer";
 import Carousel from "../../components/CarouselHome";
 import CardBerita from "../../components/CardBerita";
 import CarouselPerangkatDesa from "../../components/CarouselPD";
-import Maps from "../../components/Maps";
+import Maps, { MapsKecil } from "../../components/Maps";
 import Galery from "../../components/CardGalery";
 import PendudukHome from "../../components/Pendudukan";
 import Jelajahi from "../../components/Jelajahi";
@@ -57,7 +57,7 @@ const Home = () => {
           </div>
         </section>
 
-        <div className="mb-28 relative z-20">
+        <div className="mb-28 z-20 ">
           <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
             Demografi Kalinyamat Kulon
           </div>

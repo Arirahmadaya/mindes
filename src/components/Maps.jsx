@@ -6,10 +6,10 @@ const Maps = () => {
       <div className="">
         <div
           id="embed-ded-map-canvas"
-          className="w-auto h-auto rounded-xl"
+          className="w-full h-full rounded-xl"
         >
           <iframe
-            className="lg:w-[1000px] lg:h-[500px] md:w-[700px] md:h-[300px]  rounded-xl"
+            className="lg:w-[1000px] lg:h-[500px] md:w-[700px] md:h-[300px] w-[400px] h-[250px] rounded-xl"
             frameborder=""
             src="https://www.google.com/maps/embed/v1/place?q=Kalinyamat+Kulon,+Kota+Tegal,+Jawa+Tengah,+Indonesia&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
           ></iframe>
@@ -28,3 +28,31 @@ const Maps = () => {
 };
 
 export default Maps;
+export function MapsKecil () {
+  return (
+    <div className="flex justify-center">
+      <div className="">
+        <div
+          id="embed-ded-map-canvas"
+          className="w-full h-full rounded-xl"
+        >
+          <iframe
+            className="lg:w-[590px] lg:h-[360px] w-[400px] h-[250px] rounded-xl"
+            frameborder=""
+            src="https://www.google.com/maps/embed/v1/place?q=Kalinyamat+Kulon,+Kota+Tegal,+Jawa+Tengah,+Indonesia&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+          ></iframe>
+        </div>
+        <style>{`
+                #embed-ded-map-canvas img {
+                max-width: none!important;
+                background: none!important;
+                font-size: inherit;
+                font-weight: inherit;
+                }
+      `}</style>
+      </div>
+    </div>
+  );
+};
+
+

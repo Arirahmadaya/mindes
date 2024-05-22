@@ -1,10 +1,13 @@
 import React from "react";
 
-
 import Footer from "../../components/Footer";
 import NavbarUser from "../../components/NavbarUser";
-import ChartAPBDes from "../../components/Chart";
+import ChartAPBDes from "../../components/ChartAPBDes";
 import ChartBelanja from "../../components/ChartBelanja";
+
+import ChartApanih from "../../components/ChartAPBDes";
+import ChartStunting from "../../components/ChartStunting";
+import ChartRealisasi from "../../components/ChartRealisasi";
 
 const InfografisAPBDes = () => {
   return (
@@ -12,6 +15,8 @@ const InfografisAPBDes = () => {
       <NavbarUser />
       <ChartAPBDes />
       <ChartBelanja />
+      <ChartStunting />
+      <ChartRealisasi />
 
       <Footer />
     </div>
@@ -19,5 +24,3 @@ const InfografisAPBDes = () => {
 };
 
 export default InfografisAPBDes;
-
-
