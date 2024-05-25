@@ -19,9 +19,19 @@ import {
   Key,
   LogIn,
 } from "react-feather";
+import { useLocation } from "react-router-dom";
 
 export default function NavbarUser() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const location = useLocation();
+
+  const menuItemsMain = [
+    { name: "Beranda", icon: Home, href: "/" },
+    { name: "Profil", icon: User, href: "/profil" },
+    { name: "Infografis", icon: BarChart2, href: "/infografis/apbdes" },
+    { name: "Berita", icon: BookOpen, href: "/berita" },
+    
+  ];
 
   const menuItems = [
     { name: "Beranda", icon: Home, href: "/" },
@@ -63,27 +73,13 @@ export default function NavbarUser() {
         className="hidden sm:flex gap-10 text-white"
         justify="center"
       >
-        {/* isactive didnt work in navbar */}
-        <NavbarItem isActive>
-          <Link href="/" color="foreground">
-            Beranda
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link href="/profil" aria-current="page">
-            Profil
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/infografis/apbdes">
-            Infografis
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/berita">
-            Berita
-          </Link>
-        </NavbarItem>
+        {menuItemsMain.map((item, index) => (
+          <NavbarItem key={index} isActive={location.pathname === item.href}>
+            <Link color="foreground" href={item.href}>
+              {item.name}
+            </Link>
+          </NavbarItem>
+        ))}
       </NavbarContent>
 
       <NavbarContent justify="end" className="lg:-mr-28">

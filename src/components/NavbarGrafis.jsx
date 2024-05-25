@@ -1,20 +1,20 @@
 import React from "react";
 import { Link } from "@nextui-org/react";
 import { useLocation } from "react-router-dom";
-import { CreditCard, Users, BarChart2, Search, Globe } from "react-feather";
+import { CreditCard, Users, BarChart2, Search, Award } from "react-feather";
 
 export default function NavbarGrafis() {
   const location = useLocation();
 
   const linkClassName = (path) =>
-    `flex flex-col items-center hover:underline hover:underline-offset-[10px] ${
+    `flex flex-col items-center group hover:font-semibold ${
       location.pathname === path
         ? "underline underline-offset-[10px] decoration-[3px] decoration-primary-30 font-semibold"
         : ""
     } whitespace-nowrap`;
 
   const iconClassName = (path) =>
-    `h-6 w-6 mb-1 ${location.pathname === path ? "stroke-2" : "stroke-1"}`;
+    `h-6 w-6 mb-1 ${location.pathname === path ? "stroke-2" : "stroke-1"} group-hover:stroke-2`;
 
   return (
     <div className="flex gap-4 mx-70">
@@ -35,7 +35,7 @@ export default function NavbarGrafis() {
         Cek Data
       </Link>
       <Link href="/infografis/sdgs" className={linkClassName("/infografis/sdgs")}>
-        <Globe className={iconClassName("/infografis/sdgs")} />
+        <Award className={iconClassName("/infografis/sdgs")} />
         SDGs
       </Link>
     </div>
