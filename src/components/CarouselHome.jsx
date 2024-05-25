@@ -5,11 +5,10 @@ import Typical from "react-typical";
 
 const Carousel = () => {
   const slides = [
-    { url: "/img_berita/berita1.jpg" },
-    { url: "/img_berita/berita2.jpg" },
-    { url: "/img/login_img.jpeg" },
-    { url: "https://source.unsplash.com/random" },
-    { url: "https://source.unsplash.com/random" },
+    { url: "/img/carousel1.png" },
+    { url: "/img/carousel2.png" },
+    { url: "/img/carousel3.png" },
+    
   ];
 
   const [currIndex, setCurrIndex] = useState(0);

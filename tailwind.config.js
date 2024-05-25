@@ -69,16 +69,16 @@ export default {
           20: "#E0E1E2",
           10: "#FFFFFF",
         },
-        gradient: {
-          60: "linear-gradient(90deg, #3450E7 0%, #8596F1 100%)",
-          50: "linear-gradient(90deg, #0A3C79 0%, #5D73EC 100%)",
-          40: "linear-gradient(90deg, #072A55 0%, #8596F1 100%)",
-          30: "linear-gradient(90deg, #0A3C79 0%, #8596F1 100%)",
-          20: "linear-gradient(90deg, #3450E7 0%, #8596F1 100%)",
-          10: "linear-gradient(90deg, #3450E7 0%, #8596F1 100%)",
-        },
-        
       },
+      backgroundImage: {
+        'gradient-60': "linear-gradient(180deg, #3450E7 0%, rgba(255, 255, 255, 0.10) 100%)",
+        'gradient-50': "linear-gradient(180deg, #97C1E4 0%, rgba(255, 255, 255, 0.10) 100%)",
+        'gradient-40': "linear-gradient(180deg, #3450E7 0%, #97C1E4 100%)",
+        'gradient-30': "linear-gradient(180deg, rgba(52, 80, 231, 0.50) 0%, white 100%)",
+        'gradient-20': "linear-gradient(180deg, #97C1E4 0%, #FFF 100%)",
+        'gradient-10': "linear-gradient(180deg, rgb(127, 198, 237) 0%, rgb(211.97, 228.49, 242.25) 20%, rgb(134.65, 150.22, 235.88) 40%, rgb(148.07, 111.56, 255) 60%, rgb(135, 172, 235) 80%, rgb(234.51, 233.75, 255) 100%)",
+      },
+      
     },
   },
   darkMode: "class",
