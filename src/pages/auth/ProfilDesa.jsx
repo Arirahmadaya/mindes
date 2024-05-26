@@ -3,20 +3,21 @@ import React from "react";
 import Footer from "../../components/Footer";
 import { MapsKecil } from "../../components/Maps";
 import NavbarUser from "../../components/NavbarUser";
+import StrukturPD from "../../components/StrukturPD";
 
 const ProfilDesa = () => {
   return (
     <>
       <NavbarUser />
 
-      <div className="justify-evenly mx-70 flex p-4 bg-white shadow-md">
+      <div className="justify-between mx-70 lg:flex p-4 bg-white ">
         <div className=" flex flex-col items-center mr-4">
           <img
             src="img/kota_tegal.png"
             alt="Logo Desa"
             className="h-[300px] w-[300px]"
           />
-          <h1 className="text-center font-semibold text-heading-2 text-secondary-50 text-blue">
+          <h1 className="text-center font-semibold text-heading-2 text-secondary-50 text-blue whitespace-nowrap">
             Kelurahan Kalinyamat Kulon
             <br />
             Kecamatan Margadana
@@ -26,7 +27,7 @@ const ProfilDesa = () => {
         </div>
         <div className="justify-end">
           <h2 className="text-center text-heading-1 font-bold text-blue">
-            Visi
+            VISI
           </h2>
           <p className="text-heading-5 font-reguler ">
             Mewujudkan desa yang mandiri, sejahtera, dan
@@ -34,9 +35,9 @@ const ProfilDesa = () => {
             berbudaya.
           </p>
           <h2 className="text-center text-heading-1 font-bold text-blue">
-            Misi
+            MISI
           </h2>
-          <p className="text-heading-5 font-reguler ">
+          <p className="text-heading-5 ">
             1. Mewujudkan tata kelola pemerintahan yang baik dan bersih.
             <br />
             2. Meningkatkan kualitas dan daya saing ekonomi daerah.
@@ -49,17 +50,76 @@ const ProfilDesa = () => {
           </p>
         </div>
       </div>
- 
-      <div className="text-center">
-        <h1 className="font-bold text-display-2 text-blue">PRIMA</h1>
+
+      <div className="my-40">
+        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
+          Perangkat Desa
+        </div>
+
+        <StrukturPD />
       </div>
 
-      <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
-        Perangkat Desa
-      </div>
-  
-      <div className="text-center">Nilai Budaya Kerja Aparatur Pemerintah Kota Tegal</div>
+      
+      
+      <div>
+        <div className="text-center">
+          <h1 className="font-bold text-display-2 text-blue">PRIMA</h1>
+          <h5 className="text-heading-5 mt-1 mb-8">
+            Nilai Budaya Kerja Aparatur Pemerintah Kota Tegal
+          </h5>
+        </div>
+        <div className="flex justify-between mx-70 h-[480px]">
+          <div className="bg-secondary-40 w-[230px] h-[420px] rounded-xl justify-center  text-white text-center self-end">
+            <div className=" pt-4 font-bold text-heading-2">Profesional</div>
+            <div className="  flex flex-col items-center text-center justify-center h-[280px]">
+              <div className="px-4 text-body-1">
+                Berkompeten - Menyelesaikan Tugas secara Baik dan Benar Tuntas -
+                Kreatif - Inovatif - Produktif
+              </div>
+            </div>
+          </div>
 
+          <div className="bg-secondary-40 w-[230px] h-[420px] rounded-xl justify-end text-white text-center">
+            <div className=" pt-4 font-bold text-heading-2">Responsif</div>
+            <div className="  flex flex-col items-center text-center justify-center h-[280px]">
+              <div className="px-4 text-body-1">
+                Tanggap dan Peduli - Cepat Bertindak - Demokratif Komunikatif -
+                Inisiatif - Dinamis - Aspiratif
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-secondary-40 w-[230px] h-[420px] rounded-xl justify-center  text-white text-center self-end">
+            <div className=" pt-4 font-bold text-heading-2">Integritas</div>
+            <div className="  flex flex-col items-center text-center justify-center h-[280px]">
+              <div className="px-4 text-body-1">
+                Jujur - Komitmen - Perilakuk Terpuji - Konsekuen Disiplin -
+                Penuh Pengabdian
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-secondary-40 w-[230px] h-[420px] rounded-xl justify-center  text-white text-center">
+            <div className=" pt-4 font-bold text-heading-2">Melayani</div>
+            <div className="  flex flex-col items-center text-center justify-center h-[280px]">
+              <div className="px-4 text-body-1">
+                Ramah - Berorientasi pada Kepuasan Masyarakat Berpedoman pada
+                Standar Pelayanan - Sopan - Santun Iklhlas - Dapat Bekerja Sama
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-secondary-40 w-[230px] h-[420px] rounded-xl justify-center  text-white text-center self-end">
+            <div className=" pt-4 font-bold text-heading-2">Akuntabel</div>
+            <div className="  flex flex-col items-center text-center justify-center h-[280px]">
+              <div className="px-4 text-body-1">
+                Taat Peraturan - Bertanggung Jawab Tidak Korupsi, Kolusi dan
+                Nepotisme Memenuhi Target Kinerja
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div className=" py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
