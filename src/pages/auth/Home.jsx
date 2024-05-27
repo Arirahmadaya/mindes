@@ -57,7 +57,7 @@ const Home = () => {
           </div>
         </section>
 
-        <div className="mb-28 z-20 ">
+        <div className="my-20 ">
           <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
             Demografi Kalinyamat Kulon
           </div>
@@ -67,7 +67,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div>
+      <div className="my-20">
         <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
           Perangkat Desa Kalinyamat Kulon
         </div>
@@ -76,7 +76,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mb-28">
+      <div className="my-28">
         <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
           Penduduk Kalinyamat Kulon
         </div>
@@ -85,7 +85,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mb-28">
+      <div className="my-28">
         <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
           Berita Terhangat di Kalinyamat Kulon
         </div>

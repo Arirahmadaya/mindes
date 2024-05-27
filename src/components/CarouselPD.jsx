@@ -2,44 +2,68 @@ import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
 
 const CarouselPerangkatDesa = () => {
-  const slides = [
-    { url: "/img_desa/akhmad_ari.jpg" },
-    { url: "/img_desa/bowo_leksono.jpg" },
-    { url: "/img_desa/maksus.jpg" },
-    { url: "/img_desa/sudirmo.jpg" },
-    { url: "/img_desa/supriyatno.jpg" },
+  const initialSlides = [
+    {
+      url: "/img_desa/akhmad_ari.jpg",
+      name: "Akhmad Ari M., A.Md",
+      jabatan: "Staf",
+    },
+    {
+      url: "/img_desa/bowo_leksono.jpg",
+      name: "Bowo Leksono",
+      jabatan: "Staf",
+    },
+    {
+      url: "/img_desa/maksus.jpg",
+      name: "Maksus",
+      jabatan: "Kasi P2M",
+    },
+    {
+      url: "/img_desa/sudirmo.jpg",
+      name: "Sudirmo",
+      jabatan: "Staf",
+    },
+    {
+      url: "/img_desa/supriyatno.jpg",
+      name: "Supriyatno, S.IP",
+      jabatan: "Sekretaris Desa",
+    },
   ];
 
-  const [currIndex, setCurrIndex] = useState(0);
+  const [slides, setSlides] = useState(initialSlides);
 
   const prevSlide = () => {
-    const newIndex = currIndex === 0 ? slides.length - 3 : currIndex - 1;
-    setCurrIndex(newIndex);
+    // Rotate to the previous slide by moving the last item to the front
+    const lastSlide = slides.pop(); // Remove the last slide
+    setSlides([lastSlide, ...slides]); // Add it to the front
   };
 
   const nextSlide = () => {
-    const newIndex = currIndex === slides.length - 3 ? 0 : currIndex + 1;
-    setCurrIndex(newIndex);
-  };
-
-  const getSlidesToShow = () => {
-    const endIndex = currIndex + 3;
-    if (endIndex > slides.length) {
-      return slides.slice(currIndex).concat(slides.slice(0, endIndex - slides.length));
-    }
-    return slides.slice(currIndex, endIndex);
+    // Rotate to the next slide by moving the first item to the end
+    const [firstSlide, ...remainingSlides] = slides; // Remove the first slide
+    setSlides([...remainingSlides, firstSlide]); // Add it to the end
   };
 
   return (
-    <div className="relative max-w-4xl p-4 mx-auto">
-      <div className="flex overflow-hidden">
-        {getSlidesToShow().map((slide, index) => (
-          <div
-            key={index}
-            style={{ backgroundImage: `url(${slide.url})` }}
-            className="mr-3 duration-500 bg-center bg-cover w-80 h-96"
-          ></div>
-        ))}
+    <div className="relative p-4  mx-70">
+      <div className="flex overflow-hidden justify-evenly">
+        {slides.slice(0, 3).map(
+          (
+            slide,
+            index // Only display the first three slides
+          ) => (
+            <div
+              key={index}
+              style={{ backgroundImage: `url(${slide.url})` }}
+              className="duration-500 bg-center bg-cover w-[320px] h-[370px] rounded-2xl mx-2 flex"
+            >
+              <div className="w-[320px] h-[80px] bg-primary-10 rounded-b-2xl flex flex-col justify-center items-center text-center self-end">
+                <p className="text-heading-6">{slide.name}</p>
+                <p className="text-caption-2">{slide.jabatan}</p>
+              </div>
+            </div>
+          )
+        )}
       </div>
       <div className="absolute left-0 p-2 -translate-y-1/2 bg-opacity-50 rounded-full cursor-pointer top-1/2 text-heading-2 text-grayscale-50 bg-grayscale-20">
         <ChevronLeft onClick={prevSlide} size={30} />

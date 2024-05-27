@@ -51,17 +51,21 @@ const ProfilDesa = () => {
         </div>
       </div>
 
-      <div className="my-40">
+      <div className="my-20">
         <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
           Perangkat Desa
         </div>
-
+        <div className=" mx-70">
         <StrukturPD />
+
+        </div>
+
+        
       </div>
 
       
       
-      <div>
+      <div className="my-20">
         <div className="text-center">
           <h1 className="font-bold text-display-2 text-blue">PRIMA</h1>
           <h5 className="text-heading-5 mt-1 mb-8">
@@ -121,7 +125,7 @@ const ProfilDesa = () => {
         </div>
       </div>
 
-      <div className=" py-12">
+      <div className=" py-12 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-display-2 font-bold text-blue hover:text-bluenight text-center mb-8">
             Sejarah Desa Kalinyamat Kulon
@@ -191,7 +195,7 @@ const ProfilDesa = () => {
         </div>
       </div>
 
-      <div className="mt-5 mb-8">
+      <div className="my-20">
         <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
           Perangkat Desa
         </div>
