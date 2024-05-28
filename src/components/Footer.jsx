@@ -68,17 +68,21 @@ export const Medsos = () => {
     <div className="text-center xl:text-left mt-4 xl:mt-0">
       <p className="text-xl font-bold mb-2">Media Sosial</p>
       <div className="flex justify-center xl:justify-start space-x-4">
-      <Link to= "https://facebook.com" target="_blank">
-          <Icon.Facebook className="text-white w-8 h-8 " />
+        <Link
+          to="https://facebook.com"
+          target="_blank "
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 hover:border-primary-20 hover:bg-gradient-50"
+        >
+          <Icon.Facebook className="text-white w-6 h-6 " />
         </Link>
-        <Link to= "https://twitter.com" target="_blank">
-          <Icon.Twitter className="text-white w-8 h-8" />
+        <Link to="https://twitter.com" target="_blank" className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 hover:border-primary-20 hover:bg-gradient-50">
+          <Icon.Twitter className="text-white w-6 h-6" />
         </Link>
-        <Link to= "https://instagram.com" target="_blank">
-          <Icon.Instagram className="text-white w-8 h-8 " />
+        <Link to="https://instagram.com" target="_blank" className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 hover:border-primary-20 hover:bg-gradient-50">
+          <Icon.Instagram className="text-white w-6 h-6 " />
         </Link>
-        <Link to= "https://youtube.com" target="_blank">
-          <Icon.Youtube className="text-white w-8 h-8 " />
+        <Link to="https://youtube.com" target="_blank" className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 hover:border-primary-20 hover:bg-gradient-50">
+          <Icon.Youtube className="text-white w-6 h-6 " />
         </Link>
       </div>
     </div>
@@ -87,8 +91,7 @@ export const Medsos = () => {
 
 export const KontakKelurahan = () => {
   return (
-    <div >
-  
+    <div>
       <p className="text-body-1 font-bold mb-4 hidden md:block">
         Kontak Kelurahan
       </p>

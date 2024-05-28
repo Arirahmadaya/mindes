@@ -72,10 +72,10 @@ const ProfilDesa = () => {
             Nilai Budaya Kerja Aparatur Pemerintah Kota Tegal
           </h5>
         </div>
-        <div className="flex justify-between mx-70 h-[480px]">
-          <div className="bg-secondary-40 w-[230px] h-[420px] rounded-xl justify-center  text-white text-center self-end">
+        <div className="flex justify-between mx-70 h-[380px] l	">
+          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-center text-white text-center self-end shadow-2x">
             <div className=" pt-4 font-bold text-heading-2">Profesional</div>
-            <div className="  flex flex-col items-center text-center justify-center h-[280px]">
+            <div className="  flex flex-col justify-center text-center  h-[200px]">
               <div className="px-4 text-body-1">
                 Berkompeten - Menyelesaikan Tugas secara Baik dan Benar Tuntas -
                 Kreatif - Inovatif - Produktif
@@ -83,9 +83,9 @@ const ProfilDesa = () => {
             </div>
           </div>
 
-          <div className="bg-secondary-40 w-[230px] h-[420px] rounded-xl justify-end text-white text-center">
+          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-end text-white text-center ">
             <div className=" pt-4 font-bold text-heading-2">Responsif</div>
-            <div className="  flex flex-col items-center text-center justify-center h-[280px]">
+            <div className="  flex flex-col items-center text-center justify-center h-[200px]">
               <div className="px-4 text-body-1">
                 Tanggap dan Peduli - Cepat Bertindak - Demokratif Komunikatif -
                 Inisiatif - Dinamis - Aspiratif
@@ -93,9 +93,9 @@ const ProfilDesa = () => {
             </div>
           </div>
 
-          <div className="bg-secondary-40 w-[230px] h-[420px] rounded-xl justify-center  text-white text-center self-end">
+          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-center  text-white text-center self-end">
             <div className=" pt-4 font-bold text-heading-2">Integritas</div>
-            <div className="  flex flex-col items-center text-center justify-center h-[280px]">
+            <div className="  flex flex-col items-center text-center justify-center h-[200px]">
               <div className="px-4 text-body-1">
                 Jujur - Komitmen - Perilakuk Terpuji - Konsekuen Disiplin -
                 Penuh Pengabdian
@@ -103,9 +103,9 @@ const ProfilDesa = () => {
             </div>
           </div>
 
-          <div className="bg-secondary-40 w-[230px] h-[420px] rounded-xl justify-center  text-white text-center">
+          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-center  text-white text-center">
             <div className=" pt-4 font-bold text-heading-2">Melayani</div>
-            <div className="  flex flex-col items-center text-center justify-center h-[280px]">
+            <div className="  flex flex-col items-center text-center justify-center h-[200px]">
               <div className="px-4 text-body-1">
                 Ramah - Berorientasi pada Kepuasan Masyarakat Berpedoman pada
                 Standar Pelayanan - Sopan - Santun Iklhlas - Dapat Bekerja Sama
@@ -113,9 +113,9 @@ const ProfilDesa = () => {
             </div>
           </div>
 
-          <div className="bg-secondary-40 w-[230px] h-[420px] rounded-xl justify-center  text-white text-center self-end">
+          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-center  text-white text-center self-end">
             <div className=" pt-4 font-bold text-heading-2">Akuntabel</div>
-            <div className="  flex flex-col items-center text-center justify-center h-[280px]">
+            <div className="  flex flex-col items-center text-center justify-center h-[200px]">
               <div className="px-4 text-body-1">
                 Taat Peraturan - Bertanggung Jawab Tidak Korupsi, Kolusi dan
                 Nepotisme Memenuhi Target Kinerja

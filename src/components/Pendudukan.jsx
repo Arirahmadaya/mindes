@@ -3,7 +3,7 @@ import React from "react";
 export default function PendudukHome() {
   return (
     <>
-      <div className="grid md:grid-cols-2 gap-4 m-16 sm:grid-cols-1">
+      <div className="grid md:grid-cols-2 gap-6 m-16 sm:grid-cols-1">
         <div className="flex items-center justify-between">
           <div className="w-1/2 h-full bg-secondary-40 rounded-s-xl p-4 text-white text-heading-1 flex items-center justify-center">
             1000

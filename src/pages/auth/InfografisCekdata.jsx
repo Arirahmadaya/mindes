@@ -20,6 +20,7 @@ const InfografisCekData = () => {
       <div className="my-[30px]">
         
       </div>
+      
 
       <Footer />
     </div>

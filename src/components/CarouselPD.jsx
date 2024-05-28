@@ -45,7 +45,7 @@ const CarouselPerangkatDesa = () => {
   };
 
   return (
-    <div className="relative p-4  mx-70">
+    <div className="relative p-4 mx-70">
       <div className="flex overflow-hidden justify-evenly">
         {slides.slice(0, 3).map(
           (
@@ -55,7 +55,7 @@ const CarouselPerangkatDesa = () => {
             <div
               key={index}
               style={{ backgroundImage: `url(${slide.url})` }}
-              className="duration-500 bg-center bg-cover w-[320px] h-[370px] rounded-2xl mx-2 flex"
+              className="duration-500 bg-center bg-cover w-[320px] h-[370px] rounded-2xl  flex "
             >
               <div className="w-[320px] h-[80px] bg-primary-10 rounded-b-2xl flex flex-col justify-center items-center text-center self-end">
                 <p className="text-heading-6">{slide.name}</p>

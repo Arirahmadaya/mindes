@@ -25,7 +25,7 @@ export default function NavbarAdmin() {
   return (
     <Navbar isBordered>
       <NavbarContent justify="start">
-        <NavbarBrand className="lg:-ml-32 flex">
+        <NavbarBrand className="lg:-ml-32 flex  border-2">
           <img
             src="logo/logo_light.png"
             alt="logo"
