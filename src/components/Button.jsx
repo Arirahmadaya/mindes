@@ -5,8 +5,8 @@ class Button extends React.Component {
   render() {
     const { variant = 'primary', children, onClick } = this.props;
     const buttonClasses = `
-      py-2 px-4 rounded-lg font-medium text-white
-      ${variant === 'primary' ? 'bg-blue-600 hover:bg-blue-700' : ''}
+      py-2 px-4 rounded-lg font-medium text-white 
+      ${variant === 'primary' ? 'bg-primary-30 hover:bg-primary-50' : ''}
       ${variant === 'secondary' ? 'bg-gray-400 hover:bg-gray-500' : ''}
       ${variant === 'outline' ? 'border border-blue-600 text-blue-600 hover:bg-blue-50 hover:text-white' : ''}
     `;

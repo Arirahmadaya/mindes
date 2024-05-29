@@ -3,7 +3,7 @@ import React from "react";
 import Footer from "../../components/Footer";
 import NavbarUser from "../../components/NavbarUser";
 import NavbarGrafis from "../../components/NavbarGrafis";
-import TableAsli from "../../components/TableAsli";
+import CardSDGs from "../../components/CardSDGs";
 
 const InfografisSDGs = () => {
   return (
@@ -17,32 +17,15 @@ const InfografisSDGs = () => {
           <NavbarGrafis />
         </div>
       </div>
-      <div className="bg-secondary-20 w-auto h-[325px] m-70 p-10 rounded-lg">
-        <div>
-          <div>
-            {" "}
-            <img
-              src="/sdgs/1.png"
-              alt="dddddd"
-              className="w-[250px] h-[75px]"
-            />
-          </div>
-          <div className="flex">
-            <div className=" text-heading-1 font-bold text-blue">
-              Cek Penerima Bansos
-            </div>
-            <div className="bg-primary-30 w-[150px] h-[50px] text-center text-white items-center justify-center p-2">
-              Cek bansos 🚀
-            </div>
-            
-          </div>
-          <div className="">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Reprehenderit, optio? Eius consequatur libero harum, quod
-              asperiores minima quasi, ut doloribus facere magni, atque
-              excepturi vel non unde fuga animi? Aperiam.
-            </div>
+
+      <div className="mx-70">
+        <div className="ml-3">
+          
+  
+     
         </div>
+
+        <CardSDGs />
       </div>
 
       <Footer />
