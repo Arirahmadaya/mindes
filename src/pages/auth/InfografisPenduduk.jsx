@@ -4,6 +4,11 @@ import Footer from "../../components/Footer";
 import NavbarUser from "../../components/NavbarUser";
 
 import NavbarGrafis from "../../components/NavbarGrafis";
+import PopulationPyramidChart from "../../components/ChartPenduduk";
+import PieChartMataPencaharian from "../../components/ChartMataPencaharian";
+import BarChartTingkatPendidikan from "../../components/ChartPendidikan";
+import PemelukAgama from "../../components/ChartAgama";
+import HorizontalBarChartMutasiPenduduk from "../../components/ChartMutasi";
 
 const InfografisPenduduk = () => {
   return (
@@ -16,6 +21,13 @@ const InfografisPenduduk = () => {
           </h1>
           <NavbarGrafis />
         </div>
+      </div>
+      <div>
+        <PopulationPyramidChart />
+        <PieChartMataPencaharian />
+        <BarChartTingkatPendidikan />
+        <PemelukAgama />
+        <HorizontalBarChartMutasiPenduduk />
       </div>
 
       <Footer />

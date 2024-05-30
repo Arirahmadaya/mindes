@@ -4,7 +4,6 @@ import Footer from "../../components/Footer";
 import NavbarUser from "../../components/NavbarUser";
 import ChartAPBDes from "../../components/ChartAPBDes";
 import ChartBelanja from "../../components/ChartBelanja";
-import ChartStunting from "../../components/ChartStunting";
 import ChartRealisasi from "../../components/ChartRealisasi";
 import NavbarGrafis from "../../components/NavbarGrafis";
 
@@ -23,7 +22,7 @@ const InfografisAPBDes = () => {
 
       <ChartAPBDes />
       <ChartBelanja />
-      <ChartStunting />
+
       <ChartRealisasi />
 
       <Footer />

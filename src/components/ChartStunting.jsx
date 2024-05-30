@@ -72,12 +72,13 @@ const chartConfig = {
       strokeDashArray: 5,
     },
     fill: {
+      opacity: 0.8,
       type: "gradient",
       gradient: {
         shade: "light",
         type: "vertical",
         shadeIntensity: 0.25,
-        gradientToColors: ["#FFFFFF"],
+        gradientToColors: ["#FFFFFF", "#FFFFFF"],
         inverseColors: false,
         opacityFrom: 0.85,
         opacityTo: 0.85,

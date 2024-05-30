@@ -10,6 +10,7 @@ import PendudukHome from "../../components/Pendudukan";
 import Jelajahi from "../../components/Jelajahi";
 import NavbarUser from "../../components/NavbarUser";
 
+
 const Home = () => {
   return (
     <>
@@ -22,6 +23,7 @@ const Home = () => {
           Jelajahi Kalinyamat Kulon
         </h1>
         <Jelajahi />
+ 
       </div>
 
       <div>
