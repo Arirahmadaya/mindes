@@ -1,82 +1,128 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { LogIn } from "react-feather";
+import * as Icon from "react-feather";
 
-const RegistrationForm = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
+const Register = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
+    // Simulasi logic untuk registrasi
+    if (password !== confirmPassword) {
+      setError("Password tidak sesuai");
+      return;
+    }
+    console.log("Registrasi berhasil dengan username:", username, "email:", email);
+    // Redirect ke halaman login atau set sesi registrasi
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800">Register</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-              Username
-            </label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
+    <div className="flex h-screen bg-gray-100 lg:justify-normal justify-center">
+ 
+      <div className="z-10 flex lg:w-1/2 items-center ">
+        <div className="bg-white flex flex-row justify-center w-full h-screen items-center lg:rounded-r-[40px]">
+          <div className="bg-white w-2/3 h-screen p-8 mx-16 rounded-lg">
+            <div className="text-center">
+              <h5 className="text-heading-6 font-bold text-black">
+                Daftar Akun Baru
+              </h5>
+              <img
+                className="w-24 h-24 mx-auto"
+                alt="Kota Tegal"
+                src="img/kota_tegal.png"
+              />
+              <h6 className="lg:text-body-2 font-medium text-black text-center">
+                Kelurahan Kalinyamat Kulon <br />
+                Kota Tegal
+              </h6>
+            </div>
+            <form onSubmit={handleRegister} className="space-y-6">
+              <div>
+                <input
+                  type="text"
+                  className="w-full  p-2 border-b-2 border-black"
+                  value={username}
+                  placeholder="Username"
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  className="w-full  p-2 border-b-2 border-black"
+                  value={email}
+                  placeholder="Email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div>
+                <input
+                  type="password"
+                  className="w-full  p-2 border-b-2 border-black"
+                  value={password}
+                  placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div>
+                <input
+                  type="password"
+                  className="w-full  p-2 border-b-2 border-black"
+                  value={confirmPassword}
+                  placeholder="Konfirmasi Password"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
+              {error && <p className="text-red-500 text-sm">{error}</p>}
+              <button
+                type="submit"
+                className="gap-2 justify-center w-full flex bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+              >
+                Daftar <LogIn />
+              </button>
+            </form>
+            <div className="text-center mt-6">
+              <p className="text-black mb-2 text-caption-1">
+                Atau daftar dengan menggunakan:
+              </p>
+              <div className="w-full flex items-center justify-between gap-2">
+              <button className="w-full flex items-center justify-center border border-gray-300 py-1 rounded-lg hover:bg-gray-100 transition duration-300">
+                <img
+                  className="w-6 h-6 mr-2"
+                  alt="Google"
+                  src="logo/google.png"
+                />
+                Google
+              </button>
+              <button className="w-full flex items-center justify-center border border-gray-300 py-1 rounded-lg hover:bg-gray-100 transition duration-300">
+                <Icon.Facebook className="text-blue w-6 h-6 mr-2" />
+                Facebook
+              </button>
+
+              </div>
+              
+            </div>
+            <div className="text-center mt-4">
+              <p className="text-gray-600 text-caption-1">
+                Sudah memiliki akun?
+                <a href="/login" className="text-blue font-semibold pl-1">
+                  Masuk
+                </a>
+              </p>
+            </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
-          <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Register
-            </button>
-          </div>
-        </form>
+        </div>
+      </div>
+
+      <div className=" w-[55%] bg-auto bg-center bg-no-repeat hidden lg:block fixed top-0  right-0">
+        <img src="img/register.png" alt="Register" className="w-full h-screen" />
       </div>
     </div>
   );
 };
 
-export default RegistrationForm;
+export default Register;
