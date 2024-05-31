@@ -28,16 +28,14 @@ export default function NavbarUser() {
   const menuItemsMain = [
     { name: "Beranda", icon: Home, href: "/" },
     { name: "Profil", icon: User, href: "/profil" },
-    { name: "Infografis", icon: BarChart2, href: "/infografis/apbdes" },
+    { name: "Infografis", icon: BarChart2, href: "/infografis" },
     { name: "Berita", icon: BookOpen, href: "/berita" },
-    
-    
   ];
 
   const menuItems = [
     { name: "Beranda", icon: Home, href: "/" },
     { name: "Profil", icon: User, href: "/profil" },
-    { name: "Infografis", icon: BarChart2, href: "/infografis/apbdes" },
+    { name: "Infografis", icon: BarChart2, href: "/infografis" },
     { name: "Berita", icon: BookOpen, href: "/berita" },
     { name: "Log Out", icon: LogOut, href: "/login" },
     { name: "Login", icon: Key, href: "/login" },
@@ -45,26 +43,22 @@ export default function NavbarUser() {
 
   return (
     <Navbar
-   
       onMenuOpenChange={setIsMenuOpen}
       shouldHideOnScroll
-      className="bg-primary-40  lg:px-[40px]"
-      maxWidth={'full'}
-    
+      className="bg-primary-40 lg:px-[40px]"
+      maxWidth={"full"}
     >
-      <NavbarContent  >
-    
+      <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="sm:hidden text-white "
+          className="sm:hidden text-white"
         />
-        <NavbarBrand className=" flex  ">
+        <NavbarBrand className="flex">
           <img
             src="logo/logo_light.png"
             alt="logo"
-            className="md:w-12 md:h-12 pr-2 blok w-10 h-10 "
-        
+            className="md:w-12 md:h-12 pr-2 blok w-10 h-10"
           />
           <div className="text-white hover:text-white/80">
             <p className="font-bold lg:text-heading-6 text-body-2">
@@ -75,12 +69,16 @@ export default function NavbarUser() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent
-        className="hidden sm:flex gap-10 text-white "
-        justify="center"
-      >
+      <NavbarContent className="hidden sm:flex gap-10 text-white" justify="center">
         {menuItemsMain.map((item, index) => (
-          <NavbarItem key={index} isActive={location.pathname === item.href}>
+          <NavbarItem 
+            key={index} 
+            isActive={
+              item.href === "/infografis"
+                ? location.pathname.startsWith(item.href)
+                : location.pathname === item.href
+            }
+          >
             <Link color="foreground" href={item.href}>
               {item.name}
             </Link>
@@ -88,8 +86,8 @@ export default function NavbarUser() {
         ))}
       </NavbarContent>
 
-      <NavbarContent  justify="end">
-        <NavbarItem >
+      <NavbarContent justify="end">
+        <NavbarItem>
           <Button
             as={Link}
             className="bg-primary-30 text-white rounded-md"
