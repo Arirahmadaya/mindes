@@ -35,6 +35,7 @@ const App = () => {
           <Route path="/profil" element={<ProfilDesa />} />
           <Route path="/about/mindes" element={<Mindes />} />
           {/* Infografis Menus */}
+          <Route path="/infografis" element={<InfografisAPBDes />} />
           <Route path="/infografis/apbdes" element={<InfografisAPBDes />} />
           <Route path="/infografis/cekdata" element={<InfografisCekdata />} />
           <Route path="/infografis/penduduk" element={<InfografisPenduduk />} />
