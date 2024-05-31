@@ -18,7 +18,7 @@ const Home = () => {
       <br />
 
       <div className="">
-        <h1 className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
+        <h1 className="mb-2 font-bold text-center text-heading-2 lg:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl lg:mx-70 mx-[20px]">
           Jelajahi Kalinyamat Kulon
         </h1>
         <Jelajahi />
@@ -35,13 +35,13 @@ const Home = () => {
             }}
           ></div>
 
-          <h1 className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
+          <h1 className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl  lg:mx-70 mx-[20px]">
             Sambutan Kepala Desa
           </h1>
-          <div className="font-bold text-display-2 relative z-20">
+          <div className="font-bold lg:text-heading-2 text-heading-4 md:text-display-2 relative z-20">
             ARIANTO, S.AP.
           </div>
-          <p className="text-body-1 relative z-20 font-medium">
+          <p className="lg:text-body-1 text-caption-1 relative z-20 font-medium lg:mx-70 mx-[20px]">
             Website ini merupakan wujud komitmen kami untuk meningkatkan
             transparansi, akuntabilitas, dan <br />
             partisipasi masyarakat dalam membangun desa. Di sini, Anda dapat
@@ -51,13 +51,14 @@ const Home = () => {
             Kalinyamat Kulon. Kritik dan saran membangun demi
             <br />
           </p>
+          
           <div className="flex justify-center mb-4 relative z-20">
             <img src="/img/lurah_img.png" alt="Image Kepala Desa" />
           </div>
         </section>
 
         <div className="my-20 ">
-          <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
+          <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
             Demografi Kalinyamat Kulon
           </div>
           <div>
@@ -67,7 +68,7 @@ const Home = () => {
       </div>
 
       <div className="my-20">
-        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
+        <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
           Perangkat Desa Kalinyamat Kulon
         </div>
         <div>
@@ -76,7 +77,7 @@ const Home = () => {
       </div>
 
       <div className="my-28">
-        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
+        <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
           Penduduk Kalinyamat Kulon
         </div>
         <div>
@@ -85,7 +86,7 @@ const Home = () => {
       </div>
 
       <div className="my-28">
-        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
+        <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
           Berita Terhangat di Kalinyamat Kulon
         </div>
         <div>
@@ -94,7 +95,7 @@ const Home = () => {
       </div>
 
       <div className="mb-28">
-        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
+        <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[30px]">
           Galeri Kalinyamat Kulon
         </div>
         <div>
