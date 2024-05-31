@@ -90,7 +90,7 @@ const chartConfig = {
 export default function ChartBelanja() {
   return (
     <div className="flex justify-center mx-5 md:mx-10 lg:mx-70 my-5 ">
-      <div className="bg-white rounded-lg w-full">
+      <div className="bg-white rounded-lg w-full transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
         <div className="bg-blue-100 rounded-tl-lg rounded-br-[20px] inline-block min-w-max">
           <Typography className="text-heading-4 font-semibold text-center text-blue p-5">
             Anggaran Belanja 2024

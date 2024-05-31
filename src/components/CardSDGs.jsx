@@ -10,7 +10,7 @@ import {
 const Card = ({ title, image, value, onClick }) => {
   return (
     <div
-      className="bg-white rounded-lg shadow-lg p-4 flex items-center justify-between cursor-pointer "
+      className="bg-white rounded-lg p-4 flex items-center justify-between cursor-pointer transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500"
       onClick={onClick}
     >
       <div className="flex flex-col ">
@@ -31,7 +31,7 @@ const Card = ({ title, image, value, onClick }) => {
 
 const TotalScoreCard = ({ score }) => {
   return (
-    <div className="bg-gradient-20 rounded-3xl shadow-lg p-4 flex flex-col justify-end w-2/3 ml-auto">
+    <div className="bg-gradient-20 rounded-lg p-4 flex flex-col justify-end w-2/3 ml-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
       <div>
         <h3 className="text-lg font-bold text-heading-3">Skor Total SDGs</h3>
         <p className="text-lg text-heading-3 font-bold">Kalinyamat Kulon</p>
@@ -47,9 +47,9 @@ const Judul = () => {
   return (
     <div className=" rounded-lg  flex flex-col justify-between w-[700px]">
       <div>
-        <h1 className="font-bold md:text-heading-3 text-heading-4 mb-2 text-black">
-          SDGs Kalinyamat Kulon
-        </h1>
+        <div className="font-bold md:text-heading-3 text-heading-4 mb-2 text-black hover:drop-shadow-xl">
+        Sustainable Development Goals/Tujuan Pembangunan Berkelanjutan
+        </div>
         <p className="text-body-2">
           SDGs Desa adalah upaya terpadu mewujudkan Desa tanpa kemiskinan dan
           kelaparan, Desa ekonomi tumbuh merata, Desa peduli kesehatan, Desa
@@ -58,7 +58,7 @@ const Judul = () => {
           Tujuan Pembangunan Berkelanjutan. Dalam bahasa kerennya Sustainable
           Development Goals disingkat SDGs. SDGs Desa merupakan role pembangunan
           berkelanjutan yang akan masuk dalam program prioritas penggunaan Dana
-          Desa Tahun 2021.
+          Desa Tahun 2024.
         </p>
       </div>
     </div>
