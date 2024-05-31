@@ -6,23 +6,23 @@ import NavbarGrafis from "../../components/NavbarGrafis";
 import { ExternalLink } from "react-feather";
 import { Link, Button } from "@nextui-org/react";
 
-
 const InfografisCekData = () => {
   return (
     <div className="bg-grayscale-90">
       <NavbarUser />
       <div className=" lg:my-[30px] my-[10px]">
         <div className="md:flex justify-center items-center ">
-          <h1 className="font-bold md:text-heading-1 text-heading-4 text-blue hover:text-bluenight ml-70 leading-tight ">
-            INFOGRAFIS DESA KALINYAMAT KULON
+          <h1 className="font-bold md:text-heading-1 text-heading-4 text-blue hover:text-bluenight hover:drop-shadow-2xl ml-70 leading-tight ">
+            Cek Data Masyarakat Desa
           </h1>
+          <div className="ml-auto">
           <NavbarGrafis />
+          </div>
         </div>
       </div>
-      <div className="bg-primary-30/10 w-auto h-auto mx-70 my-10 p-10 rounded-lg">
+      <div className="bg-primary-30/10 w-auto h-auto mx-70 my-10 p-10 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
         <div>
           <div>
-            
             <img
               src="/cek_data/bansos.png"
               alt="logo"
@@ -30,13 +30,13 @@ const InfografisCekData = () => {
             />
           </div>
           <div className="flex justify-between">
-            <div className=" text-heading-2 font-bold text-blue">
+            <div className=" text-heading-2 font-bold text-blue hover:text-bluenight hover:drop-shadow-xl">
               Cek Penerima Bansos
             </div>
 
             <Button
               as={Link}
-              className="bg-primary-30  text-heading-5 font-semibold text-white rounded-md px-5 py-7"
+              className="bg-primary-30  text-heading-5 font-semibold text-white rounded-md px-5 py-7 hover:underline"
               href="https://simpbb.tegalkota.go.id/"
               variant="flat"
             >
@@ -52,7 +52,7 @@ const InfografisCekData = () => {
         </div>
       </div>
 
-      <div className="bg-primary-30/10 w-auto h-auto mx-70 my-10 p-10 rounded-lg">
+      <div className="bg-primary-30/10 w-auto h-auto mx-70 my-10 p-10 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
         <div>
           <div>
             <img
@@ -62,13 +62,13 @@ const InfografisCekData = () => {
             />
           </div>
           <div className="flex justify-between">
-            <div className=" text-heading-2 font-bold text-blue">
+            <div className=" text-heading-2 font-bold text-blue hover:text-bluenight hover:drop-shadow-xl">
               Cek Data Kependudukan
             </div>
 
             <Button
               as={Link}
-              className="bg-primary-30  text-heading-5 font-semibold text-white rounded-md px-5 py-7"
+              className="bg-primary-30  text-heading-5 font-semibold text-white rounded-md px-5 py-7 hover:underline"
               href="https://disdukcapil.tegalkab.go.id/data/jumlah_penduduk"
               variant="flat"
             >
@@ -84,10 +84,9 @@ const InfografisCekData = () => {
         </div>
       </div>
 
-      <div className="bg-primary-30/10 w-auto h-auto mx-70 my-10 p-10 rounded-lg">
+      <div className="bg-primary-30/10 w-auto h-auto mx-70 my-10 p-10 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
         <div>
           <div>
-            
             <img
               src="/cek_data/pajakbangunan.png"
               alt="logo"
@@ -95,13 +94,13 @@ const InfografisCekData = () => {
             />
           </div>
           <div className="flex justify-between">
-            <div className=" text-heading-2 font-bold text-blue">
+            <div className=" text-heading-2 font-bold text-blue hover:text-bluenight hover:drop-shadow-xl">
               Cek Pajak PBB
             </div>
 
             <Button
               as={Link}
-              className="bg-primary-30  text-heading-5 font-semibold text-white rounded-md px-5 py-7"
+              className="bg-primary-30  text-heading-5 font-semibold text-white rounded-md px-5 py-7 hover:underline"
               href="https://cekpajak.com/jawa-tengah/tegal"
               variant="flat"
             >
@@ -117,10 +116,9 @@ const InfografisCekData = () => {
         </div>
       </div>
 
-      <div className="bg-primary-30/10 w-auto h-auto mx-70 my-10 p-10 rounded-lg">
+      <div className="bg-primary-30/10 w-auto h-auto mx-70 my-10 p-10 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
         <div>
           <div>
-            
             <img
               src="/cek_data/samsat.png"
               alt="logo"
@@ -128,17 +126,17 @@ const InfografisCekData = () => {
             />
           </div>
           <div className="flex justify-between">
-            <div className=" text-heading-2 font-bold text-blue">
-              Cek Pajak Kendaraan 
+            <div className=" text-heading-2 font-bold text-blue hover:text-bluenight hover:drop-shadow-xl">
+              Cek Pajak Kendaraan
             </div>
 
             <Button
               as={Link}
-              className="bg-primary-30  text-heading-5 font-semibold text-white rounded-md px-5 py-7"
+              className="bg-primary-30 text-heading-5 font-semibold text-white rounded-md px-5 py-7 hover:underline"
               href="https://cekpajak.com/jawa-tengah/tegal"
               variant="flat"
             >
-              Cek Pajak Kendaraan  <ExternalLink />
+              Cek Pajak Kendaraan <ExternalLink />
             </Button>
           </div>
           <div className=" w-2/3">
@@ -149,7 +147,6 @@ const InfografisCekData = () => {
           </div>
         </div>
       </div>
-      
 
       <Footer />
     </div>
