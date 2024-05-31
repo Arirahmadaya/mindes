@@ -22,12 +22,12 @@ function Sidebares() {
       isActive: true,
     },
     {
-      name: 'Analytics',
+      name: 'Infografis',
       isActive: false,
       icon: <ChartPieIcon width={18} className="text-gray-600" />,
     },
     {
-      name: 'Notification',
+      name: 'Info Desa',
       isActive: false,
       icon: <BellAlertIcon width={18} className="text-gray-600" />,
     },
@@ -35,62 +35,40 @@ function Sidebares() {
 
   const menu2 = [
     {
-      name: 'Chat',
+      name: 'Keuangan',
       icon: <ChatBubbleLeftIcon width={18} className="text-gray-600 " />,
       isActive: false,
     },
     {
-      name: 'Notes',
+      name: 'Laporan',
       isActive: false,
       icon: <ClipboardDocumentIcon width={18} className="text-gray-600" />,
     },
     {
-      name: 'Customers',
+      name: 'Berita',
       isActive: false,
       icon: <UsersIcon width={18} className="text-gray-600" />,
     },
     {
-      name: 'Mail',
+      name: 'User',
       isActive: false,
       icon: <EnvelopeIcon width={18} className="text-gray-600" />,
     },
   ]
 
-  const menu3 = [
-    {
-      name: 'Login',
-      icon: <PowerIcon width={18} className="text-gray-600" />,
-      isActive: false,
-    },
-    {
-      name: 'Register',
-      isActive: false,
-      icon: <CursorArrowRippleIcon width={18} className="text-gray-600" />,
-    },
-    {
-      name: 'Error',
-      isActive: false,
-      icon: <FaceFrownIcon width={18} className="text-gray-600" />,
-    },
-  ]
+ 
 
   return (
     <div className="App ">
-      <section className="w-20 sm:w-64 bg-white  h-screen">
-        <div className="border-b p-5 text-center sm:text-left">
-          <span className="hidden sm:block">Dashboard UI</span>
-          <span className="sm:hidden">DUI</span>
-        </div>
+      <section className="w-20 sm:w-64 bg-white  h-screen border-2 border-purple-500">
+     
         <div className=" border-b text-sm">
           <Menus menu={menu1} title={{ sm: 'BUSINESS', xs: 'BUSINESS' }} />
         </div>
         <div className="border-b text-sm">
           <Menus menu={menu2} title={{ sm: 'APPLICATION', xs: 'APP' }} />
         </div>
-        <div className="border-b text-sm">
-          <Menus menu={menu3} title={{ sm: 'AUTHENTICATION', xs: 'AUTH' }} />
-        </div>
-
+       
       </section>
     </div>
   )

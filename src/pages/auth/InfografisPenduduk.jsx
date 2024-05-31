@@ -20,7 +20,7 @@ const InfografisPenduduk = () => {
             Infografis Kependudukan Desa Kalinyamat Kulon
           </h1>
           <div className="ml-auto">
-          <NavbarGrafis />
+            <NavbarGrafis />
           </div>
         </div>
       </div>

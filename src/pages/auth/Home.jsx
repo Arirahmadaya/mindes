@@ -10,6 +10,9 @@ import PendudukHome from "../../components/Pendudukan";
 import Jelajahi from "../../components/Jelajahi";
 import NavbarUser from "../../components/NavbarUser";
 
+import Tablenih from "../../components/Table";
+import TableAsli from "../../components/TableAsli";
+
 const Home = () => {
   return (
     <>
@@ -17,6 +20,21 @@ const Home = () => {
       <Carousel />
       <br />
 
+      <div className="flex justify-center mx-5 md:mx-10 lg:mx-70 my-5 ">
+        <div className="bg-white rounded-lg w-full transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
+          <div className="bg-blue-100/20  rounded-b-[20px]  w-auto  ">
+            <p className="text-heading-4 font-semibold text-center text-black p-5">
+              Tabel ....
+            </p>
+          </div>
+          <div className="p-4">
+            <Tablenih />
+          </div>
+        </div>
+      </div>
+
+
+    
       <div className="">
         <h1 className="mb-2 font-bold text-center text-heading-2 lg:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl lg:mx-70 mx-[20px]">
           Jelajahi Kalinyamat Kulon
@@ -51,7 +69,7 @@ const Home = () => {
             Kalinyamat Kulon. Kritik dan saran membangun demi
             <br />
           </p>
-          
+
           <div className="flex justify-center mb-4 relative z-20">
             <img src="/img/lurah_img.png" alt="Image Kepala Desa" />
           </div>

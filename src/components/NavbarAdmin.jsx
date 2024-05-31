@@ -13,13 +13,7 @@ import {
   Avatar,
 } from "@nextui-org/react";
 
-import {
-  ArrowDown,
-  MessageCircle,
-  MessageSquare,
-  Search,
-  User,
-} from "react-feather";
+import { ArrowDown, Search, User } from "react-feather";
 
 export default function NavbarAdmin() {
   return (
@@ -29,12 +23,15 @@ export default function NavbarAdmin() {
           <img
             src="/logo/logo_dark.png"
             alt="logo"
-            className="md:w-12 md:h-12 pr-2 blok w-10 h-10"/>
+            className="md:w-12 md:h-12 pr-2 blok w-10 h-10"
+          />
           <div className="text-black hover:text-black/80 hidden sm:block">
             <p className="font-bold lg:text-heading-6 text-body-2 text-blue">
               MINDES
             </p>
-            <p className="md:text-body-2 text-caption-1">Desa Kalinyamat Kulon</p>
+            <p className="md:text-body-2 text-caption-1">
+              Desa Kalinyamat Kulon
+            </p>
           </div>
         </NavbarBrand>
       </NavbarContent>
@@ -43,7 +40,7 @@ export default function NavbarAdmin() {
           {" "}
           <Input
             classNames={{
-              base: "max-w-full sm:max-w-[10rem] h-10",
+              base: "max-=w-full sm:max-w-[20rem] h-10",
               mainWrapper: "h-full",
               input: "text-small",
               inputWrapper:
@@ -58,10 +55,7 @@ export default function NavbarAdmin() {
       </NavbarContent>
 
       <NavbarContent as="div" className="items-center -mr-12" justify="end ">
-        <NavbarItem className="flex  text-black">
-          <MessageCircle className=" w-24 -mr-8" />
-          <MessageSquare className=" w-24 -mr-4" />
-        </NavbarItem>
+        <NavbarItem className="flex  text-black"></NavbarItem>
 
         <Dropdown placement="bottom-end">
           <DropdownTrigger>
