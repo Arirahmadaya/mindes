@@ -45,6 +45,7 @@ export default function NavbarUser() {
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
       shouldHideOnScroll
+
       className="bg-primary-40 lg:px-[40px]"
       maxWidth={"full"}
     >
@@ -58,7 +59,9 @@ export default function NavbarUser() {
           <img
             src="logo/logo_light.png"
             alt="logo"
-            className="md:w-12 md:h-12 pr-2 blok w-10 h-10"
+
+            className="md:w-12 md:h-12 pr-2 blok w-10 h-10 "
+
           />
           <div className="text-white hover:text-white/80">
             <p className="font-bold lg:text-heading-6 text-body-2">

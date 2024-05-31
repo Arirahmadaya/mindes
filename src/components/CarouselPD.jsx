@@ -55,7 +55,7 @@ const CarouselPerangkatDesa = () => {
             <div
               key={index}
               style={{ backgroundImage: `url(${slide.url})` }}
-              className="duration-500 bg-center bg-cover w-[320px] h-[370px] rounded-2xl  flex "
+              className="transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500 bg-center bg-cover w-[320px] h-[370px] rounded-2xl flex"
             >
               <div className="w-[320px] h-[80px] bg-primary-10 rounded-b-2xl flex flex-col justify-center items-center text-center self-end">
                 <p className="text-heading-6">{slide.name}</p>

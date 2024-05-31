@@ -68,8 +68,7 @@ export default function CardBerita() {
           key={index}
           isPressable
           onPress={() => console.log("item pressed")}
-          className="transition duration-300 ease-in-out hover:bg-primary-30 hover:bg-opacity-15"
-          
+          className="transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500"          
         >
           <CardBody className="p-0 overflow-visible ">
             <Image

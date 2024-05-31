@@ -3,7 +3,7 @@ import React from "react";
 const Maps = () => {
   return (
     <div className="flex justify-center">
-      <div className="">
+      <div className="transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
         <div
           id="embed-ded-map-canvas"
           className="w-full h-full rounded-xl"
@@ -31,7 +31,7 @@ export default Maps;
 export function MapsKecil () {
   return (
     <div className="flex justify-center">
-      <div className="">
+      <div className="transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
         <div
           id="embed-ded-map-canvas"
           className="w-full h-full rounded-xl"
