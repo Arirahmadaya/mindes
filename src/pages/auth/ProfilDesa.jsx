@@ -17,7 +17,7 @@ const ProfilDesa = () => {
             alt="Logo Desa"
             className="h-[300px] w-[300px]"
           />
-          <h1 className="text-center font-semibold text-heading-2 text-secondary-50 text-blue whitespace-nowrap">
+          <h1 className="text-center font-semibold text-heading-2 text-secondary-50 text-blue hover:text-bluenight hover:drop-shadow-2xl whitespace-nowrap">
             Kelurahan Kalinyamat Kulon
             <br />
             Kecamatan Margadana
@@ -26,7 +26,7 @@ const ProfilDesa = () => {
           </h1>
         </div>
         <div className="justify-end">
-          <h2 className="text-center text-heading-1 font-bold text-blue">
+          <h2 className="text-center text-heading-1 font-bold text-blue hover:text-bluenight hover:drop-shadow-2xl">
             VISI
           </h2>
           <p className="text-heading-5 font-reguler ">
@@ -34,7 +34,7 @@ const ProfilDesa = () => {
             <br />
             berbudaya.
           </p>
-          <h2 className="text-center text-heading-1 font-bold text-blue">
+          <h2 className="text-center text-heading-1 font-bold text-blue hover:text-bluenight hover:drop-shadow-2xl">
             MISI
           </h2>
           <p className="text-heading-5 ">
@@ -52,28 +52,25 @@ const ProfilDesa = () => {
       </div>
 
       <div className="my-20">
-        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
+        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
           Perangkat Desa
         </div>
         <div className=" mx-70">
-        <StrukturPD />
-
+          <StrukturPD />
         </div>
-
-        
       </div>
 
-      
-      
       <div className="my-20">
         <div className="text-center">
-          <h1 className="font-bold text-display-2 text-blue">PRIMA</h1>
+          <h1 className="font-bold text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
+            PRIMA
+          </h1>
           <h5 className="text-heading-5 mt-1 mb-8">
             Nilai Budaya Kerja Aparatur Pemerintah Kota Tegal
           </h5>
         </div>
         <div className="flex justify-between mx-70 h-[380px] l	">
-          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-center text-white text-center self-end shadow-2x">
+          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-center text-white text-center self-end shadow-2x transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
             <div className=" pt-4 font-bold text-heading-2">Profesional</div>
             <div className="  flex flex-col justify-center text-center  h-[200px]">
               <div className="px-4 text-body-1">
@@ -83,7 +80,7 @@ const ProfilDesa = () => {
             </div>
           </div>
 
-          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-end text-white text-center ">
+          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-end text-white text-center transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
             <div className=" pt-4 font-bold text-heading-2">Responsif</div>
             <div className="  flex flex-col items-center text-center justify-center h-[200px]">
               <div className="px-4 text-body-1">
@@ -93,7 +90,7 @@ const ProfilDesa = () => {
             </div>
           </div>
 
-          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-center  text-white text-center self-end">
+          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-center  text-white text-center self-end transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
             <div className=" pt-4 font-bold text-heading-2">Integritas</div>
             <div className="  flex flex-col items-center text-center justify-center h-[200px]">
               <div className="px-4 text-body-1">
@@ -103,7 +100,7 @@ const ProfilDesa = () => {
             </div>
           </div>
 
-          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-center  text-white text-center">
+          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-center  text-white text-center transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
             <div className=" pt-4 font-bold text-heading-2">Melayani</div>
             <div className="  flex flex-col items-center text-center justify-center h-[200px]">
               <div className="px-4 text-body-1">
@@ -113,7 +110,7 @@ const ProfilDesa = () => {
             </div>
           </div>
 
-          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-center  text-white text-center self-end">
+          <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-center  text-white text-center self-end transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
             <div className=" pt-4 font-bold text-heading-2">Akuntabel</div>
             <div className="  flex flex-col items-center text-center justify-center h-[200px]">
               <div className="px-4 text-body-1">
@@ -127,7 +124,7 @@ const ProfilDesa = () => {
 
       <div className=" py-12 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-display-2 font-bold text-blue hover:text-bluenight text-center mb-8">
+          <h2 className="text-display-2 font-bold text-blue hover:text-bluenight hover:drop-shadow-2xl text-center mb-8">
             Sejarah Desa Kalinyamat Kulon
           </h2>
 
@@ -196,11 +193,11 @@ const ProfilDesa = () => {
       </div>
 
       <div className="my-20">
-        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight">
+        <div className="mb-2 font-bold text-center text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
           Perangkat Desa
         </div>
         <div className="lg:flex mx-70">
-          <div className=" bg-indigo-400/50 rounded-[20px]">
+          <div className=" bg-indigo-400/50 rounded-[20px] transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
             <div className="lg:w-[590px] h-[360px w-[400px] h-[250px] relative ">
               <div className="left-[37px] top-[20px] absolute text-black text-[38px] font-bold font-['Open Sans'] leading-[45.60px]">
                 Kalinyamat Kulon

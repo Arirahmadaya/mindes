@@ -30,8 +30,6 @@ export default function NavbarUser() {
     { name: "Profil", icon: User, href: "/profil" },
     { name: "Infografis", icon: BarChart2, href: "/infografis/apbdes" },
     { name: "Berita", icon: BookOpen, href: "/berita" },
-    
-    
   ];
 
   const menuItems = [
@@ -45,15 +43,12 @@ export default function NavbarUser() {
 
   return (
     <Navbar
-   
       onMenuOpenChange={setIsMenuOpen}
       shouldHideOnScroll
       className="bg-primary-40  lg:px-[40px]"
-      maxWidth={'full'}
-    
+      maxWidth={"full"}
     >
-      <NavbarContent  >
-    
+      <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -64,7 +59,6 @@ export default function NavbarUser() {
             src="logo/logo_light.png"
             alt="logo"
             className="md:w-12 md:h-12 pr-2 blok w-10 h-10 "
-        
           />
           <div className="text-white hover:text-white/80">
             <p className="font-bold lg:text-heading-6 text-body-2">
@@ -88,8 +82,8 @@ export default function NavbarUser() {
         ))}
       </NavbarContent>
 
-      <NavbarContent  justify="end">
-        <NavbarItem >
+      <NavbarContent justify="end">
+        <NavbarItem>
           <Button
             as={Link}
             className="bg-primary-30 text-white rounded-md"

@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
       </footer>
       <div className="bg-primary-10 text-center py-2">
-        🚀 2024 Madilog. All rights reserved
+      © 2024 Madilog. All Rights Reserved.
       </div>
     </>
   );
@@ -182,11 +182,12 @@ export const Jelajahi = () => {
     <div>
       <p className="text-body-1 font-bold mb-4 hidden md:block">Jelajahi</p>
       <div className="space-y-2 text-body-2">
-        <p>Beranda</p>
-        <p>Profil Desa</p>
-        <p>Infografis</p>
-        <p>Berita</p>
-        <p>Link *</p>
+        <Link to="/" className="hover:font-bold hover:underline">Beranda</Link><br />
+        <Link to="/profil" className="hover:font-bold hover:underline">Profil Desa</Link><br />
+        <Link to="/berita" className="hover:font-bold hover:underline">Berita</Link><br />
+        <Link to="/infografis/penduduk" className="hover:font-bold hover:underline">Infografis</Link><br />
+        <Link to="/infografis/cekdata" className="hover:font-bold hover:underline">Cek Data</Link><br />
+        <Link to="/login" className="hover:font-bold hover:underline">Masuk</Link><br />
       </div>
     </div>
   );
