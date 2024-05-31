@@ -18,8 +18,8 @@ export default function NavbarGrafis() {
 
   return (
     <div className="flex gap-4 mx-70">
-      <Link href="/infografis/apbdes" className={linkClassName("/infografis/apbdes")}>
-        <CreditCard className={iconClassName("/infografis/apbdes")} />
+      <Link href="/infografis" className={linkClassName("/infografis")}>
+        <CreditCard className={iconClassName("/infografis")} />
         APBDes
       </Link>
       <Link href="/infografis/penduduk" className={linkClassName("/infografis/penduduk")}>
