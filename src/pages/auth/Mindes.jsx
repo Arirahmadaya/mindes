@@ -1,12 +1,15 @@
+
 import React from 'react';
 import { Input, Button } from '@nextui-org/react';
 import { Mail, Phone, MapPin } from 'react-feather';
-import NavbarUser from '../../components/NavbarUser';
+import NavbarMINDes from '../../components/NavbarMINDes'
+
 
 const Mindes = () => {
   return (
     <div>
-    <NavbarUser />
+
+     <NavbarMINDes />
       <main className="container mx-auto px-6 py-12">
         <div className="text-center">
           <h1 className="w-[613px] text-slate-50 text-[54px] font-bold font-['Open Sans'] leading-[64.80px]text-4xl font-bold text-gray-800">Ease Your Village Data Management with MINDes</h1>
@@ -15,6 +18,7 @@ const Mindes = () => {
             <img src="/logo/icon_light.png" alt="MINDes Logo" className="mx-auto" />
           </div>
         </div>
+
 
         <section className="mt-12">
           <div className="text-center">

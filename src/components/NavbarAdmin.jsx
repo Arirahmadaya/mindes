@@ -25,17 +25,16 @@ export default function NavbarAdmin() {
   return (
     <Navbar isBordered>
       <NavbarContent justify="start">
-        <NavbarBrand className="lg:-ml-32 flex  border-2">
+        <NavbarBrand className="lg:-ml-32 flex">
           <img
-            src="logo/logo_light.png"
+            src="/logo/logo_dark.png"
             alt="logo"
-            className="md:w-12 md:h-12 pr-2 blok w-10 h-10 "
-          />
+            className="md:w-12 md:h-12 pr-2 blok w-10 h-10"/>
           <div className="text-black hover:text-black/80 hidden sm:block">
-            <p className="font-bold lg:text-heading-6 text-body-2">
-              Desa Kalinyamat Kulon
+            <p className="font-bold lg:text-heading-6 text-body-2 text-blue">
+              MINDES
             </p>
-            <p className="md:text-body-2 text-caption-1">Kota Tegal</p>
+            <p className="md:text-body-2 text-caption-1">Desa Kalinyamat Kulon</p>
           </div>
         </NavbarBrand>
       </NavbarContent>

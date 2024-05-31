@@ -14,31 +14,28 @@ import {
   Home,
   User,
   BarChart2,
-  BookOpen,
-  LogOut,
-  Key,
-  LogIn,
+  Phone,
+  Headphones,
 } from "react-feather";
 import { useLocation } from "react-router-dom";
 
-export default function NavbarUser() {
+export default function NavbarMINDes() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const location = useLocation();
 
   const menuItemsMain = [
     { name: "Beranda", icon: Home, href: "/" },
-    { name: "Profil", icon: User, href: "/profil" },
-    { name: "Infografis", icon: BarChart2, href: "/infografis" },
-    { name: "Berita", icon: BookOpen, href: "/berita" },
+    { name: "Product", icon: User, href: "/profil" },
+    { name: "Profile", icon: BarChart2, href: "/infografis" },
+    
   ];
 
   const menuItems = [
     { name: "Beranda", icon: Home, href: "/" },
-    { name: "Profil", icon: User, href: "/profil" },
-    { name: "Infografis", icon: BarChart2, href: "/infografis" },
-    { name: "Berita", icon: BookOpen, href: "/berita" },
-    { name: "Log Out", icon: LogOut, href: "/login" },
-    { name: "Login", icon: Key, href: "/login" },
+    { name: "Product", icon: User, href: "/profil" },
+    { name: "Profile", icon: BarChart2, href: "/infografis" },
+    { name: "Hubungi", icon: Phone, href: "/infografis" },
+   
   ];
 
   return (
@@ -46,33 +43,34 @@ export default function NavbarUser() {
       onMenuOpenChange={setIsMenuOpen}
       shouldHideOnScroll
 
-      className="bg-primary-40 lg:px-[40px]"
+      className=" lg:px-[40px]"
       maxWidth={"full"}
+      isBordered
     >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="sm:hidden text-white"
+          className="sm:hidden text-blue"
         />
         <NavbarBrand className="flex">
           <img
-            src="logo/logo_light.png"
+            src="/logo/icon_dark.png"
             alt="logo"
 
-            className="md:w-12 md:h-12 pr-2 blok w-10 h-10 "
+            className="md:w-auto md:h-11 lg:pr-2 pr-1  blok w-auto h-10 "
 
           />
-          <div className="text-white hover:text-white/80">
-            <p className="font-bold lg:text-heading-6 text-body-2">
-              Desa Kalinyamat Kulon
+          <div className="text-blue hover:text-blue/80 mt-1">
+            <p className="font-bold lg:text-heading-6 ">
+              ADILOG
             </p>
-            <p className="md:text-body-2 text-caption-1">Kota Tegal</p>
+            <p className="font-bold lg:text-heading-6">INDES</p>
           </div>
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-10 text-white" justify="center">
+      <NavbarContent className="hidden sm:flex gap-10 text-black  lg:-mr-64" justify="end">
         {menuItemsMain.map((item, index) => (
           <NavbarItem 
             key={index} 
@@ -89,7 +87,7 @@ export default function NavbarUser() {
         ))}
       </NavbarContent>
 
-      <NavbarContent justify="end">
+      <NavbarContent justify="end"  >
         <NavbarItem>
           <Button
             as={Link}
@@ -97,7 +95,7 @@ export default function NavbarUser() {
             href="/login"
             variant="flat"
           >
-            Login <LogIn />
+            Contact <Headphones />
           </Button>
         </NavbarItem>
       </NavbarContent>
