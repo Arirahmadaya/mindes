@@ -19,6 +19,7 @@ import Infografis from "./pages/admin/Infografis";
 import Laporan from "./pages/admin/Laporan";
 import Realisasi from "./pages/admin/Realisasi";
 import User from "./pages/admin/User";
+import LoginAdmin from "./pages/admin/LoginAdmin";
 // import DetailAgenda from "./pages/auth/DetailAgenda";
 
 const App = () => {
@@ -53,6 +54,7 @@ const App = () => {
           <Route path="/admin/laporan" element={<Laporan />} />
           <Route path="/admin/realisasi" element={<Realisasi />} />
           <Route path="/admin/user" element={<User />} />
+          <Route path="/admin/login" element={<LoginAdmin />} />
         </Routes>
       </div>
     </Router>

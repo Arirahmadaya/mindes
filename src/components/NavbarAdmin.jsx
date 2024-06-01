@@ -17,57 +17,35 @@ import { ArrowDown, Search, User } from "react-feather";
 
 export default function NavbarAdmin() {
   return (
-    <Navbar isBordered>
+    <Navbar isBordered className="bg-grayscale-10">
       <NavbarContent justify="start">
-        <NavbarBrand className="lg:-ml-32 flex">
-          <img
-            src="/logo/logo_dark.png"
-            alt="logo"
-            className="md:w-12 md:h-12 pr-2 blok w-10 h-10"
-          />
-          <div className="text-black hover:text-black/80 hidden sm:block">
-            <p className="font-bold lg:text-heading-6 text-body-2 text-blue">
-              MINDES
-            </p>
-            <p className="md:text-body-2 text-caption-1">
-              Desa Kalinyamat Kulon
-            </p>
-          </div>
-        </NavbarBrand>
-      </NavbarContent>
-      <NavbarContent justify="center">
-        <NavbarItem>
-          {" "}
-          <Input
-            classNames={{
-              base: "max-=w-full sm:max-w-[20rem] h-10",
-              mainWrapper: "h-full",
-              input: "text-small",
-              inputWrapper:
-                "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-            }}
-            placeholder="Cari..."
-            size="sm"
-            startContent={<Search size={18} />}
-            type="search"
-          />{" "}
-        </NavbarItem>
+        <Input
+          classNames={{
+            base: "max-w-full sm:max-w-[20rem] h-10",
+            mainWrapper: "h-full",
+            input: "text-small",
+            inputWrapper:
+              "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+          }}
+          placeholder="Type to search..."
+          size="sm"
+          startContent={<Search size={18} />}
+          type="search"
+        />
       </NavbarContent>
 
-      <NavbarContent as="div" className="items-center -mr-12" justify="end ">
-        <NavbarItem className="flex  text-black"></NavbarItem>
-
+      <NavbarContent as="div" className="items-center" justify="center">
         <Dropdown placement="bottom-end">
           <DropdownTrigger>
             <div className="flex items-center">
               <Avatar
                 isBordered
                 as="button"
-                className="transition-transform"
-                color="secondary"
-                name="Jason Hughes"
+                className="transition-transform "
+                color="default"
+                name="Ferianta"
                 size="sm"
-                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               />
               <p className="font-semibold ml-3 hover:cursor-pointer">
                 Ferianta
