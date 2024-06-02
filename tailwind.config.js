@@ -61,7 +61,6 @@ export default {
           30: "#97C1E4",
           20: "#BBDEFB",
           10: "#EBF5FE",
-         
         },
         grayscale: {
           90: "#F3F2F7",
@@ -82,7 +81,8 @@ export default {
         "gradient-30":
           "linear-gradient(180deg, rgba(52, 80, 231, 0.50) 0%, white 100%)",
         "gradient-20": "linear-gradient(180deg, #97C1E4 0%, #FFF 100%)",
-        "gradient-10": "linear-gradient(115deg, #7FC6ED 0%, #D4E4F2 20%, #8796EC 40%, #9470FF 60%, #87ACEB 80%, #EBEAFF 100%), linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%)"
+        "gradient-10":
+          "linear-gradient(115deg, #7FC6ED 0%, #D4E4F2 20%, #8796EC 40%, #9470FF 60%, #87ACEB 80%, #EBEAFF 100%), linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%)",
       },
     },
   },
