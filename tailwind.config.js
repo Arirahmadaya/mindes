@@ -82,8 +82,7 @@ export default {
         "gradient-30":
           "linear-gradient(180deg, rgba(52, 80, 231, 0.50) 0%, white 100%)",
         "gradient-20": "linear-gradient(180deg, #97C1E4 0%, #FFF 100%)",
-        "gradient-10":
-          "linear-gradient(180deg, rgb(127, 198, 237) 0%, rgb(211.97, 228.49, 242.25) 20%, rgb(134.65, 150.22, 235.88) 40%, rgb(148.07, 111.56, 255) 60%, rgb(135, 172, 235) 80%, rgb(234.51, 233.75, 255) 100%)",
+        "gradient-10": "linear-gradient(115deg, #7FC6ED 0%, #D4E4F2 20%, #8796EC 40%, #9470FF 60%, #87ACEB 80%, #EBEAFF 100%), linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%)"
       },
     },
   },

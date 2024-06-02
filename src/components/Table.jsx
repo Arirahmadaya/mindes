@@ -238,7 +238,7 @@ export default function Tablenih() {
               </DropdownMenu>
             </Dropdown>
             <Button
-              className="bg-foreground text-white"
+              className="bg-primary-30 text-white"
               endContent={<Plus />}
               size="sm"
             >
@@ -280,7 +280,7 @@ export default function Tablenih() {
         <Pagination
           showControls
           classNames={{
-            cursor: "bg-foreground text-white",
+            cursor: "bg-primary-30 text-white",
           }}
           color="default"
           isDisabled={hasSearchFilter}
@@ -326,7 +326,7 @@ export default function Tablenih() {
       bottomContentPlacement="outside"
       checkboxesProps={{
         classNames: {
-          wrapper: "after:bg-foreground after:text-blue text-white",
+          wrapper: "after:bg-primary-30 after:text-blue text-white",
         },
       }}
       classNames={classNames}

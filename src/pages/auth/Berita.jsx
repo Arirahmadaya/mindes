@@ -3,6 +3,7 @@ import React from "react";
 import NavbarUser from "../../components/NavbarUser";
 import Footer from "../../components/Footer";
 import CardBerita from "../../components/CardBerita";
+import Timeline from "../../components/Timeline";
 
 const Berita = () => {
   return (
@@ -24,6 +25,8 @@ const Berita = () => {
           <CardBerita />
         </div>
       </div>
+      <div className="mx-auto -ml-14 my-20"><Timeline /></div>
+      
       <Footer />
     </>
   );

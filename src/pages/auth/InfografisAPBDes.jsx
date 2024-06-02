@@ -17,12 +17,14 @@ const InfografisAPBDes = () => {
             Infografis Realisasi Anggaran Pendapatan dan Belanja Desa
           </h1>
           <div className="ml-auto">
-          <NavbarGrafis />
+            <NavbarGrafis />
           </div>
         </div>
       </div>
+      <div className="mx-5 md:mx-10 lg:mx-70 my-5">
+        <ChartAPBDes />
+      </div>
 
-      <ChartAPBDes />
       <ChartBelanja />
 
       <ChartRealisasi />

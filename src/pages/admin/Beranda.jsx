@@ -1,11 +1,18 @@
 import React from "react";
 import Sidebares from "../../components/Sidebar";
 import NavbarAdmin from "../../components/NavbarAdmin";
-import { ArrowUp, ChevronRight, ArrowDown, Info } from "react-feather";
+import { ArrowUp, ChevronRight, ArrowDown, Info, Printer} from "react-feather";
+import ChartAPBDes from "../../components/ChartAPBDes";
+import {
+
+  Link,
+  Button,
+} from "@nextui-org/react";
+
 
 const Beranda = () => {
   return (
-    <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
+    <div className="flex flex-row bg-[#F3F2F7] h-screen w-screen overflow-y-auto">
       <Sidebares />
       <div className="flex-1 mx-5">
         <div className="">
@@ -15,7 +22,32 @@ const Beranda = () => {
         <div className="my-5 text-heading-6 font-semibold">Dashboard</div>
 
         <div className="flex gap-5 my-5">
-          <div className="w-full h-[100px] lg:h-[150px] bg-blue-500 "></div>
+          <div className="w-full h-auto bg-gradient-10 rounded-lg">
+            <div className="m-7">
+            <div className="text-heading-4 font-semibold">
+              Selamat Datang User 1
+
+            </div>
+            <div className="flex justify-between">
+            <p className="text-heading-6">
+            Awasi penyelenggaraan desa, majukan desa bersama. 
+
+            </p>
+            <Button
+            as={Link}
+            className="bg-primary-30 text-white rounded-md"
+            href="/"
+            variant="flat"
+          >
+            Cetak Laporan <Printer />
+          </Button>
+            </div>
+          
+
+            </div>
+          
+           
+          </div>
         </div>
 
         <div className="flex gap-5 ">
@@ -85,9 +117,12 @@ const Beranda = () => {
         </div>
 
         <div className="flex gap-5 my-5">
-          <div className="w-full h-[100px] lg:h-[150px] bg-white"></div>
-          <div className="w-full h-[100px] lg:h-[150px] bg-white"></div>
-          <div className="w-full h-[100px] lg:h-[150px] bg-white"></div>
+          <div className="w-full h-auto bg-white">
+            <ChartAPBDes />
+          </div>
+          
+         
+       
         </div>
       </div>
     </div>
