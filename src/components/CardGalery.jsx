@@ -30,6 +30,7 @@ export default function Galery() {
         <Card shadow="sm" key={index} isPressable onPress={() => console.log("item pressed")} className="transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
           <CardBody className="p-0 overflow-visible ">
             <Image
+              isZoomed
               shadow="sm"
               radius="lg"
               width="100%"
