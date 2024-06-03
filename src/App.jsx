@@ -20,6 +20,7 @@ import Laporan from "./pages/admin/Laporan";
 import Realisasi from "./pages/admin/Realisasi";
 import User from "./pages/admin/User";
 import LoginAdmin from "./pages/admin/LoginAdmin";
+import TambahBerita from "./pages/admin/TambahBerita";
 // import DetailAgenda from "./pages/auth/DetailAgenda";
 
 const App = () => {
@@ -49,6 +50,7 @@ const App = () => {
           {/* ADMIN */}
           <Route path="/admin/beranda" element={<Beranda />} />
           <Route path="/admin/berita" element={<BeritaAdmin />} />
+          <Route path="/admin/tambahberita" element={<TambahBerita />} />
           <Route path="/admin/infodesa" element={<Infodesa />} />
           <Route path="/admin/infografis" element={<Infografis />} />
           <Route path="/admin/laporan" element={<Laporan />} />

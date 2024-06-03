@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ck-editor__editable_inline {
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+
+  .ck.ck-editor__main > .ck-editor__editable:not(.ck-editor__nested-editable) {
+    border-radius: 0 0 12px 12px;
+    border: 1px solid #ddd;
+    padding: 10px;
+  }

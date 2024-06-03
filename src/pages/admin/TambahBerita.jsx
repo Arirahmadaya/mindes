@@ -12,11 +12,13 @@ import {
   Input,
 } from "@nextui-org/react";
 
-const Infografis = () => {
+const TambahBerita = () => {
   const [selectedKeys, setSelectedKeys] = React.useState(new Set());
 
   const selectedValue = React.useMemo(() => {
-    const items = Array.from(selectedKeys).map((key) => key.charAt(0).toUpperCase() + key.slice(1).replaceAll("_", " "));
+    const items = Array.from(selectedKeys).map(
+      (key) => key.charAt(0).toUpperCase() + key.slice(1).replaceAll("_", " ")
+    );
     return items.length ? items.join(", ") : "Pilih Kategori";
   }, [selectedKeys]);
 
@@ -32,18 +34,7 @@ const Infografis = () => {
           <NavbarAdmin />
         </div>
 
-        <div className="my-5 text-heading-6 font-semibold">Infografis</div>
-
-        <div className="flex gap-5 my-5">
-          <div className=" flex w-full bg-white rounded-lg">
-            <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500  ">
-              <div className="bg-blue-100/20  rounded-b-[20px] w-auto "></div>
-              <div className="p-4 ">
-                <Tablenih />
-              </div>
-            </div>
-          </div>
-        </div>
+        <div className="my-5 text-heading-6 font-semibold">Tambah Berita</div>
 
         <div className="flex gap-5 my-5">
           <div className=" flex w-full bg-white rounded-lg">
@@ -54,21 +45,12 @@ const Infografis = () => {
                   <Input type="text" variant="bordered" label="Judul Berita" />
                 </div>
 
-                <div className="relative w-full">
-                  <Input type="text" variant="bordered" label="Email" />
-                </div>
-                <div className="">
-                  <InputCKEditor />
-                </div>
-
-                <input
-                  type="file"
-                  className="file-input file-input-bordered w-full bg-white"
-                />
-
                 <Dropdown>
                   <DropdownTrigger>
-                    <Button variant="bordered" className="capitalize text-left w-full">
+                    <Button
+                      variant="bordered"
+                      className="capitalize text-left w-full"
+                    >
                       {selectedValue}
                     </Button>
                   </DropdownTrigger>
@@ -88,6 +70,14 @@ const Infografis = () => {
                     <DropdownItem key="iteration">Iteration</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
+                <div className="">
+                  <InputCKEditor />
+                </div>
+
+                <input
+                  type="file"
+                  className="file-input file-input-bordered w-full bg-white"
+                />
               </div>
             </div>
           </div>
@@ -97,4 +87,4 @@ const Infografis = () => {
   );
 };
 
-export default Infografis;
+export default TambahBerita;

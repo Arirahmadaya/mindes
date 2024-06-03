@@ -242,7 +242,7 @@ export default function Tablenih() {
               endContent={<Plus />}
               size="sm"
             >
-              Add New
+              Tambah Item
             </Button>
           </div>
         </div>

@@ -9,6 +9,7 @@ export default {
   ],
   theme: {
     textColor: {
+      gray: `#a0aec0`,
       white: "#F9FCFF",
       black: "#000D17",
       blue: "#1A5C92",

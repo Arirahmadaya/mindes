@@ -17,7 +17,7 @@ const BeritaAdmin = () => {
           <div className=" flex w-full bg-white rounded-lg">
             <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500  ">
               <div className="bg-blue-100/20  rounded-b-[20px] w-auto ">
-                
+  
               </div>
               <div className="p-4 ">
                 <Tablenih />

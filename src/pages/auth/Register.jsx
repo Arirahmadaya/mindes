@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { LogIn } from "react-feather";
 import * as Icon from "react-feather";
+import {Input} from "@nextui-org/react";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -16,18 +17,22 @@ const Register = () => {
       setError("Password tidak sesuai");
       return;
     }
-    console.log("Registrasi berhasil dengan username:", username, "email:", email);
+    console.log(
+      "Registrasi berhasil dengan username:",
+      username,
+      "email:",
+      email
+    );
     // Redirect ke halaman login atau set sesi registrasi
   };
 
   return (
     <div className="flex h-screen bg-gray-100 lg:justify-normal justify-center">
- 
       <div className="z-10 flex lg:w-1/2 items-center ">
         <div className="bg-white flex flex-row justify-center w-full h-screen items-center lg:rounded-r-[40px]">
-          <div className="bg-white w-2/3 h-screen p-8 mx-16 rounded-lg">
+          <div className="bg-white w-2/3 h-screen p-6 mx-16 rounded-lg ">
             <div className="text-center">
-              <h5 className="text-heading-6 font-bold text-black">
+              <h5 className="text-heading-5 font-bold text-black">
                 Daftar Akun Baru
               </h5>
               <img
@@ -35,48 +40,25 @@ const Register = () => {
                 alt="Kota Tegal"
                 src="img/kota_tegal.png"
               />
-              <h6 className="lg:text-body-2 font-medium text-black text-center">
+              <h6 className="lg:text-body-2 font-medium text-black text-center mb-2" >
                 Kelurahan Kalinyamat Kulon <br />
                 Kota Tegal
               </h6>
             </div>
-            <form onSubmit={handleRegister} className="space-y-6">
+            <form onSubmit={handleRegister} className="space-y-2">
               <div>
-                <input
-                  type="text"
-                  className="w-full  p-2 border-b-2 border-black"
-                  value={username}
-                  placeholder="Username"
-                  onChange={(e) => setUsername(e.target.value)}
-                />
+                <Input variant="bordered" type="email" label="Email" />
               </div>
               <div>
-                <input
-                  type="email"
-                  className="w-full  p-2 border-b-2 border-black"
-                  value={email}
-                  placeholder="Email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <Input variant="bordered" type="password" label="Password" />
               </div>
               <div>
-                <input
-                  type="password"
-                  className="w-full  p-2 border-b-2 border-black"
-                  value={password}
-                  placeholder="Password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <Input variant="bordered" type="email" label="Email" />
               </div>
               <div>
-                <input
-                  type="password"
-                  className="w-full  p-2 border-b-2 border-black"
-                  value={confirmPassword}
-                  placeholder="Konfirmasi Password"
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
+                <Input variant="bordered" type="password" label="Password" />
               </div>
+
               {error && <p className="text-red-500 text-sm">{error}</p>}
               <button
                 type="submit"
@@ -90,21 +72,19 @@ const Register = () => {
                 Atau daftar dengan menggunakan:
               </p>
               <div className="w-full flex items-center justify-between gap-2">
-              <button className="w-full flex items-center justify-center border border-gray-300 py-1 rounded-lg hover:bg-gray-100 transition duration-300">
-                <img
-                  className="w-6 h-6 mr-2"
-                  alt="Google"
-                  src="logo/google.png"
-                />
-                Google
-              </button>
-              <button className="w-full flex items-center justify-center border border-gray-300 py-1 rounded-lg hover:bg-gray-100 transition duration-300">
-                <Icon.Facebook className="text-blue w-6 h-6 mr-2" />
-                Facebook
-              </button>
-
+                <button className="w-full flex items-center justify-center border border-gray-300 py-1 rounded-lg hover:bg-gray-100 transition duration-300">
+                  <img
+                    className="w-6 h-6 mr-2"
+                    alt="Google"
+                    src="logo/google.png"
+                  />
+                  Google
+                </button>
+                <button className="w-full flex items-center justify-center border border-gray-300 py-1 rounded-lg hover:bg-gray-100 transition duration-300">
+                  <Icon.Facebook className="text-blue w-6 h-6 mr-2" />
+                  Facebook
+                </button>
               </div>
-              
             </div>
             <div className="text-center mt-4">
               <p className="text-gray-600 text-caption-1">
@@ -119,7 +99,11 @@ const Register = () => {
       </div>
 
       <div className=" w-[55%] bg-auto bg-center bg-no-repeat hidden lg:block fixed top-0  right-0">
-        <img src="img/register.png" alt="Register" className="w-full h-screen" />
+        <img
+          src="img/register.png"
+          alt="Register"
+          className="w-full h-screen"
+        />
       </div>
     </div>
   );

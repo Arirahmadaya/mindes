@@ -9,10 +9,9 @@ import Galery from "../../components/CardGalery";
 import PendudukHome from "../../components/Pendudukan";
 import Jelajahi from "../../components/Jelajahi";
 import NavbarUser from "../../components/NavbarUser";
-
-import Tablenih from "../../components/Table";
-import TableAsli from "../../components/TableAsli";
 import Form from "../../components/Form";
+import InputCKEditor from "../../components/InputCKEditor";
+import Tablenih from "../../components/Table";
 
 const Home = () => {
   return (
@@ -21,10 +20,6 @@ const Home = () => {
       <Carousel />
       <br />
 
-    <div className="mx-70">
-      <Form />
-
-    </div>
       <div>
         <h1 className="mb-2 font-bold text-center text-heading-2 lg:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl lg:mx-70 mx-[20px]">
           Jelajahi Kalinyamat Kulon
