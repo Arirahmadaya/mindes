@@ -13,14 +13,21 @@ import InfografisPenduduk from "./pages/auth/InfografisPenduduk";
 import InfografisSDGs from "./pages/auth/InfografisSDGs";
 import InfografisStunting from "./pages/auth/InfografisStunting";
 import Beranda from "./pages/admin/Beranda";
-import BeritaAdmin from "./pages/admin/BeritaAdmin";
-import Infodesa from "./pages/admin/Infodesa";
-import Infografis from "./pages/admin/Infografis";
-import Laporan from "./pages/admin/Laporan";
-import Realisasi from "./pages/admin/Realisasi";
-import User from "./pages/admin/User";
+import BeritaAdmin from "./pages/admin/berita/BeritaAdmin";
+import Penduduk from "./pages/admin/penduduk/Penduduk";
+import Laporan from "./pages/admin/realisasi/Laporan";
+import Realisasi from "./pages/admin/realisasi/Realisasi";
+import User from "./pages/admin/user/User";
 import LoginAdmin from "./pages/admin/LoginAdmin";
 import TambahBerita from "./pages/admin/TambahBerita";
+import FormPenduduk from "./pages/admin/penduduk/FormPenduduk";
+import FormUser from "./pages/admin/user/FormUser";
+import Agenda from "./pages/admin/agenda/Agenda";
+import FormAgenda from "./pages/admin/agenda/FormAgenda";
+import FormBerita from "./pages/admin/berita/FormBerita";
+import KtgBerita from "./pages/admin/berita/KtgBerita";
+import Akuntansi from "./pages/admin/realisasi/Akuntansi";
+import Bidang from "./pages/admin/realisasi/Bidang";
 // import DetailAgenda from "./pages/auth/DetailAgenda";
 
 const App = () => {
@@ -46,16 +53,29 @@ const App = () => {
           {/* login and register */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          
           {/* ADMIN */}
           <Route path="/admin/beranda" element={<Beranda />} />
           <Route path="/admin/berita" element={<BeritaAdmin />} />
           <Route path="/admin/tambahberita" element={<TambahBerita />} />
-          <Route path="/admin/infodesa" element={<Infodesa />} />
-          <Route path="/admin/infografis" element={<Infografis />} />
-          <Route path="/admin/laporan" element={<Laporan />} />
-          <Route path="/admin/realisasi" element={<Realisasi />} />
+          {/* infografis penduduk */}
+          <Route path="/admin/penduduk" element={<Penduduk />} />
+          <Route path="/admin/penduduk/mutasi" element={<FormPenduduk />} />
+          {/* table user */}
           <Route path="/admin/user" element={<User />} />
+          <Route path="/admin/user/tambah" element={<FormUser />} />
+          {/* Agenda  */}
+          <Route path="/admin/agenda" element={<Agenda />} />
+          <Route path="/admin/agenda/tambah" element={<FormAgenda />} />
+          {/* Berita  */}
+          <Route path="/admin/berita" element={<BeritaAdmin />} />
+          <Route path="/admin/berita/tambah" element={<FormBerita />} />
+          <Route path="/admin/berita/kategori" element={<KtgBerita />} />
+          {/* Realisasi */}
+          <Route path="/admin/realisasi" element={<Realisasi />} />
+          <Route path="/admin/realisasi/akuntansi" element={<Akuntansi />} />
+          <Route path="/admin/realisasi/bidang" element={<Bidang />} />
+          <Route path="/admin/realisasi/laporan" element={<Laporan />} />
+
           <Route path="/admin/login" element={<LoginAdmin />} />
         </Routes>
       </div>

@@ -1,14 +1,24 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
-  HomeModernIcon,
+  HomeIcon,
   ChartPieIcon,
   BellAlertIcon,
   ChatBubbleLeftIcon,
   ClipboardDocumentIcon,
   UsersIcon,
   EnvelopeIcon,
+  CalendarDaysIcon,
+  NewspaperIcon,
   ArrowLeftOnRectangleIcon,
+  UserPlusIcon,
+  IdentificationIcon,
+  BanknotesIcon,
+  TableCellsIcon,
+  DocumentChartBarIcon,
+  CreditCardIcon,
+  InboxStackIcon,
+  PresentationChartBarIcon
 } from "@heroicons/react/20/solid";
 
 function Sidebares() {
@@ -17,45 +27,62 @@ function Sidebares() {
   const menu1 = [
     {
       name: "Dashboard",
-      icon: <HomeModernIcon width={18} className="text-blue-500" />,
+      icon: <HomeIcon width={18} className="text-blue-500" />,
       path: "/admin/beranda",
     },
     {
-      name: "Infografis",
-      icon: <ChartPieIcon width={18} className="text-gray-600" />,
-      path: "/admin/infografis",
+      name: "User",
+      icon: <UsersIcon width={18} className="text-gray-600" />,
+      path: "/admin/user",
     },
     {
-      name: "Info Desa",
-      icon: <BellAlertIcon width={18} className="text-gray-600" />,
-      path: "/admin/infodesa",
+      name: "Agenda",
+      icon: <CalendarDaysIcon width={18} className="text-gray-600" />,
+      path: "/admin/agenda",
+    },
+    {
+      name: "Berita",
+      icon: <NewspaperIcon width={18} className="text-gray-600" />,
+      path: "/admin/berita",
+    },
+    {
+      name: "Penduduk",
+      icon: <IdentificationIcon width={18} className="text-gray-600" />,
+      path: "/admin/penduduk",
     },
   ];
 
   const menu2 = [
     {
-      name: "Keuangan",
-      icon: <ChatBubbleLeftIcon width={18} className="text-gray-600 " />,
+      name: "Realisasi",
+      icon: <BanknotesIcon width={18} className="text-gray-600 " />,
       path: "/admin/realisasi",
     },
     {
       name: "Laporan",
-      icon: <ClipboardDocumentIcon width={18} className="text-gray-600" />,
-      path: "/admin/laporan",
-    },
-    {
-      name: "Berita",
-      icon: <UsersIcon width={18} className="text-gray-600" />,
-      path: "/admin/berita",
-    },
-    {
-      name: "User",
-      icon: <EnvelopeIcon width={18} className="text-gray-600" />,
-      path: "/admin/user",
+      icon: <PresentationChartBarIcon width={18} className="text-gray-600" />,
+      path: "/admin/realisasi/laporan",
     },
   ];
 
   const menu3 = [
+    {
+      name: "Kategori Berita",
+      icon: <TableCellsIcon width={18} className="text-gray-600 " />,
+      path: "/admin/berita/kategori",
+    },
+    {
+      name: "Akuntansi",
+      icon: <CreditCardIcon width={18} className="text-gray-600 " />,
+      path: "/admin/realisasi/akuntansi",
+    },
+    {
+      name: "Bidang",
+      icon: <InboxStackIcon width={18} className="text-gray-600 " />,
+      path: "/admin/realisasi/bidang",
+    },
+  ];
+  const menu4 = [
     {
       name: "Logout",
       icon: <ArrowLeftOnRectangleIcon width={18} className="text-gray-600 " />,
@@ -80,13 +107,24 @@ function Sidebares() {
           </div>
         </div>
         <div className="border-b text-sm">
-          <Menus menu={menu1} title={{ sm: "MAIN", xs: "MAIN" }} location={location} />
+          <Menus
+            menu={menu1}
+            title={{ sm: "UMUM", xs: "UMUM" }}
+            location={location}
+          />
         </div>
         <div className="border-b text-sm">
-          <Menus menu={menu2} title={{ sm: "INFO", xs: "INFO" }} location={location} />
+          <Menus
+            menu={menu2}
+            title={{ sm: "REALISASI", xs: "REALISASI" }}
+            location={location}
+          />
         </div>
         <div className="text-sm">
-          <Menus menu={menu3} title={{ sm: "", xs: "" }} location={location} />
+          <Menus menu={menu3} title={{ sm: "DATA MASTER", xs: "DATA MASTER" }} location={location} />
+        </div>
+        <div className="text-sm">
+          <Menus menu={menu4} title={{ sm: "", xs: "" }} location={location} />
         </div>
       </section>
     </div>
