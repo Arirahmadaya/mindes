@@ -19,7 +19,7 @@ function Sidebares() {
 
   const menu1 = [
     {
-      name: "Dashboard",
+      name: "Beranda",
       icon: <HomeIcon width={18} className="text-blue-500" />,
       path: "/admin/beranda",
     },

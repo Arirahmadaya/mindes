@@ -30,7 +30,10 @@ import Akuntansi from "./pages/admin/realisasi/Akuntansi";
 import Bidang from "./pages/admin/realisasi/Bidang";
 import UserProfile from "./pages/auth/UserProfile";
 import MindesTeam from "./pages/auth/MindesTeam";
-// import DetailAgenda from "./pages/auth/DetailAgenda";
+import FormKtgBerita from "./pages/admin/berita/FormKtgBerita";
+import FormAkuntansi from "./pages/admin/realisasi/FormAkuntansi";
+import FormBidang from "./pages/admin/realisasi/FormBidang";
+import FormRealisasi from "./pages/admin/realisasi/FormRealisasi";
 
 const App = () => {
   return (
@@ -74,10 +77,14 @@ const App = () => {
           <Route path="/admin/berita" element={<BeritaAdmin />} />
           <Route path="/admin/berita/tambah" element={<FormBerita />} />
           <Route path="/admin/berita/kategori" element={<KtgBerita />} />
+          <Route path="/admin/berita/kategori/tambah" element={<FormKtgBerita />} />
           {/* Realisasi */}
           <Route path="/admin/realisasi" element={<Realisasi />} />
+          <Route path="/admin/realisasi/tambah" element={<FormRealisasi />} />
           <Route path="/admin/realisasi/akuntansi" element={<Akuntansi />} />
+          <Route path="/admin/realisasi/akuntansi/tambah" element={<FormAkuntansi />} />
           <Route path="/admin/realisasi/bidang" element={<Bidang />} />
+          <Route path="/admin/realisasi/bidang/tambah" element={<FormBidang />} />
           <Route path="/admin/realisasi/laporan" element={<Laporan />} />
 
           <Route path="/admin/login" element={<LoginAdmin />} />
@@ -88,39 +95,3 @@ const App = () => {
 };
 
 export default App;
-
-//TESTING
-// import React from 'react'
-// import Register from './pages/auth/Register'
-
-// const App = () => {
-//   return (
-//     <div>
-//       <h1>Muncul ga</h1>
-//       <Register />
-
-//       </div>
-//   )
-// }
-
-// export default App
-
-// import{ BrowserRouter,Routes,Route } from "react-router-dom";
-// import Home from "./pages/auth/Home";
-// import Login from "./pages/auth/Login";
-// import Register from "./pages/auth/Register";
-
-// export default function App() {
-//   return (
-//     <BrowserRouter BrowserRouter>
-//       <div>
-//         <Routes>
-//           <Route path="/" element={<Home />} />
-//           <Route path="/login" element={<Login />} />
-//           <Route path="/register" element={<Register />} />
-//         {/* <h1 className="text-3xl font-bold underline text-gradient-60">Hello React</h1> */}
-//         </Routes>
-//       </div>
-//     </BrowserRouter>
-//   );
-// }

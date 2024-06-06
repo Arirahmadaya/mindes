@@ -1,8 +1,8 @@
 import React from "react";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
-// import Tablenih from "../../../components/Table";
 import TableProps from "../../../components/TableProps";
+import {Breadcrumbs, BreadcrumbItem} from "@nextui-org/breadcrumbs";
 
 const statusColorMap = {
   publish: "success",
@@ -62,21 +62,23 @@ const BeritaAdmin = () => {
           <NavbarAdmin />
         </div>
 
-        <div className="my-5 text-heading-6 font-semibold">Mutasi Penduduk</div>
+        <Breadcrumbs className="my-5">
+          <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/realisasi">Realisasi</BreadcrumbItem>
+        </Breadcrumbs>
 
         <div className="flex gap-5 my-5">
           <div className=" flex w-full bg-white rounded-lg">
             <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-blue-200  ">
               <div className="bg-blue-100/20 rounded-b-[20px] w-auto "></div>
               <div className="p-4 ">
-                {/* <Tablenih /> */}
                 <TableProps
                   statusColorMap={statusColorMap}
                   INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS}
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  tambahBeritaURL={"/admin/penduduk/mutasi"}
+                  tambahBeritaURL={"/admin/realisasi/tambah"}
                 />
               </div>
             </div>

@@ -10,6 +10,7 @@ import {
 } from "@heroicons/react/20/solid";
 import ChartAPBDes from "../../components/ChartAPBDes";
 import { Link, Button } from "@nextui-org/react";
+import {Breadcrumbs, BreadcrumbItem} from "@nextui-org/breadcrumbs";
 
 const Beranda = () => {
   return (
@@ -20,16 +21,19 @@ const Beranda = () => {
           <NavbarAdmin />
         </div>
 
-        <div className="my-5 text-heading-6 font-semibold">Dashboard</div>
+        <Breadcrumbs className="my-5">
+          <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
+        </Breadcrumbs>
+
 
         <div className="flex gap-5 my-5">
           <div className="w-full h-auto bg-gradient-10 background-animate rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
             <div className="m-7">
-              <div className="text-heading-4 font-semibold">
+            <div className="text-heading-6  font-semibold">
                 Selamat Datang User 1
               </div>
               <div className="flex justify-between">
-                <p className="text-heading-6">
+                <p className="text-body-1">
                   Awasi penyelenggaraan desa, majukan desa bersama.
                 </p>
                 <Button

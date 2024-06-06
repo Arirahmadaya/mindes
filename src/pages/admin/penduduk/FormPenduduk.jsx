@@ -15,6 +15,7 @@ import {
   PaperAirplaneIcon,
   ArrowUturnLeftIcon,
 } from "@heroicons/react/20/solid";
+import {Breadcrumbs, BreadcrumbItem} from "@nextui-org/breadcrumbs";
 
 const FormPenduduk = () => {
   const [selectedKeys, setSelectedKeys] = useState(new Set());
@@ -38,9 +39,12 @@ const FormPenduduk = () => {
           <NavbarAdmin />
         </div>
 
-        <div className="my-5 text-heading-6 font-semibold">
-          Tambah Mutasi Penduduk
-        </div>
+        <Breadcrumbs className="my-5">
+          <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/penduduk">Penduduk</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/penduduk/tambah">Tambah Mutasi Penduduk</BreadcrumbItem>
+        </Breadcrumbs>
+
 
         {/* Form start */}
         <div className="flex gap-5 my-5">

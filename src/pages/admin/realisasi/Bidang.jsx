@@ -1,9 +1,8 @@
 import React from "react";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
-// import Tablenih from "../../../components/Table";
 import TableProps from "../../../components/TableProps";
-
+import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 
 const statusColorMap = {
   publish: "success",
@@ -11,11 +10,7 @@ const statusColorMap = {
   gagal: "danger",
 };
 
-const INITIAL_VISIBLE_COLUMNS = [
-  "id",
-  "bidang",
-  "sub_bidang",
-];
+const INITIAL_VISIBLE_COLUMNS = ["id", "bidang", "sub_bidang"];
 
 const columns = [
   { name: "ID", uid: "id" },
@@ -33,7 +28,8 @@ const isi = [
   {
     id: 1,
     bidang: "BIDANG PENYELENGGARAAN PEMERINTAHAN DESA",
-    sub_bidang: "Penyelenggaraan Belanja Siltap, Tunjangan dan Operasional Pemerintah Desa",
+    sub_bidang:
+      "Penyelenggaraan Belanja Siltap, Tunjangan dan Operasional Pemerintah Desa",
   },
   {
     id: 2,
@@ -43,12 +39,14 @@ const isi = [
   {
     id: 3,
     bidang: "BIDANG PENYELENGGARAAN PEMERINTAHAN DESA",
-    sub_bidang: "Pengelolaan Administrasi Kependudukan, Pencatatan Sipil, Statistik dan Kearsipan",
+    sub_bidang:
+      "Pengelolaan Administrasi Kependudukan, Pencatatan Sipil, Statistik dan Kearsipan",
   },
   {
     id: 4,
     bidang: "BIDANG PENYELENGGARAAN PEMERINTAHAN DESA",
-    sub_bidang: "Penyelenggaraan Tata Praja Pemerintahan, Perencanaan, Keuangan dan Pelaporan",
+    sub_bidang:
+      "Penyelenggaraan Tata Praja Pemerintahan, Perencanaan, Keuangan dan Pelaporan",
   },
   {
     id: 5,
@@ -88,7 +86,8 @@ const isi = [
   {
     id: 12,
     bidang: "BIDANG PEMBERDAYAAN MASYARAKAT",
-    sub_bidang: "Sub Bidang Pemberdayaan Perempuan, Perlindungan Anak dan Keluarga",
+    sub_bidang:
+      "Sub Bidang Pemberdayaan Perempuan, Perlindungan Anak dan Keluarga",
   },
   {
     id: 13,
@@ -121,7 +120,11 @@ const Bidang = () => {
           <NavbarAdmin />
         </div>
 
-        <div className="my-5 text-heading-6 font-semibold">Mutasi Penduduk</div>
+        <Breadcrumbs className="my-5">
+          <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/realisasi">Realisasi</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/realisasi/bidang">Bidang</BreadcrumbItem>
+        </Breadcrumbs>
 
         <div className="flex gap-5 my-5">
           <div className=" flex w-full bg-white rounded-lg">
@@ -135,7 +138,7 @@ const Bidang = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  tambahBeritaURL={"/admin/realialisasi/bidang/tambah"}
+                  tambahBeritaURL={"/admin/realisasi/bidang/tambah"}
                 />
               </div>
             </div>

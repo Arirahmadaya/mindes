@@ -1,8 +1,8 @@
 import React from "react";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
-// import Tablenih from "../../../components/Table";
 import TableProps from "../../../components/TableProps";
+import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 
 const statusColorMap = {
   publish: "success",
@@ -10,11 +10,7 @@ const statusColorMap = {
   gagal: "danger",
 };
 
-const INITIAL_VISIBLE_COLUMNS = [
-  "id",
-  "ktgberita",
-  "actions",
-];
+const INITIAL_VISIBLE_COLUMNS = ["id", "ktgberita", "actions"];
 
 const columns = [
   { name: "ID", uid: "id" },
@@ -54,8 +50,6 @@ const isi = [
   },
 ];
 
-
-
 const BeritaAdmin = () => {
   return (
     <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
@@ -65,7 +59,11 @@ const BeritaAdmin = () => {
           <NavbarAdmin />
         </div>
 
-        <div className="my-5 text-heading-6 font-semibold">Berita</div>
+        <Breadcrumbs className="my-5">
+          <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/berita">Berita</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/ktgberita">Kategori Berita</BreadcrumbItem>
+        </Breadcrumbs>
 
         <div className="flex gap-5 my-5">
           <div className=" flex w-full bg-white rounded-lg">
@@ -79,7 +77,7 @@ const BeritaAdmin = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  tambahBeritaURL={"/admin/berita/tambah"}
+                  tambahBeritaURL={"/admin/berita/kategori/tambah"}
                 />
               </div>
             </div>

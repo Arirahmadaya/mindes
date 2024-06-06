@@ -1,7 +1,6 @@
 import React from "react";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
-// import Tablenih from "../../../components/Table";
 import TableProps from "../../../components/TableProps";
 import {Breadcrumbs, BreadcrumbItem} from "@nextui-org/breadcrumbs";
 

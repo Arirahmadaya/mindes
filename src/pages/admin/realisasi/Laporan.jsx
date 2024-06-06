@@ -11,12 +11,15 @@ const Laporan = () => {
         <div className="">
           <NavbarAdmin />
         </div>
+
         <Breadcrumbs className="my-5">
+          <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
           <BreadcrumbItem href="/admin/realisasi">Realisasi</BreadcrumbItem>
           <BreadcrumbItem href="/admin/realisasi/laporan">
             Laporan
           </BreadcrumbItem>
         </Breadcrumbs>
+        
         <div className="my-5 text-heading-6 font-semibold">Laporan</div>
         <div className="flex gap-5 my-5">
           <div className=" flex w-full bg-white rounded-lg">
