@@ -1,29 +1,13 @@
-import React from "react";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
-import InputCKEditor from "../../../components/InputCKEditor";
+import { Link } from "react-router-dom";
+import { Input, DatePicker, TimeInput } from "@nextui-org/react";
 import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Button,
-  Input,
-} from "@nextui-org/react";
+  PaperAirplaneIcon,
+  ArrowUturnLeftIcon,
+} from "@heroicons/react/20/solid";
 
-const FormAgenda = () => {
-  const [selectedKeys, setSelectedKeys] = React.useState(new Set());
-
-  const selectedValue = React.useMemo(() => {
-    const items = Array.from(selectedKeys).map(
-      (key) => key.charAt(0).toUpperCase() + key.slice(1).replaceAll("_", " ")
-    );
-    return items.length ? items.join(", ") : "Pilih Kategori";
-  }, [selectedKeys]);
-
-  const handleSelectionChange = (keys) => {
-    setSelectedKeys(keys);
-  };
+const FormBerita = () => {
 
   return (
     <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
@@ -33,55 +17,68 @@ const FormAgenda = () => {
           <NavbarAdmin />
         </div>
 
-        <div className="my-5 text-heading-6 font-semibold">Tambah Agenda</div>
+        <div className="my-5 text-heading-6 font-semibold">Tambah Berita</div>
 
         {/* Form start */}
         <div className="flex gap-5 my-5">
           <div className=" flex w-full bg-white rounded-lg">
-            <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500  ">
-              <div className="bg-blue-100/20 rounded-b-[20px] w-auto "></div>
+            <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
+              <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
               <div className="flex flex-col p-10 gap-5">
-                <div className="relative w-full">
-                  <Input type="text" variant="bordered" label="Judul Berita" />
-                </div>
-
-                <div className="relative w-full">
-                  <Input type="text" variant="bordered" label="Email" />
-                </div>
-                <div className="">
-                  <InputCKEditor />
-                </div>
-
-                <input
-                  type="file"
-                  className="file-input file-input-bordered w-full bg-white"
-                />
-
-                <Dropdown>
-                  <DropdownTrigger>
-                    <Button
+                <div className="flex gap-5">
+                  <div className="relative w-1/2 mb-0">
+                    <p className="text-caption-2 text-gray mt-1 mb-2">
+                      Masukkan Tangga l Kegiatan/Program Berlangsung
+                    </p>
+                    <DatePicker
+                      label="Tanggal Agenda"
                       variant="bordered"
-                      className="capitalize text-left w-full"
-                    >
-                      {selectedValue}
-                    </Button>
-                  </DropdownTrigger>
-                  <DropdownMenu
-                    aria-label="Multiple selection example"
-                    variant="flat"
-                    closeOnSelect={false}
-                    disallowEmptySelection
-                    selectionMode="multiple"
-                    selectedKeys={selectedKeys}
-                    onSelectionChange={handleSelectionChange}
+                      onChange={(date) => console.log(date)}
+                      // isRequired
+                    />
+                  </div>
+                  <div className="relative w-1/2 mb-0">
+                    <p className="text-caption-2 text-gray mt-1 mb-2">
+                      Masukkan Waktu Kegiatan/Program Berlangsung
+                    </p>
+                    <TimeInput
+                      label="Waktu"
+                      variant="bordered"
+                      onChange={(time) => console.log(time)}
+                      // isRequired
+                    />
+                  </div>
+                </div>
+
+                <div className="relative w-full mb-0">
+                  <p className="text-caption-2 text-gray mt-1 mb-2">
+                    Masukkan Nama Agenda
+                  </p>
+                  <Input type="text" variant="bordered" label="Nama Agenda" />
+                </div>
+                <div className="relative w-full mb-0">
+                  <p className="text-caption-2 text-gray mt-1 mb-2">
+                    Masukkan Tempat Agenda Dilaksanakan
+                  </p>
+                  <Input type="text" variant="bordered" label="Tempat" />
+                </div>
+
+                <div className="flex justify-between w-full mt-4">
+                  <Link
+                    to="/admin/agenda"
+                    className="flex items-center gap-2 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300"
                   >
-                    <DropdownItem key="text">Text</DropdownItem>
-                    <DropdownItem key="number">Number</DropdownItem>
-                    <DropdownItem key="date">Date</DropdownItem>
-                    <DropdownItem key="single_date">Single Date</DropdownItem>
-                    <DropdownItem key="iteration">Iteration</DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
+                    <ArrowUturnLeftIcon className="w-5 h-5" />
+                    Batal
+                  </Link>
+                  <button
+                    type="submit"
+                    className="flex items-center gap-2 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
+                  >
+                    <span>Simpan</span>
+                    <PaperAirplaneIcon className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -91,4 +88,4 @@ const FormAgenda = () => {
   );
 };
 
-export default FormAgenda;
+export default FormBerita;

@@ -9,14 +9,15 @@ const editorConfiguration = {
     'insertTable', 'tableColumn', 'tableRow', 'mergeTableCells', '|',
     'undo', 'redo'
   ],
-  removePlugins: ['BalloonToolbar', 'BalloonBlockEditor']
+  removePlugins: ['BalloonToolbar', 'BalloonBlockEditor'],
+  height: 'auto', // Ensure the editor adjusts height automatically
 };
 
 const InputCKEditor = () => {
   const [editorData, setEditorData] = useState('');
 
   return (
-    <div className="App rounded-full">
+    <div className="app rounded-md editor-container">
       <CKEditor
         editor={ClassicEditor}
         config={editorConfiguration}
@@ -26,7 +27,6 @@ const InputCKEditor = () => {
           setEditorData(data);
         }}
       />
-
     </div>
   );
 };

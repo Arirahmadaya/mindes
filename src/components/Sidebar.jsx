@@ -2,23 +2,16 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   HomeIcon,
-  ChartPieIcon,
-  BellAlertIcon,
-  ChatBubbleLeftIcon,
-  ClipboardDocumentIcon,
   UsersIcon,
-  EnvelopeIcon,
   CalendarDaysIcon,
   NewspaperIcon,
   ArrowLeftOnRectangleIcon,
-  UserPlusIcon,
   IdentificationIcon,
   BanknotesIcon,
   TableCellsIcon,
-  DocumentChartBarIcon,
   CreditCardIcon,
   InboxStackIcon,
-  PresentationChartBarIcon
+  PresentationChartBarIcon,
 } from "@heroicons/react/20/solid";
 
 function Sidebares() {
@@ -81,6 +74,7 @@ function Sidebares() {
       icon: <InboxStackIcon width={18} className="text-gray-600 " />,
       path: "/admin/realisasi/bidang",
     },
+    
   ];
   const menu4 = [
     {
@@ -92,7 +86,7 @@ function Sidebares() {
 
   return (
     <div className="App">
-      <section className="w-20 sm:w-64 bg-white h-screen">
+      <section className="w-full sm:w-64 bg-white h-100%">
         <div className="border-b px-5 py-3 text-center sm:text-left">
           <div className="flex">
             <img
@@ -120,11 +114,19 @@ function Sidebares() {
             location={location}
           />
         </div>
-        <div className="text-sm">
-          <Menus menu={menu3} title={{ sm: "DATA MASTER", xs: "DATA MASTER" }} location={location} />
+        <div className="border-b text-sm">
+          <Menus
+            menu={menu3}
+            title={{ sm: "DATA MASTER", xs: "DATA MASTER"  }}
+            location={location}
+          />
         </div>
-        <div className="text-sm">
-          <Menus menu={menu4} title={{ sm: "", xs: "" }} location={location} />
+        <div className="border-b text-sm">
+          <Menus
+            menu={menu4}
+            title={{ }}
+            location={location}
+          />
         </div>
       </section>
     </div>

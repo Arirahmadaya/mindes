@@ -6,7 +6,7 @@ export default function PendudukHome() {
       <div className="grid md:grid-cols-2 gap-6 m-16 sm:grid-cols-1">
         <div className="flex items-center justify-between">
           <div className="w-1/2 h-full bg-secondary-40 rounded-s-xl p-4 text-white text-heading-1 flex items-center justify-center">
-            1000
+            6.844
           </div>
           <div className="w-full h-full font-semibold text-black text-heading-3 bg-secondary-10 rounded-e-xl p-4 flex items-center justify-center">
             Penduduk
@@ -14,7 +14,7 @@ export default function PendudukHome() {
         </div>
         <div className="flex items-center justify-between">
           <div className="w-1/2 h-full bg-secondary-40 rounded-s-xl p-4 text-white text-heading-1 flex items-center justify-center">
-            1000
+            3.489
           </div>
           <div className="w-full h-full font-semibold text-black text-heading-3 bg-secondary-10 rounded-e-xl p-4 flex items-center justify-center">
             Penduduk Laki-Laki
@@ -22,18 +22,18 @@ export default function PendudukHome() {
         </div>
         <div className="flex items-center justify-between">
           <div className="w-1/2 h-full bg-secondary-40 rounded-s-xl p-4 text-white text-heading-1 flex items-center justify-center">
-            1000
+            2.094
           </div>
           <div className="w-full h-full font-semibold text-black text-heading-3 bg-secondary-10 rounded-e-xl p-4 flex items-center justify-center">
-            Penduduk Perempuan
+            Kepala Keluarga
           </div>
         </div>
         <div className="flex items-center justify-between">
           <div className="w-1/2 h-full bg-secondary-40 rounded-s-xl p-4 text-white text-heading-1 flex items-center justify-center">
-            1000
+          3.355
           </div>
           <div className="w-full h-full font-semibold text-black text-heading-3 bg-secondary-10 rounded-e-xl p-4 flex items-center justify-center">
-            Kepala Keluarga
+            Penduduk Perempuan
           </div>
         </div>
       </div>

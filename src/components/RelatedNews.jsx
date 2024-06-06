@@ -5,53 +5,56 @@ const RelatedNews = () => {
     {
       title: "Kegiatan Pembangunan Aspal Kelurahan Kalinyamat Kulon",
       date: "5 Mei 2024, 16:53 WIB",
-      views: "100 kali",
+      views: "Dilihat 100 kali",
       image: "/img_berita/berita2.jpg",
     },
     {
-        title: "Kegiatan Pembangunan Aspal Kelurahan Kalinyamat Kulon",
-        date: "5 Mei 2024, 16:53 WIB",
-        views: "100 kali",
-        image: "/img_berita/berita2.jpg",
-      },
-      {
-        title: "Kegiatan Pembangunan Aspal Kelurahan Kalinyamat Kulon",
-        date: "5 Mei 2024, 16:53 WIB",
-        views: "100 kali",
-        image: "/img_berita/berita2.jpg",
-      },
-      {
-        title: "Kegiatan Pembangunan Aspal Kelurahan Kalinyamat Kulon",
-        date: "5 Mei 2024, 16:53 WIB",
-        views: "100 kali",
-        image: "/img_berita/berita2.jpg",
-      },
-      {
-        title: "Kegiatan Pembangunan Aspal Kelurahan Kalinyamat Kulon",
-        date: "5 Mei 2024, 16:53 WIB",
-        views: "100 kali",
-        image: "/img_berita/berita2.jpg",
-      },
-    // Tambahkan post lain sesuai kebutuhan
+      title: "Kegiatan Pembangunan Aspal Kelurahan Kalinyamat Kulon",
+      date: "5 Mei 2024, 16:53 WIB",
+      views: "Dilihat 100 kali",
+      image: "/img_berita/berita2.jpg",
+    },
+    {
+      title: "Kegiatan Pembangunan Aspal Kelurahan Kalinyamat Kulon",
+      date: "5 Mei 2024, 16:53 WIB",
+      views: "Dilihat 100 kali",
+      image: "/img_berita/berita2.jpg",
+    },
+    {
+      title: "Kegiatan Pembangunan Aspal Kelurahan Kalinyamat Kulon",
+      date: "5 Mei 2024, 16:53 WIB",
+      views: "Dilihat 100 kali",
+      image: "/img_berita/berita2.jpg",
+    },
+    {
+      title: "Kegiatan Pembangunan Aspal Kelurahan Kalinyamat Kulon",
+      date: "5 Mei 2024, 16:53 WIB",
+      views: "Dilihat 100 kali",
+      image: "/img_berita/berita2.jpg",
+    },
   ];
 
   return (
-    <div className="w-1/3 bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-xl font-bold text-black mb-4">Berita Lainnya</h2>
+    <div className="w-[310px] h-[1700px] bg-white p-6 rounded-lg shadow-md">
+      <div className="text-black text-heading-6 font-bold font-['Open Sans'] leading-normal mb-4">Berita Lainnya</div>
       <div className="space-y-4">
         {relatedPosts.map((post, index) => (
-          <div key={index} className="flex items-center">
-            <img src={post.image} alt="Related post" className="w-16 h-16 rounded-lg mr-4" />
-            <div>
-              <h3 className="text-md font-semibold text-blue-600">{post.title}</h3>
-              <p className="text-sm text-gray-500">{post.date} · Dilihat {post.views}</p>
+          <div key={index} className="flex items-start mb-4">
+            <img src={post.image} alt="Related post" className="w-[75px] h-[75px] rounded-lg mr-4 object-cover" />
+            <div className="flex flex-col justify-between">
+              <h3 className="text-black text-caption2 font-bold font-['Open Sans'] leading-tight">{post.title}</h3>
+              <p className="text-black/opacity-20 text-[10px] font-light font-['Open Sans'] uppercase tracking-wide">{post.date}</p>
+              <div className="text-black/opacity-20 text-[10px] font-light font-['Open Sans']">{post.views}</div>
             </div>
           </div>
         ))}
       </div>
       <div className="mt-6">
-        <h2 className="text-xl font-bold text-black mb-4">ADVERTISEMENT</h2>
-        <img src="/img_berita/berita1.jpg" alt="Advertisement" className="w-full rounded-lg" />
+        <div className="text-black text-sm font-normal font-['Open Sans'] leading-tight mb-2">ADVERTISEMENT</div>
+        <div className="relative">
+          <div className="w-full h-[310px] bg-gray-200 rounded-lg" />
+          <img className="w-[309px] h-[314px] rounded-lg absolute top-1 left-0" src="/img_berita/berita1.jpg" alt="Ad" />
+        </div>
       </div>
     </div>
   );

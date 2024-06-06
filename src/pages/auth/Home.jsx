@@ -4,14 +4,11 @@ import Footer from "../../components/Footer";
 import Carousel from "../../components/CarouselHome";
 import CardBerita from "../../components/CardBerita";
 import CarouselPerangkatDesa from "../../components/CarouselPD";
-import Maps, { MapsKecil } from "../../components/Maps";
+import Maps, { } from "../../components/Maps";
 import Galery from "../../components/CardGalery";
 import PendudukHome from "../../components/Pendudukan";
 import Jelajahi from "../../components/Jelajahi";
 import NavbarUser from "../../components/NavbarUser";
-import Form from "../../components/Form";
-import InputCKEditor from "../../components/InputCKEditor";
-import Tablenih from "../../components/Table";
 import { Button, Link } from "@nextui-org/react";
 import { LogIn } from "react-feather";
 
@@ -109,13 +106,13 @@ const Home = () => {
       </div>
 
       <div className="mb-28">
-        <div className="mb-2 font-bold flex text-heading-2 md:text-display-2 hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[30px]  bg-gradient-10 rounded-xl">
+        <div className="mb-2 font-bold flex text-heading-2 md:text-display-2 hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[30px] bg-gradient-10 background-animate rounded-xl">
           <div className="w-full h-auto p-5">
-            <h1 className="text-display-2 text-center  text-blue hover:text-bluenight ">Miliki Web Desamu</h1>
+            <h1 className="text-display-2 text-left  text-blue hover:text-bluenight ">Miliki Web Desamu</h1>
             <p className="text-body-1">
               Tingkatkan partisipasi aktif masyarakat dengan transparansi
               informasi dan tracking realisasi penggunaan dana desa dalam
-              pencatatan digital dengan <img src="/logo/mindes.png" className="w-12 h-5" alt="Image Kepala Desa" />
+              pencatatan digital dengan <img src="/logo/mindes.png" className="w-12 h-5 inline" alt="Image Kepala Desa" />
               
             </p>
             <div>

@@ -1,29 +1,126 @@
 import React from "react";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
-import Tablenih from "../../../components/Table";
-import InputCKEditor from "../../../components/InputCKEditor";
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Button,
-  Input,
-} from "@nextui-org/react";
+// import Tablenih from "../../../components/Table";
+import TableProps from "../../../components/TableProps";
 
-const Penduduk = () => {
-  const [selectedKeys, setSelectedKeys] = React.useState(new Set());
+const statusColorMap = {
+  publish: "success",
+  proses: "secondary",
+  gagal: "danger",
+};
 
-  const selectedValue = React.useMemo(() => {
-    const items = Array.from(selectedKeys).map((key) => key.charAt(0).toUpperCase() + key.slice(1).replaceAll("_", " "));
-    return items.length ? items.join(", ") : "Pilih Kategori";
-  }, [selectedKeys]);
+const INITIAL_VISIBLE_COLUMNS = [
+  "tgl",
+  "mutasi",
+  "jumlah",
+  "keterangan",
+  "actions",
+];
 
-  const handleSelectionChange = (keys) => {
-    setSelectedKeys(keys);
-  };
+const columns = [
+  { name: "ID", uid: "id" },
+  { name: "Tanggal", uid: "tgl" },
+  { name: "Mutasi", uid: "mutasi" },
+  { name: "Jumlah", uid: "jumlah" },
+  { name: "Keterangan", uid: "keterangan" },
+  { name: "Aksi", uid: "actions" },
+];
 
+const statusOptions = [
+  { name: "Publish", uid: "publish" },
+  { name: "Proses", uid: "proses" },
+  { name: "Gagal", uid: "gagal" },
+];
+
+const isi = [
+  {
+    id: 1,
+    tgl: "2024-06-01",
+    mutasi: "Lahir",
+    jumlah: 1,
+    keterangan: "Lahir di RT 1 RW 2",
+  },
+  {
+    id: 2,
+    tgl: "2024-06-02",
+    mutasi: "Meninggal",
+    jumlah: 1,
+    keterangan: "Meninggal di RT 3 RW 4",
+  },
+  {
+    id: 3,
+    tgl: "2024-06-03",
+    mutasi: "Datang",
+    jumlah: 1,
+    keterangan: "Datang dari Kecamatan X",
+  },
+  {
+    id: 4,
+    tgl: "2024-06-04",
+    mutasi: "Pindah",
+    jumlah: 1,
+    keterangan: "Pindah ke Desa Y",
+  },
+  {
+    id: 5,
+    tgl: "2024-06-05",
+    mutasi: "Lahir",
+    jumlah: 1,
+    keterangan: "Lahir di RT 2 RW 3",
+  },
+  {
+    id: 6,
+    tgl: "2024-06-06",
+    mutasi: "Meninggal",
+    jumlah: 1,
+    keterangan: "Meninggal di RT 4 RW 5",
+  },
+  {
+    id: 7,
+    tgl: "2024-06-07",
+    mutasi: "Datang",
+    jumlah: 1,
+    keterangan: "Datang dari Kota Z",
+  },
+  {
+    id: 8,
+    tgl: "2024-06-08",
+    mutasi: "Pindah",
+    jumlah: 1,
+    keterangan: "Pindah ke Kecamatan A",
+  },
+  {
+    id: 9,
+    tgl: "2024-06-09",
+    mutasi: "Lahir",
+    jumlah: 1,
+    keterangan: "Lahir di RT 5 RW 6",
+  },
+  {
+    id: 10,
+    tgl: "2024-06-10",
+    mutasi: "Meninggal",
+    jumlah: 1,
+    keterangan: "Meninggal di RT 6 RW 7",
+  },
+  {
+    id: 11,
+    tgl: "2024-06-11",
+    mutasi: "Datang",
+    jumlah: 1,
+    keterangan: "Datang dari Desa B",
+  },
+  {
+    id: 12,
+    tgl: "2024-06-12",
+    mutasi: "Pindah",
+    jumlah: 1,
+    keterangan: "Pindah ke Kota C",
+  },
+];
+
+const BeritaAdmin = () => {
   return (
     <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
       <Sidebares />
@@ -32,23 +129,31 @@ const Penduduk = () => {
           <NavbarAdmin />
         </div>
 
-        <div className="my-5 text-heading-6 font-semibold">Penduduk</div>
+        <div className="my-5 text-heading-6 font-semibold">Mutasi Penduduk</div>
 
         <div className="flex gap-5 my-5">
           <div className=" flex w-full bg-white rounded-lg">
-            <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500  ">
-              <div className="bg-blue-100/20  rounded-b-[20px] w-auto "></div>
+            <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-blue-200  ">
+              <div className="bg-blue-100/20 rounded-b-[20px] w-auto "></div>
               <div className="p-4 ">
-                <Tablenih />
+                {/* <Tablenih /> */}
+                <TableProps
+                  statusColorMap={statusColorMap}
+                  INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS}
+                  columns={columns}
+                  statusOptions={statusOptions}
+                  isi={isi}
+                  tambahBeritaURL={"/admin/penduduk/mutasi"}
+                />
               </div>
             </div>
+
+            <div className="flex justify-between "></div>
           </div>
         </div>
-
-        
       </div>
     </div>
   );
 };
 
-export default Penduduk;
+export default BeritaAdmin;

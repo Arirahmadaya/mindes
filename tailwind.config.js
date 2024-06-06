@@ -85,6 +85,15 @@ export default {
         "gradient-10":
           "linear-gradient(115deg, #7FC6ED 0%, #D4E4F2 20%, #8796EC 40%, #9470FF 60%, #87ACEB 80%, #EBEAFF 100%), linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%)",
       },
+      keyframes: {
+        AnimationName: {
+          '0%, 100%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' },
+        },
+      },
+      animation: {
+        'background-animate': 'AnimationName 3s ease infinite',
+      },
     },
   },
   darkMode: "false",

@@ -16,7 +16,7 @@
         right: 20px;
         bottom: 20px;
         z-index: 1000;
-        background-color: #1F308B;
+        background-color: #1f308b;
         color: white;
         border: none;
         border-radius: 50%;
@@ -50,6 +50,12 @@
           preFilledMessage
         )}`;
         window.open(whatsappLink, "_blank");
+      }
+
+      if (window.location.pathname.includes("/admin/beranda")) {
+        document.getElementById("whatsappButton").style.display = "none";
+      } else {
+        document.getElementById("whatsappButton").style.display = "flex";
       }
     </script>
     <script type="module" src="/src/main.jsx"></script>

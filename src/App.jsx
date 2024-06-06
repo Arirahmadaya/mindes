@@ -28,6 +28,8 @@ import FormBerita from "./pages/admin/berita/FormBerita";
 import KtgBerita from "./pages/admin/berita/KtgBerita";
 import Akuntansi from "./pages/admin/realisasi/Akuntansi";
 import Bidang from "./pages/admin/realisasi/Bidang";
+import UserProfile from "./pages/auth/UserProfile";
+import MindesTeam from "./pages/auth/MindesTeam";
 // import DetailAgenda from "./pages/auth/DetailAgenda";
 
 const App = () => {
@@ -43,6 +45,7 @@ const App = () => {
           {/*buat agar judul berita sesuai dengan judul berita yang sedang dibaca*/}
           <Route path="/profil" element={<ProfilDesa />} />
           <Route path="/about/mindes" element={<Mindes />} />
+          <Route path="/about/mindes/madilog-team" element={<MindesTeam />} />
           {/* Infografis Menus */}
           <Route path="/infografis" element={<InfografisAPBDes />} />
           <Route path="/infografis/apbdes" element={<InfografisAPBDes />} />
@@ -53,6 +56,7 @@ const App = () => {
           {/* login and register */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profil/userprofil" element={<UserProfile />} />
           {/* ADMIN */}
           <Route path="/admin/beranda" element={<Beranda />} />
           <Route path="/admin/berita" element={<BeritaAdmin />} />

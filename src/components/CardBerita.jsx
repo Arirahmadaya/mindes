@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardFooter, Image, Button } from "@nextui-org/react";
+import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import { Monitor, User } from "react-feather";
 
 export default function CardBerita() {
@@ -68,7 +68,7 @@ export default function CardBerita() {
           key={index}
           isPressable
           onPress={() => console.log("item pressed")}
-          className="transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500"          
+          className="transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500"
         >
           <CardBody className="p-0 overflow-visible ">
             <Image
@@ -101,8 +101,9 @@ export default function CardBerita() {
                 </div>
               </div>
             </div>
-            <div className="bg-primary-30 text-center text-body-2 font-semibold p-2 w-[80px] h-[60x] text-white rounded-tl-2xl rounded-br-2xl">{item.tanggal}</div>
-     
+            <div className="bg-primary-30 text-center text-body-2 font-semibold p-2 w-[80px] h-[60x] text-white rounded-tl-2xl rounded-br-2xl">
+              {item.tanggal}
+            </div>
           </CardFooter>
         </Card>
       ))}

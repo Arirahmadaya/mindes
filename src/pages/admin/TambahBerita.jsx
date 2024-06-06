@@ -1,7 +1,6 @@
 import React from "react";
 import Sidebares from "../../components/Sidebar";
 import NavbarAdmin from "../../components/NavbarAdmin";
-import Tablenih from "../../components/Table";
 import InputCKEditor from "../../components/InputCKEditor";
 import {
   Dropdown,
