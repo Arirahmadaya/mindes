@@ -21,13 +21,13 @@ const Login = () => {
 
   return (
     <div
-      className="h-screen items-center bg-slate-200 px-40 py-16 bg-cover bg-center"
+      className="h-screen justify-center items-center bg-slate-200 py-24 px-40 bg-cover bg-center"
       style={{ backgroundImage: `url('img/LoginBlur2.png')` }}
     >
       <div className="flex lg:justify-normal justify-center relative">
         <div className="w-1/2 bg-auto bg-center bg-no-repeat hidden lg:block rounded-lg">
           <img
-            src="img/LoginNew.png"
+            src="/img/LoginNew.png"
             alt="logologin"
             className="w-full h-[500px] rounded-lg"
           />
@@ -36,7 +36,9 @@ const Login = () => {
           <div className="bg-white flex flex-row justify-center w-full h-[500px] items-center rounded-lg shadow-2xl">
             <div className="bg-white w-1/2 h-full py-8">
               <div className="text-center">
-                <h5 className="text-heading-4 font-bold text-black mb-2">Masuk</h5>
+                <h5 className="text-heading-4 font-bold text-black mb-2">
+                  Masuk
+                </h5>
               </div>
               <form onSubmit={handleLogin} className="space-y-8">
                 <div className="relative w-full mb-8">

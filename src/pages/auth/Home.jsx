@@ -4,7 +4,7 @@ import Footer from "../../components/Footer";
 import Carousel from "../../components/CarouselHome";
 import CardBerita from "../../components/CardBerita";
 import CarouselPerangkatDesa from "../../components/CarouselPD";
-import Maps, { } from "../../components/Maps";
+import Maps from "../../components/Maps";
 import Galery from "../../components/CardGalery";
 import PendudukHome from "../../components/Pendudukan";
 import Jelajahi from "../../components/Jelajahi";
@@ -20,9 +20,9 @@ const Home = () => {
       <br />
 
       <div>
-        <h1 className="mb-2 font-bold text-center text-heading-2 lg:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl lg:mx-70 mx-[20px]">
+        <div className="mb-2 font-bold text-center text-heading-2 lg:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative lg:mx-70 mx-[20px]">
           Jelajahi Kalinyamat Kulon
-        </h1>
+        </div>
         <Jelajahi />
       </div>
 
@@ -37,25 +37,26 @@ const Home = () => {
             }}
           ></div>
 
-          <h1 className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl  lg:mx-70 mx-[20px]">
+          <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
             Sambutan Kepala Desa
-          </h1>
+          </div>
           <div className="font-bold lg:text-heading-2 text-heading-4 md:text-display-2 relative z-20">
             ARIANTO, S.AP.
           </div>
           <p className="lg:text-body-1 text-caption-1 relative z-20 font-medium lg:mx-70 mx-[20px]">
-            Website ini merupakan wujud komitmen kami untuk meningkatkan
-            transparansi, akuntabilitas, dan <br />
-            partisipasi masyarakat dalam membangun desa. Di sini, Anda dapat
-            menemukan informasi <br /> lengkap tentang desa, program, kegiatan,
-            pelayanan publik, dan lain sebagainya. <br /> Kami harap website ini
-            dapat bermanfaat bagi seluruh warga Desa <br />
-            Kalinyamat Kulon. Kritik dan saran membangun demi
-            <br />
+            Website ini adalah komitmen kami untuk transparansi, akuntabilitas,
+            dan partisipasi masyarakat dalam pembangunan desa. Temukan informasi
+            lengkap tentang desa, program, kegiatan, pelayanan publik, dan
+            lainnya di sini. Kami harap website ini bermanfaat bagi warga Desa
+            Kalinyamat Kulon. Kritik dan saran sangat kami harapkan.
           </p>
-
+          <br />
           <div className="flex justify-center mb-4 relative z-20">
-            <img src="/img/lurah_img.png" alt="Image Kepala Desa" />
+            <img
+              src="/img/lurah_img.png"
+              alt="Image Kepala Desa"
+              className="max-w-full h-auto"
+            />
           </div>
         </section>
 
@@ -78,7 +79,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="my-28">
+      <div className="my-20">
         <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
           Penduduk Kalinyamat Kulon
         </div>
@@ -87,7 +88,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="my-28">
+      <div className="my-20">
         <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
           Berita Terhangat di Kalinyamat Kulon
         </div>
@@ -96,7 +97,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mb-28">
+      <div className="mb-20">
         <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[30px]">
           Galeri Kalinyamat Kulon
         </div>
@@ -105,15 +106,21 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mb-28">
+      <div className="mb-20">
         <div className="mb-2 font-bold flex text-heading-2 md:text-display-2 hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[30px] bg-gradient-10 background-animate rounded-xl">
           <div className="w-full h-auto p-5">
-            <h1 className="text-display-2 text-left  text-blue hover:text-bluenight ">Miliki Web Desamu</h1>
+            <h1 className="text-display-2 text-left  text-blue hover:text-bluenight ">
+              Miliki Web Desamu
+            </h1>
             <p className="text-body-1">
               Tingkatkan partisipasi aktif masyarakat dengan transparansi
               informasi dan tracking realisasi penggunaan dana desa dalam
-              pencatatan digital dengan <img src="/logo/mindes.png" className="w-12 h-5 inline" alt="Image Kepala Desa" />
-              
+              pencatatan digital dengan{" "}
+              <img
+                src="/logo/mindes.png"
+                className="w-12 h-5 inline"
+                alt="Image Kepala Desa"
+              />
             </p>
             <div>
               {" "}
@@ -128,7 +135,7 @@ const Home = () => {
             </div>
           </div>
           <div>
-            <img src="/img/world.png" alt="world"/>
+            <img src="/img/world.png" alt="world" />
           </div>
         </div>
       </div>

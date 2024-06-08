@@ -57,7 +57,7 @@ export default function NavbarUser() {
         />
         <NavbarBrand className="flex">
           <img
-            src="logo/logo_light.png"
+            src="/public/logo/logo_light.png"
             alt="logo"
 
             className="md:w-12 md:h-12 pr-2 blok w-10 h-10 "

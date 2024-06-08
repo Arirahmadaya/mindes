@@ -125,27 +125,27 @@ export const KontakKelurahan = () => {
 };
 const ListKontak = [
   {
-    icon: "src/assets/icon/flame.svg",
+    icon: "/src/assets/icon/flame.svg",
     title: "Pemadam Kebakaran",
     number: "(0283) 325429",
   },
   {
-    icon: "src/assets/icon/police.svg",
+    icon: "/src/assets/icon/police.svg",
     title: "Polsek Sumur Panggang",
     number: "(0283) 353453",
   },
   {
-    icon: "src/assets/icon/hospital.svg",
+    icon: "/src/assets/icon/hospital.svg",
     title: "Puskesmas Margadana",
     number: "(0283) 358604",
   },
   {
-    icon: "src/assets/icon/tuyul.svg",
+    icon: "/src/assets/icon/tuyul.svg",
     title: "KPAI",
     number: "021-319015",
   },
   {
-    icon: "src/assets/icon/pregnant.svg",
+    icon: "/src/assets/icon/pregnant.svg",
     title: "KOMNAS Perempuan",
     number: "021-3903963",
   },

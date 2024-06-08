@@ -2,7 +2,6 @@ import React from "react";
 
 import Footer from "../../components/Footer";
 import NavbarUser from "../../components/NavbarUser";
-
 import NavbarGrafis from "../../components/NavbarGrafis";
 import PopulationPyramidChart from "../../components/ChartPenduduk";
 import PieChartMataPencaharian from "../../components/ChartMataPencaharian";
@@ -31,7 +30,6 @@ const InfografisPenduduk = () => {
         <PemelukAgama />
         <HorizontalBarChartMutasiPenduduk />
       </div>
-
       <Footer />
     </div>
   );

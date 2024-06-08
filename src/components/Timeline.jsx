@@ -4,7 +4,7 @@ import { Calendar, MapPin } from "react-feather";
 const Timeline = () => {
   return (
     <div className="flex justify-start">
-      <ul className="timeline timeline-vertical ">
+      <ul className="timeline timeline-vertical w-full lg:w-auto">
         <li className="gap-x-5">
           <div className="timeline-start text-center ">
             <p className="text-heading-5 font-bold">15</p>
