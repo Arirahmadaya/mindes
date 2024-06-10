@@ -30,7 +30,7 @@ const Register = () => {
     <div className="flex h-screen bg-gray-100 lg:justify-normal justify-center">
       <div className="z-10 flex lg:w-1/2 items-center ">
         <div className="bg-white flex flex-row justify-center w-full h-screen items-center lg:rounded-r-[40px]">
-          <div className="bg-white w-2/3 h-screen p-6 mx-16 rounded-lg ">
+          <div className="bg-white w-2/3 h-screen p-4 mx-16 rounded-lg ">
             <div className="text-center">
               <h5 className="text-heading-5 font-bold text-black">
                 Daftar Akun Baru
@@ -47,16 +47,17 @@ const Register = () => {
             </div>
             <form onSubmit={handleRegister} className="space-y-2">
               <div>
-                <Input variant="bordered" type="email" label="Email" />
+                <Input variant="bordered" type="text" label="Name" />
               </div>
-              <div>
-                <Input variant="bordered" type="password" label="Password" />
-              </div>
+              
               <div>
                 <Input variant="bordered" type="email" label="Email" />
               </div>
               <div>
                 <Input variant="bordered" type="password" label="Password" />
+              </div>
+              <div>
+                <Input variant="bordered" type="password" label="Re-Password" />
               </div>
 
               {error && <p className="text-red-500 text-sm">{error}</p>}
@@ -71,7 +72,7 @@ const Register = () => {
               <p className="text-black mb-2 text-caption-1">
                 Atau daftar dengan menggunakan:
               </p>
-              <div className="w-full flex items-center justify-between gap-2">
+              <div className="w-full flex items-center justify-between ">
                 <button className="w-full flex items-center justify-center border border-gray-300 py-1 rounded-lg hover:bg-gray-100 transition duration-300">
                   <img
                     className="w-6 h-6 mr-2"
@@ -80,10 +81,7 @@ const Register = () => {
                   />
                   Google
                 </button>
-                <button className="w-full flex items-center justify-center border border-gray-300 py-1 rounded-lg hover:bg-gray-100 transition duration-300">
-                  <Icon.Facebook className="text-blue w-6 h-6 mr-2" />
-                  Facebook
-                </button>
+                
               </div>
             </div>
             <div className="text-center mt-4">

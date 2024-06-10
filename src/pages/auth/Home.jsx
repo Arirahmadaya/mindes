@@ -107,18 +107,18 @@ const Home = () => {
       </div>
 
       <div className="mb-20">
-        <div className="mb-2 font-bold flex text-heading-2 md:text-display-2 hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[30px] bg-gradient-10 background-animate rounded-xl">
+        <div className="mb-2 flex text-heading-2 md:text-display-2 hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[30px] bg-gradient-10 background-animate rounded-xl">
           <div className="w-full h-auto p-5">
-            <h1 className="text-display-2 text-left  text-blue hover:text-bluenight ">
+            <h1 className="lg:text-display-2 text-heading-4 text-left font-bold text-blue hover:text-bluenight ">
               Miliki Web Desamu
             </h1>
-            <p className="text-body-1">
+            <p className="text-body-1 w-4/5">
               Tingkatkan partisipasi aktif masyarakat dengan transparansi
               informasi dan tracking realisasi penggunaan dana desa dalam
-              pencatatan digital dengan{" "}
+              pencatatan digital dengan 
               <img
                 src="/logo/mindes.png"
-                className="w-12 h-5 inline"
+                className="w-20 h-6 inline ml-2"
                 alt="Image Kepala Desa"
               />
             </p>
