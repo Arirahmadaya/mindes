@@ -112,13 +112,13 @@ const Home = () => {
             <h1 className="lg:text-display-2 text-heading-4 text-left font-bold text-blue hover:text-bluenight ">
               Miliki Web Desamu
             </h1>
-            <p className="text-body-1 w-4/5">
+            <p className="text-body-1 lg:w-4/5">
               Tingkatkan partisipasi aktif masyarakat dengan transparansi
               informasi dan tracking realisasi penggunaan dana desa dalam
               pencatatan digital dengan 
               <img
                 src="/logo/mindes.png"
-                className="w-20 h-6 inline ml-2"
+                className="w-20 h-6 inline ml-2 "
                 alt="Image Kepala Desa"
               />
             </p>
@@ -127,14 +127,14 @@ const Home = () => {
               <Button
                 as={Link}
                 className="bg-primary-30 text-white rounded-md"
-                href="/login"
+                href="/about/mindes"
                 variant="flat"
               >
                 Pelajarin Lebih Lanjut <LogIn />
               </Button>
             </div>
           </div>
-          <div>
+          <div className=" flex items-center lg:items-start">
             <img src="/img/world.png" alt="world" />
           </div>
         </div>
