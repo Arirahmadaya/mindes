@@ -21,7 +21,7 @@ const Login = () => {
 
   return (
     <div
-      className="h-screen justify-center items-center bg-slate-200 py-24 px-40 bg-cover bg-center"
+      className="h-screen justify-center items-center bg-slate-200 py-24 lg:px-40 bg-cover bg-center"
       style={{ backgroundImage: `url('img/LoginBlur2.png')` }}
     >
       <div className="flex lg:justify-normal justify-center relative">
@@ -32,9 +32,9 @@ const Login = () => {
             className="w-full h-[500px] rounded-lg"
           />
         </div>
-        <div className="flex lg:w-1/2 items-center lg:right-0">
+        <div className="flex lg:w-1/2 w-4/5 items-center lg:right-0 ">
           <div className="bg-white flex flex-row justify-center w-full h-[500px] items-center rounded-lg shadow-2xl">
-            <div className="bg-white w-1/2 h-full py-8">
+            <div className="bg-white lg:w-1/2 w-2/3 h-full py-8">
               <div className="text-center">
                 <h5 className="text-heading-4 font-bold text-black mb-2">
                   Masuk
