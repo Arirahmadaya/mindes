@@ -45,7 +45,7 @@ export default function NavbarAdmin() {
                 color="default"
                 name="Ferianta"
                 size="sm"
-                src="/img_desa/bowo_leksono.jpg"
+                src="/img_desa/sudirmo.jpg"
               />
               <p className="font-semibold ml-3 hover:cursor-pointer">
                 Ferianta
