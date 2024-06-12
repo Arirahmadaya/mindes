@@ -10,22 +10,23 @@ export const getUser = async(req,res)=>{
     }
 }
 
-export const insertUser = async(req,res)=>{
-    const {nama}= req.body
+export const insertUser = async (req, res) => {
+    // console.log(req.body);  // Log the request body to the console
+    const {username, password, email,roles } = req.body;
     try {
-        await query("INSERT INTO usertable (username, password) values (?, ?, ?)", [username , email, password])
-        return res.status(200).json({msg:"User ditambahkan"})
+        await query("INSERT INTO usertable (username, password, email, roles) VALUES (?, ?, ?, ?)", [username, password, email, roles]);
+        return res.status(200).json({ msg: "User ditambahkan" });
     } catch (error) {
-        console.log("Terjadi kesalahan", e)
-        return res.status(500).json({msg:"terjadi kesalahan pada server"})
+        console.log("Terjadi kesalahan", error);
+        return res.status(500).json({ msg: "Terjadi kesalahan pada server" });
     }
-}
+};
 
 export const updateUser = async(req,res)=>{
-    const {username}= req.body
-    const {id}=req.params
+    const {username, password, email, roles}= req.body
+    const {id_user}=req.params
     try {
-        await query("UPDATE usertable SET username=? where id=?", [username, id])
+        await query("UPDATE usertable SET username=?, password=?, email=?, roles=? where id_user=?", [username, password, email, roles, id_user])
         return res.status(200).json({msg:"User Diubah"})
     } catch (error) {
         console.log("Terjadi kesalahan", e)
@@ -34,9 +35,9 @@ export const updateUser = async(req,res)=>{
 }
 
 export const deleteUser = async(req,res)=>{
-    const {id}=req.params
+    const {id_user} = req.params;
     try {
-        await query("DELETE FROM usertable where id=?", [id])
+        await query("DELETE FROM usertable where id_user=?", [id_user])
         return res.status(200).json({msg:"User Dihapus"})
     } catch (error) {
         console.log("Terjadi kesalahan", e)
@@ -44,10 +45,11 @@ export const deleteUser = async(req,res)=>{
     }
 }
 
+
 export const getUserById = async(req,res)=>{
-    const {id}=req.params
+    const {id_user}=req.params
     try{
-        const result = await query('Select * from usertable where id=?', [id])
+        const result = await query('Select * from usertable where id_user=?', [id_user])
         return res.status(200).json({success:true, data:result})
     }catch(e){
         console.log("Terjadi kesalahan", e)
@@ -56,11 +58,11 @@ export const getUserById = async(req,res)=>{
 }
 
 // export const getUserTest = async(req,res)=>{
-//     const {id, username} = req.query
+//     const {id_user, username} = req.query
 //     console.log(id, username)
 //     console.log("Terpanggil")
 //     try{
-//         const result = await query('Select * from usertable where id=?', [id,username])
+//         const result = await query('Select * from usertable where id_user=?', [id,username])
 //         return res.status(200).json({success:true, data:result})
 //     }catch(e){
 //         console.log("Terjadi kesalahan", e)

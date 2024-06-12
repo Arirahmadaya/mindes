@@ -2,7 +2,7 @@ import { query } from "../database/db.js"
 
 export const getPenduduk = async(req,res)=>{
     try{
-        const result = await query('Select * from usertable')
+        const result = await query('Select * from penduduktable')
         return res.status(200).json({success:true, data:result})
     }catch(e){
         console.log("Terjadi kesalahan", e)
@@ -11,10 +11,10 @@ export const getPenduduk = async(req,res)=>{
 }
 
 export const insertPenduduk = async(req,res)=>{
-    const {nama}= req.body
+    const {jumlah, mutasi, keterangan}= req.body
     try {
-        await query("INSERT INTO usertable (username, password) values (?, ?, ?)", [username , email, password])
-        return res.status(200).json({msg:"User ditambahkan"})
+        await query("INSERT INTO penduduktable (jumlah, mutasi, keterangan) values (?, ?, ?)", [jumlah , mutasi, keterangan])
+        return res.status(200).json({msg:"Mutasi ditambahkan"})
     } catch (error) {
         console.log("Terjadi kesalahan", e)
         return res.status(500).json({msg:"terjadi kesalahan pada server"})
@@ -22,11 +22,11 @@ export const insertPenduduk = async(req,res)=>{
 }
 
 export const updatePenduduk = async(req,res)=>{
-    const {username}= req.body
-    const {id}=req.params
+    const {jumlah, mutasi, keterangan}= req.body
+    const {id_penduduk}=req.params
     try {
-        await query("UPDATE usertable SET username=? where id=?", [username, id])
-        return res.status(200).json({msg:"User Diubah"})
+        await query("UPDATE penduduktable SET jumlah=?, mutasi=?, keterangan=? where id_penduduk=?", [jumlah, mutasi, keterangan, id_penduduk])
+        return res.status(200).json({msg:"Mutasi Diubah"})
     } catch (error) {
         console.log("Terjadi kesalahan", e)
         return res.status(500).json({msg:"terjadi kesalahan pada server"})
@@ -34,10 +34,10 @@ export const updatePenduduk = async(req,res)=>{
 }
 
 export const deletePenduduk = async(req,res)=>{
-    const {id}=req.params
+    const {id_penduduk}=req.params
     try {
-        await query("DELETE FROM usertable where id=?", [id])
-        return res.status(200).json({msg:"User Dihapus"})
+        await query("DELETE FROM penduduktable where id_penduduk=?", [id_penduduk])
+        return res.status(200).json({msg:"Mutasi Dihapus"})
     } catch (error) {
         console.log("Terjadi kesalahan", e)
         return res.status(500).json({msg:"terjadi kesalahan pada server"})
@@ -45,9 +45,9 @@ export const deletePenduduk = async(req,res)=>{
 }
 
 export const getPendudukById = async(req,res)=>{
-    const {id}=req.params
+    const {id_penduduk}=req.params
     try{
-        const result = await query('Select * from usertable where id=?', [id])
+        const result = await query('Select * from penduduktable where id_penduduk=?', [id_penduduk])
         return res.status(200).json({success:true, data:result})
     }catch(e){
         console.log("Terjadi kesalahan", e)
