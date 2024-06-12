@@ -2,19 +2,15 @@ import React from "react";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
-import {Breadcrumbs, BreadcrumbItem} from "@nextui-org/breadcrumbs";
+import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
+import { Eye, Edit, Trash2 } from "react-feather";
 
 const statusColorMap = {
   publish: "success",
   proses: "secondary",
   gagal: "danger",
 };
-const INITIAL_VISIBLE_COLUMNS = [
-  "id",
-  "kode",
-  "uraian",
-  "actions",
-];
+const INITIAL_VISIBLE_COLUMNS = ["id", "kode", "uraian", "actions"];
 
 const columns = [
   { name: "ID", uid: "id" },
@@ -87,6 +83,29 @@ const isi = [
   },
 ];
 
+const actionButtons = [
+  {
+    icon: <Eye className="w-4 h-4 text-black" />,
+    onClick: (item) => {
+      console.log("View item:", item);
+      // Implementasikan logika tampilan di sini
+    },
+  },
+  {
+    icon: <Edit className="w-4 h-4 text-warning" />,
+    onClick: (item) => {
+      console.log("Edit item:", item);
+      // Implementasikan logika edit di sini
+    },
+  },
+  {
+    icon: <Trash2 className="w-4 h-4 text-danger" />,
+    onClick: (item) => {
+      console.log("Delete item:", item);
+      // Implementasikan logika hapus di sini
+    },
+  },
+];
 
 const Agenda = () => {
   return (
@@ -100,9 +119,10 @@ const Agenda = () => {
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
           <BreadcrumbItem href="/admin/realisasi">Realisasi</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/akuntansi">Akuntansi</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/realisasi/akuntansi">
+            Akuntansi
+          </BreadcrumbItem>
         </Breadcrumbs>
-
 
         <div className="flex gap-5 my-5">
           <div className=" flex w-full bg-white rounded-lg">
@@ -116,6 +136,7 @@ const Agenda = () => {
                   statusOptions={statusOptions}
                   isi={isi}
                   tambahBeritaURL={"/admin/realisasi/akuntansi/tambah"}
+                  actionButtons={actionButtons}
                 />
               </div>
             </div>

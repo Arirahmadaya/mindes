@@ -1,8 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
+
+import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
+import { Eye, Edit, Trash2 } from "react-feather";
 import TableProps from "../../../components/TableProps";
-import {Breadcrumbs, BreadcrumbItem} from "@nextui-org/breadcrumbs";
 
 const statusColorMap = {
   publish: "success",
@@ -53,7 +56,31 @@ const isi = [
   },
 ];
 
-const BeritaAdmin = () => {
+const actionButtons = [
+  {
+    icon: <Eye className="w-4 h-4 text-black" />,
+    onClick: (item) => {
+      console.log("View item:", item);
+      // Implementasikan logika tampilan di sini
+    },
+  },
+  {
+    icon: <Edit className="w-4 h-4 text-warning" />,
+    onClick: (item) => {
+      console.log("Edit item:", item);
+      // Implementasikan logika edit di sini
+    },
+  },
+  {
+    icon: <Trash2 className="w-4 h-4 text-danger" />,
+    onClick: (item) => {
+      console.log("Delete item:", item);
+      // Implementasikan logika hapus di sini
+    },
+  },
+];
+
+const Realisasi = () => {
   return (
     <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
       <Sidebares />
@@ -79,6 +106,8 @@ const BeritaAdmin = () => {
                   statusOptions={statusOptions}
                   isi={isi}
                   tambahBeritaURL={"/admin/realisasi/tambah"}
+                  showPrintAction={true}
+                  actionButtons={actionButtons}
                 />
               </div>
             </div>
@@ -91,4 +120,4 @@ const BeritaAdmin = () => {
   );
 };
 
-export default BeritaAdmin;
+export default Realisasi;

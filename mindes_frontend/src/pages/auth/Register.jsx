@@ -78,7 +78,7 @@ const Register = () => {
               </form>
               <div className="text-center mt-6">
                 <p className="text-black mb-2 text-caption-1">
-                  Atau masuk dengan menggunakan:
+                  Atau daftar dengan menggunakan:
                 </p>
                 <button className="w-full flex items-center justify-center border border-gray-300 py-1 rounded-lg mb-2 hover:bg-gray-100 transition duration-300">
                   <img
@@ -86,7 +86,7 @@ const Register = () => {
                     alt="Google"
                     src="logo/google.png"
                   />
-                  Masuk dengan Google
+                  Daftar dengan Google
                 </button>
               </div>
 

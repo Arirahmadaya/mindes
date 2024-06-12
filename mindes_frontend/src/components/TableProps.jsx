@@ -17,15 +17,29 @@ import {
   Chip,
   Pagination,
 } from "@nextui-org/react";
-import { Search, ChevronDown, Eye, Edit, Trash2 } from "react-feather";
+import { Search, ChevronDown, Eye, Edit, Trash2, Printer } from "react-feather";
 
-function TableProps({ statusColorMap, INITIAL_VISIBLE_COLUMNS, columns, statusOptions, isi, tambahBeritaURL }) {
+function TableProps({
+  statusColorMap,
+  INITIAL_VISIBLE_COLUMNS,
+  columns,
+  statusOptions,
+  isi,
+  tambahBeritaURL,
+  showPrintAction,
+  actionButtons,
+}) {
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
-  const [visibleColumns, setVisibleColumns] = React.useState(new Set(INITIAL_VISIBLE_COLUMNS));
+  const [visibleColumns, setVisibleColumns] = React.useState(
+    new Set(INITIAL_VISIBLE_COLUMNS)
+  );
   const [statusFilter, setStatusFilter] = React.useState(new Set(["all"]));
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [sortDescriptor, setSortDescriptor] = React.useState({ column: "tgl", direction: "ascending" });
+  const [sortDescriptor, setSortDescriptor] = React.useState({
+    column: "tgl",
+    direction: "ascending",
+  });
   const [page, setPage] = React.useState(1);
 
   const pages = Math.ceil(isi.length / rowsPerPage);
@@ -33,18 +47,24 @@ function TableProps({ statusColorMap, INITIAL_VISIBLE_COLUMNS, columns, statusOp
   const headerColumns = React.useMemo(() => {
     if (visibleColumns === "all") return columns;
 
-    return columns.filter((column) => Array.from(visibleColumns).includes(column.uid));
+    return columns.filter((column) =>
+      Array.from(visibleColumns).includes(column.uid)
+    );
   }, [visibleColumns, columns]);
 
   const filteredItems = React.useMemo(() => {
     let filteredIsi = [...isi];
 
     if (filterValue) {
-      filteredIsi = filteredIsi.filter((user) => user.judul.toLowerCase().includes(filterValue.toLowerCase()));
+      filteredIsi = filteredIsi.filter((user) =>
+        user.judul.toLowerCase().includes(filterValue.toLowerCase())
+      );
     }
 
     if (!statusFilter.has("all")) {
-      filteredIsi = filteredIsi.filter((user) => Array.from(statusFilter).includes(user.status));
+      filteredIsi = filteredIsi.filter((user) =>
+        Array.from(statusFilter).includes(user.status)
+      );
     }
 
     return filteredIsi;
@@ -66,42 +86,58 @@ function TableProps({ statusColorMap, INITIAL_VISIBLE_COLUMNS, columns, statusOp
       return sortDescriptor.direction === "descending" ? -cmp : cmp;
     });
   }, [items, sortDescriptor]);
+  const renderCell = React.useCallback(
+    (user, columnKey) => {
+      const cellValue = user[columnKey];
 
-  const renderCell = React.useCallback((user, columnKey) => {
-    const cellValue = user[columnKey];
-
-    switch (columnKey) {
-      case "judul":
-        return <div>{user.judul}</div>;
-      case "status":
-        return (
-          <Chip
-            className="capitalize border-none gap-1 text-default-600"
-            color={statusColorMap[user.status]}
-            size="sm"
-            variant="dot"
-          >
-            {cellValue}
-          </Chip>
-        );
-      case "actions":
-        return (
-          <div className="flex items-center justify-start -ml-5">
-            <Button isIconOnly radius="full" size="sm" variant="light">
-              <Eye className="w-4 h-4 text-black" />
-            </Button>
-            <Button isIconOnly radius="full" size="sm" variant="light">
-              <Edit className="w-4 h-4 text-warning" />
-            </Button>
-            <Button isIconOnly radius="full" size="sm" variant="light">
-              <Trash2 className="w-4 h-4 text-danger" />
-            </Button>
-          </div>
-        );
-      default:
-        return cellValue;
-    }
-  }, [statusColorMap]);
+      switch (columnKey) {
+        case "judul":
+          return <div>{user.judul}</div>;
+        case "status":
+          return (
+            <Chip
+              className="capitalize border-none gap-1 text-default-600"
+              color={statusColorMap[user.status]}
+              size="sm"
+              variant="dot"
+            >
+              {cellValue}
+            </Chip>
+          );
+        case "actions":
+          return (
+            <div className="flex items-center justify-start -ml-5">
+              {actionButtons.map((action, index) => (
+                <Button
+                  key={index}
+                  isIconOnly
+                  radius="full"
+                  size="sm"
+                  variant="light"
+                  onClick={() => action.onClick(user)}
+                >
+                  {action.icon}
+                </Button>
+              ))}
+              {showPrintAction && (
+                <Button
+                  isIconOnly
+                  radius="full"
+                  size="sm"
+                  variant="light"
+                  onClick={() => handlePrint(user)}
+                >
+                  <Printer className="w-4 h-4 text-blue" />
+                </Button>
+              )}
+            </div>
+          );
+        default:
+          return cellValue;
+      }
+    },
+    [statusColorMap, showPrintAction, actionButtons]
+  );
 
   const onRowsPerPageChange = React.useCallback((e) => {
     setRowsPerPage(Number(e.target.value));
@@ -123,7 +159,10 @@ function TableProps({ statusColorMap, INITIAL_VISIBLE_COLUMNS, columns, statusOp
         <div className="flex justify-between gap-3 items-end">
           <Input
             isClearable
-            classNames={{ base: "w-full sm:max-w-[44%]", inputWrapper: "border-1" }}
+            classNames={{
+              base: "w-full sm:max-w-[44%]",
+              inputWrapper: "border-1",
+            }}
             placeholder="Search by title..."
             size="sm"
             startContent={<Search className="text-default-300" />}
@@ -135,7 +174,11 @@ function TableProps({ statusColorMap, INITIAL_VISIBLE_COLUMNS, columns, statusOp
           <div className="flex gap-3">
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
-                <Button endContent={<ChevronDown className="text-small" />} size="sm" variant="flat">
+                <Button
+                  endContent={<ChevronDown className="text-small" />}
+                  size="sm"
+                  variant="flat"
+                >
                   Status
                 </Button>
               </DropdownTrigger>
@@ -156,7 +199,11 @@ function TableProps({ statusColorMap, INITIAL_VISIBLE_COLUMNS, columns, statusOp
             </Dropdown>
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
-                <Button endContent={<ChevronDown className="text-small" />} size="sm" variant="flat">
+                <Button
+                  endContent={<ChevronDown className="text-small" />}
+                  size="sm"
+                  variant="flat"
+                >
                   Kolom
                 </Button>
               </DropdownTrigger>
@@ -170,7 +217,7 @@ function TableProps({ statusColorMap, INITIAL_VISIBLE_COLUMNS, columns, statusOp
               >
                 {columns.map((column) => (
                   <DropdownItem key={column.uid} className="capitalize">
-                    {capitalize(column.name)} 
+                    {capitalize(column.name)}
                   </DropdownItem>
                 ))}
               </DropdownMenu>
@@ -181,7 +228,9 @@ function TableProps({ statusColorMap, INITIAL_VISIBLE_COLUMNS, columns, statusOp
           </div>
         </div>
         <div className="flex justify-between items-center">
-          <span className="text-default-400 text-small">Total {isi.length} isi</span>
+          <span className="text-default-400 text-small">
+            Total {isi.length} isi
+          </span>
           <label className="flex items-center text-default-400 text-small">
             Rows per page:
             <select
@@ -191,12 +240,19 @@ function TableProps({ statusColorMap, INITIAL_VISIBLE_COLUMNS, columns, statusOp
               <option value={5}>5</option>
               <option value={10}>10</option>
               <option value={15}>15</option>
-            </            select>
-            </label>
-          </div>
+            </select>
+          </label>
         </div>
+      </div>
     );
-  }, [filterValue, onSearchChange, statusFilter, visibleColumns, onRowsPerPageChange, isi.length]);
+  }, [
+    filterValue,
+    onSearchChange,
+    statusFilter,
+    visibleColumns,
+    onRowsPerPageChange,
+    isi.length,
+  ]);
 
   const bottomContent = React.useMemo(() => {
     return (
@@ -212,11 +268,10 @@ function TableProps({ statusColorMap, INITIAL_VISIBLE_COLUMNS, columns, statusOp
           onChange={setPage}
         />
         <span className="text-small text-default-400">
-  {selectedKeys.size === isi.length
-    ? "All items selected"
-    : `${selectedKeys.size} of ${filteredItems.length} selected`}
-</span>
-
+          {selectedKeys.size === isi.length
+            ? "All items selected"
+            : `${selectedKeys.size} of ${filteredItems.length} selected`}
+        </span>
       </div>
     );
   }, [page, pages, selectedKeys, filteredItems.length, isi.length]);
@@ -247,7 +302,11 @@ function TableProps({ statusColorMap, INITIAL_VISIBLE_COLUMNS, columns, statusOp
       aria-label="Example table with custom cells, pagination and sorting"
       bottomContent={bottomContent}
       bottomContentPlacement="outside"
-      checkboxesProps={{ classNames: { wrapper: "after:bg-primary-30 after:text-blue text-white" } }}
+      checkboxesProps={{
+        classNames: {
+          wrapper: "after:bg-primary-30 after:text-blue text-white",
+        },
+      }}
       classNames={classNames}
       selectedKeys={selectedKeys}
       selectionMode="multiple"
@@ -271,7 +330,9 @@ function TableProps({ statusColorMap, INITIAL_VISIBLE_COLUMNS, columns, statusOp
       <TableBody emptyContent={"No isi found"} items={sortedItems}>
         {(item) => (
           <TableRow key={item.id}>
-            {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+            {(columnKey) => (
+              <TableCell>{renderCell(item, columnKey)}</TableCell>
+            )}
           </TableRow>
         )}
       </TableBody>
@@ -290,7 +351,12 @@ TableProps.propTypes = {
   statusOptions: PropTypes.array.isRequired,
   isi: PropTypes.array.isRequired,
   tambahBeritaURL: PropTypes.string.isRequired,
+  actionButtons: PropTypes.arrayOf(
+    PropTypes.shape({
+      icon: PropTypes.node.isRequired,
+      onClick: PropTypes.func.isRequired,
+    })
+  ).isRequired,
 };
 
 export default TableProps;
-

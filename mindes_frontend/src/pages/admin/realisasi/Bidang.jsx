@@ -3,6 +3,7 @@ import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
+import { Eye, Edit, Trash2 } from "react-feather";
 
 const statusColorMap = {
   publish: "success",
@@ -16,6 +17,7 @@ const columns = [
   { name: "ID", uid: "id" },
   { name: "BIDANG", uid: "bidang" },
   { name: "SUB BIDANG", uid: "sub_bidang" },
+  { name: "Aksi", uid: "actions" },
 ];
 
 const statusOptions = [
@@ -111,6 +113,29 @@ const isi = [
   },
 ];
 
+const actionButtons = [
+  {
+    icon: <Eye className="w-4 h-4 text-black" />,
+    onClick: (item) => {
+      console.log("View item:", item);
+      // Implementasikan logika tampilan di sini
+    },
+  },
+  {
+    icon: <Edit className="w-4 h-4 text-warning" />,
+    onClick: (item) => {
+      console.log("Edit item:", item);
+      // Implementasikan logika edit di sini
+    },
+  },
+  {
+    icon: <Trash2 className="w-4 h-4 text-danger" />,
+    onClick: (item) => {
+      console.log("Delete item:", item);
+      // Implementasikan logika hapus di sini
+    },
+  },
+];
 const Bidang = () => {
   return (
     <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
@@ -139,6 +164,8 @@ const Bidang = () => {
                   statusOptions={statusOptions}
                   isi={isi}
                   tambahBeritaURL={"/admin/realisasi/bidang/tambah"}
+      
+                  actionButtons={actionButtons}
                 />
               </div>
             </div>

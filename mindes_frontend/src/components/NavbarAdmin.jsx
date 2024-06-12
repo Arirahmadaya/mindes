@@ -17,7 +17,7 @@ import { ArrowDown, Search, User } from "react-feather";
 
 export default function NavbarAdmin() {
   return (
-    <Navbar isBordered className="bg-grayscale-10">
+    <Navbar isBordered className="bg-grayscale-10 rounded-b-lg">
       <NavbarContent justify="start">
         <Input
           classNames={{
@@ -45,7 +45,7 @@ export default function NavbarAdmin() {
                 color="default"
                 name="Ferianta"
                 size="sm"
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src="/img_desa/bowo_leksono.jpg"
               />
               <p className="font-semibold ml-3 hover:cursor-pointer">
                 Ferianta
@@ -55,15 +55,13 @@ export default function NavbarAdmin() {
 
           <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem key="profile" className="h-14 gap-2">
-              <p className="font-semibold">Signed in as</p>
-              <p className="font-semibold">zoey@example.com</p>
+              <p className="font-semibold">Login sebagai</p>
+              <p className="font-semibold">ferian@gmail.com</p>
             </DropdownItem>
-            <DropdownItem key="settings">My Settings</DropdownItem>
-            <DropdownItem key="team_settings">Team Settings</DropdownItem>
-            <DropdownItem key="analytics">Analytics</DropdownItem>
-            <DropdownItem key="system">System</DropdownItem>
-            <DropdownItem key="configurations">Configurations</DropdownItem>
-            <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
+            <DropdownItem key="analytics">Profile</DropdownItem>
+            <DropdownItem key="settings">Pengaturan</DropdownItem>
+            <DropdownItem key="configurations">Konfigurasi</DropdownItem>
+            <DropdownItem key="help_and_feedback">Bantuan</DropdownItem>
             <DropdownItem key="logout" color="danger">
               Log Out
             </DropdownItem>
