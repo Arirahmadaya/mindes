@@ -23,15 +23,16 @@ DROP TABLE IF EXISTS `agendatable`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `agendatable` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `tgl` datetime DEFAULT NULL,
+  `id_agenda` int NOT NULL AUTO_INCREMENT,
+  `tgl` date DEFAULT NULL,
   `tempat` varchar(255) NOT NULL,
   `jam` time DEFAULT NULL,
-  `hari` varchar(255) NOT NULL,
+  `hari` enum('Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu') DEFAULT NULL,
   `deskripsi` varchar(255) NOT NULL,
   `kegiatan` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `status` enum('publish','proses','gagal') DEFAULT NULL,
+  PRIMARY KEY (`id_agenda`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +41,7 @@ CREATE TABLE `agendatable` (
 
 LOCK TABLES `agendatable` WRITE;
 /*!40000 ALTER TABLE `agendatable` DISABLE KEYS */;
+INSERT INTO `agendatable` VALUES (1,'2024-06-13','Aula','10:30:00','Senin','Pertemuan mingguan','Rapat Koordinasi','publish');
 /*!40000 ALTER TABLE `agendatable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,12 +53,12 @@ DROP TABLE IF EXISTS `akuntable`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `akuntable` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id_akun` int NOT NULL AUTO_INCREMENT,
   `kode` int NOT NULL,
   `uraian` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id_akun`),
   UNIQUE KEY `kode` (`kode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,6 +67,7 @@ CREATE TABLE `akuntable` (
 
 LOCK TABLES `akuntable` WRITE;
 /*!40000 ALTER TABLE `akuntable` DISABLE KEYS */;
+INSERT INTO `akuntable` VALUES (2,534,'Belanja Modal Gedung, Bangunan dan Taman'),(3,533,'Belanja Modal Kendaraan');
 /*!40000 ALTER TABLE `akuntable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,16 +79,21 @@ DROP TABLE IF EXISTS `beritatable`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `beritatable` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id_berita` int NOT NULL AUTO_INCREMENT,
   `tgl` datetime NOT NULL,
   `judul` varchar(255) NOT NULL,
   `artikel` text NOT NULL,
-  `kategori` varchar(100) NOT NULL,
   `status` enum('publish','proses','gagal') DEFAULT NULL,
   `img_berita` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `judul` (`judul`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id_kategori` int NOT NULL,
+  `id_user` int NOT NULL,
+  PRIMARY KEY (`id_berita`),
+  UNIQUE KEY `judul` (`judul`),
+  KEY `id_user` (`id_user`),
+  KEY `id_kategori` (`id_kategori`),
+  CONSTRAINT `beritatable_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usertable` (`id_user`),
+  CONSTRAINT `beritatable_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `kategoritable` (`id_kategori`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,6 +102,7 @@ CREATE TABLE `beritatable` (
 
 LOCK TABLES `beritatable` WRITE;
 /*!40000 ALTER TABLE `beritatable` DISABLE KEYS */;
+INSERT INTO `beritatable` VALUES (2,'2024-06-12 00:00:00','Berita Baru','Ini adalah isi dari berita baru.','publish','path/to/image.jpg',2,1),(11,'2024-06-12 00:00:00','Berita Baru update','Ini adalah isi dari berita baru yang diupdate.','publish','path/to/image.jpg',2,1);
 /*!40000 ALTER TABLE `beritatable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,13 +114,13 @@ DROP TABLE IF EXISTS `bidangtable`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bidangtable` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id_bidang` int NOT NULL AUTO_INCREMENT,
   `nama` varchar(255) NOT NULL,
   `parent_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id_bidang`),
   KEY `parent_id` (`parent_id`),
-  CONSTRAINT `bidangtable_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `bidangtable` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `bidangtable_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `bidangtable` (`id_bidang`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +129,7 @@ CREATE TABLE `bidangtable` (
 
 LOCK TABLES `bidangtable` WRITE;
 /*!40000 ALTER TABLE `bidangtable` DISABLE KEYS */;
-INSERT INTO `bidangtable` VALUES (1,'BIDANG PENYELENGGARAAN PEMERINTAHAN DESA',NULL),(2,'BIDANG PENANGGULANGAN BENCANA, DARURAT DAN MENDESAK DESA',NULL),(3,'BIDANG PEMBINAAN KEMASYARAKATAN',NULL),(4,'BIDANG PEMBERDAYAAN MASYARAKAT',NULL),(5,'BIDANG PELAKSANAAN PEMBANGUNAN DESA',NULL),(6,'Penyelenggaraan Belanja Siltap, Tunjangan dan Operasional Pemerintah Desa',1),(7,'Penyediaan Sarana Prasarana Pemerintah Desa',1),(8,'Pengelolaan Administrasi Kependudukan, Pencatatan Sipil, Statistik dan Kearsipan',1),(9,'Penyelenggaraan Tata Praja Pemerintahan, Perencanaan, Keuangan dan Pelaporan',1),(10,'Sub Bidang Pendidikan',5),(11,'Sub Bidang Kesehatan',5),(12,'Sub Bidang Pekerjaan Umum dan Penataan Ruang',5),(13,'Sub Bidang Kawasan Pemukiman',5),(14,'Sub Bidang Kebudayaan dan Keagamaan',3),(15,'Sub Bidang Kepemudaan dan Olahraga',3),(16,'Sub Bidang Kelembagaan Masyarakat',3),(17,'Sub Bidang Pertanian dan Peternakan',4),(18,'Sub Bidang Peningkatan Kapasitas Aparatur Desa',4),(19,'Sub Bidang Pemberdayaan Perempuan, Perlindungan Anak dan Keluarga',4),(20,'Sub Bidang Penanggulangan Bencana',2),(21,'Sub Bidang Keadaan Mendesak',2);
+INSERT INTO `bidangtable` VALUES (1,'BIDANG PENYELENGGARAAN PEMERINTAHAN DESA',NULL),(2,'BIDANG PENANGGULANGAN BENCANA, DARURAT DAN MENDESAK DESA',NULL),(3,'BIDANG PEMBINAAN KEMASYARAKATAN',NULL),(4,'BIDANG PEMBERDAYAAN MASYARAKAT',NULL),(5,'BIDANG PELAKSANAAN PEMBANGUNAN DESA',NULL),(6,'Penyelenggaraan Belanja Siltap, Tunjangan dan Operasional Pemerintah Desa',1),(7,'Penyediaan Sarana Prasarana Pemerintah Desa',1),(8,'Pengelolaan Administrasi Kependudukan, Pencatatan Sipil, Statistik dan Kearsipan',1),(9,'Penyelenggaraan Tata Praja Pemerintahan, Perencanaan, Keuangan dan Pelaporan',1),(10,'Sub Bidang Pendidikan',5),(11,'Sub Bidang Kesehatan',5),(13,'Sub Bidang Kawasan Pemukiman',5),(14,'Sub Bidang Kebudayaan dan Keagamaan',3),(15,'Sub Bidang Kepemudaan dan Olahraga',3),(16,'Sub Bidang Kelembagaan Masyarakat',3),(17,'Sub Bidang Pertanian dan Peternakan',4),(18,'Sub Bidang Peningkatan Kapasitas Aparatur Desa',4),(19,'Sub Bidang Pemberdayaan Perempuan, Perlindungan Anak dan Keluarga',4),(20,'Sub Bidang Penanggulangan Bencana',2),(21,'Sub Bidang Keadaan Mendesak',2),(22,'Sub Bidang Pekerjaan Umum dan Penataan Ruang',5);
 /*!40000 ALTER TABLE `bidangtable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,10 +141,10 @@ DROP TABLE IF EXISTS `kategoritable`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `kategoritable` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id_kategori` int NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id_kategori`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,6 +153,7 @@ CREATE TABLE `kategoritable` (
 
 LOCK TABLES `kategoritable` WRITE;
 /*!40000 ALTER TABLE `kategoritable` DISABLE KEYS */;
+INSERT INTO `kategoritable` VALUES (2,'kesehatan');
 /*!40000 ALTER TABLE `kategoritable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,12 +165,18 @@ DROP TABLE IF EXISTS `pencatatantable`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pencatatantable` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id_pencatatan` int NOT NULL AUTO_INCREMENT,
   `no` int NOT NULL,
+  `kode_akun` int NOT NULL,
   `nominal` double NOT NULL,
-  `total` double NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `total` double NOT NULL DEFAULT '0',
+  `id_realisasi` int NOT NULL,
+  PRIMARY KEY (`id_pencatatan`),
+  KEY `id_realisasi` (`id_realisasi`),
+  KEY `kode_akun` (`kode_akun`),
+  CONSTRAINT `pencatatantable_ibfk_1` FOREIGN KEY (`id_realisasi`) REFERENCES `realisasitable` (`id_realisasi`),
+  CONSTRAINT `pencatatantable_ibfk_2` FOREIGN KEY (`kode_akun`) REFERENCES `akuntable` (`id_akun`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,12 +196,12 @@ DROP TABLE IF EXISTS `penduduktable`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `penduduktable` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id_penduduk` int NOT NULL AUTO_INCREMENT,
   `jumlah` int NOT NULL,
   `mutasi` enum('lahir','meninggal','datang','pindah') NOT NULL,
   `keterangan` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id_penduduk`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,6 +210,7 @@ CREATE TABLE `penduduktable` (
 
 LOCK TABLES `penduduktable` WRITE;
 /*!40000 ALTER TABLE `penduduktable` DISABLE KEYS */;
+INSERT INTO `penduduktable` VALUES (2,2,'meninggal','A.n Rajawali meninggal dunia');
 /*!40000 ALTER TABLE `penduduktable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,12 +222,15 @@ DROP TABLE IF EXISTS `profiltable`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `profiltable` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id_profil` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL,
   `img_user` varchar(255) DEFAULT NULL,
-  `hp` int NOT NULL,
-  `nik` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `hp` varchar(20) NOT NULL,
+  `nik` varchar(16) DEFAULT NULL,
+  PRIMARY KEY (`id_profil`),
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `profiltable_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usertable` (`id_user`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,6 +239,7 @@ CREATE TABLE `profiltable` (
 
 LOCK TABLES `profiltable` WRITE;
 /*!40000 ALTER TABLE `profiltable` DISABLE KEYS */;
+INSERT INTO `profiltable` VALUES (1,1,'link_gambar','08123456789','1234567890123456');
 /*!40000 ALTER TABLE `profiltable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,20 +251,24 @@ DROP TABLE IF EXISTS `realisasitable`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `realisasitable` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id_realisasi` int NOT NULL AUTO_INCREMENT,
+  `id_bidang` int NOT NULL,
   `kode_kegiatan` int NOT NULL,
   `kegiatan` varchar(255) NOT NULL,
+  `output` varchar(255) DEFAULT NULL,
   `status` enum('pengajuan','proses','selesai','gagal') NOT NULL,
-  `tgl_mulai` datetime DEFAULT NULL,
   `lokasi` varchar(255) DEFAULT NULL,
   `img_realisasi1` varchar(255) DEFAULT NULL,
   `img_realisasi2` varchar(255) DEFAULT NULL,
   `sumber` enum('PBP','PBK','PBH','PAD','DD','ADD') DEFAULT NULL,
-  `biaya` double DEFAULT NULL,
-  `tgl_selesai` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `kegiatan` (`kegiatan`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `pembiayaan` double DEFAULT NULL,
+  `tgl_mulai` date DEFAULT NULL,
+  `tgl_selesai` date DEFAULT NULL,
+  PRIMARY KEY (`id_realisasi`),
+  UNIQUE KEY `kode_kegiatan` (`kode_kegiatan`),
+  KEY `id_bidang` (`id_bidang`),
+  CONSTRAINT `realisasitable_ibfk_1` FOREIGN KEY (`id_bidang`) REFERENCES `bidangtable` (`id_bidang`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -263,14 +288,14 @@ DROP TABLE IF EXISTS `usertable`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usertable` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `roles` enum('superadmin','admin','umum') DEFAULT 'umum',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id_user`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,6 +304,7 @@ CREATE TABLE `usertable` (
 
 LOCK TABLES `usertable` WRITE;
 /*!40000 ALTER TABLE `usertable` DISABLE KEYS */;
+INSERT INTO `usertable` VALUES (1,'massayu@gmail.com','massayu','P@55word','superadmin'),(2,'ari.updated@gmail.com','Ari updated','NewP@55word','admin'),(3,'raja@gmail.com','Raja','P@55word','umum');
 /*!40000 ALTER TABLE `usertable` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -291,4 +317,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-08 17:27:51
+-- Dump completed on 2024-06-12 22:03:38

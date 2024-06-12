@@ -19,7 +19,7 @@ const register = async(req,res)=>{
     try {
         const salt = await bcrypt.genSalt(12)
         const hash = await bcrypt.hash(password,salt)
-        await query("INSERT INTO userTable(username,password) values (?,?)", [username, hash])
+        await query("INSERT INTO authtable(,password) values (?,?)", [username, hash])
         return res.status(200).json({username, hash})
     } catch (error) {
         return res.status(500).json({error:"Terjadi kesalahan"})
