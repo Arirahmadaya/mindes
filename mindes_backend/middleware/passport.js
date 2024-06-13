@@ -14,8 +14,8 @@ const options ={
 }
 
 passport.use(new JwtStrategy(options, async(payload, done)=>{
-    const {id} = payload
-    const [getData] = await query("select id, username from user where id=?", [id])
+    const {id_user} = payload
+    const [getData] = await query("select id_user, username from user where id_user=?", [id_user])
     if (getData){
         return done(null, getData)
     }else{

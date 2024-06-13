@@ -1,61 +1,89 @@
-import { query } from "../database/db.js"
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
-import dotenv from 'dotenv'
+import { query } from "../database/db.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
+const register = async (req, res) => {
+  const { username, password, confPassword } = req.body;
 
-const register = async(req,res)=>{
-    const {username, password, confPassword} = req.body
+  // Validasi input kosong
+  if (!username || !password || !confPassword) {
+    return res.status(400).json({ error: "Field must not be empty" });
+  }
 
-    if(username===""||username===undefined||password===""||password===undefined||confPassword===""||confPassword===undefined){
-        return res.status(400).json({error:"Field must not be empty"})
+  // Validasi konfirmasi password
+  if (password !== confPassword) {
+    return res.status(400).json({ error: "Password not match" });
+  }
+
+  try {
+    // Check if the username already exists
+    const [existingUser] = await query(
+      "SELECT * FROM usertable WHERE username = ?",
+      [username]
+    );
+    if (existingUser) {
+      return res.status(400).json({ error: "Username already exists" });
     }
 
-    if (password!==confPassword){
-        return res.status(400).json({error:"Password not match"})
+    // Hash password
+    const salt = await bcrypt.genSalt(12);
+    const hash = await bcrypt.hash(password, salt);
+
+    // Insert ke database dengan roles default 'umum'
+    await query(
+      "INSERT INTO usertable (username, password, roles) VALUES (?, ?, 'umum')",
+      [username, hash]
+    );
+
+    return res.status(200).json({ username });
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Terjadi kesalahan pada server" });
+  }
+};
+
+const login = async (req, res) => {
+  const { username, password: inputPass } = req.body;
+
+  if (!username || !inputPass) {
+    return res.status(400).json({ error: "Field must not be empty" });
+  }
+
+  try {
+    const [user] = await query(
+      "SELECT id_user, username, password, roles FROM usertable WHERE username = ?",
+      [username]
+    );
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
     }
 
-    try {
-        const salt = await bcrypt.genSalt(12)
-        const hash = await bcrypt.hash(password,salt)
-        await query("INSERT INTO authtable(,password) values (?,?)", [username, hash])
-        return res.status(200).json({username, hash})
-    } catch (error) {
-        return res.status(500).json({error:"Terjadi kesalahan"})
+    const isMatch = await bcrypt.compare(inputPass, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: "Password is wrong" });
     }
-}
 
+    const payload = {
+      id_user: user.id_user,
+      username: user.username,
+      roles: user.roles,
+    };
 
-const login = async(req,res)=>{
-    const {username,password:inputPass} = req.body
-    // TODO Validasi username dan password
-    try {
-        const [validation] =await query("select id from user where username=?", [username])
-        
-        if(validation===undefined){
-            return res.status(400).json({error:"User not found"})
-        }
-        const [check] = await query ("select id, username, password from user where id=?", [validation.id])
-        const isMatch = await bcrypt.compare(inputPass, check.password)
-        if(!isMatch){
-            return res.status(400).json({error:"Password is wrong"})
-        }
+    jwt.sign(
+      payload,
+      process.env.SECRETKEY,
+      { expiresIn: "1h" },
+      (err, token) => {
+        if (err) throw err;
+        return res.status(200).json({ Authorization: `Bearer ${token}` });
+      }
+    );
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Terjadi kesalahan pada server" });
+  }
+};
 
-        const data ={
-            id:check.id,
-            username:check.username
-        }
-
-        jwt.sign(data, process.env.SECRETKEY, (err,token)=>{
-            if(err) throw err
-            return res.status(200).json({Authorization:`Bearer ${token}`})    
-        })
-
-        
-    } catch (error) {
-        return res.status(500).json({error:"Terjadi kesalahan"})
-    }
-}
-
-export {register,login}
+export { register, login };

@@ -1,4 +1,6 @@
 import React, { useState, useCallback } from "react";
+import axios from "axios";
+
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import ImageViewer from "react-simple-image-viewer";
@@ -15,9 +17,10 @@ import {
   PaperAirplaneIcon,
   ArrowUturnLeftIcon,
 } from "@heroicons/react/20/solid";
-import {Breadcrumbs, BreadcrumbItem} from "@nextui-org/breadcrumbs";
+import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 
-const FormBerita = () => {
+
+const FormUser = () => {
   const [selectedKeys, setSelectedKeys] = useState(new Set());
   const [selectedImage, setSelectedImage] = useState(null);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
@@ -69,7 +72,6 @@ const FormBerita = () => {
             <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
               <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
               <div className="flex flex-col p-10 gap-5">
-              
                 {/* judul berita harus unique jika ada yang sama maka tidak dapat disimpan  */}
                 <div className="relative w-full mb-0">
                   <p className="text-caption-2 text-gray mt-1 mb-2">
@@ -117,14 +119,14 @@ const FormBerita = () => {
                   </p>
                   <Input type="text" variant="bordered" label="Password" />
                 </div>
-               
+
                 <div className="relative w-full mb-0">
                   <p className="text-caption-2 text-gray mt-1 mb-2">
                     Masukkan Umur
                   </p>
                   <Input type="text" variant="bordered" label="Umur" />
                 </div>
-                
+
                 <div className="relative w-full mb-0">
                   <p className="text-caption-2 text-gray mt-1 mb-2">
                     Unggah Foto Profil
@@ -157,8 +159,9 @@ const FormBerita = () => {
                   />
                 )}
 
+                {/* button */}
                 <div className="flex justify-between w-full mt-4">
-                <Link
+                  <Link
                     to="/admin/user"
                     className="flex items-center gap-2 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300"
                   >
@@ -178,9 +181,8 @@ const FormBerita = () => {
           </div>
         </div>
       </div>
-      </div>
-    
+    </div>
   );
 };
 
-export default FormBerita;
+export default FormUser;

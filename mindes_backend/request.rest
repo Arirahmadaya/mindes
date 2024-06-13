@@ -1,3 +1,17 @@
+### Register
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "username": "Jacob",
+    "password": "P@55word",
+    "confPassword": "P@55word"
+}
+
+### Get User
+GET http://localhost:3000/user
+Content-Type: application/json
+
 ###
 DELETE http://localhost:3000/pencatatan/11
 Content-Type: application/json
