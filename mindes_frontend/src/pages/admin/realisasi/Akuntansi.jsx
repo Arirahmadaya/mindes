@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
@@ -10,6 +11,7 @@ const statusColorMap = {
   proses: "secondary",
   gagal: "danger",
 };
+
 const INITIAL_VISIBLE_COLUMNS = ["id", "kode", "uraian", "actions"];
 
 const columns = [
@@ -23,64 +25,6 @@ const statusOptions = [
   { name: "Publish", uid: "publish" },
   { name: "Proses", uid: "proses" },
   { name: "Gagal", uid: "gagal" },
-];
-
-const isi = [
-  {
-    id: 1,
-    kode: 534,
-    uraian: "Belanja Modal Gedung, Bangunan dan Taman",
-  },
-  {
-    id: 2,
-    kode: 533,
-    uraian: "Belanja Modal Kendaraan",
-  },
-  {
-    id: 3,
-    kode: 532,
-    uraian: "Belanja Modal Pengadaan Peralatan, Mesin dan Alat Berat",
-  },
-  {
-    id: 4,
-    kode: 525,
-    uraian: "Belanja Operasional Perkantoran",
-  },
-  {
-    id: 5,
-    kode: 524,
-    uraian: "Belanja Jasa Sewa",
-  },
-  {
-    id: 6,
-    kode: 522,
-    uraian: "Belanja Jasa Honorarium",
-  },
-  {
-    id: 7,
-    kode: 521,
-    uraian: "Belanja Barang Perlengkapan",
-  },
-  {
-    id: 8,
-    kode: 514,
-    uraian: "Tunjangan BPD",
-  },
-  {
-    id: 9,
-    kode: 513,
-    uraian: "Jaminan Sosial Kepala Desa dan Perangkat Desa",
-  },
-  {
-    id: 10,
-    kode: 512,
-    uraian: "Penghasilan Tetap dan Tunjangan Perangkat Desa",
-  },
-  {
-    id: 11,
-    kode: 511,
-    uraian: "Penghasilan Tetap dan Tunjangan Kepala Desa",
-  },
 ];
 
 const actionButtons = [
@@ -107,7 +51,29 @@ const actionButtons = [
   },
 ];
 
-const Agenda = () => {
+const Akutansi = () => {
+  const [akun, setAkun] = useState([]);
+
+  useEffect(() => {
+    fetchAkun();
+  }, []);
+
+  const fetchAkun = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/akun");
+      setAkun(response.data.data);
+    } catch (error) {
+      console.error("Terjadi kesalahan", error);
+    }
+  };
+
+  const isi = akun.map((akun) => ({
+    id: akun.id_akun,
+    kode: akun.kode,
+    uraian: akun.uraian,
+  
+  }));
+
   return (
     <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
       <Sidebares />
@@ -149,4 +115,4 @@ const Agenda = () => {
   );
 };
 
-export default Agenda;
+export default Akutansi;

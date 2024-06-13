@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
-import {Breadcrumbs, BreadcrumbItem} from "@nextui-org/breadcrumbs";
+import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Eye, Edit, Trash2 } from "react-feather";
 
 const statusColorMap = {
@@ -11,72 +12,25 @@ const statusColorMap = {
   gagal: "danger",
 };
 
-const INITIAL_VISIBLE_COLUMNS = [
-  "tgl",
-  "judul",
-  "ktgberita",
-  "status",
-  "actions",
-];
+const INITIAL_VISIBLE_COLUMNS = ["tgl", "judul", "artikel", "id_kategori", "img_berita", "status", "actions"];
 
 const columns = [
-  { name: "ID", uid: "id" },
+  { name: "ID", uid: "id_berita" },
   { name: "Tanggal", uid: "tgl" },
   { name: "Judul", uid: "judul" },
-  { name: "Kategori", uid: "ktgberita" },
+  { name: "Artikel", uid: "artikel" },
+  { name: "Gambar", uid: "img_berita" },
+  { name: "Kategori", uid: "id_kategori" },
   { name: "Status", uid: "status" },
   { name: "Aksi", uid: "actions" },
+
+  
 ];
 
 const statusOptions = [
   { name: "Publish", uid: "publish" },
   { name: "Proses", uid: "proses" },
   { name: "Gagal", uid: "gagal" },
-];
-
-const isi = [
-  {
-    id: 6,
-    tgl: "10 Juni 2024",
-    judul: "Berita 6",
-    ktgberita: "Masyarakat",
-    status: "publish",
-  },
-  {
-    id: 5,
-    tgl: "5 Juni 2024",
-    judul: "berita 5",
-    ktgberita: "Masyarakat",
-    status: "publish",
-  },
-  {
-    id: 4,
-    tgl: "3 Juni 2024",
-    judul: "berita 4",
-    ktgberita: "Masyarakat",
-    status: "publish",
-  },
-  {
-    id: 3,
-    tgl: "2 Juni 2024",
-    judul: "Posyandu Melati 2",
-    ktgberita: "Masyarakat",
-    status: "publish",
-  },
-  {
-    id: 2,
-    tgl: "29 Mei 2024",
-    judul: "Pencairan Dana Operasional RT/RW",
-    ktgberita: "Masyarakat",
-    status: "publish",
-  },
-  {
-    id: 1,
-    tgl: "28 Mei 2024",
-    judul: "Pencairan Dana Operasional RT/RW",
-    ktgberita: "Masyarakat",
-    status: "publish",
-  },
 ];
 
 const actionButtons = [
@@ -104,6 +58,33 @@ const actionButtons = [
 ];
 
 const BeritaAdmin = () => {
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    fetchNews();
+  }, []);
+
+  const fetchNews = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/berita");
+      setNews(response.data.data);
+    } catch (error) {
+      console.error("Terjadi kesalahan", error);
+    }
+  };
+
+  const isi = news.map((item) => ({
+    id: item.id_berita,
+    tgl: item.tgl,
+    judul: item.judul,
+    artikel: item.artikel,
+    img_berita: item.img_berita,
+    id_user: item.id_user,
+    id_kategori: item.id_kategori,
+    status: item.status,
+
+  }));
+
   return (
     <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
       <Sidebares />
@@ -119,10 +100,9 @@ const BeritaAdmin = () => {
 
         <div className="flex gap-5 my-5">
           <div className=" flex w-full bg-white rounded-lg">
-            <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-blue-200  ">
-              <div className="bg-blue-100/20 rounded-b-[20px] w-auto "></div>
-              <div className="p-4 ">
-                {/* <Tablenih /> */}
+            <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-blue-200">
+              <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
+              <div className="p-4">
                 <TableProps
                   statusColorMap={statusColorMap}
                   INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS}
@@ -130,13 +110,12 @@ const BeritaAdmin = () => {
                   statusOptions={statusOptions}
                   isi={isi}
                   tambahBeritaURL={"/admin/berita/tambah"}
-                 
                   actionButtons={actionButtons}
                 />
               </div>
             </div>
 
-            <div className="flex justify-between "></div>
+            <div className="flex justify-between"></div>
           </div>
         </div>
       </div>
