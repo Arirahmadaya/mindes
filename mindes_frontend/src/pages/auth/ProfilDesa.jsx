@@ -10,7 +10,7 @@ const ProfilDesa = () => {
     <>
       <NavbarUser />
 
-      <div className="justify-between mx-70 lg:flex p-4 bg-white ">
+      <div className="justify-between mx-70 lg:flex p-4 bg-white mt-5 lg:mb-24 mb-10 ">
         <div className=" flex flex-col items-center mr-4">
           <img
             src="img/kota_tegal.png"
@@ -51,7 +51,7 @@ const ProfilDesa = () => {
         </div>
       </div>
 
-      <div className="my-20">
+      <div className="lg:mb-24 mb-10">
         <div className="mb-2 font-bold text-center text-heading-2 lg:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
           Perangkat Desa
         </div>
@@ -60,7 +60,7 @@ const ProfilDesa = () => {
         </div>
       </div>
 
-      <div className="my-20 ">
+      <div  className="lg:mb-24 mb-10">
         <div className="text-center">
           <h1 className="font-bold lg:text-display-2 text-heading-2 text-blue hover:text-bluenight hover:drop-shadow-2xl">
             PRIMA
@@ -122,7 +122,7 @@ const ProfilDesa = () => {
         </div>
       </div>
 
-      <div className=" py-12 ">
+      <div  className="lg:mb-24 mb-10">
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="lg:text-display-2 text-heading-2 font-bold text-blue hover:text-bluenight hover:drop-shadow-2xl text-center mb-8">
             Sejarah Desa Kalinyamat Kulon
@@ -192,7 +192,7 @@ const ProfilDesa = () => {
         </div>
       </div>
 
-      <div className="my-20">
+      <div  className="lg:mb-24 mb-10">
         <div className="mb-2 font-bold text-center text-heading-2 lg:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
           Perangkat Desa
         </div>
