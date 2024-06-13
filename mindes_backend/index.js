@@ -18,9 +18,9 @@ app.get("/", (req, res) => {
     res.send("Hello Murtherfucker!");
 });
 
-app.listen(process.env.APP_PORT, () => {
+app.listen(process.env.APP_PORT || 3000, () => {
     testConnection();
-    console.log(`http://localhost:${process.env.APP_PORT}`);
+    console.log(`http://localhost:${process.env.APP_PORT || 3000}`);
 });
 
 // // Fungsi untuk mendapatkan daftar endpoint dari semua router dalam aplikasi Express

@@ -167,16 +167,16 @@ DROP TABLE IF EXISTS `pencatatantable`;
 CREATE TABLE `pencatatantable` (
   `id_pencatatan` int NOT NULL AUTO_INCREMENT,
   `no` int NOT NULL,
-  `kode_akun` int NOT NULL,
+  `kode` int NOT NULL,
   `nominal` double NOT NULL,
   `total` double NOT NULL DEFAULT '0',
   `id_realisasi` int NOT NULL,
   PRIMARY KEY (`id_pencatatan`),
   KEY `id_realisasi` (`id_realisasi`),
-  KEY `kode_akun` (`kode_akun`),
+  KEY `kode` (`kode`),
   CONSTRAINT `pencatatantable_ibfk_1` FOREIGN KEY (`id_realisasi`) REFERENCES `realisasitable` (`id_realisasi`),
-  CONSTRAINT `pencatatantable_ibfk_2` FOREIGN KEY (`kode_akun`) REFERENCES `akuntable` (`id_akun`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `pencatatantable_ibfk_2` FOREIGN KEY (`kode`) REFERENCES `akuntable` (`id_akun`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,6 +185,7 @@ CREATE TABLE `pencatatantable` (
 
 LOCK TABLES `pencatatantable` WRITE;
 /*!40000 ALTER TABLE `pencatatantable` DISABLE KEYS */;
+INSERT INTO `pencatatantable` VALUES (12,2,2,25000,25000,2);
 /*!40000 ALTER TABLE `pencatatantable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +269,7 @@ CREATE TABLE `realisasitable` (
   UNIQUE KEY `kode_kegiatan` (`kode_kegiatan`),
   KEY `id_bidang` (`id_bidang`),
   CONSTRAINT `realisasitable_ibfk_1` FOREIGN KEY (`id_bidang`) REFERENCES `bidangtable` (`id_bidang`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,6 +278,7 @@ CREATE TABLE `realisasitable` (
 
 LOCK TABLES `realisasitable` WRITE;
 /*!40000 ALTER TABLE `realisasitable` DISABLE KEYS */;
+INSERT INTO `realisasitable` VALUES (2,1,1001,'Contoh Kegiatan','Contoh Output','pengajuan','Contoh Lokasi','path/to/image1.jpg','path/to/image2.jpg','PAD',1000000,'2024-06-12','2024-06-20');
 /*!40000 ALTER TABLE `realisasitable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -317,4 +319,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-12 22:03:38
+-- Dump completed on 2024-06-13 10:32:24

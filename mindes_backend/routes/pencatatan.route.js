@@ -5,10 +5,10 @@ import { authenticateToken } from '../middleware/validate.middleware.js'
 const router = express.Router()
 
 router.get('/pencatatan', getPencatatan)
-router.get('/pencatatan/:id_pencatatan', getPencatatanById)
+router.get('/pencatatan/:id_realisasi', getPencatatanById)
 router.post('/pencatatan/create', insertPencatatan)
 router.put('/pencatatan/:id_pencatatan', updatePencatatan)
-router.delete('/user/:id_pencatatan', deletePencatatan)
+router.delete('/pencatatan/:id_pencatatan', deletePencatatan)
 
 
 export default router
