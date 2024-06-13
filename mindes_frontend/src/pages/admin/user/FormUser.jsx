@@ -128,7 +128,7 @@ const FormUser = () => {
                       Pilih Role
                     </p>
 
-                    <Dropdown>
+                    <Dropdown backdrop="blur">
                       <DropdownTrigger>
                         <Button
                           variant="bordered"
