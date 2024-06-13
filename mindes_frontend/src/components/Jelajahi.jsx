@@ -3,7 +3,7 @@ import { BarChart2, FileText, Home, BookOpen } from "react-feather";
 
 const Jelajahi = () => {
   return (
-    <div className="relative flex flex-col items-center lg:gap-48 gap-20 lg:mt-20 my-10 mx-5 lg:mx-70 ">
+    <div className="relative flex flex-col items-center lg:gap-48 gap-20 lg:my-20 my-10  mx-5 lg:mx-70 ">
       <div className="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
         <svg className="w-1/2 h-full ">
           <line

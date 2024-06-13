@@ -19,14 +19,14 @@ const Home = () => {
       <Carousel />
       <br />
 
-      <div>
-        <div className="mb-2 font-bold text-center text-heading-2 lg:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative lg:mx-70 mx-[20px]">
+      <div className="lg:mb-24 mb-16">
+        <div className="font-bold text-center text-heading-2 lg:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl lg:mx-70 mx-[20px]">
           Jelajahi Kalinyamat Kulon
         </div>
         <Jelajahi />
       </div>
 
-      <div>
+      <div className="lg:mb-24 mb-10">
         <section className="relative text-center mb-28">
           <div
             className="absolute inset-0 w-full h-full bg-gradient-to-b from-blue-50/70 to-blue-10 rounded-t-full"
@@ -60,7 +60,7 @@ const Home = () => {
           </div>
         </section>
 
-        <div className="my-20 ">
+        <div className="lg:mb-24 mb-10">
           <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
             Demografi Kalinyamat Kulon
           </div>
@@ -70,7 +70,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="my-20">
+      <div className="lg:mb-24 mb-10">
         <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
           Perangkat Desa Kalinyamat Kulon
         </div>
@@ -79,8 +79,8 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="my-20">
-        <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
+      <div className="lg:mb-24 mb-10">
+        <div className="mb-5 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
           Penduduk Kalinyamat Kulon
         </div>
         <div>
@@ -88,8 +88,8 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="my-20">
-        <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
+      <div className="lg:mb-24 mb-10">
+        <div className="mb-5 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
           Berita Terhangat di Kalinyamat Kulon
         </div>
         <div>
@@ -97,8 +97,8 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mb-20">
-        <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[30px]">
+      <div className="lg:mb-24 mb-10">
+        <div className="mb-5 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[30px]">
           Galeri Kalinyamat Kulon
         </div>
         <div>
@@ -106,8 +106,8 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mb-20">
-        <div className="mb-2 flex text-heading-2 md:text-display-2 hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[30px] bg-gradient-10 background-animate rounded-xl">
+      <div className="lg:mb-24 mb-10">
+        <div className="mb-5 flex text-heading-2 md:text-display-2 hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[30px] bg-gradient-10 background-animate rounded-xl">
           <div className="w-full h-auto p-5">
             <h1 className="lg:text-display-2 text-heading-4 text-left font-bold text-blue hover:text-bluenight ">
               Miliki Web Desamu

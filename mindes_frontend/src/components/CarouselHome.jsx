@@ -47,7 +47,7 @@ const Carousel = () => {
         transition={{ duration: 1 }}
         className="absolute inset-0 flex items-center justify-center"
       >
-        <h1 className="text-center font-bold lg:text-display-1 text-display-2 text-white px-5 sm:px-70">
+        <h1 className="text-center font-bold lg:text-display-1 text-heading-2 text-white px-5 sm:px-70">
           <Typical
             steps={["Selamat datang di halaman Beranda", 500]}
             wrapper="span"
