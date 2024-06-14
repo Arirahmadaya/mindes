@@ -41,7 +41,7 @@ const Agenda = () => {
   ];
 
   const columns = [
-    { name: "ID", uid: "id_agenda" },
+    { name: "ID", uid: "id" },
     { name: "Tanggal", uid: "tgl" },
     { name: "Tempat", uid: "tempat" },
     { name: "Jam", uid: "jam" },

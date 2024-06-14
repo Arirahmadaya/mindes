@@ -12,7 +12,7 @@ const statusColorMap = {
   gagal: "danger",
 };
 
-const INITIAL_VISIBLE_COLUMNS = ["tgl", "mutasi", "jumlah", "keterangan", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["id", "tgl", "mutasi", "jumlah", "keterangan", "actions"];
 
 const columns = [
   { name: "ID", uid: "id" },

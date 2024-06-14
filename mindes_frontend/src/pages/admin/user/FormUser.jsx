@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Dropdown,
   DropdownTrigger,
@@ -16,7 +16,6 @@ import {
   ArrowUturnLeftIcon,
 } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
-import { useNavigate } from "react-router-dom";
 
 const FormUser = () => {
   const [selectedKey, setSelectedKey] = useState(new Set());

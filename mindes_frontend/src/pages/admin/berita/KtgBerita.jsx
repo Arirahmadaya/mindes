@@ -6,16 +6,32 @@ import TableProps from "../../../components/TableProps";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Eye, Edit, Trash2 } from "react-feather";
 
+const KtgBerita = () => {
+  const [kategori, setKategori] = useState([]);
+
+  useEffect(() => {
+    fetchKategori();
+  }, []);
+
+  const fetchKategori = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/kategori");
+      setKategori(response.data.data);
+    } catch (error) {
+      console.error("Terjadi kesalahan", error);
+    }
+  };
+
 const statusColorMap = {
   publish: "success",
   proses: "secondary",
   gagal: "danger",
 };
 
-const INITIAL_VISIBLE_COLUMNS = ["id_kategori", "nama", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["id", "nama", "actions"];
 
 const columns = [
-  { name: "ID", uid: "id_kategori" },
+  { name: "ID", uid: "id", sortable:true },
   { name: "Kategori", uid: "nama" },
   { name: "Aksi", uid: "actions" },
 ];
@@ -50,21 +66,6 @@ const actionButtons = [
   },
 ];
 
-const BeritaAdmin = () => {
-  const [kategori, setKategori] = useState([]);
-
-  useEffect(() => {
-    fetchKategori();
-  }, []);
-
-  const fetchKategori = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/kategori");
-      setKategori(response.data.data);
-    } catch (error) {
-      console.error("Terjadi kesalahan", error);
-    }
-  };
 
   //isi sesuai dengan struktur table
   const isi = kategori.map((kategori) => ({
@@ -111,4 +112,4 @@ const BeritaAdmin = () => {
   );
 };
 
-export default BeritaAdmin;
+export default KtgBerita;

@@ -15,7 +15,7 @@ const statusColorMap = {
 const INITIAL_VISIBLE_COLUMNS = ["tgl", "judul", "artikel", "id_kategori", "img_berita", "status", "actions"];
 
 const columns = [
-  { name: "ID", uid: "id_berita" },
+  { name: "ID", uid: "id" },
   { name: "Tanggal", uid: "tgl" },
   { name: "Judul", uid: "judul" },
   { name: "Artikel", uid: "artikel" },
