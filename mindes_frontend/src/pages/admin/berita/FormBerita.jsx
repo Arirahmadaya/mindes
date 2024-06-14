@@ -12,12 +12,14 @@ import {
   Button,
   Input,
   DatePicker,
+  DateInput,
 } from "@nextui-org/react";
 import {
   PaperAirplaneIcon,
   ArrowUturnLeftIcon,
 } from "@heroicons/react/20/solid";
-import {Breadcrumbs, BreadcrumbItem} from "@nextui-org/breadcrumbs";
+import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
+import { CalendarDate } from "@internationalized/date";
 
 const FormBerita = () => {
   const [selectedKeys, setSelectedKeys] = useState(new Set());
@@ -62,7 +64,9 @@ const FormBerita = () => {
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
           <BreadcrumbItem href="/admin/berita">Berita</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/berita/tambah">Tambah Berita</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/berita/tambah">
+            Tambah Berita
+          </BreadcrumbItem>
         </Breadcrumbs>
 
         {/* Form start */}
@@ -72,6 +76,15 @@ const FormBerita = () => {
               <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
               <div className="flex flex-col p-10 gap-5">
                 <div className="relative w-full mb-0">
+                  <DateInput
+                    label={"Tanggal Posting"}
+                    format="yyyy-MM-dd"
+                    variant="bordered"
+                    placeholderValue={new CalendarDate(1995, 11, 6)}
+                  />
+                </div>
+
+                {/* <div className="relative w-full mb-0">
                   <p className="text-caption-2 text-gray mt-1 mb-2">
                     Masukkan Tanggal Posting
                   </p>
@@ -81,7 +94,7 @@ const FormBerita = () => {
                     onChange={(date) => console.log(date)}
                     // isRequired
                   />
-                </div>
+                </div> */}
                 {/* judul berita harus unique jika ada yang sama maka tidak dapat disimpan  */}
                 <div className="relative w-full mb-0">
                   <p className="text-caption-2 text-gray mt-1 mb-2">
@@ -158,7 +171,7 @@ const FormBerita = () => {
                 )}
 
                 <div className="flex justify-between w-full mt-4">
-                <Link
+                  <Link
                     to="/admin/berita"
                     className="flex items-center gap-2 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300"
                   >

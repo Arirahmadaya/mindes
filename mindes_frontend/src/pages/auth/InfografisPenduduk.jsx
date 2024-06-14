@@ -14,11 +14,11 @@ const InfografisPenduduk = () => {
     <div className="bg-grayscale-90">
       <NavbarUser />
       <div className=" lg:my-[30px] my-[10px]">
-        <div className="md:flex justify-center items-center ">
-          <h1 className="font-bold md:text-heading-1 text-heading-4 text-blue hover:text-bluenight hover:drop-shadow-2xl ml-70 leading-tight ">
-            Infografis Kependudukan Desa Kalinyamat Kulon
+        <div className="flex flex-col md:flex-row lg:justify-between justify-center items-center lg:mx-70 mx-5 ">
+          <h1 className="font-bold text-center lg:text-start md:text-heading-1 text-heading-4 text-blue hover:text-bluenight hover:drop-shadow-2xl leading-tight mb-5 md:mb-0">
+          Infografis Kependudukan Desa Kalinyamat Kulon
           </h1>
-          <div className="ml-auto">
+          <div className="flex justify-center">
             <NavbarGrafis />
           </div>
         </div>

@@ -33,7 +33,7 @@ const Berita = () => {
           Lihat Agenda Desa yang bisa anda ketahui lebih lanjut di sini
         </div>
 
-        <div className="my-16 relative z-20 font-medium lg:mx-70 mx-[20px]">
+        <div className="my-16 relative z-20 font-medium lg:mx-70 mx-[20px] border-2">
           <Timeline />
         </div>
       </div>

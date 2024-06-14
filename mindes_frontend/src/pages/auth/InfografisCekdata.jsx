@@ -11,16 +11,16 @@ const InfografisCekData = () => {
     <div className="bg-grayscale-90">
       <NavbarUser />
       <div className=" lg:my-[30px] my-[10px]">
-        <div className="md:flex justify-center items-center ">
-          <h1 className="font-bold md:text-heading-1 text-heading-4 text-blue hover:text-bluenight hover:drop-shadow-2xl ml-70 leading-tight ">
-            Cek Data Masyarakat Desa
+        <div className="flex flex-col md:flex-row lg:justify-between justify-center items-center lg:mx-70 mx-5 ">
+          <h1 className="font-bold text-center lg:text-start md:text-heading-1 text-heading-4 text-blue hover:text-bluenight hover:drop-shadow-2xl leading-tight mb-5 md:mb-0">
+          Cek Data Masyarakat Desa
           </h1>
-          <div className="ml-auto">
-          <NavbarGrafis />
+          <div className="flex justify-center">
+            <NavbarGrafis />
           </div>
         </div>
       </div>
-      <div className="bg-primary-30/10 w-auto h-auto mx-70 my-10 p-10 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
+      <div className="bg-primary-30/10 w-auto h-auto lg:mx-70 mx-5 my-10 p-10 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
         <div>
           <div>
             <img
@@ -30,13 +30,13 @@ const InfografisCekData = () => {
             />
           </div>
           <div className="flex justify-between">
-            <div className=" text-heading-2 font-bold text-blue hover:text-bluenight hover:drop-shadow-xl">
+            <div className=" lg:text-heading-2 text-heading-5 font-bold text-blue hover:text-bluenight hover:drop-shadow-xl">
               Cek Penerima Bansos
             </div>
 
             <Button
               as={Link}
-              className="bg-primary-30  text-heading-5 font-semibold text-white rounded-md px-5 py-7 hover:underline"
+              className="bg-primary-30 lg:text-heading-5 text-body-2 font-semibold text-white rounded-md px-5 lg:py-7 py-5 hover:underline"
               href="https://simpbb.tegalkota.go.id/"
               variant="flat"
             >
@@ -52,7 +52,7 @@ const InfografisCekData = () => {
         </div>
       </div>
 
-      <div className="bg-primary-30/10 w-auto h-auto mx-70 my-10 p-10 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
+      <div className="bg-primary-30/10 w-auto h-auto lg:mx-70 mx-5 my-10 p-10 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
         <div>
           <div>
             <img
@@ -62,13 +62,13 @@ const InfografisCekData = () => {
             />
           </div>
           <div className="flex justify-between">
-            <div className=" text-heading-2 font-bold text-blue hover:text-bluenight hover:drop-shadow-xl">
+            <div className=" lg:text-heading-2 text-heading-5 font-bold text-blue hover:text-bluenight hover:drop-shadow-xl">
               Cek Data Kependudukan
             </div>
 
             <Button
               as={Link}
-              className="bg-primary-30  text-heading-5 font-semibold text-white rounded-md px-5 py-7 hover:underline"
+              className="bg-primary-30 lg:text-heading-5 text-body-2 font-semibold text-white rounded-md px-5 lg:py-7 hover:underline"
               href="https://disdukcapil.tegalkab.go.id/data/jumlah_penduduk"
               variant="flat"
             >
@@ -84,7 +84,7 @@ const InfografisCekData = () => {
         </div>
       </div>
 
-      <div className="bg-primary-30/10 w-auto h-auto mx-70 my-10 p-10 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
+      <div className="bg-primary-30/10 w-auto h-auto lg:mx-70 mx-5 my-10 p-10 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
         <div>
           <div>
             <img
@@ -94,13 +94,13 @@ const InfografisCekData = () => {
             />
           </div>
           <div className="flex justify-between">
-            <div className=" text-heading-2 font-bold text-blue hover:text-bluenight hover:drop-shadow-xl">
+            <div className=" lg:text-heading-2 text-heading-5 font-bold text-blue hover:text-bluenight hover:drop-shadow-xl">
               Cek Pajak PBB
             </div>
 
             <Button
               as={Link}
-              className="bg-primary-30  text-heading-5 font-semibold text-white rounded-md px-5 py-7 hover:underline"
+              className="bg-primary-30 lg:text-heading-5 text-body-2 font-semibold text-white rounded-md px-5 lg:py-7 hover:underline"
               href="https://cekpajak.com/jawa-tengah/tegal"
               variant="flat"
             >
@@ -116,7 +116,7 @@ const InfografisCekData = () => {
         </div>
       </div>
 
-      <div className="bg-primary-30/10 w-auto h-auto mx-70 my-10 p-10 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
+      <div className="bg-primary-30/10 w-auto h-auto lg:mx-70 mx-5 my-10 p-10 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
         <div>
           <div>
             <img
@@ -126,13 +126,13 @@ const InfografisCekData = () => {
             />
           </div>
           <div className="flex justify-between">
-            <div className=" text-heading-2 font-bold text-blue hover:text-bluenight hover:drop-shadow-xl">
+            <div className=" lg:text-heading-2 text-heading-5 font-bold text-blue hover:text-bluenight hover:drop-shadow-xl">
               Cek Pajak Kendaraan
             </div>
 
             <Button
               as={Link}
-              className="bg-primary-30 text-heading-5 font-semibold text-white rounded-md px-5 py-7 hover:underline"
+              className="bg-primary-30 text-heading-5 font-semibold text-white rounded-md px-5 lg:py-7 hover:underline"
               href="https://cekpajak.com/jawa-tengah/tegal"
               variant="flat"
             >

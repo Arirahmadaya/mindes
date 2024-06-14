@@ -122,14 +122,14 @@ const ProfilDesa = () => {
         </div>
       </div>
 
-      <div  className="lg:mb-24 mb-10">
+      <div className="lg:mb-24 mb-10 lg:mx-70 mx-5">
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="lg:text-display-2 text-heading-2 font-bold text-blue hover:text-bluenight hover:drop-shadow-2xl text-center mb-8">
             Sejarah Desa Kalinyamat Kulon
           </h2>
 
           <div className="mb-8">
-            <h3 className="text-body-1 font-bold text-black mb-4">
+            <h3 className="text-heading-5 font-bold text-black mb-2">
               Awal Mula dan Pendiri
             </h3>
             <p className="text-gray-700 text-body-2 leading-relaxed">
@@ -144,7 +144,7 @@ const ProfilDesa = () => {
           </div>
 
           <div className="mb-8">
-            <h3 className="text-body-1 font-bold text-gray-800 mb-4">
+            <h3 className="text-heading-5 font-bold text-gray-800 mb-2">
               Pembentukan dan Perkembangan Desa
             </h3>
             <p className="text-gray-700 leading-relaxed">
@@ -159,7 +159,7 @@ const ProfilDesa = () => {
           </div>
 
           <div className="mb-8">
-            <h3 className="text-body-1 font-bold text-gray-800 mb-4">
+            <h3 className="text-heading-5 font-bold text-gray-800 mb-2">
               Nama Desa dan Penghormatan kepada Ratu Kalinyamat
             </h3>
             <p className="text-gray-700 leading-relaxed">
@@ -175,7 +175,7 @@ const ProfilDesa = () => {
           </div>
 
           <div>
-            <h3 className="text-body-1 font-bold text-gray-800 mb-4">
+            <h3 className="text-heading-5 font-bold text-gray-800 mb-2">
               Perkembangan Desa Modern
             </h3>
             <p className="text-gray-700 leading-relaxed">

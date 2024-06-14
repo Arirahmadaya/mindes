@@ -10,18 +10,18 @@ const InfografisSDGs = () => {
     <div className="bg-grayscale-90">
       <NavbarUser />
       <div className=" lg:my-[30px] my-[10px]">
-        <div className="md:flex justify-center items-center ">
-          <h1 className="font-bold md:text-heading-1 text-heading-4 text-blue hover:text-bluenight hover:drop-shadow-2xl ml-70 leading-tight ">
-            SDGs Desa Kalinyamat Kulon
+        <div className="flex flex-col md:flex-row lg:justify-between justify-center items-center lg:mx-70 mx-5 ">
+          <h1 className="font-bold text-center lg:text-start md:text-heading-1 text-heading-4 text-blue hover:text-bluenight hover:drop-shadow-2xl leading-tight mb-5 md:mb-0">
+          SDGs Desa Kalinyamat Kulon
           </h1>
-          <div className="ml-auto">
-          <NavbarGrafis />
+          <div className="flex justify-center">
+            <NavbarGrafis />
           </div>
         </div>
       </div>
 
-      <div className="mx-70">
-        <div className="ml-3"></div>
+      <div className="lg:mx-70 mx-5">
+      
 
         <CardSDGs />
       </div>
