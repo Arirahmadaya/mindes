@@ -127,7 +127,7 @@ const StrukturPD = () => {
 
             .tree li div{
                 border: 1px solid #3A0507;
-                padding: 5px 60px;
+                padding: 5px 40px;
                 display: inline-block;
                 border-radius: 10px;
                 transition: all 0.5s;
@@ -171,20 +171,20 @@ const treeRendering = (treeData) => {
       <ul>
         {treeData.map((item) => (
           <li className={item.name + item.id}>
-            <div className=" bg-primary-10 w-[270px] h-[130px] rounded-[20px] ">
+            <div className=" bg-primary-10 lg:w-[270px] lg:h-[130px] w-[30px] h-auto rounded-[20px] ">
            
                 <img
                   src={item.imgUrl}
                   alt={item.name}
-                  className="w-16 h-16 rounded-full bg-secondary-20 mx-auto -mt-4  "
+                  className="hidden lg:block w-16 h-16 rounded-full bg-secondary-20 mx-auto lg:-mt-4  "
                 />
             
 
-              <span className="text-heading-6 font-semibold text-nowrap text-center ">
+              <span className="lg:text-heading-6 text-[12px] font-semibold lg:text-nowrap ">
                 {item.name}
               </span>
               <br />
-              <span className="text-caption-2 font-thin text-nowrap text-center">
+              <span className="text-caption-2 font-thin lg:text-nowrap ">
                 {item.title}
               </span>
             </div>

@@ -55,7 +55,7 @@ const ProfilDesa = () => {
         <div className="mb-2 font-bold text-center text-heading-2 lg:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
           Perangkat Desa
         </div>
-        <div className=" mx-70">
+        <div className=" lg:mx-70 ">
           <StrukturPD />
         </div>
       </div>
