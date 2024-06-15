@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -9,6 +9,11 @@ import {
   NavbarMenuItem,
   Link,
   Button,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Avatar,
 } from "@nextui-org/react";
 import {
   Home,
@@ -22,8 +27,23 @@ import {
 import { useLocation } from "react-router-dom";
 
 export default function NavbarUser() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const loggedInStatus = localStorage.getItem("isLoggedIn");
+    setIsLoggedIn(loggedInStatus === "true");
+  }, []);
+
+  const handleMenuToggle = useCallback(() => {
+    setIsMenuOpen((prev) => !prev);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.setItem("isLoggedIn", "false");
+    setIsLoggedIn(false);
+  };
 
   const menuItemsMain = [
     { name: "Beranda", icon: Home, href: "/" },
@@ -41,27 +61,28 @@ export default function NavbarUser() {
     { name: "Login", icon: Key, href: "/login" },
   ];
 
+  const isActive = (href) =>
+    location.pathname === href ||
+    (href === "/infografis" && location.pathname.startsWith(href));
+
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
       shouldHideOnScroll
-
       className="bg-primary-40 lg:px-[40px]"
       maxWidth={"full"}
     >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onClick={handleMenuToggle}
           className="sm:hidden text-white"
         />
         <NavbarBrand className="flex">
           <img
             src="/public/logo/logo_light.png"
             alt="logo"
-
-            className="md:w-12 md:h-12 pr-2 blok w-10 h-10 "
-
+            className="md:w-12 md:h-12 pr-2 blok w-10 h-10"
           />
           <div className="text-white hover:text-white/80">
             <p className="font-bold lg:text-heading-6 text-body-2">
@@ -74,14 +95,7 @@ export default function NavbarUser() {
 
       <NavbarContent className="hidden sm:flex gap-10 text-white" justify="center">
         {menuItemsMain.map((item, index) => (
-          <NavbarItem 
-            key={index} 
-            isActive={
-              item.href === "/infografis"
-                ? location.pathname.startsWith(item.href)
-                : location.pathname === item.href
-            }
-          >
+          <NavbarItem key={index} isActive={isActive(item.href)}>
             <Link color="foreground" href={item.href}>
               {item.name}
             </Link>
@@ -90,16 +104,53 @@ export default function NavbarUser() {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <NavbarItem>
-          <Button
-            as={Link}
-            className="bg-primary-30 text-white rounded-md"
-            href="/login"
-            variant="flat"
-          >
-            Login <LogIn />
-          </Button>
-        </NavbarItem>
+        {isLoggedIn ? (
+          <NavbarContent as="div" className="items-center" justify="center">
+            <Dropdown placement="bottom-end">
+              <DropdownTrigger>
+                <div className="flex items-center">
+                  <Avatar
+                    isBordered
+                    as="button"
+                    className="transition-transform"
+                    color="primary"
+                    name="Ferianta"
+                    size="sm"
+                    src="/img_desa/sudirmo.jpg"
+                  />
+                  <p className="text-white font-semibold ml-3 hover:cursor-pointer">
+                    Ferianta
+                  </p>
+                </div>
+              </DropdownTrigger>
+
+              <DropdownMenu aria-label="Profile Actions" variant="flat">
+                <DropdownItem key="profile" className="h-14 gap-2">
+                  <p className="font-semibold">Login sebagai</p>
+                  <p className="font-semibold">ferianta@gmail.com</p>
+                </DropdownItem>
+                <DropdownItem key="profile">Profile</DropdownItem>
+                <DropdownItem key="settings">Pengaturan</DropdownItem>
+             
+                <DropdownItem key="help">Bantuan</DropdownItem>
+                <DropdownItem key="logout" color="danger" onClick={handleLogout}>
+                  Log Out
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </NavbarContent>
+        ) : (
+          <NavbarItem>
+            <Button
+              as={Link}
+              className="bg-primary-30 text-white rounded-md"
+              href="/login"
+              variant="flat"
+            >
+              Login <LogIn />
+            </Button>
+          </NavbarItem>
+        )}
       </NavbarContent>
 
       <NavbarMenu isOpen={isMenuOpen}>
