@@ -180,9 +180,7 @@ const Mindes = () => {
             </div>
           </section>
 
-      
-
-          <section className="mt-12 text-black p-6 rounded-lg flex flex-col lg:flex-row items-center">
+          <section id="contact" className="mt-12 text-black p-6 rounded-lg flex flex-col lg:flex-row items-center">
             <div className="flex-1">
               <h2 className="text-2xl font-bold">
                 Want to own the same app? Leave us a message

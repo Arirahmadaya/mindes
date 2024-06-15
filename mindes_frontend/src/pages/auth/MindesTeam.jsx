@@ -8,7 +8,7 @@ const MindesTeam = () => {
   };
 
   const hackers = [
-    { name: "Ari Rahmadaya", image: "/img/massayu.png" },
+    { name: "Ari Rahmadaya", image: "/img_desa/kepala_desa.png" },
     { name: "Rajawali Adigraha", image: "/img/massayu.png" },
     { name: "Nunut Willian", image: "/img/massayu.png" },
   ];
@@ -24,7 +24,7 @@ const MindesTeam = () => {
       <main className="max-w-6xl mx-auto p-4">
         <div className="mb-8">
           {/* <img src={logo} alt="Logo" className="w-6 h-6 mr-2" /> */}
-          <a href="/" className="text-blue-500 font-semibold hover:underline">
+          <a href="/about/mindes/madilog-team" className="text-blue-500 font-semibold hover:underline">
             Back to Home
           </a>
         </div>
@@ -49,7 +49,7 @@ const MindesTeam = () => {
             HACKER
           </h2>
           <div className="text-black text-sm font-semibold font-['Open Sans'] leading-tight">
-            3 items
+           
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {hackers.map((hacker, index) => (
@@ -70,7 +70,7 @@ const MindesTeam = () => {
             HIPSTER
           </h2>
           <div className="text-black text-sm font-semibold font-['Open Sans'] leading-tight">
-            2 items
+           
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {hipsters.map((hipster, index) => (
