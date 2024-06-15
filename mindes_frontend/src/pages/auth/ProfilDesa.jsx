@@ -25,7 +25,7 @@ const ProfilDesa = () => {
             Kota Tegal
           </h1>
         </div>
-        <div className="justify-end">
+        <div className="justify-end lg:mt-0 mt-8">
           <h2 className="text-center lg:text-heading-1 text-heading-3 font-bold text-blue hover:text-bluenight hover:drop-shadow-2xl">
             VISI
           </h2>
@@ -52,15 +52,15 @@ const ProfilDesa = () => {
       </div>
 
       <div className="lg:mb-24 mb-10">
-        <div className="mb-2 font-bold text-center text-heading-2 lg:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
+        <div className="lg:mb-2 font-bold text-center text-heading-2 lg:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
           Perangkat Desa
         </div>
-        <div className=" lg:mx-70 ">
+        <div className=" ">
           <StrukturPD />
         </div>
       </div>
 
-      <div  className="lg:mb-24 mb-10">
+      <div className="lg:mb-24 mb-10 lg:mx-70 mx-5">
         <div className="text-center">
           <h1 className="font-bold lg:text-display-2 text-heading-2 text-blue hover:text-bluenight hover:drop-shadow-2xl">
             PRIMA
@@ -194,7 +194,7 @@ const ProfilDesa = () => {
 
       <div  className="lg:mb-24 mb-10">
         <div className="mb-2 font-bold text-center text-heading-2 lg:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
-          Perangkat Desa
+          Peta Lokasi Desa
         </div>
         <div className="lg:flex mx-70">
           <div className=" bg-indigo-400/50 rounded-[20px] transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500 hidden lg:block">
