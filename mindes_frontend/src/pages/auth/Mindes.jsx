@@ -3,6 +3,7 @@ import { Input, Button } from "@nextui-org/react";
 import { Mail, Phone, MapPin } from "react-feather";
 import NavbarMINDes from "../../components/NavbarMINDes";
 
+
 const Mindes = () => {
   return (
     <div className="bg-white">
@@ -14,12 +15,12 @@ const Mindes = () => {
               <img
                 src="/img/MindesA.png"
                 alt="Logo"
-                className="w-2/3 h-[307px] "
+                className="w-2/3 lg:h-[307px] "
               />
             </div>
-            <div className="w-1/2 h-[410px] bg-blue-900 rounded-bl-[20px] flex items-center justify-end p-16">
+            <div className="w-1/2 lg:h-[410px] h-auto bg-blue-900 rounded-bl-[20px] flex items-center justify-end p-16">
               <div className="text-left text-white">
-                <div className="w-full text-[54px] font-bold leading-[64.80px] mt-12">
+                <div className="w-full lg:text-display-2 text-heading-4 font-bold lg:leading-[64.80px] lg:mt-12 mt-5">
                   Ease Your Village Data Management with MINDes
                 </div>
               </div>
@@ -28,14 +29,14 @@ const Mindes = () => {
         </div>
 
         <div className="mt-20 text-center lg:text-left ">
-          <div className="flex justify-start ">
+          <div className="flex justify-start items-center">
             <img
-              className="w-[250px] h-[450px] rounded-r-lg"
+              className="lg:w-[250px] lg:h-[450px] w-[150px] h-1/2 rounded-r-lg"
               src="/img/MindesC.png"
               alt="MINDes"
             />
-            <div className="flex items-center justify-evenly -ml-28">
-              <p className="text-heading-6 leading-relaxed bg-blue-900 text-white p-10 rounded-lg w-1/2 h-auto">
+            <div className="flex items-center justify-evenly lg:-ml-28 -ml-20">
+              <p className="lg:text-heading-6 text-caption-1 bg-blue-900 text-white p-10 rounded-lg lg:w-1/2 h-auto">
                 <strong>MINDes</strong> sebuah platform yang memungkinkan
                 masyarakat desa menerima informasi dan mampu berpartisipasi
                 aktif dalam pembangunan desa dengan pengelolaan dana desa yang
@@ -44,7 +45,7 @@ const Mindes = () => {
                 maju.
               </p>
               <img
-                className="w-[400px] h-[150px]"
+                className="lg:w-[400px] lg:h-[150px] hidden lg:block"
                 src="/img/MindesB.png"
                 alt="MINDes"
               />
@@ -61,9 +62,9 @@ const Mindes = () => {
                   <img
                     src="/img/kota_tegal.png"
                     alt="Desa 1"
-                    className="h-28"
+                    className="lg:h-28 h-20"
                   />
-                  <div className="text-center text-caption-1 font-normal leading-[28.80px]">
+                  <div className="text-center lg:text-caption-1 text-caption-2 font-normal lg:leading-[28.80px]">
                     Kalinyamat Kulon
                     <br />
                     Kota Tegal
@@ -73,9 +74,9 @@ const Mindes = () => {
                   <img
                     src="/img/kota_tegal.png"
                     alt="Desa 2"
-                    className="h-28"
+                    className="lg:h-28 h-20"
                   />
-                  <div className="text-center text-caption-1 font-normal leading-[28.80px]">
+                  <div className="text-center lg:text-caption-1 text-caption-2 font-normal lg:leading-[28.80px]">
                     Kalinyamat Kulon
                     <br />
                     Kota Tegal
@@ -85,9 +86,9 @@ const Mindes = () => {
                   <img
                     src="/img/kota_tegal.png"
                     alt="Desa 3"
-                    className="h-28"
+                    className="lg:h-28 h-20"
                   />
-                  <div className="text-center text-caption-1 font-normal leading-[28.80px]">
+                  <div className="text-center lg:text-caption-1 text-caption-2 font-normal lg:leading-[28.80px]">
                     Kalinyamat Kulon
                     <br />
                     Kota Tegal
@@ -97,9 +98,9 @@ const Mindes = () => {
                   <img
                     src="/img/kota_tegal.png"
                     alt="Desa 4"
-                    className="h-28"
+                    className="lg:h-28 h-20"
                   />
-                  <div className="text-center text-caption-1 font-normal leading-[28.80px]">
+                  <div className="text-center lg:text-caption-1 text-caption-2 font-normal lg:leading-[28.80px]">
                     Kalinyamat Kulon
                     <br />
                     Kota Tegal
@@ -109,9 +110,9 @@ const Mindes = () => {
                   <img
                     src="/img/kota_tegal.png"
                     alt="Desa 1"
-                    className="h-28"
+                    className="lg:h-28 h-20"
                   />
-                  <div className="text-center text-caption-1 font-normal leading-[28.80px]">
+                  <div className="text-center lg:text-caption-1 text-caption-2 font-normal lg:leading-[28.80px]">
                     Kalinyamat Kulon
                     <br />
                     Kota Tegal
@@ -122,61 +123,64 @@ const Mindes = () => {
           </section>
 
           <section className="">
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="md:w-1/2 text-center p-16">
-                <div className=" text-display-2 font-bold leading-[64.80px] -mt-36 mb-8">
+            <div className="flex items-center justify-between">
+              <div className="w-1/2 text-center lg:p-16">
+              <div className=" lg:text-display-2 text-heading-6 font-bold lg:leading-[64.80px] lg:-mt-36 lg:mb-8 mb-2">
                   Build Your Own Village Website
                 </div>
-                <div className=" text-heading-6 text-slate-950 text-2xl leading-[28.80px]">
+                <div className=" lg:text-heading-6 text-caption-2 font-normal lg:leading-[28.80px]">
                   You can organise what you want to display on your website with
                   guaranteed data security. You can also do cloud storage for
                   data that is still made manually in your village.
                 </div>
               </div>
-              <div className="w-1/2 flex justify-center mt-6 md:mt-0">
+              <div className="w-1/2 mt-6 md:mt-0">
                 <img
                   src="/img/MindesX.png"
                   alt="Website Desa"
-                  className="max-w-full h-auto"
+                  className="w-full h-full "
                 />
               </div>
             </div>
           </section>
           <section>
             <div className="flex justify-start ">
-              <div className="w-[150px] h-[500px] rounded-r-lg bg-primary-50"></div>
+              <div className="lg:w-[150px] lg:h-[450px] w-[150px] h-[300px] rounded-r-lg bg-primary-50"></div>
 
-              <div className="flex items-center justify-evenly gap-10 -ml-20 overflow-hidden">
+              <div className="flex items-center justify-evenly lg:gap-10 gap-5 lg:-ml-20 -ml-5 overflow-hidden">
                 <img
-                  className="rounded-lg w-[300px] h-4/5"
+                  className="rounded-lg lg:w-[250px] w-[180px] h-4/5"
                   src="/img_berita/berita1.jpg"
                   alt="MINDes"
                 />
 
                 <img
-                  className="rounded-lg w-[300px] h-4/5"
+                  className="rounded-lg lg:w-[250px] w-[180px] h-4/5"
                   src="/img_berita/berita2.jpg"
                   alt="MINDes"
                 />
 
                 <img
-                  className="rounded-lg w-[300px] h-4/5"
+                  className="rounded-lg lg:w-[250px] w-[180px] h-4/5"
                   src="/img_berita/berita3.jpg"
                   alt="MINDes"
                 />
 
                 <img
-                  className="rounded-lg w-[300px] h-4/5"
+                  className="rounded-lg lg:w-[250px] w-[180px] h-4/5"
                   src="/img_berita/berita4.jpg"
+                  alt="MINDes"
+                />
+                 <img
+                  className="rounded-lg lg:w-[250px] w-[180px] h-4/5"
+                  src="/img_berita/berita5.jpg"
                   alt="MINDes"
                 />
               </div>
             </div>
           </section>
 
-      
-
-          <section className="mt-12 text-black p-6 rounded-lg flex flex-col lg:flex-row items-center">
+          <section id="contact" className="mt-12 text-black p-6 rounded-lg flex flex-col lg:flex-row items-center">
             <div className="flex-1">
               <h2 className="text-2xl font-bold">
                 Want to own the same app? Leave us a message

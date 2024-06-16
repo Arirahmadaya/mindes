@@ -1,19 +1,82 @@
-
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
-import { Eye, Edit, Trash2 } from "react-feather";
+import { Eye, Edit, Trash2, Printer } from "react-feather";
 import TableProps from "../../../components/TableProps";
 import { useNavigate } from "react-router-dom";
+import { Button, Modal } from "@nextui-org/react";
 
+// Komponen PrintModal
+const PrintModal = ({ item, onClose }) => {
+  const [pencatatanData, setPencatatanData] = useState([]);
+
+  useEffect(() => {
+    if (item) {
+      getPencatatanData(item.id_realisasi);
+    }
+  }, [item]);
+
+  const getPencatatanData = async (id_realisasi) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/pencatatan/${id_realisasi}`);
+      setPencatatanData(response.data.data);
+    } catch (error) {
+      console.error("Terjadi kesalahan", error);
+    }
+  };
+
+  return (
+    <Modal
+      closeButton
+      aria-labelledby="modal-title"
+      open={!!item}
+      onClose={onClose}
+    >
+      <Modal.Header>
+        <h4>Laporan Kegiatan</h4>
+      </Modal.Header>
+      <Modal.Body>
+        {item && (
+          <div>
+            <p>ID: {item.id}</p>
+            <p>Nama: {item.nama}</p>
+            <p>Kegiatan: {item.kegiatan}</p>
+            <p>Lokasi: {item.lokasi}</p>
+            <p>Sumber: {item.sumber}</p>
+            <p>Biaya: {item.pembiayaan}</p>
+            <p>Status: {item.status}</p>
+            <p>Tgl Mulai: {item.tgl_mulai}</p>
+            <p>Tgl Selesai: {item.tgl_selesai}</p>
+            <h5>Pencatatan:</h5>
+            {pencatatanData.map((pencatatan, index) => (
+              <div key={index}>
+                <p>No: {pencatatan.no}</p>
+                <p>Kode: {pencatatan.kode}</p>
+                <p>Nominal: {pencatatan.nominal}</p>
+                <p>Total: {pencatatan.total}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button auto flat onClick={() => window.print()}>
+          Print
+        </Button>
+        <Button auto flat onClick={onClose}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+// Komponen Realisasi
 const Realisasi = () => {
   const [realisasitable, setRealisasi] = useState([]);
+  const [printItem, setPrintItem] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,22 +110,6 @@ const Realisasi = () => {
     "actions",
   ];
 
-const isi = [
-  {
-    id: 1,
-    kode: "1101",
-    sub_bidang: "BIDANG PENANGGULANGAN BENCANA, DARURAT DAN MENDESAK DESA",
-    kegiatan: "Pembangunan Waduk Desa Kalinyamat Kulon",
-    lokasi: "Bantaran Kali Kemiri",
-    sumber: "ADD",
-    biaya: "Rp. 1.000.000.000",
-    status: "proses",  // Make sure status matches the keys in statusColorMap
-  },
-];
-
-const Realisasi = () => {
-  const navigate = useNavigate();  // Ensure navigate is initialized
-
   const columns = [
     { name: "ID", uid: "id" },
     { name: "Kode", uid: "kode_kegiatan" },
@@ -82,34 +129,32 @@ const Realisasi = () => {
     { name: "Gagal", uid: "gagal" },
   ];
 
-
   const actionButtons = [
     {
       icon: <Eye className="w-4 h-4 text-black" />,
       onClick: (item) => {
-
-        navigate("/admin/realisasi/pencatatan", { state: item });
-
         console.log("View item:", item);
         // Implementasikan logika tampilan di sini
-
       },
     },
     {
       icon: <Edit className="w-4 h-4 text-warning" />,
       onClick: (item) => {
         console.log("Edit item:", item);
-
         // Implementasikan logika edit di sini
-
       },
     },
     {
       icon: <Trash2 className="w-4 h-4 text-danger" />,
       onClick: (item) => {
         console.log("Delete item:", item);
-
         // Implementasikan logika hapus di sini
+      },
+    },
+    {
+      icon: <Printer className="w-4 h-4 text-blue" />,
+      onClick: (item) => {
+        setPrintItem(item);
       },
     },
   ];
@@ -127,7 +172,6 @@ const Realisasi = () => {
     tgl_mulai: realisasi.tgl_mulai,
     tgl_selesai: realisasi.tgl_selesai,
   }));
-
 
   return (
     <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
@@ -153,18 +197,18 @@ const Realisasi = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  tambahKegiatanURL="/admin/realisasi/tambah"
-                  showPrintAction={true}
+                  tambahBeritaURL={"/admin/realisasi/tambah"}
                   actionButtons={actionButtons}
                 />
               </div>
             </div>
-
             <div className="flex justify-between"></div>
-
           </div>
         </div>
       </div>
+      {printItem && (
+        <PrintModal item={printItem} onClose={() => setPrintItem(null)} />
+      )}
     </div>
   );
 };

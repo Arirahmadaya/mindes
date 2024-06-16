@@ -3,12 +3,12 @@ import { Calendar, MapPin } from "react-feather";
 
 const Timeline = () => {
   return (
-    <div className="flex justify-start">
-      <ul className="timeline timeline-vertical w-full lg:w-auto">
+    <div className="flex justify-center items-center w-full h-full">
+      <ul className="timeline timeline-vertical lg:w-auto lg:m-0 -ml-28 ">
         <li className="gap-x-5">
           <div className="timeline-start text-center ">
-            <p className="text-heading-5 font-bold">15</p>
-            <p className="text-heading-5 ">Mei 2024</p>
+            <p className="lg:text-heading-5 text-body-1 font-bold">15</p>
+            <p className="lg:text-heading-5 text-body-1 ">Mei 2024</p>
           </div>
           <div className="timeline-middle">
             <svg
@@ -52,8 +52,8 @@ const Timeline = () => {
         <li className="gap-x-5">
           <hr />
           <div className="timeline-start text-center ">
-            <p className="text-heading-5 font-bold">15</p>
-            <p className="text-heading-5 ">Mei 2024</p>
+            <p className="lg:text-heading-5 text-body-1 font-bold">15</p>
+            <p className="lg:text-heading-5 text-body-1 ">Mei 2024</p>
           </div>
           <div className="timeline-middle">
             <svg
@@ -97,8 +97,8 @@ const Timeline = () => {
         <li className="gap-x-5">
           <hr />
           <div className="timeline-start text-center ">
-            <p className="text-heading-5 font-bold">15</p>
-            <p className="text-heading-5 ">Mei 2024</p>
+            <p className="lg:text-heading-5 text-body-1 font-bold">15</p>
+            <p className="lg:text-heading-5 text-body-1 ">Mei 2024</p>
           </div>
           <div className="timeline-middle">
             <svg
@@ -142,8 +142,8 @@ const Timeline = () => {
         <li className="gap-x-5">
           <hr />
           <div className="timeline-start text-center ">
-            <p className="text-heading-5 font-bold">15</p>
-            <p className="text-heading-5 ">Mei 2024</p>
+            <p className="lg:text-heading-5 text-body-1 font-bold">15</p>
+            <p className="lg:text-heading-5 text-body-1 ">Mei 2024</p>
           </div>
           <div className="timeline-middle">
             <svg
@@ -187,8 +187,8 @@ const Timeline = () => {
         <li className="gap-x-5">
           <hr />
           <div className="timeline-start text-center ">
-            <p className="text-heading-5 font-bold">15</p>
-            <p className="text-heading-5 ">Mei 2024</p>
+            <p className="lg:text-heading-5 text-body-1 font-bold">15</p>
+            <p className="lg:text-heading-5 text-body-1 ">Mei 2024</p>
           </div>
           <div className="timeline-middle">
             <svg

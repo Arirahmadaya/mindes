@@ -127,7 +127,7 @@ const StrukturPD = () => {
 
             .tree li div{
                 border: 1px solid #3A0507;
-                padding: 5px 60px;
+                // padding: 5px 45px;
                 display: inline-block;
                 border-radius: 10px;
                 transition: all 0.5s;
@@ -171,20 +171,20 @@ const treeRendering = (treeData) => {
       <ul>
         {treeData.map((item) => (
           <li className={item.name + item.id}>
-            <div className=" bg-primary-10 w-[270px] h-[130px] rounded-[20px] ">
+            <div className=" bg-primary-10 py-2 px-2 lg:w-[270px]  md:w-[200px]  w-[100px] h-auto rounded-[20px]">
            
                 <img
                   src={item.imgUrl}
                   alt={item.name}
-                  className="w-16 h-16 rounded-full bg-secondary-20 mx-auto -mt-4  "
+                  className=" lg:w-16 lg:h-16 md:w-12 md:h-12 w-8 h-8 rounded-full bg-secondary-20 mx-auto -mt-4  "
                 />
             
 
-              <span className="text-heading-6 font-semibold text-nowrap text-center ">
+              <span className="lg:text-heading-6 md:text-body-1 text-caption-1 font-semibold lg:text-nowrap ">
                 {item.name}
               </span>
               <br />
-              <span className="text-caption-2 font-thin text-nowrap text-center">
+              <span className="md:text-caption-2 text-[10px] font-thin lg:text-nowrap ">
                 {item.title}
               </span>
             </div>
@@ -200,69 +200,3 @@ const treeRendering = (treeData) => {
 
 export default StrukturPD;
 
-// import React from 'react';
-
-// const people = [
-//   {
-//     name: 'Arianto, S. AP',
-//     title: 'Kepala Kelurahan Kalinyamat Kulon',
-//     imgUrl: '/img_desa/kepala_desa.png',
-//   },
-
-//   {
-//     name: 'Supriyatno, S.IP',
-//     title: 'Sekretaris Desa',
-//     imgUrl: '/img_desa/sekretaris_desa.png',
-//   },
-//   {
-//     name: 'Akhmad Ari M., A.Md',
-//     title: 'Staf',
-//     imgUrl: '/img_desa/staf1.png',
-//   },
-//   {
-//     name: 'Sudirmo',
-//     title: 'Staf',
-//     imgUrl: '/img_desa/staf2.png',
-//   },
-//   {
-//     name: 'Maksus',
-//     title: 'Kasi PSM',
-//     imgUrl: '/img_desa/kasi_psm.png',
-//   },
-//   {
-//     name: 'Bowo Leksono',
-//     title: 'Staf',
-//     imgUrl: '/img_desa/staf3.png',
-//   },
-
-// ];
-
-// const StrukturPD = () => {
-//   const PersonCard = ({ person }) => {
-//     return (
-//       <div className="flex justify-evenly items-center mt-20">
-//         <div className="relative bg-secondary-30 w-[320px] h-[120px] p-5 flex flex-col items-center justify-center rounded-[20px] shadow-lg">
-//           {/* Bagian foto */}
-//           <div className="absolute -top-10 bg-secondary-20 w-24 h-24 flex items-center justify-center rounded-full">
-//             <img src={person.imgUrl} alt={person.name} className="w-full h-full rounded-full" />
-//           </div>
-//           {/* Bagian nama dan jabatan */}
-//           <div className="mt-10 text-white font-semibold text-center text-xl">
-//             <div>{person.name}</div>
-//             <div>{person.title}</div>
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   };
-
-//   return (
-//     <div>
-//       {people.map((person, index) => (
-//         <PersonCard key={index} person={person} />
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default StrukturPD;

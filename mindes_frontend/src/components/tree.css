@@ -1,4 +1,4 @@
-/* Existing styles */
+/* Existing styles
 .tree ul {
     padding-top: 20px; position: relative;
     transition: all 0.5s;
@@ -80,4 +80,4 @@
 /* Targeting all further descendants */
 .tree ul ul ul li div {
     border-top: 5px solid #F1A025;
-}
+} */

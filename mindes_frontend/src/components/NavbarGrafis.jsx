@@ -17,7 +17,7 @@ export default function NavbarGrafis() {
     `h-6 w-6 mb-1 ${location.pathname === path ? "stroke-2" : "stroke-1"} group-hover:stroke-2`;
 
   return (
-    <div className="flex gap-4 mx-70">
+    <div className="flex gap-4 ">
       <Link href="/infografis" className={linkClassName("/infografis")}>
         <CreditCard className={iconClassName("/infografis")} />
         APBDes

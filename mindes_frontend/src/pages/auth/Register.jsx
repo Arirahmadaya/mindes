@@ -8,11 +8,37 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
+    setIsLoading(true);
+
     // Simulasi logic untuk register
-    if (password === confirmPassword) {
+    setTimeout(() => {
+      if (!validateEmail(email)) {
+        setError("Email tidak valid");
+        setIsLoading(false);
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        setError("Password dan konfirmasi password tidak cocok");
+        setIsLoading(false);
+        return;
+      }
+
+      if (password.length < 6) {
+        setError("Password harus lebih dari 6 karakter");
+        setIsLoading(false);
+        return;
+      }
+
       setError("");
       console.log(
         "Registrasi berhasil dengan username:",
@@ -20,34 +46,44 @@ const Register = () => {
         "dan email:",
         email
       );
-      // Redirect ke halaman login atau set sesi register
-    } else {
-      setError("Password dan konfirmasi password tidak cocok");
-    }
+      localStorage.setItem("isRegistered", "true");
+      window.location.href = "/login";
+    }, 1000);
   };
 
   return (
     <div
-      className="h-screen justify-center items-center bg-slate-200 py-24 lg:px-40 bg-cover bg-center"
+      className="h-screen flex justify-center items-center bg-slate-200 py-24 lg:px-40 bg-cover bg-center"
       style={{ backgroundImage: `url('img/LoginBlur2.png')` }}
     >
-      <div className="flex lg:justify-normal justify-center relative">
-        <div className="flex lg:w-1/2 w-4/5 items-center lg:right-0 ">
+      <div className="flex lg:justify-normal justify-center relative w-full">
+        <div className="flex lg:w-1/2 w-4/5 items-center lg:right-0">
           <div className="bg-white flex flex-row justify-center w-full h-[500px] items-center rounded-lg shadow-2xl">
-            <div className="bg-white lg:w-1/2 w-2/3 h-full py-8">
+            <div className="bg-white lg:w-1/2 w-2/3 h-full py-4">
               <div className="text-center">
                 <h5 className="text-heading-4 font-bold text-black mb-2">
                   Daftar
                 </h5>
               </div>
-              <form onSubmit={handleRegister} className="space-y-4">
-                <div className="relative w-full mb-4">
+              <form onSubmit={handleRegister} className="space-y-3">
+                <div className="relative w-full ">
                   <Input
                     type="text"
                     variant="bordered"
-                    label="Username/Email"
+                    label="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="relative w-full mb-4">
+                  <Input
+                    type="email"
+                    variant="bordered"
+                    label="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="relative w-full mb-4">
@@ -57,6 +93,7 @@ const Register = () => {
                     label="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="relative w-full mb-4">
@@ -66,17 +103,19 @@ const Register = () => {
                     label="Confirm Password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
                   />
                 </div>
                 {error && <p className="text-red-500 text-sm">{error}</p>}
                 <button
                   type="submit"
-                  className="gap-2 justify-center w-full flex bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+                  className="gap-2 justify-center w-full flex bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300 disabled:bg-blue-300"
+                  disabled={isLoading}
                 >
-                  Daftar <UserPlus />
+                  {isLoading ? "Loading..." : "Daftar"} <UserPlus />
                 </button>
               </form>
-              <div className="text-center mt-6">
+              <div className="text-center mt-3">
                 <p className="text-black mb-2 text-caption-1">
                   Atau daftar dengan menggunakan:
                 </p>
@@ -90,7 +129,7 @@ const Register = () => {
                 </button>
               </div>
 
-              <div className="text-center mt-6">
+              <div className="text-center mt-3">
                 <p className="text-gray-600 text-caption-1">
                   Sudah memiliki akun?
                   <a href="/login" className="text-blue font-semibold pl-1">
@@ -101,7 +140,6 @@ const Register = () => {
             </div>
           </div>
         </div>
-        
         <div className="w-1/2 bg-auto bg-center bg-no-repeat hidden lg:block rounded-lg">
           <img
             src="/img/LoginNew.png"
@@ -110,7 +148,6 @@ const Register = () => {
           />
         </div>
       </div>
-      
     </div>
   );
 };

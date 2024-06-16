@@ -1,108 +1,99 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
-import {Breadcrumbs, BreadcrumbItem} from "@nextui-org/breadcrumbs";
+import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Eye, Edit, Trash2 } from "react-feather";
 
-const statusColorMap = {
-  publish: "success",
-  proses: "secondary",
-  gagal: "danger",
-};
-
-const INITIAL_VISIBLE_COLUMNS = [
-  "tgl",
-  "agenda",
-  "tempat",
-  "status",
-  "actions",
-];
-
-const columns = [
-  { name: "ID", uid: "id" },
-  { name: "Tanggal", uid: "tgl" },
-  { name: "Agenda", uid: "agenda" },
-  { name: "Tempat", uid: "tempat" },
-  { name: "Status", uid: "status" },
-  { name: "Aksi", uid: "actions" },
-];
-
-const statusOptions = [
-  { name: "Publish", uid: "publish" },
-  { name: "Proses", uid: "proses" },
-  { name: "Gagal", uid: "gagal" },
-];
-
-const isi = [
-  {
-    id: 6,
-    tgl: "10 Juni 2024",
-    agenda: "Berita 6",
-    tempat: "Masyarakat",
-    status: "publish",
-  },
-  {
-    id: 5,
-    tgl: "5 Juni 2024",
-    agenda: "berita 5",
-    tempat: "Masyarakat",
-    status: "publish",
-  },
-  {
-    id: 4,
-    tgl: "3 Juni 2024",
-    agenda: "berita 4",
-    tempat: "Masyarakat",
-    status: "publish",
-  },
-  {
-    id: 3,
-    tgl: "2 Juni 2024",
-    agenda: "Posyandu Melati 2",
-    tempat: "Masyarakat",
-    status: "publish",
-  },
-  {
-    id: 2,
-    tgl: "29 Mei 2024",
-    agenda: "Pencairan Dana Operasional RT/RW",
-    tempat: "Masyarakat",
-    status: "publish",
-  },
-  {
-    id: 1,
-    tgl: "28 Mei 2024",
-    agenda: "Pencairan Dana Operasional RT/RW",
-    tempat: "Masyarakat",
-    status: "publish",
-  },
-];
-const actionButtons = [
-  {
-    icon: <Eye className="w-4 h-4 text-black" />,
-    onClick: (item) => {
-      console.log("View item:", item);
-      // Implementasikan logika tampilan di sini
-    },
-  },
-  {
-    icon: <Edit className="w-4 h-4 text-warning" />,
-    onClick: (item) => {
-      console.log("Edit item:", item);
-      // Implementasikan logika edit di sini
-    },
-  },
-  {
-    icon: <Trash2 className="w-4 h-4 text-danger" />,
-    onClick: (item) => {
-      console.log("Delete item:", item);
-      // Implementasikan logika hapus di sini
-    },
-  },
-];
-
 const Agenda = () => {
+  const [agendatable, setAgenda] = useState([]);
+
+  useEffect(() => {
+    getAgenda();
+  }, []);
+
+  const getAgenda = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/agenda");
+      setAgenda(response.data.data);
+    } catch (error) {
+      console.error("Terjadi kesalahan", error);
+    }
+  };
+
+  const statusColorMap = {
+    publish: "success",
+    proses: "secondary",
+    gagal: "danger",
+  };
+
+  const INITIAL_VISIBLE_COLUMNS = [
+    "tgl",
+    "agenda",
+    "tempat",
+    "jam",
+    "hari",
+    "deskripsi",
+    "kegiatan",
+    "status",
+    "actions",
+  ];
+
+  const columns = [
+    { name: "ID", uid: "id" },
+    { name: "Tanggal", uid: "tgl" },
+    { name: "Tempat", uid: "tempat" },
+    { name: "Jam", uid: "jam" },
+    { name: "Hari", uid: "hari" },
+    { name: "Deskripsi", uid: "deskripsi" },
+    { name: "Kegiatan", uid: "kegiatan" },
+    { name: "Status", uid: "status" },
+    { name: "Aksi", uid: "actions" },
+  ];
+
+  const statusOptions = [
+    { name: "Publish", uid: "publish" },
+    { name: "Proses", uid: "proses" },
+    { name: "Gagal", uid: "gagal" },
+  ];
+
+  const actionButtons = [
+    {
+      icon: <Eye className="w-4 h-4 text-black" />,
+      onClick: (item) => {
+        console.log("View item:", item);
+        // Implementasikan logika tampilan di sini
+      },
+    },
+    {
+      icon: <Edit className="w-4 h-4 text-warning" />,
+      onClick: (item) => {
+        console.log("Edit item:", item);
+        // Implementasikan logika edit di sini
+      },
+    },
+    {
+      icon: <Trash2 className="w-4 h-4 text-danger" />,
+      onClick: (item) => {
+        console.log("Delete item:", item);
+        // Implementasikan logika hapus di sini
+      },
+    },
+  ];
+
+  //isi sesuai dengan struktur table
+  const isi = agendatable.map((agenda) => ({
+    id: agenda.id_agenda,
+    tgl: agenda.tgl,
+    tempat: agenda.tempat,
+    jam: agenda.jam,
+    hari: agenda.hari,
+    deskripsi: agenda.deskripsi,
+    kegiatan: agenda.kegiatan,
+    status: agenda.status,
+  }));
+
   return (
     <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
       <Sidebares />
@@ -116,13 +107,11 @@ const Agenda = () => {
           <BreadcrumbItem href="/admin/agenda">Agenda</BreadcrumbItem>
         </Breadcrumbs>
 
-
         <div className="flex gap-5 my-5">
           <div className=" flex w-full bg-white rounded-lg">
-            <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-blue-200  ">
-              <div className="bg-blue-100/20 rounded-b-[20px] w-auto "></div>
-              <div className="p-4 ">
-                {/* <Tablenih /> */}
+            <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-blue-200">
+              <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
+              <div className="p-4">
                 <TableProps
                   statusColorMap={statusColorMap}
                   INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS}
@@ -130,13 +119,12 @@ const Agenda = () => {
                   statusOptions={statusOptions}
                   isi={isi}
                   tambahBeritaURL={"/admin/agenda/tambah"}
-                
                   actionButtons={actionButtons}
                 />
               </div>
             </div>
 
-            <div className="flex justify-between "></div>
+            <div className="flex justify-between"></div>
           </div>
         </div>
       </div>

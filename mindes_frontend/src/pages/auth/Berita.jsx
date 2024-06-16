@@ -10,12 +10,12 @@ const Berita = () => {
     <>
       <NavbarUser className="absolute" />
 
-      <div className="mb-28 ">
-        <div className="mx-70">
-          <div className="mb-0 font-bold text-start text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
+      <div className="mb-28 mt-5">
+        <div className="lg:mx-70 mx-10">
+          <div className="mb-0 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
             Berita Kalinyamat Kulon
           </div>
-          <div className="mb-2 font-regular text-start text-heading-6 text-black relative z-20">
+          <div className="mb-5 font-regular text-center text-heading-6 text-black relative z-20">
             Menyajikan informasi terbaru tentang peristiwa, berita terkini, dan
             artikel-artikel jurnalistik dari Kalinyamat Kulon
           </div>
@@ -25,16 +25,18 @@ const Berita = () => {
           <CardBerita />
         </div>
       </div>
-      <div className="mx-70">
-        <div className="mb-0 font-bold text-start text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
-          Agenda Desa Kalinyamat Kulon
+      <div className="lg:mx-70 mx-10">
+
+        <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
+        Agenda Desa Kalinyamat Kulon
         </div>
-        <div className="mb-0 font-regular text-start text-heading-6 text-black">
+        <div className="mb-0  text-center text-heading-6 text-black">
           Lihat Agenda Desa yang bisa anda ketahui lebih lanjut di sini
         </div>
 
-        <div className="my-16 relative z-20 font-medium lg:mx-70 mx-[20px]">
-          <Timeline />
+        <div className="my-10 relative z-20 lg:mx-70 mx-[20px] ">
+          <div className="w-4/5"><Timeline /></div>
+          
         </div>
       </div>
 

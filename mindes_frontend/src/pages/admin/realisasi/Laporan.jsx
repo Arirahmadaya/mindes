@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import Sidebar from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
-import { Printer } from "react-feather";
+
+import {
+  DocumentArrowUpIcon,
+  ArrowPathIcon,
+  PrinterIcon,
+} from "@heroicons/react/20/solid";
+
 
 const Laporan = () => {
   const [filter, setFilter] = useState("");
@@ -37,12 +43,17 @@ const Laporan = () => {
           </BreadcrumbItem>
         </Breadcrumbs>
 
-        <div className="my-5 text-heading-6 font-semibold">Laporan Realisasi</div>
+        <div className="my-5 text-heading-6 font-semibold">
+          Laporan Realisasi
+        </div>
         <div className="flex gap-5 my-5">
           <div className="flex w-full bg-white rounded-lg shadow-md p-5">
             <div className="w-full">
               <div className="mb-4">
-                <label className="block text-gray-700 font-bold mb-2" htmlFor="filter">
+                <label
+                  className="block text-gray-700 font-bold mb-2"
+                  htmlFor="filter"
+                >
                   Jenis Filter Laporan
                 </label>
                 <select
@@ -59,19 +70,23 @@ const Laporan = () => {
               </div>
               <div className="flex space-x-4">
                 <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  type="submit"
+                  className="flex items-center gap-2 px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-lg hover:bg-blue-600"
                   onClick={handleProsesClick}
                 >
-                  Proses
+                  <span>Proses</span>
+                  <DocumentArrowUpIcon className="w-5 h-5" />
                 </button>
+
                 <button
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                  className="flex items-center gap-2 px-4 py-2 text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-600"
                   onClick={() => {
                     setFilter("");
                     setShowFilterForm(false);
                   }}
                 >
-                  Reset
+                  <span>Reset</span>
+                  <ArrowPathIcon className="w-5 h-5" />
                 </button>
               </div>
             </div>
@@ -81,9 +96,14 @@ const Laporan = () => {
           <div className="my-5">
             <div className="flex w-full bg-white rounded-lg shadow-md p-5">
               <div className="w-full">
-                <h2 className="mb-4 text-lg font-semibold">Filter Berdasarkan Bulan</h2>
+                <h2 className="mb-4 text-lg font-semibold">
+                  Filter Berdasarkan Bulan
+                </h2>
                 <div className="mb-4">
-                  <label className="block text-gray-700 font-bold mb-2" htmlFor="tahun">
+                  <label
+                    className="block text-gray-700 font-bold mb-2"
+                    htmlFor="tahun"
+                  >
                     Pilih Tahun
                   </label>
                   <select
@@ -96,7 +116,10 @@ const Laporan = () => {
                 </div>
                 <div className="flex space-x-4 mb-4">
                   <div className="w-1/2">
-                    <label className="block text-gray-700 font-bold mb-2" htmlFor="dariBulan">
+                    <label
+                      className="block text-gray-700 font-bold mb-2"
+                      htmlFor="dariBulan"
+                    >
                       Dari Bulan
                     </label>
                     <select
@@ -119,7 +142,10 @@ const Laporan = () => {
                     </select>
                   </div>
                   <div className="w-1/2">
-                    <label className="block text-gray-700 font-bold mb-2" htmlFor="sampaiBulan">
+                    <label
+                      className="block text-gray-700 font-bold mb-2"
+                      htmlFor="sampaiBulan"
+                    >
                       Sampai Bulan
                     </label>
                     <select
@@ -142,9 +168,9 @@ const Laporan = () => {
                     </select>
                   </div>
                 </div>
-                <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                  <Printer className="inline-block mr-2" size={16} />
-                  Print
+                <button className="flex gap-2 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
+                  <span>Print</span>
+                  <PrinterIcon className="w-5 h-5" />
                 </button>
               </div>
             </div>
@@ -154,10 +180,15 @@ const Laporan = () => {
           <div className="my-5">
             <div className="flex w-full bg-white rounded-lg shadow-md p-5">
               <div className="w-full">
-                <h2 className="mb-4 text-lg font-semibold">Filter Berdasarkan Tanggal</h2>
+                <h2 className="mb-4 text-lg font-semibold">
+                  Filter Berdasarkan Tanggal
+                </h2>
                 <div className="flex space-x-4 mb-4">
                   <div className="w-1/2">
-                    <label className="block text-gray-700 font-bold mb-2" htmlFor="dariTanggal">
+                    <label
+                      className="block text-gray-700 font-bold mb-2"
+                      htmlFor="dariTanggal"
+                    >
                       Dari Tanggal
                     </label>
                     <input
@@ -167,7 +198,10 @@ const Laporan = () => {
                     />
                   </div>
                   <div className="w-1/2">
-                    <label className="block text-gray-700 font-bold mb-2" htmlFor="sampaiTanggal">
+                    <label
+                      className="block text-gray-700 font-bold mb-2"
+                      htmlFor="sampaiTanggal"
+                    >
                       Sampai Tanggal
                     </label>
                     <input
@@ -177,9 +211,9 @@ const Laporan = () => {
                     />
                   </div>
                 </div>
-                <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                  <Printer className="inline-block mr-2" size={16} />
-                  Print
+                <button className="flex items-center gap-2 transition duration-300 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
+                <span>Print</span>
+                  <PrinterIcon className="w-5 h-5" />
                 </button>
               </div>
             </div>
@@ -189,9 +223,14 @@ const Laporan = () => {
           <div className="my-5">
             <div className="flex w-full bg-white rounded-lg shadow-md p-5">
               <div className="w-full">
-                <h2 className="mb-4 text-lg font-semibold">Filter Berdasarkan Tahun</h2>
+                <h2 className="mb-4 text-lg font-semibold">
+                  Filter Berdasarkan Tahun
+                </h2>
                 <div className="mb-4">
-                  <label className="block text-gray-700 font-bold mb-2" htmlFor="pilihTahun">
+                  <label
+                    className="block text-gray-700 font-bold mb-2"
+                    htmlFor="pilihTahun"
+                  >
                     Pilih Tahun
                   </label>
                   <select
@@ -202,9 +241,9 @@ const Laporan = () => {
                     {/* Tambahkan opsi tahun di sini */}
                   </select>
                 </div>
-                <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                  <Printer className="inline-block mr-2" size={16} />
-                  Print
+                <button className="flex gap-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
+                <span>Print</span>
+                  <PrinterIcon className="w-5 h-5" />
                 </button>
               </div>
             </div>

@@ -31,12 +31,12 @@ const Card = ({ title, image, value, onClick }) => {
 
 const TotalScoreCard = ({ score }) => {
   return (
-    <div className="bg-gradient-20 rounded-lg p-4 flex flex-col justify-end w-2/3 ml-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
+    <div className="bg-gradient-20 rounded-lg p-4 flex flex-col justify-end md:w-2/3 w-full ml-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
       <div>
         <h3 className="text-lg font-bold text-heading-3">Skor Total SDGs</h3>
         <p className="text-lg text-heading-3 font-bold">Kalinyamat Kulon</p>
       </div>
-      <div className="text-left">
+      <div className="lg:text-left text-center">
         <p className="text-display-1 font-bold">{score}</p>
       </div>
     </div>
@@ -45,7 +45,7 @@ const TotalScoreCard = ({ score }) => {
 
 const Judul = () => {
   return (
-    <div className=" rounded-lg  flex flex-col justify-between w-[700px]">
+    <div className=" rounded-lg flex flex-col justify-between lg:w-[700px]">
       <div>
         <div className="font-bold md:text-heading-3 text-heading-4 mb-2 text-black hover:drop-shadow-xl">
         Sustainable Development Goals/Tujuan Pembangunan Berkelanjutan
@@ -204,7 +204,7 @@ const CardSDgs = () => {
   const totalScore =
     cardsData.reduce((total, card) => total + card.value, 0) / cardsData.length;
   return (
-    <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 lg:text-start text-center">
       <Judul />
       <TotalScoreCard score={totalScore.toFixed(2)} className="justify-center" />
       {cardsData.map((card, index) => (

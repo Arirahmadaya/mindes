@@ -9,7 +9,11 @@ import {
   DropdownItem,
   Button,
   Input,
+
 } from "@nextui-org/react";
+
+
+
 
 const TambahBerita = () => {
   const [selectedKeys, setSelectedKeys] = React.useState(new Set());
@@ -43,6 +47,7 @@ const TambahBerita = () => {
                 <div className="relative w-full">
                   <Input type="text" variant="bordered" label="Judul Berita" />
                 </div>
+                
 
                 <Dropdown>
                   <DropdownTrigger>

@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Eye, Edit, Trash2 } from "react-feather";
+
+const KtgBerita = () => {
+  const [kategori, setKategori] = useState([]);
+
+  useEffect(() => {
+    fetchKategori();
+  }, []);
+
+  const fetchKategori = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/kategori");
+      setKategori(response.data.data);
+    } catch (error) {
+      console.error("Terjadi kesalahan", error);
+    }
+  };
 
 const statusColorMap = {
   publish: "success",
@@ -11,11 +28,11 @@ const statusColorMap = {
   gagal: "danger",
 };
 
-const INITIAL_VISIBLE_COLUMNS = ["id", "ktgberita", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["id", "nama", "actions"];
 
 const columns = [
-  { name: "ID", uid: "id" },
-  { name: "Kategori", uid: "ktgberita" },
+  { name: "ID", uid: "id", sortable:true },
+  { name: "Kategori", uid: "nama" },
   { name: "Aksi", uid: "actions" },
 ];
 
@@ -23,32 +40,6 @@ const statusOptions = [
   { name: "Publish", uid: "publish" },
   { name: "Proses", uid: "proses" },
   { name: "Gagal", uid: "gagal" },
-];
-const isi = [
-  {
-    id: 1,
-    ktgberita: "Pengumuman Desa",
-  },
-  {
-    id: 2,
-    ktgberita: "Pembangunan Infrastruktur Desa",
-  },
-  {
-    id: 3,
-    ktgberita: "Program Sosial dan Kesejahteraan Masyarakat Desa",
-  },
-  {
-    id: 4,
-    ktgberita: "Kegiatan Budaya dan Tradisi Desa",
-  },
-  {
-    id: 5,
-    ktgberita: "Kegiatan Ekonomi Masyarakat Desa",
-  },
-  {
-    id: 6,
-    ktgberita: "Pendidikan dan Pelatihan di Desa",
-  },
 ];
 
 const actionButtons = [
@@ -74,7 +65,14 @@ const actionButtons = [
     },
   },
 ];
-const BeritaAdmin = () => {
+
+
+  //isi sesuai dengan struktur table
+  const isi = kategori.map((kategori) => ({
+    id: kategori.id_kategori,    
+    nama: kategori.nama,
+  }));
+
   return (
     <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
       <Sidebares />
@@ -90,11 +88,10 @@ const BeritaAdmin = () => {
         </Breadcrumbs>
 
         <div className="flex gap-5 my-5">
-          <div className=" flex w-full bg-white rounded-lg">
-            <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-blue-200  ">
-              <div className="bg-blue-100/20 rounded-b-[20px] w-auto "></div>
-              <div className="p-4 ">
-                {/* <Tablenih /> */}
+          <div className="flex w-full bg-white rounded-lg">
+            <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-blue-200">
+              <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
+              <div className="p-4">
                 <TableProps
                   statusColorMap={statusColorMap}
                   INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS}
@@ -102,13 +99,12 @@ const BeritaAdmin = () => {
                   statusOptions={statusOptions}
                   isi={isi}
                   tambahBeritaURL={"/admin/berita/kategori/tambah"}
-                  
                   actionButtons={actionButtons}
                 />
               </div>
             </div>
 
-            <div className="flex justify-between "></div>
+            <div className="flex justify-between"></div>
           </div>
         </div>
       </div>
@@ -116,4 +112,4 @@ const BeritaAdmin = () => {
   );
 };
 
-export default BeritaAdmin;
+export default KtgBerita;

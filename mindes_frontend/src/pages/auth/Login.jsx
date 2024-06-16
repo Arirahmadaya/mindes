@@ -6,25 +6,33 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setIsLoading(true);
+
     // Simulasi logic untuk login
-    if (username === "admin" && password === "admin123") {
-      setError("");
-      console.log("Login berhasil dengan username:", username);
-      // Redirect ke halaman dashboard atau set sesi login
-    } else {
-      setError("Username atau password salah");
-    }
+    setTimeout(() => {
+      if (username === "user@gmail.com" && password === "123456") {
+        setError("");
+        console.log("Login berhasil dengan username:", username);
+        localStorage.setItem("isLoggedIn", "true");
+        // Redirect ke halaman dashboard atau set sesi login
+        window.location.href = "/";
+      } else {
+        setError("Username atau password salah");
+        setIsLoading(false);
+      }
+    }, 1000);
   };
 
   return (
     <div
-      className="h-screen justify-center items-center bg-slate-200 py-24 lg:px-40 bg-cover bg-center"
+      className="h-screen flex justify-center items-center bg-slate-200 py-24 lg:px-40 bg-cover bg-center"
       style={{ backgroundImage: `url('img/LoginBlur2.png')` }}
     >
-      <div className="flex lg:justify-normal justify-center relative">
+      <div className="flex lg:justify-normal justify-center relative w-full">
         <div className="w-1/2 bg-auto bg-center bg-no-repeat hidden lg:block rounded-lg">
           <img
             src="/img/LoginNew.png"
@@ -48,6 +56,7 @@ const Login = () => {
                     label="Email"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    required
                   />
                   <p className="text-caption-2 text-gray mt-1 absolute top-full left-3">
                     Enter your email
@@ -60,6 +69,7 @@ const Login = () => {
                     label="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                   <p className="text-caption-2 text-gray mt-1 absolute top-full left-3">
                     Enter your password
@@ -68,9 +78,10 @@ const Login = () => {
                 {error && <p className="text-red-500 text-sm">{error}</p>}
                 <button
                   type="submit"
-                  className="gap-2 justify-center w-full flex bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+                  className="gap-2 justify-center w-full flex bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300 disabled:bg-blue-300"
+                  disabled={isLoading}
                 >
-                  Masuk <LogIn />
+                  {isLoading ? "Loading..." : "Masuk"} <LogIn />
                 </button>
               </form>
               <div className="text-right mt-4">
