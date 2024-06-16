@@ -25,7 +25,7 @@ function TableProps({
   columns,
   statusOptions,
   isi,
-  tambahBeritaURL,
+  tambahKegiatanURL,
   showPrintAction,
   actionButtons,
 }) {
@@ -223,7 +223,7 @@ function TableProps({
               </DropdownMenu>
             </Dropdown>
             <Button className="bg-primary-30 text-white" size="sm">
-              <Link to={tambahBeritaURL}>Tambah</Link>
+              <Link to={tambahKegiatanURL}>Tambah</Link>
             </Button>
           </div>
         </div>
@@ -350,7 +350,7 @@ TableProps.propTypes = {
   columns: PropTypes.array.isRequired,
   statusOptions: PropTypes.array.isRequired,
   isi: PropTypes.array.isRequired,
-  tambahBeritaURL: PropTypes.string.isRequired,
+  tambahKegiatanURL: PropTypes.string.isRequired,
   actionButtons: PropTypes.arrayOf(
     PropTypes.shape({
       icon: PropTypes.node.isRequired,

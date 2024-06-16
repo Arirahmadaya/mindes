@@ -27,6 +27,8 @@ import FormAgenda from "./pages/admin/agenda/FormAgenda";
 import FormBerita from "./pages/admin/berita/FormBerita";
 import KtgBerita from "./pages/admin/berita/KtgBerita";
 import Akuntansi from "./pages/admin/realisasi/Akuntansi";
+import DetailRealisasi from "./components/DetailRealisasi";
+import TambahKegiatan from "./components/TambahKegiatan";
 import Bidang from "./pages/admin/realisasi/Bidang";
 import UserProfile from "./pages/auth/UserProfile";
 import MindesTeam from "./pages/auth/MindesTeam";
@@ -34,7 +36,8 @@ import FormKtgBerita from "./pages/admin/berita/FormKtgBerita";
 import FormAkuntansi from "./pages/admin/realisasi/FormAkuntansi";
 import FormBidang from "./pages/admin/realisasi/FormBidang";
 import FormRealisasi from "./pages/admin/realisasi/FormRealisasi";
-
+import FormPencatatan from "./pages/admin/realisasi/FormPencatatan";
+import TambahRealisasiForm from "./components/TambahRealisasiForm";
 
 const Main = () => {
   const location = useLocation();
@@ -55,15 +58,22 @@ const Main = () => {
     }
   }, [hideElements]);
 
+  const openWhatsApp = () => {
+    const whatsappNumber = "6282269140660";
+    const preFilledMessage = "Halo, Saya ingin melaporkan";
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(preFilledMessage)}`;
+    window.open(whatsappLink, "_blank");
+  };
+
   return (
     <div>
       {!hideElements && (
         <button className="whatsapp-button" onClick={openWhatsApp}>
-          <img src="../img/call.png" alt="WhatsApp" />
+          <img src={require("../img/call.png")} alt="WhatsApp" />
         </button>
       )}
       <Routes>
-        {/* authentication */}
+        {/* Authentication */}
         <Route path="/" element={<Home />} />
         <Route path="/berita" element={<Berita />} />
         <Route path="/berita/judulberita" element={<DetailBerita />} />
@@ -79,6 +89,7 @@ const Main = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profil/userprofil" element={<UserProfile />} />
+        {/* Admin */}
         <Route path="/admin/beranda" element={<Beranda />} />
         <Route path="/admin/berita" element={<BeritaAdmin />} />
         <Route path="/admin/tambahberita" element={<TambahBerita />} />
@@ -99,16 +110,12 @@ const Main = () => {
         <Route path="/admin/realisasi/bidang/tambah" element={<FormBidang />} />
         <Route path="/admin/realisasi/laporan" element={<Laporan />} />
         <Route path="/admin/login" element={<LoginAdmin />} />
+        <Route path="/admin/realisasi/pencatatan" element={<FormPencatatan />} /> 
+        <Route path="/admin/realisasi/pencatatan/tambah" element={<TambahRealisasiForm />} /> 
+        {/* FormPencatatan akan menuju ke menu edit di setiap record table, dan PencatatanDetail akan menuju ke tambah record di setiap pencatatannya yang anntinya akan berhubungan dengan isi yang ada di FormPencatatan */}x
       </Routes>
     </div>
   );
-};
-
-const openWhatsApp = () => {
-  const whatsappNumber = "6282269140660";
-  const preFilledMessage = "Halo, Saya ingin melaporkan";
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(preFilledMessage)}`;
-  window.open(whatsappLink, "_blank");
 };
 
 const App = () => {
