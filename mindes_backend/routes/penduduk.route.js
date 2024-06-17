@@ -1,6 +1,6 @@
 import express from 'express'
 import { getPenduduk, getPendudukById, insertPenduduk,  updatePenduduk, deletePenduduk,  } from '../controller/penduduk.controller.js'
-import { authenticateToken } from '../middleware/validate.middleware.js'
+// import { authenticateToken } from '../middleware/validate.middleware.js'
 
 const router = express.Router()
 

@@ -11,7 +11,7 @@ export const getKategori = async (req, res) => {
 }
 
 export const insertKategori = async (req, res) => {
-    // console.log(req)
+    // console.log(req.body)
     const { nama } = req.body;
     try {
         await query("INSERT INTO kategoritable (nama) VALUES (?)", [nama]);

@@ -25,14 +25,14 @@ DROP TABLE IF EXISTS `agendatable`;
 CREATE TABLE `agendatable` (
   `id_agenda` int NOT NULL AUTO_INCREMENT,
   `tgl` date DEFAULT NULL,
-  `tempat` varchar(255) NOT NULL,
   `jam` time DEFAULT NULL,
+  `tempat` varchar(255) NOT NULL,
   `hari` enum('Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu') DEFAULT NULL,
-  `deskripsi` varchar(255) NOT NULL,
   `kegiatan` varchar(255) NOT NULL,
+  `deskripsi` varchar(255) NOT NULL,
   `status` enum('publish','proses','gagal') DEFAULT NULL,
   PRIMARY KEY (`id_agenda`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,6 @@ CREATE TABLE `agendatable` (
 
 LOCK TABLES `agendatable` WRITE;
 /*!40000 ALTER TABLE `agendatable` DISABLE KEYS */;
-INSERT INTO `agendatable` VALUES (1,'2024-06-13','Aula','10:30:00','Senin','Pertemuan mingguan','Rapat Koordinasi','publish');
 /*!40000 ALTER TABLE `agendatable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +57,7 @@ CREATE TABLE `akuntable` (
   `uraian` varchar(255) NOT NULL,
   PRIMARY KEY (`id_akun`),
   UNIQUE KEY `kode` (`kode`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +66,7 @@ CREATE TABLE `akuntable` (
 
 LOCK TABLES `akuntable` WRITE;
 /*!40000 ALTER TABLE `akuntable` DISABLE KEYS */;
-INSERT INTO `akuntable` VALUES (2,534,'Belanja Modal Gedung, Bangunan dan Taman'),(3,533,'Belanja Modal Kendaraan');
+INSERT INTO `akuntable` VALUES (2,534,'Belanja Modal Gedung, Bangunan dan Taman'),(3,533,'Belanja Modal Kendaraan'),(6,535,'Test');
 /*!40000 ALTER TABLE `akuntable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +119,7 @@ CREATE TABLE `bidangtable` (
   PRIMARY KEY (`id_bidang`),
   KEY `parent_id` (`parent_id`),
   CONSTRAINT `bidangtable_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `bidangtable` (`id_bidang`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +128,7 @@ CREATE TABLE `bidangtable` (
 
 LOCK TABLES `bidangtable` WRITE;
 /*!40000 ALTER TABLE `bidangtable` DISABLE KEYS */;
-INSERT INTO `bidangtable` VALUES (1,'BIDANG PENYELENGGARAAN PEMERINTAHAN DESA',NULL),(2,'BIDANG PENANGGULANGAN BENCANA, DARURAT DAN MENDESAK DESA',NULL),(3,'BIDANG PEMBINAAN KEMASYARAKATAN',NULL),(4,'BIDANG PEMBERDAYAAN MASYARAKAT',NULL),(5,'BIDANG PELAKSANAAN PEMBANGUNAN DESA',NULL),(6,'Penyelenggaraan Belanja Siltap, Tunjangan dan Operasional Pemerintah Desa',1),(7,'Penyediaan Sarana Prasarana Pemerintah Desa',1),(8,'Pengelolaan Administrasi Kependudukan, Pencatatan Sipil, Statistik dan Kearsipan',1),(9,'Penyelenggaraan Tata Praja Pemerintahan, Perencanaan, Keuangan dan Pelaporan',1),(10,'Sub Bidang Pendidikan',5),(11,'Sub Bidang Kesehatan',5),(13,'Sub Bidang Kawasan Pemukiman',5),(14,'Sub Bidang Kebudayaan dan Keagamaan',3),(15,'Sub Bidang Kepemudaan dan Olahraga',3),(16,'Sub Bidang Kelembagaan Masyarakat',3),(17,'Sub Bidang Pertanian dan Peternakan',4),(18,'Sub Bidang Peningkatan Kapasitas Aparatur Desa',4),(19,'Sub Bidang Pemberdayaan Perempuan, Perlindungan Anak dan Keluarga',4),(20,'Sub Bidang Penanggulangan Bencana',2),(21,'Sub Bidang Keadaan Mendesak',2),(22,'Sub Bidang Pekerjaan Umum dan Penataan Ruang',5);
+INSERT INTO `bidangtable` VALUES (1,'BIDANG PENYELENGGARAAN PEMERINTAHAN DESA',NULL),(2,'BIDANG PENANGGULANGAN BENCANA, DARURAT DAN MENDESAK DESA',NULL),(3,'BIDANG PEMBINAAN KEMASYARAKATAN',NULL),(4,'BIDANG PEMBERDAYAAN MASYARAKAT',NULL),(5,'BIDANG PELAKSANAAN PEMBANGUNAN DESA',NULL),(6,'Penyelenggaraan Belanja Siltap, Tunjangan dan Operasional Pemerintah Desa',1),(7,'Penyediaan Sarana Prasarana Pemerintah Desa',1),(8,'Pengelolaan Administrasi Kependudukan, Pencatatan Sipil, Statistik dan Kearsipan',1),(9,'Penyelenggaraan Tata Praja Pemerintahan, Perencanaan, Keuangan dan Pelaporan',1),(10,'Sub Bidang Pendidikan',5),(11,'Sub Bidang Kesehatan',5),(13,'Sub Bidang Kawasan Pemukiman',5),(14,'Sub Bidang Kebudayaan dan Keagamaan',3),(15,'Sub Bidang Kepemudaan dan Olahraga',3),(16,'Sub Bidang Kelembagaan Masyarakat',3),(17,'Sub Bidang Pertanian dan Peternakan',4),(18,'Sub Bidang Peningkatan Kapasitas Aparatur Desa',4),(19,'Sub Bidang Pemberdayaan Perempuan, Perlindungan Anak dan Keluarga',4),(20,'Sub Bidang Penanggulangan Bencana',2),(21,'Sub Bidang Keadaan Mendesak',2),(22,'Sub Bidang Pekerjaan Umum dan Penataan Ruang',5),(23,'Test',1);
 /*!40000 ALTER TABLE `bidangtable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,7 +143,7 @@ CREATE TABLE `kategoritable` (
   `id_kategori` int NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) NOT NULL,
   PRIMARY KEY (`id_kategori`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,7 +152,7 @@ CREATE TABLE `kategoritable` (
 
 LOCK TABLES `kategoritable` WRITE;
 /*!40000 ALTER TABLE `kategoritable` DISABLE KEYS */;
-INSERT INTO `kategoritable` VALUES (2,'kesehatan');
+INSERT INTO `kategoritable` VALUES (2,'kesehatan'),(4,'Hiburan'),(5,'test');
 /*!40000 ALTER TABLE `kategoritable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,6 +200,7 @@ CREATE TABLE `penduduktable` (
   `jumlah` int NOT NULL,
   `mutasi` enum('lahir','meninggal','datang','pindah') NOT NULL,
   `keterangan` varchar(255) NOT NULL,
+  `tgl` date DEFAULT NULL,
   PRIMARY KEY (`id_penduduk`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -211,7 +211,7 @@ CREATE TABLE `penduduktable` (
 
 LOCK TABLES `penduduktable` WRITE;
 /*!40000 ALTER TABLE `penduduktable` DISABLE KEYS */;
-INSERT INTO `penduduktable` VALUES (2,2,'meninggal','A.n Rajawali meninggal dunia');
+INSERT INTO `penduduktable` VALUES (2,2,'meninggal','A.n Rajawali meninggal dunia',NULL);
 /*!40000 ALTER TABLE `penduduktable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,7 +297,7 @@ CREATE TABLE `usertable` (
   `roles` enum('superadmin','admin','umum') DEFAULT 'umum',
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -306,7 +306,7 @@ CREATE TABLE `usertable` (
 
 LOCK TABLES `usertable` WRITE;
 /*!40000 ALTER TABLE `usertable` DISABLE KEYS */;
-INSERT INTO `usertable` VALUES (1,'massayu@gmail.com','massayu','P@55word','superadmin'),(2,'ari.updated@gmail.com','Ari updated','NewP@55word','admin'),(3,'raja@gmail.com','Raja','P@55word','umum');
+INSERT INTO `usertable` VALUES (1,'massayu@gmail.com','massayu','P@55word','superadmin'),(2,'ari.updated@gmail.com','Ari updated','NewP@55word','admin'),(3,'raja@gmail.com','Raja','P@55word','umum'),(4,'halo@halo','halo','halo','admin'),(6,'massayu18@gmail.com','Test1','P@55word','umum'),(7,'testuser@example.com','testuser','$2b$12$j.CSLxPTy6lD8Cn7U2YBcOYcaM7u1HmtlIlX4aZ.1GxFBssDZoiLa','umum'),(9,'testuser2@example.com','testuser2','$2b$10$oDtH9nkzeVhaJezzGjmToOM/8wLf5wESlAQFLwgIRYXplIpvrzl2W','umum'),(10,'testuser3@example.com','testuser3','$2b$10$ZDyXL5dai/Ij83mdBVVizeyD8BirZHE8LupBsOpNaDtlhVYkJzFDm','umum'),(11,'admin@gmail.com','n_sarijati','P@55word','admin'),(12,'admin@gmail.com ','massayu','P@55word','admin'),(13,'jacob@gmail.com','jacob','P@55word','umum'),(14,'marina@gmail.com','marina','P@55word','umum'),(15,'papaw@gmail.com','papaw','P@55word','umum'),(16,'orange@gmail.com','orange','P@55word','umum'),(17,'manggo@gmail.com','manggo','P@55word','umum'),(18,'apple@gmail.com','apple','P@55word','umum'),(19,'starfruit@gmail.com','starfruit','$2b$12$OgGu4WVzoKtygxu4Rx63W.elyggx.L5duaGiDgT2Qtz5t83ly14GC','umum'),(20,'strawberry@gmail.com','strawberry','$2b$12$rV/F6X6HWtXW3t8v7CITUuTE8ED3x/idjqReqFwrlxIn3gNp6BGGG','umum'),(21,'banana@gmail.com','banana','$2b$12$xNEJ2de3XbN/TbVSrwrrjuGQLiBBGlLEq3MgwabhrQvqgdQ0XzTn2','umum');
 /*!40000 ALTER TABLE `usertable` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -319,4 +319,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-13 10:32:24
+-- Dump completed on 2024-06-17 14:16:57

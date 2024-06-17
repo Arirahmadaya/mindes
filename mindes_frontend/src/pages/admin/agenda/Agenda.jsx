@@ -5,6 +5,8 @@ import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Eye, Edit, Trash2 } from "react-feather";
+// import { format } from "date-fns";
+// import { utcToZonedTime, format as formatDate } from "date-fns-tz"; // Menggunakan date-fns-tz untuk konversi waktu zona
 
 const Agenda = () => {
   const [agendatable, setAgenda] = useState([]);
@@ -30,12 +32,11 @@ const Agenda = () => {
 
   const INITIAL_VISIBLE_COLUMNS = [
     "tgl",
-    "agenda",
-    "tempat",
     "jam",
+    "tempat",
     "hari",
-    "deskripsi",
     "kegiatan",
+    "deskripsi",
     "status",
     "actions",
   ];
@@ -43,17 +44,17 @@ const Agenda = () => {
   const columns = [
     { name: "ID", uid: "id" },
     { name: "Tanggal", uid: "tgl" },
+    { name: "Waktu", uid: "jam" },
     { name: "Tempat", uid: "tempat" },
-    { name: "Jam", uid: "jam" },
     { name: "Hari", uid: "hari" },
-    { name: "Deskripsi", uid: "deskripsi" },
     { name: "Kegiatan", uid: "kegiatan" },
+    { name: "Deskripsi", uid: "deskripsi" },
     { name: "Status", uid: "status" },
     { name: "Aksi", uid: "actions" },
   ];
 
   const statusOptions = [
-    { name: "Publish", uid: "publish" },
+    { name: "Selesai", uid: "publish" },
     { name: "Proses", uid: "proses" },
     { name: "Gagal", uid: "gagal" },
   ];
@@ -82,15 +83,21 @@ const Agenda = () => {
     },
   ];
 
+  // Fungsi untuk mengonversi tgl dari UTC ke WIB
+  // const convertToWIB = (utcDate) => {
+  //   const date = utcToZonedTime(utcDate, "Asia/Jakarta");
+  //   return format(date, "dd-MM-yyyy HH:mm", { timeZone: "Asia/Jakarta" });
+  // };
+
   //isi sesuai dengan struktur table
   const isi = agendatable.map((agenda) => ({
     id: agenda.id_agenda,
     tgl: agenda.tgl,
-    tempat: agenda.tempat,
     jam: agenda.jam,
     hari: agenda.hari,
-    deskripsi: agenda.deskripsi,
+    tempat: agenda.tempat,
     kegiatan: agenda.kegiatan,
+    deskripsi: agenda.deskripsi,
     status: agenda.status,
   }));
 
@@ -118,12 +125,11 @@ const Agenda = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  tambahBeritaURL={"/admin/agenda/tambah"}
+                  tambahKegiatanURL="/admin/agenda/tambah"
                   actionButtons={actionButtons}
                 />
               </div>
             </div>
-
             <div className="flex justify-between"></div>
           </div>
         </div>
