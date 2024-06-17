@@ -10,7 +10,7 @@ const ProfilDesa = () => {
     <>
       <NavbarUser />
 
-      <div className="justify-between mx-70 lg:flex p-4 bg-white mt-5 lg:mb-24 mb-10 ">
+      <div className="justify-between lg:mx-70 mx-5 lg:flex p-4 bg-white mt-5 lg:mb-24 mb-10 ">
         <div className=" flex flex-col items-center mr-4">
           <img
             src="img/kota_tegal.png"
@@ -69,7 +69,7 @@ const ProfilDesa = () => {
             Nilai Budaya Kerja Aparatur Pemerintah Kota Tegal
           </h5>
         </div>
-        <div className="flex lg:justify-between justify-center mx-70 lg:h-[380px] h-auto flex-wrap lg:gap-0 gap-4	">
+        <div className="flex lg:justify-between justify-center lg:h-[380px] h-auto flex-wrap lg:gap-0 gap-4	">
           <div className="bg-secondary-40 w-[230px] h-[300px] rounded-xl justify-center text-white text-center self-end shadow-2x transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
             <div className=" pt-4 font-bold text-heading-2">Profesional</div>
             <div className="  flex flex-col justify-center text-center h-[200px]">

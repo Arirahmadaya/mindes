@@ -14,7 +14,7 @@ import {Breadcrumbs, BreadcrumbItem} from "@nextui-org/breadcrumbs";
 
 const Beranda = () => {
   return (
-    <div className="flex flex-row bg-[#F3F2F7] h-screen w-screen overflow-y-auto">
+    <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
       <Sidebares />
       <div className="flex-1 mx-5">
         <div className="">
