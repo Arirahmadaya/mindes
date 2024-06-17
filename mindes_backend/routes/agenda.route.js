@@ -1,6 +1,6 @@
 import express from 'express'
 import { getAgenda, getAgendaById, insertAgenda,  updateAgenda, deleteAgenda  } from '../controller/agenda.controller.js'
-import { authenticateToken } from '../middleware/validate.middleware.js'
+// import { authenticateToken } from '../middleware/validate.middleware.js'
 
 const router = express.Router()
 

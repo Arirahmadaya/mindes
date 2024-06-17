@@ -4,59 +4,54 @@ import cors from "cors";
 import expressListEndpoints from "express-list-endpoints";
 import { testConnection } from "./database/db.js";
 import router from "./routes/index.js";
+import session from 'express-session';
+import authRoutes from "./routes/auth.route.js";
 
-// import listEndpoints from 'express-list-endpoints';
+// About auth
+// const protectedRoutes = require("./routes/protected.route.js");
 
 const app = express();
 dotenv.config();
+
 app.use(cors());
 app.use(express.json());
 
-app.use(router);
+app.use(
+  session({
+    secret: process.env.JWT_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+    },
+  })
+);
 
+// User routes
+app.use(router);
+app.use("/auth", authRoutes);
 
 app.get("/", (req, res) => {
-    res.send("Hello Murtherfucker!");
+  res.send("Hello Murtherfucker!");
 });
 
 app.use("/endpoints", (req, res) => {
-    res.json(expressListEndpoints(app));
-})
-
-app.listen(process.env.APP_PORT || 3000, () => {
-    testConnection();
-    console.log(`http://localhost:${process.env.APP_PORT || 3000}`);
+  res.json(expressListEndpoints(app));
 });
 
-// // Fungsi untuk mendapatkan daftar endpoint dari semua router dalam aplikasi Express
-// function getAllEndpoints(app) {
-//     const routes = [];
-//     // Telusuri setiap layer di stack aplikasi Express
-//     app._router.stack.forEach((layer) => {
-//         if (layer.route) {
-//             // Jika layer memiliki route, ini adalah endpoint
-//             const route = {
-//                 path: layer.route.path,
-//                 methods: Object.keys(layer.route.methods).join(', ')
-//             };
-//             routes.push(route);
-//         } else if (layer.name === 'router' && layer.handle.stack) {
-//             // Jika layer adalah router, telusuri setiap layer di stack router
-//             layer.handle.stack.forEach((handler) => {
-//                 const route = {
-//                     path: handler.route.path,
-//                     methods: Object.keys(handler.route.methods).join(', ')
-//                 };
-//                 routes.push(route);
-//             });
-//         }
-//     });
-//     return routes;
-// }
+app.get("/logout", (req, res, next) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    req.session.destroy(() => {
+      res.send("Adios!");
+    });
+  });
+});
 
-// // Gunakan fungsi ini untuk mendapatkan daftar endpoint
-// app.use("/endpoints", (req, res) => {
-//     const endpoints = getAllEndpoints(app);
-//     res.json(endpoints);
-// });
-
+app.listen(process.env.APP_PORT || 3000, () => {
+  testConnection();
+  console.log(`http://localhost:${process.env.APP_PORT || 3000}`);
+});

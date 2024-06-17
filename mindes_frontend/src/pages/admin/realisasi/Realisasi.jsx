@@ -10,8 +10,10 @@ import PrintModal from "../../../components/PrintModal";
 
 const Realisasi = () => {
   const [realisasitable, setRealisasi] = useState([]);
+
   const navigate = useNavigate();
   const [printItem, setPrintItem] = useState(null);
+
 
   useEffect(() => {
     getRealisasi();
@@ -24,7 +26,7 @@ const Realisasi = () => {
     } catch (error) {
       console.error("Terjadi kesalahan", error);
     }
-  };
+  };  
 
   const statusColorMap = {
     publish: "success",
@@ -131,15 +133,18 @@ const Realisasi = () => {
                   actionButtons={actionButtons}
                 />
               </div>
+
             </div>
           </div>
         </div>
       </div>
+
       {printItem && (
         <PrintModal item={printItem} onClose={() => setPrintItem(null)} />
       )}
     </div>
   );
 };
+
 
 export default Realisasi;

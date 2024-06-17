@@ -121,7 +121,6 @@ const FormUser = () => {
                       onChange={handleChange}
                     />
                   </div>
-
                   <div className="relative w-full mb-0">
                     <p className="mt-1 mb-2 text-caption-2 text-gray">
                       Pilih Role

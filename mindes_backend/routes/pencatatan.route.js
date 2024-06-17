@@ -1,6 +1,6 @@
 import express from 'express'
 import { getPencatatan, getPencatatanById, insertPencatatan,  updatePencatatan, deletePencatatan,  } from '../controller/pencatatan.controller.js'
-import { authenticateToken } from '../middleware/validate.middleware.js'
+// import { authenticateToken } from '../middleware/validate.middleware.js'
 
 const router = express.Router()
 

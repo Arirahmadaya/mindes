@@ -1,89 +1,220 @@
-import { query } from "../database/db.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
+const express = require("express");
+const passport = require("passport");
+const jwt = require("jsonwebtoken");
+const multer = require("multer");
+const path = require("path");
+const LocalStrategy = require("passport-local").Strategy;
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const { ExtractJwt, Strategy: JwtStrategy } = require("passport-jwt");
+const { User } = require("../database/models");
 
-dotenv.config();
-const register = async (req, res) => {
-  const { username, password, confPassword } = req.body;
+require("dotenv").config();
 
-  // Validasi input kosong
-  if (!username || !password || !confPassword) {
-    return res.status(400).json({ error: "Field must not be empty" });
-  }
+const router = express.Router();
 
-  // Validasi konfirmasi password
-  if (password !== confPassword) {
-    return res.status(400).json({ error: "Password not match" });
-  }
-
-  try {
-    // Check if the username already exists
-    const [existingUser] = await query(
-      "SELECT * FROM usertable WHERE username = ?",
-      [username]
+// Setup Multer Storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, "../public/uploads/avatar"));
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(
+      null,
+      `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`
     );
-    if (existingUser) {
-      return res.status(400).json({ error: "Username already exists" });
-    }
+  },
+});
 
-    // Hash password
-    const salt = await bcrypt.genSalt(12);
-    const hash = await bcrypt.hash(password, salt);
+// Passport Local Strategy
+passport.use(
+  "local",
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password",
+      passReqToCallback: true,
+    },
+    async (req, username, password, done) => {
+      try {
+        const user = await User.findOne({ where: { email: username } });
+        if (!user) {
+          return done(null, false, { message: "Email tidak ditemukan." });
+        }
 
-    // Insert ke database dengan roles default 'umum'
-    await query(
-      "INSERT INTO usertable (username, password, roles) VALUES (?, ?, 'umum')",
-      [username, hash]
-    );
+        if (user.googleId && !password) {
+          return done(null, false, {
+            message: "Silahkan login melalui Google.",
+          });
+        }
 
-    return res.status(200).json({ username });
-  } catch (error) {
-    console.error("Error:", error);
-    return res.status(500).json({ error: "Terjadi kesalahan pada server" });
-  }
-};
+        const isValid = await user.isValidPassword(password);
+        if (!isValid) {
+          return done(null, false, { message: "Kata sandi salah." });
+        }
 
-const login = async (req, res) => {
-  const { username, password: inputPass } = req.body;
-
-  if (!username || !inputPass) {
-    return res.status(400).json({ error: "Field must not be empty" });
-  }
-
-  try {
-    const [user] = await query(
-      "SELECT id_user, username, password, roles FROM usertable WHERE username = ?",
-      [username]
-    );
-    if (!user) {
-      return res.status(400).json({ error: "User not found" });
-    }
-
-    const isMatch = await bcrypt.compare(inputPass, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ error: "Password is wrong" });
-    }
-
-    const payload = {
-      id_user: user.id_user,
-      username: user.username,
-      roles: user.roles,
-    };
-
-    jwt.sign(
-      payload,
-      process.env.SECRETKEY,
-      { expiresIn: "1h" },
-      (err, token) => {
-        if (err) throw err;
-        return res.status(200).json({ Authorization: `Bearer ${token}` });
+        return done(null, user);
+      } catch (err) {
+        return done(err);
       }
-    );
-  } catch (error) {
-    console.error("Error:", error);
-    return res.status(500).json({ error: "Terjadi kesalahan pada server" });
-  }
-};
+    }
+  )
+);
 
-export { register, login };
+// Passport Google Strategy
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: process.env.GOOGLE_CALLBACK_URL,
+    },
+    async function (accessToken, refreshToken, profile, cb) {
+      try {
+        let user = await User.findOne({ where: { googleId: profile.id } });
+
+        if (!user) {
+          user = await User.findOne({
+            where: { email: profile.emails[0].value },
+          });
+
+          if (user) {
+            if (!user.googleId) {
+              await User.update({
+                googleId: profile.id,
+                avatar: user.avatar || profile.photos[0].value,
+                email_verified: profile.emails[0].verified,
+              });
+            }
+          } else {
+            user = await User.create({
+              avatar: profile.photos[0].value,
+              googleId: profile.id,
+              nama:
+                profile.displayName ||
+                `${profile.name.givenName} ${profile.name.familyName}`,
+              email: profile.emails[0].value,
+              email_verified: profile.emails[0].verified,
+            });
+          }
+        }
+
+        return cb(null, user);
+      } catch (err) {
+        return cb(err);
+      }
+    }
+  )
+);
+
+// Passport JWT Strategy
+passport.use(
+  new JwtStrategy(
+    {
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      secretOrKey: process.env.JWT_SECRET,
+    },
+    async (jwtPayload, done) => {
+      try {
+        const user = await User.findByPk(jwtPayload.id);
+        if (user) {
+          return done(null, user);
+        } else {
+          return done(null, false);
+        }
+      } catch (err) {
+        return done(err, false);
+      }
+    }
+  )
+);
+
+router.post(
+  "/login",
+  passport.authenticate("local", { session: false }),
+  (req, res) => {
+    if (!req.user) {
+      return res.status(401).json({ message: "Authentication failed" });
+    }
+
+    const user = req.user;
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    res.json({ token });
+  }
+);
+
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "/login",
+    session: false,
+  }),
+  (req, res) => {
+    // Generate JWT token
+    const user = req.user;
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    res.redirect(`http://localhost:5173/auth/google/callback?token=${token}`);
+  }
+);
+
+router.post(
+  "/register",
+  multer({ storage: storage }).single("avatar"),
+  async (req, res) => {
+    try {
+      const { nama, email, password, no_hp, tgl_lahir, gender } = req.body;
+      let avatar = null;
+
+      if (req.file) {
+        avatar = `/uploads/avatar/${req.file.filename}`;
+      }
+
+      const existingUser = await User.findOne({ where: { email } });
+      if (existingUser) {
+        return res.status(400).json({ message: "Email is already registered" });
+      }
+
+      const newUser = await User.create({
+        avatar,
+        nama,
+        email,
+        password,
+        no_hp,
+        tgl_lahir,
+        gender,
+      });
+
+      const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
+        expiresIn: "1h",
+      });
+
+      res.json({ token });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  }
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findByPk(id)
+    .then((user) => done(null, user))
+    .catch((err) => done(err, null));
+});
+
+module.exports = router;

@@ -11,9 +11,9 @@ export const getPenduduk = async(req,res)=>{
 }
 
 export const insertPenduduk = async(req,res)=>{
-    const {jumlah, mutasi, keterangan}= req.body
+    const {tgl, jumlah, mutasi, keterangan}= req.body
     try {
-        await query("INSERT INTO penduduktable (jumlah, mutasi, keterangan) values (?, ?, ?)", [jumlah , mutasi, keterangan])
+        await query("INSERT INTO penduduktable (tgl, jumlah, mutasi, keterangan) values (?, ?, ?, ?)", [tgl, jumlah , mutasi, keterangan])
         return res.status(200).json({msg:"Mutasi ditambahkan"})
     } catch (error) {
         console.log("Terjadi kesalahan", e)
@@ -22,10 +22,10 @@ export const insertPenduduk = async(req,res)=>{
 }
 
 export const updatePenduduk = async(req,res)=>{
-    const {jumlah, mutasi, keterangan}= req.body
+    const {tgl, jumlah, mutasi, keterangan}= req.body
     const {id_penduduk}=req.params
     try {
-        await query("UPDATE penduduktable SET jumlah=?, mutasi=?, keterangan=? where id_penduduk=?", [jumlah, mutasi, keterangan, id_penduduk])
+        await query("UPDATE penduduktable SET tgl=?, jumlah=?, mutasi=?, keterangan=? where id_penduduk=?", [tgl, jumlah, mutasi, keterangan, id_penduduk])
         return res.status(200).json({msg:"Mutasi Diubah"})
     } catch (error) {
         console.log("Terjadi kesalahan", e)
