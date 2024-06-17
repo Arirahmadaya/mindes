@@ -1,6 +1,6 @@
 import express from 'express'
 import { getBerita, getBeritaById, insertBerita,  updateBerita, deleteBerita,  } from '../controller/berita.controller.js'
-import { authenticateToken } from '../middleware/validate.middleware.js'
+// import { authenticateToken } from '../middleware/validate.middleware.js'
 
 const router = express.Router()
 

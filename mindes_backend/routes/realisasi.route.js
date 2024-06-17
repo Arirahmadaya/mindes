@@ -1,6 +1,6 @@
 import express from 'express'
 import { getRealisasi, getRealisasiById, insertRealisasi,  updateRealisasi, deleteRealisasi  } from '../controller/realisasi.controller.js'
-import { authenticateToken } from '../middleware/validate.middleware.js'
+// import { authenticateToken } from '../middleware/validate.middleware.js'
 
 const router = express.Router()
 

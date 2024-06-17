@@ -1,3 +1,45 @@
+### Agenda
+GET http://localhost:3000/agenda
+Content-Type: application/json
+
+### Agenda
+POST http://localhost:3000/agenda/create
+Content-Type: application/json
+
+{
+    "tgl": "2024-06-12",
+    "tempat": "Aula",
+    "hari": "Senin",
+    "deskripsi": "Pertemuan mingguan",
+    "kegiatan": "Rapat Koordinasi",
+    "status": "publish"
+}
+
+### Realisasi YET
+POST http://localhost:3000/realisasi/create
+Content-Type: application/json
+
+{
+    "id_realisasi": 3,
+    "id_bidang": 2,
+    "kode_kegiatan": 1002,
+    "kegiatan": "Pembangunan Jalan Desa",
+    "output": "Jalan sepanjang 2 km",
+    "status": "proses",
+    "lokasi": "Dusun I",
+    "img_realisasi1": "path/to/image3.jpg",
+    "img_realisasi2": "path/to/image4.jpg",
+    "sumber": "Dana Desa",
+    "pembiayaan": 2500000,
+    "tgl_mulai": "2024-07-01T17:00:00.000Z",
+    "tgl_selesai": "2024-07-15T17:00:00.000Z",
+    "nama": "BIDANG PEMBANGUNAN DESA"
+}
+
+###
+GET http://localhost:3000/realisasi
+Content-Type: application/json
+
 ### Register
 POST http://localhost:3000/auth/register
 Content-Type: application/json
@@ -10,6 +52,151 @@ Content-Type: application/json
 
 ### Get User
 GET http://localhost:3000/user
+Content-Type: application/json
+
+###
+DELETE http://localhost:3000/pencatatan/11
+Content-Type: application/json
+
+### Get pencatatan sesuai dengan id_realisasinya
+GET http://localhost:3000/pencatatan/2
+Content-Type: application/json
+
+###
+PUT http://localhost:3000/pencatatan/12
+Content-Type: application/json
+
+{
+    "no": 2,
+    "kode": 534,
+    "nominal": 25000,
+    "total": 25000,
+    "id_realisasi": 2
+}
+
+
+###
+POST http://localhost:3000/pencatatan/create
+Content-Type: application/json
+
+{
+    "no": 2,
+    "kode": 533,
+    "nominal": 2000,
+    "total": 2000,
+    "id_realisasi": 2
+}
+
+###
+{
+    "no": 1,
+    "kode": 534,  //
+    "nominal": 1500,
+    "total": 1500,
+    "id_realisasi": 2
+}
+
+###
+GET http://localhost:3000/akun
+Content-Type: application/json
+
+###
+GET http://localhost:3000/pencatatan
+Content-Type: application/json
+
+
+
+# 
+### Register User
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "username": "banana",
+    "email": "banana@gmail.com",
+    "password": "P@55word",
+    "roles": "umum"
+}
+
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "banana@gmail.com",
+    "password": "P@55word"
+}
+
+### Register User
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "username": "testuser",
+    "email": "testuser@example.com",
+    "password": "P@55word",
+    "confPassword": "P@55word"
+}
+
+### Get User
+GET http://localhost:3000/user
+Content-Type: application/json
+
+### Register User
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "username": "testuser3",
+    "email": "testuser3@example.com",
+    "password": "P@55word",
+    "confPassword": "P@55word"
+}
+
+### Login
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "gmail@gmail.com",
+    "password": "P@55word"
+}
+
+
+
+#########################################
+
+###
+POST http://localhost:3000/kategori
+Content-Type: application/json
+
+{
+    "nama": "hiburan"
+}
+
+
+### Register
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "username": "Jacob",
+    "password": "P@55word",
+    "confPassword": "P@55word"
+}
+
+### Get User
+GET http://localhost:3000/user
+Content-Type: application/json
+
+### Get User
+GET http://localhost:3000/bidang
+Content-Type: application/json
+### Get User
+GET http://localhost:3000/kategori
+Content-Type: application/json
+### Get Penduduk
+GET http://localhost:3000/penduduk
 Content-Type: application/json
 
 ###

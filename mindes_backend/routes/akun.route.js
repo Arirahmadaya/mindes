@@ -1,6 +1,6 @@
 import express from 'express'
 import { getAkun, insertAkun, deleteAkun } from '../controller/akun.controller.js'
-import { authenticateToken } from '../middleware/validate.middleware.js'
+// import { authenticateToken } from '../middleware/validate.middleware.js'
 
 const router = express.Router()
 
