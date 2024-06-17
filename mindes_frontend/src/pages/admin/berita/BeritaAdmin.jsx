@@ -5,6 +5,7 @@ import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Eye, Edit, Trash2 } from "react-feather";
+import { format } from "date-fns"; // Import date-fns
 
 const statusColorMap = {
   publish: "success",
@@ -23,8 +24,6 @@ const columns = [
   { name: "Kategori", uid: "id_kategori" },
   { name: "Status", uid: "status" },
   { name: "Aksi", uid: "actions" },
-
-  
 ];
 
 const statusOptions = [
@@ -75,14 +74,13 @@ const BeritaAdmin = () => {
 
   const isi = news.map((item) => ({
     id: item.id_berita,
-    tgl: item.tgl,
+    tgl: format(new Date(item.tgl), "dd-MM-yyyy"), // Memformat tanggal
     judul: item.judul,
     artikel: item.artikel,
     img_berita: item.img_berita,
     id_user: item.id_user,
     id_kategori: item.id_kategori,
     status: item.status,
-
   }));
 
   return (

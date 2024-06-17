@@ -79,8 +79,8 @@ const FormPencatatanDetail = () => {
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
           <BreadcrumbItem href="/admin/realisasi">Realisasi</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/bidang">Bidang</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/bidang/tambah">Tambah Bidang</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/realisasi/bidang">Utama</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/realisasi/bidang/tambah">Tambah Realisasi</BreadcrumbItem>
         </Breadcrumbs>
 
       

@@ -6,7 +6,7 @@ import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Eye, Edit, Trash2, Printer } from "react-feather";
 import TableProps from "../../../components/TableProps";
 import { useNavigate } from "react-router-dom";
-import PrintModal from "../../../components/PrintModal";
+import PrintLaporan from "../../../components/PrintLaporan";
 
 const Realisasi = () => {
   const [realisasitable, setRealisasi] = useState([]);
@@ -69,7 +69,7 @@ const Realisasi = () => {
     {
       icon: <Eye className="w-4 h-4 text-black" />,
       onClick: (item) => {
-        navigate("/admin/realisasi/pencatatan", { state: item });
+        navigate("/admin/realisasi/utama/pencatatan", { state: item });
         console.log("View item:", item);
       },
     },
@@ -129,7 +129,7 @@ const Realisasi = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  tambahKegiatanURL="/admin/realisasi/tambah"
+                  tambahKegiatanURL="/admin/realisasi/utama/tambah"
                   actionButtons={actionButtons}
                 />
               </div>
@@ -140,7 +140,7 @@ const Realisasi = () => {
       </div>
 
       {printItem && (
-        <PrintModal item={printItem} onClose={() => setPrintItem(null)} />
+        <PrintLaporan item={printItem} onClose={() => setPrintItem(null)} />
       )}
     </div>
   );

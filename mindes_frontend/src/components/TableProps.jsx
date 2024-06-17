@@ -211,14 +211,12 @@ function TableProps({
               </DropdownMenu>
             </Dropdown>
             <Button
-              className="bg-primary-30 text-white"
+              className="bg-primary-30 text-white flex"
               size="sm"
-              endContent={<Plus className="w-5 h-5" />}
-            
               variant="flat"
             >
-              <Link to={tambahKegiatanURL}>
-                Tambah 
+              <Link to={tambahKegiatanURL} className="flex gap-1 items-center">
+                Tambah <Plus className="w-5" />
               </Link>
             </Button>
           </div>

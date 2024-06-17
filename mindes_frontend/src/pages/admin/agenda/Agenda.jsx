@@ -5,8 +5,7 @@ import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Eye, Edit, Trash2 } from "react-feather";
-// import { format } from "date-fns";
-// import { utcToZonedTime, format as formatDate } from "date-fns-tz"; // Menggunakan date-fns-tz untuk konversi waktu zona
+import { format } from "date-fns"; // Import date-fns
 
 const Agenda = () => {
   const [agendatable, setAgenda] = useState([]);
@@ -83,16 +82,10 @@ const Agenda = () => {
     },
   ];
 
-  // Fungsi untuk mengonversi tgl dari UTC ke WIB
-  // const convertToWIB = (utcDate) => {
-  //   const date = utcToZonedTime(utcDate, "Asia/Jakarta");
-  //   return format(date, "dd-MM-yyyy HH:mm", { timeZone: "Asia/Jakarta" });
-  // };
-
   //isi sesuai dengan struktur table
   const isi = agendatable.map((agenda) => ({
     id: agenda.id_agenda,
-    tgl: agenda.tgl,
+    tgl: format(new Date(agenda.tgl), "dd-MM-yyyy"), // Memformat tanggal
     jam: agenda.jam,
     hari: agenda.hari,
     tempat: agenda.tempat,
