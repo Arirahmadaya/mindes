@@ -27,7 +27,7 @@ export default function NavbarAdmin() {
             inputWrapper:
               "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
           }}
-          placeholder="Type to search..."
+          placeholder="Cari data..."
           size="sm"
           startContent={<Search size={18} />}
           type="search"
