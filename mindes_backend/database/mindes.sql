@@ -32,7 +32,7 @@ CREATE TABLE `agendatable` (
   `deskripsi` varchar(255) NOT NULL,
   `status` enum('publish','proses','gagal') DEFAULT NULL,
   PRIMARY KEY (`id_agenda`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `agendatable` (
 
 LOCK TABLES `agendatable` WRITE;
 /*!40000 ALTER TABLE `agendatable` DISABLE KEYS */;
+INSERT INTO `agendatable` VALUES (1,'2024-06-12','11:00:00','Aula','Senin','Rapat Koordinasi','Pertemuan mingguan','publish'),(2,'2024-06-12','11:00:00','Aula','Senin','Rapat Koordinasi','Pertemuan mingguan','publish'),(4,'2024-07-20','10:00:00','Pendopo Kelurahan Kalinyamat Kulon','Minggu','Posyandu Remaja','Posyandu dilaksanakan di ','publish');
 /*!40000 ALTER TABLE `agendatable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,20 +80,17 @@ DROP TABLE IF EXISTS `beritatable`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `beritatable` (
   `id_berita` int NOT NULL AUTO_INCREMENT,
-  `tgl` datetime NOT NULL,
+  `tgl` date DEFAULT NULL,
   `judul` varchar(255) NOT NULL,
   `artikel` text NOT NULL,
   `status` enum('publish','proses','gagal') DEFAULT NULL,
   `img_berita` varchar(255) DEFAULT NULL,
   `id_kategori` int NOT NULL,
-  `id_user` int NOT NULL,
   PRIMARY KEY (`id_berita`),
   UNIQUE KEY `judul` (`judul`),
-  KEY `id_user` (`id_user`),
   KEY `id_kategori` (`id_kategori`),
-  CONSTRAINT `beritatable_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usertable` (`id_user`),
-  CONSTRAINT `beritatable_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `kategoritable` (`id_kategori`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `beritatable_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `kategoritable` (`id_kategori`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +99,7 @@ CREATE TABLE `beritatable` (
 
 LOCK TABLES `beritatable` WRITE;
 /*!40000 ALTER TABLE `beritatable` DISABLE KEYS */;
-INSERT INTO `beritatable` VALUES (2,'2024-06-12 00:00:00','Berita Baru','Ini adalah isi dari berita baru.','publish','path/to/image.jpg',2,1),(11,'2024-06-12 00:00:00','Berita Baru update','Ini adalah isi dari berita baru yang diupdate.','publish','path/to/image.jpg',2,1);
+INSERT INTO `beritatable` VALUES (1,'2024-06-26','Idul Adha','','publish','',4),(2,'2024-06-19','Orang warna pink','','proses','',4),(3,'2024-06-19','Anime kuning','ditorCKEditorCKEditorCKEditorCKEditorCKEditorCKE ditorCKEditorCKEd itorCKEditorCKEditorCKEditorCKEditor CKEdito rCKEditorCKE ditorCKEditorCKE ditorCKEditorCKEd','publish','',4),(7,'2024-06-19','Testing berita with image','<p>&nbsp; &nbsp; &nbsp; console.log(\"Data yang dikirim:\", formData);</p><p>&nbsp; &nbsp; &nbsp; navigate(\"/admin/agenda\"); &nbsp; &nbsp; &nbsp;console.log(\"Data yang dikirim:\", formData);</p><p>&nbsp; &nbsp; &nbsp; navigate(\"/admin/agenda\"); &nbsp; &nbsp; &nbsp;console.log(\"Data yang dikirim:\", formData);</p><p>&nbsp; &nbsp; &nbsp; navigate(\"/admin/agenda\"); &nbsp; &nbsp; &nbsp;console.log(\"Data yang dikirim:\", formData);</p><p>&nbsp; &nbsp; &nbsp; navigate(\"/admin/agenda\"); &nbsp; &nbsp; &nbsp;console.log(\"Data yang dikirim:\", formData);</p><p>&nbsp; &nbsp; &nbsp; navigate(\"/admin/agenda\");</p>','proses',NULL,4),(8,'2024-06-19','Testing 2','<p>Berapa hari Idul Adha 2024?</p><p>&nbsp;</p><p>Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal <strong>17 Juni 2024</strong>. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.6 hours agoBerapa hari Idul Adha 2024?</p><p>&nbsp;</p><p>Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal <strong>17 Juni 2024</strong>. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.6 hours agoBerapa hari Idul Adha 2024?</p><p>&nbsp;</p><p>Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal <strong>17 Juni 2024</strong>. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.6 hours agoBerapa hari Idul Adha 2024?</p><p>&nbsp;</p><p>Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal <strong>17 Juni 2024</strong>. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.6 hours ago</p>','proses',NULL,4),(9,'2024-06-20','Testing 3','<p>Berapa hari Idul Adha 2024?</p><p>&nbsp;</p><p>Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal <strong>17 Juni 2024</strong>. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.6 hours ago</p>','proses',NULL,4),(10,'2024-06-19','AKu anak sehat mentalku rusak','<p>&nbsp; const handleSubmit = async (<i>e</i>) =&gt; {</p><p>&nbsp; &nbsp;&nbsp;<i>e</i>.preventDefault();</p><p>&nbsp; &nbsp; try {</p><p>&nbsp; &nbsp; &nbsp; await axios.post(\"http://localhost:3000/berita/create\", formData);</p><p>&nbsp; &nbsp; &nbsp; console.log(\"Data yang dikirim:\", formData);</p><p>&nbsp; &nbsp; &nbsp; navigate(\"/admin/berita\");</p><p>&nbsp; &nbsp; } catch (error) {</p><p>&nbsp; &nbsp; &nbsp; console.log(error);</p><p>&nbsp; &nbsp; }</p><p>&nbsp; };</p>','proses',NULL,4),(11,'2024-06-19','Testing 4','<p>Berapa hari Idul Adha 2024?</p><p>&nbsp;</p><p>Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal <strong>17 Juni 2024</strong>. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.</p>','proses','/img_berita/img_berita-1718705251199-110615449.jpg',4),(12,'2024-06-19','Meme Patrick','<p>Berapa hari Idul Adha 2024?</p><p>&nbsp;</p><p>Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal <strong>17 Juni 2024</strong>. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.</p>','proses','/img_berita/img_berita-1718705974483-420686791.jpg',4),(13,'2024-06-19','Meme Patrick 2','<ol><li>Object<ol><li><strong>artikel</strong>: \"&lt;p&gt;Berapa hari Idul Adha 2024?&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal &lt;strong&gt;17 Juni 2024&lt;/strong&gt;. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.&lt;/p&gt;\"</li></ol></li></ol>','gagal','/img_berita/img_berita-1718706049566-641199926.jpg',4);
 /*!40000 ALTER TABLE `beritatable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +141,7 @@ CREATE TABLE `kategoritable` (
   `id_kategori` int NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) NOT NULL,
   PRIMARY KEY (`id_kategori`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +150,7 @@ CREATE TABLE `kategoritable` (
 
 LOCK TABLES `kategoritable` WRITE;
 /*!40000 ALTER TABLE `kategoritable` DISABLE KEYS */;
-INSERT INTO `kategoritable` VALUES (2,'kesehatan'),(4,'Hiburan'),(5,'test');
+INSERT INTO `kategoritable` VALUES (4,'Hiburan');
 /*!40000 ALTER TABLE `kategoritable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +200,7 @@ CREATE TABLE `penduduktable` (
   `keterangan` varchar(255) NOT NULL,
   `tgl` date DEFAULT NULL,
   PRIMARY KEY (`id_penduduk`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +209,7 @@ CREATE TABLE `penduduktable` (
 
 LOCK TABLES `penduduktable` WRITE;
 /*!40000 ALTER TABLE `penduduktable` DISABLE KEYS */;
-INSERT INTO `penduduktable` VALUES (2,2,'meninggal','A.n Rajawali meninggal dunia',NULL);
+INSERT INTO `penduduktable` VALUES (2,2,'meninggal','A.n Rajawali meninggal dunia',NULL),(3,1,'meninggal','Longsor','2024-05-26');
 /*!40000 ALTER TABLE `penduduktable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -319,4 +317,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-17 14:16:57
+-- Dump completed on 2024-06-19  1:01:56

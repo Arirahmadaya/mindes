@@ -5,11 +5,7 @@ import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Eye, Edit, Trash2 } from "react-feather";
-
 import { useNavigate } from "react-router-dom";
-
-import { format } from "date-fns"; // Import date-fns
-
 
 const Agenda = () => {
   const [agendatable, setAgenda] = useState([]);

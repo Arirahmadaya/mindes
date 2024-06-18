@@ -1,10 +1,7 @@
 import React from "react";
 import {
   Navbar,
-  NavbarBrand,
   NavbarContent,
-  NavbarItem,
-  Link,
   Input,
   DropdownItem,
   DropdownTrigger,
@@ -13,7 +10,7 @@ import {
   Avatar,
 } from "@nextui-org/react";
 
-import { ArrowDown, Search, User } from "react-feather";
+import { Search } from "react-feather";
 
 export default function NavbarAdmin() {
   return (
