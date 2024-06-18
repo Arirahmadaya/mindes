@@ -5,7 +5,11 @@ import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Eye, Edit, Trash2 } from "react-feather";
+
 import { useNavigate } from "react-router-dom";
+
+import { format } from "date-fns"; // Import date-fns
+
 
 const Agenda = () => {
   const [agendatable, setAgenda] = useState([]);
@@ -92,6 +96,7 @@ const Agenda = () => {
     },
   ];
 
+
   const formatDate = (datetime) => {
     const date = new Date(datetime);
     const year = date.getFullYear();
@@ -103,6 +108,7 @@ const Agenda = () => {
   const isi = agendatable.map((agenda) => ({
     id: agenda.id_agenda,
     tgl: formatDate(agenda.tgl),
+
     jam: agenda.jam,
     hari: agenda.hari,
     tempat: agenda.tempat,

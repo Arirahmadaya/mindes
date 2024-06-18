@@ -83,8 +83,8 @@ const Akutansi = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi">Realisasi</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/akuntansi">
+          <BreadcrumbItem href="/admin/datamaster/akuntansi">Data Master</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/datamaster/akuntansi">
             Akuntansi
           </BreadcrumbItem>
         </Breadcrumbs>

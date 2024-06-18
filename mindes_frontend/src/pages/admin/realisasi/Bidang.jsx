@@ -83,8 +83,8 @@ const Bidang = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi">Realisasi</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/bidang">Bidang</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/datamaster/bidang">Data Master</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/datamaster/bidang">Bidang</BreadcrumbItem>
         </Breadcrumbs>
 
         <div className="flex gap-5 my-5">
@@ -98,7 +98,7 @@ const Bidang = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  tambahBeritaURL={"/admin/realisasi/bidang/tambah"}
+                  tambahBeritaURL={"/admin/datamaster/bidang/tambah"}
                   actionButtons={actionButtons}
                 />
               </div>

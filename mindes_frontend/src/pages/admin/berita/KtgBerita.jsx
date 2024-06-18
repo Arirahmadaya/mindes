@@ -86,10 +86,10 @@ const KtgBerita = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/berita">Berita</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/ktgberita">
-            Kategori Berita
-          </BreadcrumbItem>
+
+          <BreadcrumbItem href="/admin/datamaster/ktgberita">Data Master</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/datamaster/ktgberita">Kategori Berita</BreadcrumbItem>
+
         </Breadcrumbs>
 
         <div className="flex gap-5 my-5">

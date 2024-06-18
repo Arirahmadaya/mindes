@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import Sidebares from "../../../components/Sidebar";
+
 import NavbarAdmin from "../../../components/NavbarAdmin";
-import { Link, useNavigate } from "react-router-dom";
+
+
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import { PaperAirplaneIcon, ArrowUturnLeftIcon } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
+import NavbarAdmin from "../../../components/NavbarAdmin";
 
 const FormPencatatanDetail = () => {
   const [formData, setFormData] = useState({
@@ -67,16 +72,21 @@ const FormPencatatanDetail = () => {
     <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
       <Sidebares />
       <div className="flex-1 mx-5">
+        <div>
+
         <NavbarAdmin />
+        </div>
+        
         
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
           <BreadcrumbItem href="/admin/realisasi">Realisasi</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/bidang">Bidang</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/bidang/tambah">Tambah Bidang</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/realisasi/bidang">Utama</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/realisasi/bidang/tambah">Tambah Realisasi</BreadcrumbItem>
         </Breadcrumbs>
 
-        <div className="container mx-auto my-5 p-5 bg-white rounded-lg shadow-lg mt-20 transform -translate-x-10 -translate-y-12">
+      
+        <div className="container mx-auto my-5 p-5 bg-white rounded-lg  background-animate transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
           <h2 className="text-3xl font-bold mb-5 text-left text-blue-600">REALISASI</h2>
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

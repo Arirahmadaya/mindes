@@ -17,7 +17,7 @@ import {
   Chip,
   Pagination,
 } from "@nextui-org/react";
-import { Search, ChevronDown, Eye, Edit, Trash2, Printer } from "react-feather";
+import { Search, ChevronDown, Plus } from "react-feather";
 
 function TableProps({
   statusColorMap,
@@ -26,7 +26,6 @@ function TableProps({
   statusOptions,
   isi,
   tambahKegiatanURL,
-  showPrintAction,
   actionButtons,
 }) {
   const [filterValue, setFilterValue] = React.useState("");
@@ -119,24 +118,13 @@ function TableProps({
                   {action.icon}
                 </Button>
               ))}
-              {showPrintAction && (
-                <Button
-                  isIconOnly
-                  radius="full"
-                  size="sm"
-                  variant="light"
-                  onClick={() => handlePrint(user)}
-                >
-                  <Printer className="w-4 h-4 text-blue" />
-                </Button>
-              )}
             </div>
           );
         default:
           return cellValue;
       }
     },
-    [statusColorMap, showPrintAction, actionButtons]
+    [statusColorMap, actionButtons]
   );
 
   const onRowsPerPageChange = React.useCallback((e) => {
@@ -165,7 +153,7 @@ function TableProps({
             }}
             placeholder="Search by title..."
             size="sm"
-            startContent={<Search className="text-default-300" />}
+            startContent={<Search className="w-5 h-5" />}
             value={filterValue}
             variant="bordered"
             onClear={() => setFilterValue("")}
@@ -175,7 +163,7 @@ function TableProps({
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
                 <Button
-                  endContent={<ChevronDown className="text-small" />}
+                  endContent={<ChevronDown className="w-5 h-5" />}
                   size="sm"
                   variant="flat"
                 >
@@ -200,7 +188,7 @@ function TableProps({
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
                 <Button
-                  endContent={<ChevronDown className="text-small" />}
+                  endContent={<ChevronDown className="w-5 h-5" />}
                   size="sm"
                   variant="flat"
                 >
@@ -222,8 +210,14 @@ function TableProps({
                 ))}
               </DropdownMenu>
             </Dropdown>
-            <Button className="bg-primary-30 text-white" size="sm">
-              <Link to={tambahKegiatanURL}>Tambah</Link>
+            <Button
+              className="bg-primary-30 text-white flex"
+              size="sm"
+              variant="flat"
+            >
+              <Link to={tambahKegiatanURL} className="flex gap-1 items-center">
+                Tambah <Plus className="w-5" />
+              </Link>
             </Button>
           </div>
         </div>
@@ -232,7 +226,7 @@ function TableProps({
             Total {isi.length} isi
           </span>
           <label className="flex items-center text-default-400 text-small">
-            Rows per page:
+            Baris perhalaman:
             <select
               className="bg-transparent outline-none text-default-400 text-small"
               onChange={onRowsPerPageChange}
@@ -269,8 +263,8 @@ function TableProps({
         />
         <span className="text-small text-default-400">
           {selectedKeys.size === isi.length
-            ? "All items selected"
-            : `${selectedKeys.size} of ${filteredItems.length} selected`}
+            ? "Semua isi ditandai"
+            : `${selectedKeys.size} dari ${filteredItems.length} ditandai`}
         </span>
       </div>
     );
