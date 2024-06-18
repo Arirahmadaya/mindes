@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import Sidebares from "../../../components/Sidebar";
 
+import NavbarAdmin from "../../../components/NavbarAdmin";
+
+
 import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import { PaperAirplaneIcon, ArrowUturnLeftIcon } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 
 const FormPencatatanDetail = () => {
-  const navigate = useNavigate();
-
-  // State untuk menyimpan pilihan bidang, status, dan sumber
-  const [selectedBidang, setSelectedBidang] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState("");
-  const [selectedSumber, setSelectedSumber] = useState("");
   const [formData, setFormData] = useState({
     lokasi: "",
     idKegiatan: "",
@@ -23,6 +21,11 @@ const FormPencatatanDetail = () => {
     tanggalMulai: "",
     tanggalSelesai: ""
   });
+  const navigate = useNavigate();
+
+  const [selectedBidang, setSelectedBidang] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("");
+  const [selectedSumber, setSelectedSumber] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,7 +38,7 @@ const FormPencatatanDetail = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/pencatatan/create", formData);
+      await axios.post("http://localhost:3000/realisasi/create", formData);
       navigate("/admin/realisasi/pencatatan");
     } catch (error) {
       console.log(error);
@@ -47,7 +50,6 @@ const FormPencatatanDetail = () => {
     "- Pilih Bidang -",
     "Bidang 1",
     "Bidang 2",
-    // Tambahkan opsi bidang lainnya sesuai kebutuhan
   ];
 
   // Opsi status yang tersedia

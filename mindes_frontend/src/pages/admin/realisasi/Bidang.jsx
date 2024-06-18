@@ -12,12 +12,12 @@ const statusColorMap = {
   gagal: "danger",
 };
 
-const INITIAL_VISIBLE_COLUMNS = ["id", "bidang", "sub_bidang", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["id", "bidang", "parent_id", "actions"];
 
 const columns = [
   { name: "ID", uid: "id" },
   { name: "BIDANG", uid: "bidang" },
-  { name: "SUB BIDANG", uid: "sub_bidang" },
+  { name: "SUB BIDANG", uid: "parent_id" },
   { name: "Aksi", uid: "actions" },
 ];
 
@@ -70,7 +70,7 @@ const Bidang = () => {
   const isi = bidangData.map((bidang) => ({
     id: bidang.id_bidang,
     bidang: bidang.nama,
-    sub_bidang: bidang.sub_bidang,
+    parent_id: bidang.parent_id,
   }));
 
   return (

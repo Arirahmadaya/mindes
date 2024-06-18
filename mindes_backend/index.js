@@ -33,7 +33,7 @@ app.use(router);
 app.use("/auth", authRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Hello Murtherfucker!");
+  res.send("Hi babygurl 💅🫃🫄🤰🐮🐄🐐!❤️😘😍🐲🐸🐴🐎🐄🐐");
 });
 
 app.use("/endpoints", (req, res) => {

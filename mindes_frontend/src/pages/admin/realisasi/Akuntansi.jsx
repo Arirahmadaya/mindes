@@ -45,8 +45,7 @@ const actionButtons = [
   {
     icon: <Trash2 className="w-4 h-4 text-danger" />,
     onClick: (item) => {
-      console.log("Delete item:", item);
-      // Implementasikan logika hapus di sini
+      deleteAkunt(Akunt.id);
     },
   },
 ];

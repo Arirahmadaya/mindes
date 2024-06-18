@@ -10,33 +10,31 @@ import {
   DropdownItem,
   Button,
   Input,
-  DateInput,
 } from "@nextui-org/react";
 import {
   PaperAirplaneIcon,
   ArrowUturnLeftIcon,
 } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
-import { parseDate } from "@internationalized/date";
-
 // DATE YET CEK CONSOLE.LOG
 
 const FormPenduduk = () => {
   const [selectedKey, setSelectedKey] = useState(new Set());
   const [formData, setFormData] = useState({
-    tgl: parseDate(new Date().toISOString().split("T")[0]),
+    tgl: "",
     jumlah: "",
     mutasi: "",
     keterangan: "",
   });
-  const navigate = useNavigate();
-  
+
   const selectedValue = React.useMemo(() => {
     const key = [...selectedKey].join(", ");
     return key
       ? key.charAt(0).toUpperCase() + key.slice(1).replaceAll("_", " ")
       : "Pilih Jenis Mutasi";
   }, [selectedKey]);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,13 +50,6 @@ const FormPenduduk = () => {
     setFormData((prevData) => ({
       ...prevData,
       mutasi: mutasi,
-    }));
-  };
-
-  const handleDateChange = (date) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      tgl: date,
     }));
   };
 
@@ -99,15 +90,16 @@ const FormPenduduk = () => {
                     <p className="text-caption-2 text-gray mt-1 mb-2">
                       Masukkan Tanggal Mutasi
                     </p>
-                    <DateInput
-                      label="Tanggal Mutasi"
+                    <Input
+                      type="date"
+                      label="Tanggal Agenda"
                       variant="bordered"
                       name="tgl"
                       value={formData.tgl}
-                      onChange={handleDateChange}
+                      onChange={handleChange}
                     />
                   </div>
-
+                  {/* select nya udah bener */}
                   <div className="relative w-full mb-0">
                     <p className="text-caption-2 text-gray mt-1 mb-2">
                       Pilih Jenis Mutasi
@@ -137,14 +129,13 @@ const FormPenduduk = () => {
                       </DropdownMenu>
                     </Dropdown>
                   </div>
-
                   {/* input number */}
-                  <div className="relative w-1/12 mb-0">
+                  <div className="relative w-1/2 mb-0">
                     <p className="text-caption-2 text-gray mt-1 mb-2">
                       Jumlah Orang
                     </p>
                     <Input
-                      type="text"
+                      type="number"
                       variant="bordered"
                       label="Jumlah Mutasi"
                       name="jumlah"

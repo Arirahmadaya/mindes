@@ -6530,11 +6530,6 @@ thenify-all@^1.0.0:
   dependencies:
     any-promise "^1.0.0"
 
-timezone@^1.0.23:
-  version "1.0.23"
-  resolved "https://registry.yarnpkg.com/timezone/-/timezone-1.0.23.tgz#87865e2c9d6aff6a52a598247e8f5102a92c881b"
-  integrity sha512-yhQgk6qmSLB+TF8HGmApZAVI5bfzR1CoKUGr+WMZWmx75ED1uDewAZA8QMGCQ70TEv4GmM8pDB9jrHuxdaQ1PA==
-
 to-fast-properties@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/to-fast-properties/-/to-fast-properties-2.0.0.tgz"
