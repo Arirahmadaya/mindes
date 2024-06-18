@@ -5,56 +5,11 @@ import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Eye, Edit, Trash2 } from "react-feather";
-
-const statusColorMap = {
-  publish: "success",
-  proses: "secondary",
-  gagal: "danger",
-};
-
-const INITIAL_VISIBLE_COLUMNS = ["id", "tgl", "mutasi", "jumlah", "keterangan", "actions"];
-
-const columns = [
-  { name: "ID", uid: "id" },
-  { name: "Tanggal", uid: "tgl" },
-  { name: "Mutasi", uid: "mutasi" },
-  { name: "Jumlah", uid: "jumlah" },
-  { name: "Keterangan", uid: "keterangan" },
-  { name: "Aksi", uid: "actions" },
-];
-
-const statusOptions = [
-  { name: "Publish", uid: "publish" },
-  { name: "Proses", uid: "proses" },
-  { name: "Gagal", uid: "gagal" },
-];
-
-const actionButtons = [
-  {
-    icon: <Eye className="w-4 h-4 text-black" />,
-    onClick: (item) => {
-      console.log("View item:", item);
-      // Implementasikan logika tampilan di sini
-    },
-  },
-  {
-    icon: <Edit className="w-4 h-4 text-warning" />,
-    onClick: (item) => {
-      console.log("Edit item:", item);
-      // Implementasikan logika edit di sini
-    },
-  },
-  {
-    icon: <Trash2 className="w-4 h-4 text-danger" />,
-    onClick: (item) => {
-      console.log("Delete item:", item);
-      // Implementasikan logika hapus di sini
-    },
-  },
-];
+import { useNavigate } from "react-router-dom";
 
 const Penduduk = () => {
   const [penduduk, setPenduduk] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPenduduk();
@@ -69,9 +24,80 @@ const Penduduk = () => {
     }
   };
 
+  const deletePenduduk = async (id) => {
+    console.log("Deleting mutasi with id:", id); // Debugging log
+    try {
+      await axios.delete(`http://localhost:3000/penduduk/${id}`);
+      fetchPenduduk();
+    } catch (error) {
+      console.error("Terjadi kesalahan", error);
+    }
+  };
+
+  const statusColorMap = {
+    publish: "success",
+    proses: "secondary",
+    gagal: "danger",
+  };
+
+  const INITIAL_VISIBLE_COLUMNS = [
+    "id",
+    "tgl",
+    "mutasi",
+    "jumlah",
+    "keterangan",
+    "actions",
+  ];
+
+  const columns = [
+    { name: "ID", uid: "id" },
+    { name: "Tanggal", uid: "tgl" },
+    { name: "Mutasi", uid: "mutasi" },
+    { name: "Jumlah", uid: "jumlah" },
+    { name: "Keterangan", uid: "keterangan" },
+    { name: "Aksi", uid: "actions" },
+  ];
+
+  const statusOptions = [
+    { name: "Publish", uid: "publish" },
+    { name: "Proses", uid: "proses" },
+    { name: "Gagal", uid: "gagal" },
+  ];
+
+  const actionButtons = [
+    {
+      icon: <Eye className="w-4 h-4 text-black" />,
+      onClick: (penduduk) => {
+        console.log("View penduduk:", penduduk);
+      },
+    },
+    {
+      icon: <Edit className="w-4 h-4 text-warning" />,
+      onClick: (penduduk) => {
+        navigate("/admin/penduduk/${id_penduduk}", { state: penduduk });
+        console.log("Edit penduduk:", penduduk);
+      },
+    },
+    {
+      icon: <Trash2 className="w-4 h-4 text-danger" />,
+      onClick: (penduduk) => {
+        deletePenduduk(penduduk.id);
+        console.log("Delete penduduk:", penduduk);
+      },
+    },
+  ];
+
+  const formatDate = (datetime) => {
+    const date = new Date(datetime);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() is zero-based
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const isi = penduduk.map((item) => ({
     id: item.id_penduduk,
-    tgl: item.tgl,
+    tgl: formatDate(item.tgl),
     mutasi: item.mutasi,
     jumlah: item.jumlah,
     keterangan: item.keterangan,
@@ -101,12 +127,11 @@ const Penduduk = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  tambahBeritaURL={"/admin/penduduk/mutasi"}
+                  tambahKegiatanURL="/admin/penduduk/mutasi"
                   actionButtons={actionButtons}
                 />
               </div>
             </div>
-
             <div className="flex justify-between"></div>
           </div>
         </div>

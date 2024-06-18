@@ -12,15 +12,14 @@ const statusColorMap = {
   gagal: "danger",
 };
 
-const INITIAL_VISIBLE_COLUMNS = ["tgl", "judul", "artikel", "id_kategori", "img_berita", "status", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["tgl", "judul", "artikel", "nama", "img_berita", "status", "actions"];
 
 const columns = [
   { name: "ID", uid: "id" },
   { name: "Tanggal", uid: "tgl" },
   { name: "Judul", uid: "judul" },
   { name: "Artikel", uid: "artikel" },
-  { name: "Gambar", uid: "img_berita" },
-  { name: "Kategori", uid: "id_kategori" },
+  { name: "Kategori", uid: "nama" },
   { name: "Status", uid: "status" },
   { name: "Aksi", uid: "actions" },
 
@@ -73,14 +72,22 @@ const BeritaAdmin = () => {
     }
   };
 
+  const formatDate = (datetime) => {
+    const date = new Date(datetime);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() is zero-based
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const isi = news.map((item) => ({
     id: item.id_berita,
-    tgl: item.tgl,
+    tgl: formatDate(item.tgl),
     judul: item.judul,
     artikel: item.artikel,
     img_berita: item.img_berita,
     id_user: item.id_user,
-    id_kategori: item.id_kategori,
+    nama: item.nama,
     status: item.status,
 
   }));
@@ -109,7 +116,7 @@ const BeritaAdmin = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  tambahBeritaURL={"/admin/berita/tambah"}
+                  tambahKegiatanURL="/admin/berita/tambah"
                   actionButtons={actionButtons}
                 />
               </div>

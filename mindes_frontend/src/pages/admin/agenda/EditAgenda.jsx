@@ -17,7 +17,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 
-const FormAgenda = () => {
+const EditAgenda = () => {
   const [formData, setFormData] = useState({
     tgl: "",
     jam: "",
@@ -30,8 +30,8 @@ const FormAgenda = () => {
 
   const [selectedKey, setSelectedKey] = useState(new Set());
   const [selectedStatus, setSelectedStatus] = useState(new Set());
-
   const navigate = useNavigate();
+  // const {id} = useParams();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -91,6 +91,11 @@ const FormAgenda = () => {
       console.log(error);
     }
   };
+
+  // const getAgendaById = async () => {
+  //   const response = await axios.get(`http://localhost:3000/agenda/${id}`);
+  //   set
+  // }
 
   return (
     <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
@@ -242,8 +247,8 @@ const FormAgenda = () => {
                           onSelectionChange={handleStatusSelectionChange}
                         >
                           <DropdownItem key="publish">Publish</DropdownItem>
-                          <DropdownItem key="proses">Draft</DropdownItem>
-                          <DropdownItem key="gagal">Archived</DropdownItem>
+                          <DropdownItem key="draft">Draft</DropdownItem>
+                          <DropdownItem key="archived">Archived</DropdownItem>
                         </DropdownMenu>
                       </Dropdown>
                     </div>
@@ -260,7 +265,7 @@ const FormAgenda = () => {
                         type="submit"
                         className="flex items-center gap-2 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
                       >
-                        <span>Simpan</span>
+                        <span>Update</span>
                         <PaperAirplaneIcon className="w-5 h-5" />
                       </button>
                     </div>
@@ -275,4 +280,4 @@ const FormAgenda = () => {
   );
 };
 
-export default FormAgenda;
+export default EditAgenda;

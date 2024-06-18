@@ -24,6 +24,7 @@ import FormPenduduk from "./pages/admin/penduduk/FormPenduduk";
 import FormUser from "./pages/admin/user/FormUser";
 import Agenda from "./pages/admin/agenda/Agenda";
 import FormAgenda from "./pages/admin/agenda/FormAgenda";
+import EditAgenda from "./pages/admin/agenda/EditAgenda";
 import FormBerita from "./pages/admin/berita/FormBerita";
 import KtgBerita from "./pages/admin/berita/KtgBerita";
 import Akuntansi from "./pages/admin/realisasi/Akuntansi";
@@ -100,6 +101,7 @@ const Main = () => {
         <Route path="/admin/user/tambah" element={<FormUser />} />
         <Route path="/admin/agenda" element={<Agenda />} />
         <Route path="/admin/agenda/tambah" element={<FormAgenda />} />
+        <Route path="/admin/agenda/edit/:id" element={<EditAgenda />} />
         <Route path="/admin/berita/tambah" element={<FormBerita />} />
         <Route path="/admin/berita/kategori" element={<KtgBerita />} />
         <Route path="/admin/berita/kategori/tambah" element={<FormKtgBerita />} />

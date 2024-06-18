@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import axios from "axios";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
-// import InputCKEditor from "../../../components/InputCKEditor";
+import InputCKEditor from "../../../components/InputCKEditor";
 import ImageViewer from "react-simple-image-viewer";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Dropdown,
@@ -21,36 +19,32 @@ import {
 } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 
-const FormBerita = () => {
+
+// yet
+const EditBerita = () => {
+  const [selectedKeys, setSelectedKeys] = useState(new Set());
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
+  const [postDate, setPostDate] = useState("");
   const [formData, setFormData] = useState({
-    id_kategori: "", //foreignkey
-    tgl: "",
+    id_kategori: "",
+    id_user: "",
     judul: "",
     artikel: "",
     img_berita: "",
     status: "",
   });
-
-  const [categories, setCategories] = useState([]);
-  const [selectedKey, setSelectedKey] = useState(new Set());
-  const [selectedStatus, setSelectedStatus] = useState(new Set());
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [isViewerOpen, setIsViewerOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState(0);
-
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/kategori");
-        setCategories(response.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchCategories();
-  }, []);
+
+
+  const selectedValue = React.useMemo(() => {
+    const items = Array.from(selectedKeys).map(
+      (key) => key.charAt(0).toUpperCase() + key.slice(1).replaceAll("_", " ")
+    );
+    return items.length ? items.join(", ") : "Pilih Kategori";
+  }, [selectedKeys]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,36 +54,8 @@ const FormBerita = () => {
     }));
   };
 
-  const selectedKategoriValue = React.useMemo(() => {
-    const key = [...selectedKey].join(", ");
-    return key
-      ? key.charAt(0).toUpperCase() + key.slice(1).replaceAll("_", " ")
-      : "Pilih Kategori";
-  }, [selectedKey]);
-
-  const selectedStatusValue = React.useMemo(() => {
-    const key = [...selectedStatus].join(", ");
-    return key
-      ? key.charAt(0).toUpperCase() + key.slice(1).replaceAll("_", " ")
-      : "Pilih Status";
-  }, [selectedStatus]);
-
   const handleSelectionChange = (keys) => {
-    setSelectedKey(keys);
-    const id_kategori = [...keys].join(", ");
-    setFormData((prevData) => ({
-      ...prevData,
-      id_kategori: id_kategori,
-    }));
-  };
-
-  const handleStatusSelectionChange = (keys) => {
-    setSelectedStatus(keys);
-    const status = [...keys].join(", ");
-    setFormData((prevData) => ({
-      ...prevData,
-      status: status,
-    }));
+    setSelectedKeys(keys);
   };
 
   const handleImageChange = (event) => {
@@ -107,19 +73,10 @@ const FormBerita = () => {
     setIsViewerOpen(false);
   };
 
-  const handleCKEditorChange = (event, editor) => {
-    const data = editor.getData();
-    setFormData((prevData) => ({
-      ...prevData,
-      artikel: data,
-    }));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:3000/berita/create", formData);
-      console.log("Data yang dikirim:", formData);
       navigate("/admin/berita");
     } catch (error) {
       console.log(error);
@@ -149,52 +106,46 @@ const FormBerita = () => {
               <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
                 <div className="bg-blue-100/20 rounded-b-[20px] w-auto">
                   <div className="flex flex-col p-10 gap-5">
-                    <div className="flex gap-5">
-                      <div className="relative w-1/2 mb-0">
-                        <p className="text-caption-2 text-gray mt-1 mb-2">
-                          Tanggal Posting
-                        </p>
-                        <Input
-                          type="date"
-                          label="Tanggal Agenda"
-                          variant="bordered"
-                          name="tgl"
-                          value={formData.tgl}
-                          onChange={handleChange}
-                          // isRequired
-                        />
-                      </div>
-                      <div className="relative w-1/2 mb-0">
-                        <p className="text-caption-2 text-gray mt-1 mb-2">
-                          Pilih Kategori Berita
-                        </p>
-                        <Dropdown>
-                          <DropdownTrigger>
-                            <Button
-                              variant="bordered"
-                              className="capitalize text-left w-50%"
-                            >
-                              {selectedKategoriValue}
-                            </Button>
-                          </DropdownTrigger>
-                          <DropdownMenu
-                            aria-label="Pilih kategori berita"
-                            variant="flat"
-                            closeOnSelect={false}
-                            disallowEmptySelection
-                            selectionMode="multiple"
-                            selectedKeys={selectedKey}
-                            onSelectionChange={handleSelectionChange}
-                          >
-                            {categories.map((kategori) => (
-                              <DropdownItem key={kategori.id_kategori}>
-                                {kategori.nama}
-                              </DropdownItem>
-                            ))}
-                          </DropdownMenu>
-                        </Dropdown>
-                      </div>
+                    <div className="relative w-full mb-0">
+                      <p className="text-caption-2 text-gray mt-1 mb-2">
+                        Tanggal Posting
+                      </p>
+                      <input
+                        type="date"
+                        className="w-full border-2 border-gray-300 rounded-xl p-3"
+                        value={postDate}
+                        onChange={(e) => setPostDate(e.target.value)}
+                      />
                     </div>
+                    <div className="relative w-full mb-0">
+                      <p className="text-caption-2 text-gray mt-1 mb-2">
+                        Pilih Kategori Berita
+                      </p>
+                      <Dropdown>
+                        <DropdownTrigger>
+                          <Button
+                            variant="bordered"
+                            className="capitalize text-left w-50%"
+                          >
+                            {selectedValue}
+                          </Button>
+                        </DropdownTrigger>
+                        <DropdownMenu
+                          aria-label="Multiple selection example"
+                          variant="flat"
+                          closeOnSelect={false}
+                          disallowEmptySelection
+                          selectionMode="multiple"
+                          selectedKeys={selectedKeys}
+                          onSelectionChange={handleSelectionChange}
+                        >
+                          <DropdownItem key="1">Program</DropdownItem>
+                          <DropdownItem key="2">Kesehatan</DropdownItem>
+                          <DropdownItem key="3">Bansos</DropdownItem>
+                        </DropdownMenu>
+                      </Dropdown>
+                    </div>
+                    {/* judul berita harus unique jika ada yang sama maka tidak dapat disimpan  */}
                     <div className="relative w-full mb-0">
                       <p className="text-caption-2 text-gray mt-1 mb-2">
                         Masukkan Judul Berita
@@ -212,11 +163,12 @@ const FormBerita = () => {
                       <p className="text-caption-2 text-gray mt-1 mb-2">
                         Masukkan Isi Berita
                       </p>
-                      <CKEditor classname="app rounded-md editor-container"
-                        editor={ClassicEditor}
-                        // type="longtext"
-                        data={formData.artikel}
-                        onChange={handleCKEditorChange}
+                      <InputCKEditor
+                        type="text"
+                        label="Artikel"
+                        name="artikel"
+                        value={formData.artikel}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="relative w-full mb-0">
@@ -254,7 +206,7 @@ const FormBerita = () => {
 
                     <div className="relative w-full mb-0">
                       <p className="mt-1 mb-2 text-caption-2 text-gray">
-                        Pilih Status
+                        Pilih Role
                       </p>
 
                       <Dropdown backdrop="blur">
@@ -263,7 +215,7 @@ const FormBerita = () => {
                             variant="bordered"
                             className="capitalize text-left w-50%"
                           >
-                            {selectedStatusValue}
+                            {selectedValue}
                           </Button>
                         </DropdownTrigger>
                         <DropdownMenu
@@ -272,12 +224,14 @@ const FormBerita = () => {
                           closeOnSelect={true}
                           disallowEmptySelection
                           selectionMode="multiple"
-                          selectedKeys={selectedStatus}
-                          onSelectionChange={handleStatusSelectionChange}
+                          selectedKeys={selectedKeys}
+                          onSelectionChange={handleSelectionChange}
                         >
-                          <DropdownItem key="publish">Publish</DropdownItem>
-                          <DropdownItem key="proses">Draft</DropdownItem>
-                          <DropdownItem key="gagal">Arsip</DropdownItem>
+                          <DropdownItem key="superadmin">
+                            Super Admin
+                          </DropdownItem>
+                          <DropdownItem key="admin">Admin</DropdownItem>
+                          <DropdownItem key="umum">Umum</DropdownItem>
                         </DropdownMenu>
                       </Dropdown>
                     </div>
@@ -309,4 +263,4 @@ const FormBerita = () => {
   );
 };
 
-export default FormBerita;
+export default EditBerita;

@@ -4,10 +4,12 @@ import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
-import { Eye, Edit, Trash2 } from "react-feather";
+import { Edit, Trash2 } from "react-feather";
+import { useNavigate } from "react-router-dom";
 
 const KtgBerita = () => {
   const [kategori, setKategori] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchKategori();
@@ -22,54 +24,55 @@ const KtgBerita = () => {
     }
   };
 
-const statusColorMap = {
-  publish: "success",
-  proses: "secondary",
-  gagal: "danger",
-};
+  const deleteKategori = async (id) => {
+    console.log("Deleting category with id:", id); // Debugging log
+    try {
+      await axios.delete(`http://localhost:3000/kategori/${id}`);
+      fetchKategori();
+    } catch (error) {
+      console.error("Terjadi kesalahan", error);
+    }
+  };
 
-const INITIAL_VISIBLE_COLUMNS = ["id", "nama", "actions"];
+  const statusColorMap = {
+    publish: "success",
+    proses: "secondary",
+    gagal: "danger",
+  };
 
-const columns = [
-  { name: "ID", uid: "id", sortable:true },
-  { name: "Kategori", uid: "nama" },
-  { name: "Aksi", uid: "actions" },
-];
+  const INITIAL_VISIBLE_COLUMNS = ["id", "nama", "actions"];
 
-const statusOptions = [
-  { name: "Publish", uid: "publish" },
-  { name: "Proses", uid: "proses" },
-  { name: "Gagal", uid: "gagal" },
-];
+  const columns = [
+    { name: "ID", uid: "id", sortable: true },
+    { name: "Kategori", uid: "nama" },
+    { name: "Aksi", uid: "actions" },
+  ];
 
-const actionButtons = [
-  {
-    icon: <Eye className="w-4 h-4 text-black" />,
-    onClick: (item) => {
-      console.log("View item:", item);
-      // Implementasikan logika tampilan di sini
+  const statusOptions = [
+    { name: "Publish", uid: "publish" },
+    { name: "Proses", uid: "proses" },
+    { name: "Gagal", uid: "gagal" },
+  ];
+
+  const actionButtons = [
+    {
+      icon: <Edit className="w-4 h-4 text-warning" />,
+      onClick: (kategori) => {
+        navigate("/admin/berita/kategori/${id_kategori}", { state: kategori });
+        console.log("Edit kategori:", kategori);
+      },
     },
-  },
-  {
-    icon: <Edit className="w-4 h-4 text-warning" />,
-    onClick: (item) => {
-      console.log("Edit item:", item);
-      // Implementasikan logika edit di sini
+    {
+      icon: <Trash2 className="w-4 h-4 text-danger" />,
+      onClick: (kategori) => {
+        deleteKategori(kategori.id);
+      },
     },
-  },
-  {
-    icon: <Trash2 className="w-4 h-4 text-danger" />,
-    onClick: (item) => {
-      console.log("Delete item:", item);
-      // Implementasikan logika hapus di sini
-    },
-  },
-];
-
+  ];
 
   //isi sesuai dengan struktur table
   const isi = kategori.map((kategori) => ({
-    id: kategori.id_kategori,    
+    id: kategori.id_kategori,
     nama: kategori.nama,
   }));
 
@@ -84,7 +87,9 @@ const actionButtons = [
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
           <BreadcrumbItem href="/admin/berita">Berita</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/ktgberita">Kategori Berita</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/ktgberita">
+            Kategori Berita
+          </BreadcrumbItem>
         </Breadcrumbs>
 
         <div className="flex gap-5 my-5">
@@ -98,7 +103,7 @@ const actionButtons = [
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  tambahBeritaURL={"/admin/berita/kategori/tambah"}
+                  tambahKegiatanURL="/admin/berita/kategori/tambah"
                   actionButtons={actionButtons}
                 />
               </div>

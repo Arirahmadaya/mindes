@@ -5,7 +5,7 @@ export const getAgenda = async(req,res)=>{
         const result = await query('Select * from agendatable')
         return res.status(200).json({success:true, data:result})
     }catch(e){
-        console.log("Terjadi kesalahan", e)
+        console.log("Terjadi kesalahan", error)
         return res.status(500).json({msg:"terjadi kesalahan pada server"})
     }
 }
@@ -16,7 +16,7 @@ export const insertAgenda = async(req,res)=>{
         await query("INSERT INTO agendatable (tgl, tempat, jam, hari, deskripsi, kegiatan, status) values (?, ?, ?, ?, ?, ?, ? )", [tgl , tempat, jam, hari, deskripsi, kegiatan, status])
         return res.status(200).json({msg:"Agenda ditambahkan"})
     } catch (error) {
-        console.log("Terjadi kesalahan", e)
+        console.log("Terjadi kesalahan", error)
         return res.status(500).json({msg:"terjadi kesalahan pada server"})
     }
 }
@@ -28,7 +28,7 @@ export const updateAgenda = async(req,res)=>{
         await query("UPDATE agendatable SET tgl = ?, tempat = ?, jam = ?, hari = ?, deskripsi = ?, kegiatan = ?, status = ? WHERE id_agenda = ?", [tgl, tempat, jam, hari, deskripsi, kegiatan, status, id_agenda])
         return res.status(200).json({msg:"Agenda Diubah"})
     } catch (error) {
-        console.log("Terjadi kesalahan", e)
+        console.log("Terjadi kesalahan", error)
         return res.status(500).json({msg:"terjadi kesalahan pada server"})
     }
 }
@@ -39,7 +39,7 @@ export const deleteAgenda = async(req,res)=>{
         await query("DELETE FROM agendatable where id_agenda=?", [id_agenda])
         return res.status(200).json({msg:"Agenda Dihapus"})
     } catch (error) {
-        console.log("Terjadi kesalahan", e)
+        console.log("Terjadi kesalahan", error)
         return res.status(500).json({msg:"terjadi kesalahan pada server"})
     }
 }
@@ -50,7 +50,7 @@ export const getAgendaById = async(req,res)=>{
         const result = await query('Select * from agendatable where id_agenda=?', [id_agenda])
         return res.status(200).json({success:true, data:result})
     }catch(e){
-        console.log("Terjadi kesalahan", e)
+        console.log("Terjadi kesalahan", error)
         return res.status(500).json({msg:"terjadi kesalahan pada server"})
     }
 }

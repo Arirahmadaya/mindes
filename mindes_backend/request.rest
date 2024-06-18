@@ -8,6 +8,7 @@ Content-Type: application/json
 
 {
     "tgl": "2024-06-12",
+    "jam": "11:00:00",
     "tempat": "Aula",
     "hari": "Senin",
     "deskripsi": "Pertemuan mingguan",
@@ -37,7 +38,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/realisasi
+GET http://localhost:3000/berita
 Content-Type: application/json
 
 ### Register
@@ -51,16 +52,33 @@ Content-Type: application/json
 }
 
 ### Get User
-GET http://localhost:3000/user
+GET http://localhost:3000/kategori
 Content-Type: application/json
 
 ###
-DELETE http://localhost:3000/pencatatan/11
+DELETE http://localhost:3000/kategori/2
+Content-Type: application/json
+
+###
+DELETE http://localhost:3000/berita/11
 Content-Type: application/json
 
 ### Get pencatatan sesuai dengan id_realisasinya
 GET http://localhost:3000/pencatatan/2
 Content-Type: application/json
+
+###
+PUT http://localhost:3000/berita/3
+Content-Type: application/json
+
+{
+      "tgl": "2024-06-19",
+      "judul": "Anime kuning",
+      "artikel": "ditorCKEditorCKEditorCKEditorCKEditorCKEditorCKE ditorCKEditorCKEd itorCKEditorCKEditorCKEditorCKEditor CKEdito rCKEditorCKE ditorCKEditorCKE ditorCKEditorCKEd",
+      "status": "publish",
+      "img_berita": "",
+      "id_kategori": 4
+    }
 
 ###
 PUT http://localhost:3000/pencatatan/12
