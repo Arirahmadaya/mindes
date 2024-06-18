@@ -37,6 +37,7 @@ import FormBidang from "./pages/admin/realisasi/FormBidang";
 import FormRealisasi from "./pages/admin/realisasi/FormRealisasi";
 import FormPencatatan from "./pages/admin/realisasi/FormPencatatan";
 import TambahRealisasiForm from "./components/TambahRealisasiForm";
+import Bantuan from "./pages/auth/Bantuan";
 
 // Call image whatsapp
 import callImage from "../public/img/call.png";
@@ -91,6 +92,7 @@ const Main = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profil/userprofil" element={<UserProfile />} />
+        <Route path="/bantuan" element={<Bantuan />} />
         {/* Admin */}
         <Route path="/admin/beranda" element={<Beranda />} />
         <Route path="/admin/berita" element={<BeritaAdmin />} />

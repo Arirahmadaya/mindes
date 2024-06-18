@@ -93,7 +93,10 @@ export default function NavbarUser() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-10 text-white" justify="center">
+      <NavbarContent
+        className="hidden sm:flex gap-10 text-white"
+        justify="center"
+      >
         {menuItemsMain.map((item, index) => (
           <NavbarItem key={index} isActive={isActive(item.href)}>
             <Link color="foreground" href={item.href}>
@@ -114,12 +117,12 @@ export default function NavbarUser() {
                     as="button"
                     className="transition-transform"
                     color="primary"
-                    name="Ferianta"
+                    name="Kofipah Armaatus"
                     size="sm"
-                    src="/img_desa/sudirmo.jpg"
+                    src="/img/opi.png"
                   />
                   <p className="text-white font-semibold ml-3 hover:cursor-pointer">
-                    Ferianta
+                    Kofipah Armaatus
                   </p>
                 </div>
               </DropdownTrigger>
@@ -127,13 +130,25 @@ export default function NavbarUser() {
               <DropdownMenu aria-label="Profile Actions" variant="flat">
                 <DropdownItem key="profile" className="h-14 gap-2">
                   <p className="font-semibold">Login sebagai</p>
-                  <p className="font-semibold">ferianta@gmail.com</p>
+                  <p className="font-semibold">kofipah@gmail.com</p>
                 </DropdownItem>
-                <DropdownItem key="profile">Profile</DropdownItem>
-                <DropdownItem key="settings">Pengaturan</DropdownItem>
-             
-                <DropdownItem key="help">Bantuan</DropdownItem>
-                <DropdownItem key="logout" color="danger" onClick={handleLogout}>
+                <DropdownItem key="profile" as={Link} href="/profil/userprofil">
+                  Profile
+                </DropdownItem>
+
+                <DropdownItem
+                  key="help"
+     
+                  as={Link}
+                  href="/bantuan"
+                >
+                  Bantuan
+                </DropdownItem>
+                <DropdownItem
+                  key="logout"
+                  color="danger"
+                  onClick={handleLogout}
+                >
                   Log Out
                 </DropdownItem>
               </DropdownMenu>

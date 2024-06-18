@@ -19,19 +19,23 @@ export default function NavbarAdmin() {
   return (
     <Navbar isBordered className="bg-grayscale-10 rounded-b-lg">
       <NavbarContent justify="start">
-        <Input
-          classNames={{
-            base: "max-w-full sm:max-w-[20rem] h-10",
-            mainWrapper: "h-full",
-            input: "text-small",
-            inputWrapper:
-              "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-          }}
-          placeholder="Cari data..."
-          size="sm"
-          startContent={<Search size={18} />}
-          type="search"
-        />
+        <div className="relative max-w-full sm:max-w-md h-12">
+          <Search
+            size={20}
+            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+          />
+          <input
+            className="
+       w-full h-full pl-12 pr-4 py-2 rounded-2xl
+       text-base text-gray-700 bg-white border border-gray-300
+       focus:outline-none focus:ring-2 focus:ring-primary-30/50 hover:primary focus:border-transparent
+       transition-all duration-200 ease-in-out shadow-primary
+        hover:shadow-lg
+     "
+            placeholder="Cari data..."
+            type="search"
+          />
+        </div>
       </NavbarContent>
 
       <NavbarContent as="div" className="items-center" justify="center">
@@ -52,16 +56,17 @@ export default function NavbarAdmin() {
               </p>
             </div>
           </DropdownTrigger>
-
           <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem key="profile" className="h-14 gap-2">
               <p className="font-semibold">Login sebagai</p>
-              <p className="font-semibold">ferian@gmail.com</p>
+              <p className="font-semibold">ferianta@gmail.com</p>
             </DropdownItem>
-            <DropdownItem key="analytics">Profile</DropdownItem>
-            <DropdownItem key="settings">Pengaturan</DropdownItem>
-            <DropdownItem key="configurations">Konfigurasi</DropdownItem>
-            <DropdownItem key="help_and_feedback">Bantuan</DropdownItem>
+            <DropdownItem key="profile"  as={Link} href="/profil/userprofil">
+              Profile
+            </DropdownItem>
+            <DropdownItem key="help" as={Link} href="/bantuan">
+              Bantuan
+            </DropdownItem>
             <DropdownItem key="logout" color="danger">
               Log Out
             </DropdownItem>

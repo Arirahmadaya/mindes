@@ -46,9 +46,9 @@ const FormKtgBerita = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/berita">Berita</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/berita">Data Master</BreadcrumbItem>
           <BreadcrumbItem href="/admin/berita/tambah">
-            Tambah Berita
+            Tambah Kategori Berita
           </BreadcrumbItem>
         </Breadcrumbs>
 
