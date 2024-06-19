@@ -5,7 +5,6 @@ import NavbarAdmin from "../../../components/NavbarAdmin";
 import { Eye, Edit, Trash2 } from "react-feather";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import TableProps from "../../../components/TableProps";
-import { format } from "date-fns"; // Import date-fns
 
 const statusColorMap = {
   publish: "success",

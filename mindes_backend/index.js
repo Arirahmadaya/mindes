@@ -7,6 +7,9 @@ import router from "./routes/index.js";
 import session from 'express-session';
 import authRoutes from "./routes/auth.route.js";
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 // About auth
 // const protectedRoutes = require("./routes/protected.route.js");
 
@@ -15,6 +18,14 @@ dotenv.config();
 
 app.use(cors());
 app.use(express.json());
+
+// For calling you, bukan panggil folder public
+// Setup __dirname for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve static files
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use(
   session({
@@ -33,7 +44,7 @@ app.use(router);
 app.use("/auth", authRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Hi babygurl 💅🫃🫄🤰🐮🐄🐐!❤️😘😍🐲🐸🐴🐎🐄🐐");
+  res.send("Hi babygurl!💅🫃🫄🤰🐮🐄🐐❤️😘😍🐲🐸🐴🐎🐄🐐");
 });
 
 app.use("/endpoints", (req, res) => {

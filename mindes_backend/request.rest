@@ -1,3 +1,7 @@
+### 
+GET http://localhost:3000/berita
+Content-Type: application/json
+
 ### Agenda
 GET http://localhost:3000/user
 Content-Type: application/json
@@ -69,13 +73,17 @@ GET http://localhost:3000/pencatatan/2
 Content-Type: application/json
 
 ###
+GET http://localhost:3000/berita/3
+Content-Type: application/json
+
+###
 PUT http://localhost:3000/berita/3
 Content-Type: application/json
 
 {
       "tgl": "2024-06-19",
       "judul": "Anime kuning",
-      "artikel": "ditorCKEditorCKEditorCKEditorCKEditorCKEditorCKE ditorCKEditorCKEd itorCKEditorCKEditorCKEditorCKEditor CKEdito rCKEditorCKE ditorCKEditorCKE ditorCKEditorCKEd",
+      "artikel": "Kompas.com - Berita Indonesia terkini terpercaya, dan terpopuler, politik, ekonomi, tekno, otomotif, dan olahraga ditulis lengkap dan akurat.",
       "status": "publish",
       "img_berita": "",
       "id_kategori": 4

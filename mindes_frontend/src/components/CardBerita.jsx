@@ -13,7 +13,17 @@ export default function CardBerita() {
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:3000/berita");
-      setList(response.data.data);
+      const dataWithBlobUrls = await Promise.all(response.data.data.map(async item => {
+        if (item.img_berita) {
+          const imgResponse = await axios.get(`http://localhost:3000/berita/img/${item.id}`, {
+            responseType: 'blob'
+          });
+          item.img_berita_url = URL.createObjectURL(imgResponse.data);
+        }
+        return item;
+      }));
+      setList(dataWithBlobUrls);
+      // setList(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
     }
@@ -52,7 +62,9 @@ export default function CardBerita() {
               width="100%"
               alt={item.judul}
               className="w-full object-cover h-[240px] "
-              src={URL.createObjectURL(new Blob([item.img_berita], { type: 'image/jpeg' }))}
+              // src={URL.createObjectURL(new Blob([item.img_berita], { type: 'image/jpeg' }))}
+              // src={`http://localhost:3000/public/img_berita/${item.img_berita}`}
+              src={item.img_berita_url}
             />
             <div className="px-3 py-5">
               <b className="py-12">{item.judul}</b>

@@ -84,7 +84,7 @@ const EditBerita = () => {
   };
 
   return (
-    <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
+    <div className="flex flex-row w-screen h-screen overflow-y-auto bg-secondary-10">
       <Sidebares />
       <div className="flex-1 mx-5">
         <div className="">
@@ -102,23 +102,23 @@ const EditBerita = () => {
         {/* Form start */}
         <form onSubmit={handleSubmit}>
           <div className="flex gap-5 my-5">
-            <div className=" flex w-full bg-white rounded-lg">
-              <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
+            <div className="flex w-full bg-white rounded-lg ">
+              <div className="w-full h-auto transition duration-300 ease-in-out bg-white rounded-lg shadow-md hover:shadow-lg hover:shadow-gray-500">
                 <div className="bg-blue-100/20 rounded-b-[20px] w-auto">
-                  <div className="flex flex-col p-10 gap-5">
+                  <div className="flex flex-col gap-5 p-10">
                     <div className="relative w-full mb-0">
-                      <p className="text-caption-2 text-gray mt-1 mb-2">
+                      <p className="mt-1 mb-2 text-caption-2 text-gray">
                         Tanggal Posting
                       </p>
                       <input
                         type="date"
-                        className="w-full border-2 border-gray-300 rounded-xl p-3"
+                        className="w-full p-3 border-2 border-gray-300 rounded-xl"
                         value={postDate}
                         onChange={(e) => setPostDate(e.target.value)}
                       />
                     </div>
                     <div className="relative w-full mb-0">
-                      <p className="text-caption-2 text-gray mt-1 mb-2">
+                      <p className="mt-1 mb-2 text-caption-2 text-gray">
                         Pilih Kategori Berita
                       </p>
                       <Dropdown>
@@ -147,7 +147,7 @@ const EditBerita = () => {
                     </div>
                     {/* judul berita harus unique jika ada yang sama maka tidak dapat disimpan  */}
                     <div className="relative w-full mb-0">
-                      <p className="text-caption-2 text-gray mt-1 mb-2">
+                      <p className="mt-1 mb-2 text-caption-2 text-gray">
                         Masukkan Judul Berita
                       </p>
                       <Input
@@ -160,7 +160,7 @@ const EditBerita = () => {
                       />
                     </div>
                     <div className="relative w-full mb-0">
-                      <p className="text-caption-2 text-gray mt-1 mb-2">
+                      <p className="mt-1 mb-2 text-caption-2 text-gray">
                         Masukkan Isi Berita
                       </p>
                       <InputCKEditor
@@ -172,13 +172,13 @@ const EditBerita = () => {
                       />
                     </div>
                     <div className="relative w-full mb-0">
-                      <p className="text-caption-2 text-gray mt-1 mb-2">
+                      <p className="mt-1 mb-2 text-caption-2 text-gray">
                         Unggah Gambar
                       </p>
                       <input
                         type="file"
                         label="Foto Berita"
-                        className="file-input file-input-bordered w-full bg-white"
+                        className="w-full bg-white file-input file-input-bordered"
                         value={FormData.img_berita}
                         onChange={handleImageChange}
                       />
@@ -239,14 +239,14 @@ const EditBerita = () => {
                     <div className="flex justify-between w-full mt-4">
                       <Link
                         to="/admin/berita"
-                        className="flex items-center gap-2 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300"
+                        className="flex items-center gap-2 px-4 py-2 text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-600"
                       >
                         <ArrowUturnLeftIcon className="w-5 h-5" />
                         Batal
                       </Link>
                       <button
                         type="submit"
-                        className="flex items-center gap-2 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
+                        className="flex items-center gap-2 px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-lg hover:bg-blue-600"
                       >
                         <span>Simpan</span>
                         <PaperAirplaneIcon className="w-5 h-5" />
