@@ -21,7 +21,7 @@ const Login = () => {
         // Redirect ke halaman dashboard setelah 2 detik
         setTimeout(() => {
           window.location.href = "/";
-        }, 4000);
+        }, 2000);
       } else {
         setError("Username atau password salah");
         toast.error("Username atau password salah");

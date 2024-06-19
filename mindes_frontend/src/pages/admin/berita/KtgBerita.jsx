@@ -6,9 +6,22 @@ import TableProps from "../../../components/TableProps";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Edit, Trash2 } from "react-feather";
 import { useNavigate } from "react-router-dom";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const KtgBerita = () => {
   const [kategori, setKategori] = useState([]);
+  const [selectedKategori, setSelectedKategori] = useState(null);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,13 +37,21 @@ const KtgBerita = () => {
     }
   };
 
-  const deleteKategori = async (id) => {
-    console.log("Deleting category with id:", id); // Debugging log
-    try {
-      await axios.delete(`http://localhost:3000/kategori/${id}`);
-      fetchKategori();
-    } catch (error) {
-      console.error("Terjadi kesalahan", error);
+  const confirmDeleteKategori = (kategori) => {
+    setSelectedKategori(kategori);
+    onOpen();
+  };
+
+  const deleteKategori = async () => {
+    if (selectedKategori) {
+      try {
+        await axios.delete(`http://localhost:3000/kategori/${selectedKategori.id}`);
+        fetchKategori();
+        toast.success("Kategori berhasil dihapus!");
+        onOpenChange(false); // Close the modal
+      } catch (error) {
+        console.error("Terjadi kesalahan", error);
+      }
     }
   };
 
@@ -58,19 +79,18 @@ const KtgBerita = () => {
     {
       icon: <Edit className="w-4 h-4 text-warning" />,
       onClick: (kategori) => {
-        navigate("/admin/berita/kategori/${id_kategori}", { state: kategori });
+        navigate(`/admin/berita/kategori/${kategori.id_kategori}`, { state: kategori });
         console.log("Edit kategori:", kategori);
       },
     },
     {
       icon: <Trash2 className="w-4 h-4 text-danger" />,
       onClick: (kategori) => {
-        deleteKategori(kategori.id);
+        confirmDeleteKategori(kategori);
       },
     },
   ];
 
-  //isi sesuai dengan struktur table
   const isi = kategori.map((kategori) => ({
     id: kategori.id_kategori,
     nama: kategori.nama,
@@ -86,10 +106,8 @@ const KtgBerita = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-
           <BreadcrumbItem href="/admin/datamaster/ktgberita">Data Master</BreadcrumbItem>
           <BreadcrumbItem href="/admin/datamaster/ktgberita">Kategori Berita</BreadcrumbItem>
-
         </Breadcrumbs>
 
         <div className="flex gap-5 my-5">
@@ -113,6 +131,41 @@ const KtgBerita = () => {
           </div>
         </div>
       </div>
+
+      <Modal
+        backdrop="opaque"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        radius="lg"
+        classNames={{
+          body: "py-6",
+          backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
+          base: "border-[#292f46] bg-white text-black",
+          header: "border-b-[1px] border-[#292f46]/10",
+          footer: "border-t-[1px] border-[#292f46]10",
+          closeButton: "hover:bg-white/5 active:bg-white/10",
+        }}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Konfirmasi Hapus</ModalHeader>
+              <ModalBody>
+                <p>Apakah Anda yakin ingin menghapus kategori ini?</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="foreground" variant="light" onPress={onClose}>
+                  Batal
+                </Button>
+                <Button className="bg-danger shadow-lg shadow-indigo-500/20 text-white" onPress={deleteKategori}>
+                  Hapus
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      <ToastContainer />
     </div>
   );
 };

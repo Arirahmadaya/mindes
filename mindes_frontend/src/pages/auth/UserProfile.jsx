@@ -4,82 +4,82 @@ import { PaperAirplaneIcon, XMarkIcon } from "@heroicons/react/20/solid";
 
 const UserProfile = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-100">
       <NavbarUser />
-      <div className="flex-grow flex flex-col items-center justify-center bg-gray-100">
-        <div className="">
-          <div className="flex flex-col items-center">
+      <div className="flex-grow flex flex-col items-center py-12">
+        <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl">
+          <div className="flex flex-col items-center mb-6">
             <img
-              src="/logo/person1.png"
-              alt="Person"
+              src="/img/opi.png"
+              alt="Opi"
               className="w-24 h-24 rounded-full mb-2"
             />
             <h1 className="text-[30px] font-bold">Kofipah Armaatus</h1>
           </div>
-          <form className="mt-6">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col mb-4">
-                <label className="mb-1 font-normal">Nama Depan</label>
+          <form className="space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="flex flex-col">
+                <label className="mb-1 font-medium">Nama Depan</label>
                 <input
                   type="text"
-                  className="border border-gray-300 p-2 rounded-md"
+                  className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value="Kofipah"
                   readOnly
                 />
               </div>
-              <div className="flex flex-col mb-4">
-                <label className="mb-1 font-normal">Nama Belakang</label>
+              <div className="flex flex-col">
+                <label className="mb-1 font-medium">Nama Belakang</label>
                 <input
                   type="text"
-                  className="border border-gray-300 p-2 rounded-md"
+                  className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value="Armaatus"
                   readOnly
                 />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col mb-4">
-                <label className="mb-1 font-normal">Email</label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="flex flex-col">
+                <label className="mb-1 font-medium">Email</label>
                 <input
                   type="email"
-                  className="border border-gray-300 p-2 rounded-md"
+                  className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value="kofipah78@gmail.com"
                   readOnly
                 />
               </div>
-              <div className="flex flex-col mb-4">
-                <label className="mb-1 font-normal">Nomor Telepon</label>
+              <div className="flex flex-col">
+                <label className="mb-1 font-medium">Nomor Telepon</label>
                 <input
                   type="text"
-                  className="border border-gray-300 p-2 rounded-md"
+                  className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value="08123123123"
                   readOnly
                 />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col mb-4">
-                <label className="mb-1 font-normal">Password</label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="flex flex-col">
+                <label className="mb-1 font-medium">Password</label>
                 <input
                   type="password"
-                  className="border border-gray-300 p-2 rounded-md"
+                  className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value="********"
                   readOnly
                 />
               </div>
-              <div className="flex flex-col mb-4">
-                <label className="mb-1 font-normal">Ulangi Password</label>
+              <div className="flex flex-col">
+                <label className="mb-1 font-medium">Ulangi Password</label>
                 <input
                   type="password"
-                  className="border border-gray-300 p-2 rounded-md"
+                  className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value="********"
                   readOnly
                 />
               </div>
             </div>
-            <div className="flex mt-4">
+            <div className="flex mt-6 space-x-4">
               <button
-                type="submit"
+                type="button"
                 className="flex items-center gap-2 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300"
               >
                 <span>Batal</span>
