@@ -38,6 +38,8 @@ import FormRealisasi from "./pages/admin/realisasi/FormRealisasi";
 import FormPencatatan from "./pages/admin/realisasi/FormPencatatan";
 import TambahRealisasiForm from "./components/TambahRealisasiForm";
 import Bantuan from "./pages/auth/Bantuan";
+import BantuanAdmin from "./pages/admin/Bantuan";
+import UserProfileAdmin from "./pages/admin/UserProfile";
 
 // Call image whatsapp
 import callImage from "../public/img/call.png";
@@ -91,7 +93,7 @@ const Main = () => {
         <Route path="/infografis/stunting" element={<InfografisStunting />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profil/userprofil" element={<UserProfile />} />
+        <Route path="/userprofil" element={<UserProfile />} />
         <Route path="/bantuan" element={<Bantuan />} />
         {/* Admin */}
         <Route path="/admin/beranda" element={<Beranda />} />
@@ -116,6 +118,8 @@ const Main = () => {
         <Route path="/admin/datamaster/akuntansi/tambah" element={<FormAkuntansi />} />
         <Route path="/admin/datamaster/bidang" element={<Bidang />} />
         <Route path="/admin/datamaster/bidang/tambah" element={<FormBidang />} />
+        <Route path="/admin/userprofil" element={<UserProfileAdmin />} />
+        <Route path="/admin/bantuan" element={<BantuanAdmin />} />
         <Route path="/admin/login" element={<LoginAdmin />} />
         {/* FormPencatatan akan menuju ke menu edit di setiap record table, dan PencatatanDetail akan menuju ke tambah record di setiap pencatatannya yang anntinya akan berhubungan dengan isi yang ada di FormPencatatan */}
       </Routes>

@@ -25,7 +25,7 @@ export default function NavbarAdmin() {
             className="
        w-full h-full pl-12 pr-4 py-2 rounded-2xl
        text-base text-gray-700 bg-white border border-gray-300
-       focus:outline-none focus:ring-2 focus:ring-primary-30/50 hover:primary focus:border-transparent
+       focus:outline-none focus:ring-2 focus:ring-primary-50/50 hover:primary focus:border-transparent
        transition-all duration-200 ease-in-out shadow-primary
         hover:shadow-lg
      "
@@ -58,10 +58,10 @@ export default function NavbarAdmin() {
               <p className="font-semibold">Login sebagai</p>
               <p className="font-semibold">ferianta@gmail.com</p>
             </DropdownItem>
-            <DropdownItem key="profile"  as={Link} href="/profil/userprofil">
+            <DropdownItem key="profile"  as={Link} href="/admin/userprofil">
               Profile
             </DropdownItem>
-            <DropdownItem key="help" as={Link} href="/bantuan">
+            <DropdownItem key="help" as={Link} href="/admin/bantuan">
               Bantuan
             </DropdownItem>
             <DropdownItem key="logout" color="danger">
