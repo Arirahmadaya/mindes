@@ -1,30 +1,32 @@
 import React, { useState } from "react";
 import { LogIn } from "react-feather";
 import { Input } from "@nextui-org/react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
+  
   const handleLogin = (e) => {
     e.preventDefault();
-    setIsLoading(true);
 
     // Simulasi logic untuk login
     setTimeout(() => {
       if (username === "user@gmail.com" && password === "123456") {
-        setError("");
-        console.log("Login berhasil dengan username:", username);
         localStorage.setItem("isLoggedIn", "true");
-        // Redirect ke halaman dashboard atau set sesi login
-        window.location.href = "/";
+        toast.success("Login Berhasil!, mengalihkan ke Beranda");
+
+        // Redirect ke halaman dashboard setelah 2 detik
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 4000);
       } else {
         setError("Username atau password salah");
-        setIsLoading(false);
+        toast.error("Username atau password salah");
       }
-    }, 1000);
+    });
   };
 
   return (
@@ -51,9 +53,9 @@ const Login = () => {
               <form onSubmit={handleLogin} className="space-y-8">
                 <div className="relative w-full mb-8">
                   <Input
-                    type="email"
+                    type="text"
                     variant="bordered"
-                    label="Email"
+                    label="Email/Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
@@ -75,13 +77,11 @@ const Login = () => {
                     Enter your password
                   </p>
                 </div>
-                {error && <p className="text-red-500 text-sm">{error}</p>}
                 <button
                   type="submit"
                   className="gap-2 justify-center w-full flex bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300 disabled:bg-blue-300"
-                  disabled={isLoading}
                 >
-                  {isLoading ? "Loading..." : "Masuk"} <LogIn />
+                 Masuk <LogIn />
                 </button>
               </form>
               <div className="text-right mt-4">
@@ -114,6 +114,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
