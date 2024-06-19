@@ -1,5 +1,5 @@
 ### Agenda
-GET http://localhost:3000/agenda
+GET http://localhost:3000/berita
 Content-Type: application/json
 
 ### Agenda
@@ -38,7 +38,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/berita
+GET http://localhost:3000/user
 Content-Type: application/json
 
 ### Register
@@ -46,7 +46,8 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-    "username": "Jacob",
+    "email": "testing@testing.com",
+    "username": "testing",
     "password": "P@55word",
     "confPassword": "P@55word"
 }
@@ -141,7 +142,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "banana@gmail.com",
+    "email": "testing@testing.com",
     "password": "P@55word"
 }
 

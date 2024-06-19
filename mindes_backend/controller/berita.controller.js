@@ -1,4 +1,27 @@
 import { query } from "../database/db.js";
+import multer from "multer";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Setup __dirname for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// multer configurasi
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, "../public/img_berita"));
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(
+      null,
+      `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`
+    );
+  },
+});
+
+const upload = multer({ storage });
 
 export const getBerita = async (req, res) => {
   try {
@@ -10,6 +33,7 @@ export const getBerita = async (req, res) => {
             beritatable.judul,
             beritatable.artikel,
             beritatable.status,
+            beritatable.img_berita,
             kategoritable.nama
         FROM 
             beritatable
@@ -23,20 +47,30 @@ export const getBerita = async (req, res) => {
   }
 };
 
-export const insertBerita = async (req, res) => {
-  // console.log(req.body);
-  const { tgl, judul, artikel, id_kategori, status, img_berita } = req.body;
-  try {
-    await query(
-      "INSERT INTO beritatable(tgl, judul, artikel, id_kategori, status, img_berita) values (?, ?, ?, ?, ?, ?)",
-      [tgl, judul, artikel, id_kategori, status, img_berita]
-    );
-    return res.status(200).json({ msg: "Berita ditambahkan" });
-  } catch (error) {
-    console.log("Terjadi kesalahan", error);
-    return res.status(500).json({ msg: "terjadi kesalahan pada server" });
-  }
-};
+export const insertBerita = [
+  // multer({ storage: storage }).single("img_berita"),
+  upload.single("img_berita"), // Multer middleware for single file upload
+  async (req, res) => {
+    console.log(req.body);
+    const { tgl, judul, artikel, id_kategori, status } = req.body;
+    let img_berita = null;
+
+    if (req.file) {
+      img_berita = `/img_berita/${req.file.filename}`;
+    }
+
+    try {
+      await query(
+        "INSERT INTO beritatable(tgl, judul, artikel, id_kategori, status, img_berita) values (?, ?, ?, ?, ?, ?)",
+        [tgl, judul, artikel, id_kategori, status, img_berita]
+      );
+      return res.status(200).json({ msg: "Berita ditambahkan" });
+    } catch (error) {
+      console.log("Terjadi kesalahan", error);
+      return res.status(500).json({ msg: "terjadi kesalahan pada server" });
+    }
+  },
+];
 
 export const updateBerita = async (req, res) => {
   // console.log(req.params)

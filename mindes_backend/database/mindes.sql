@@ -32,7 +32,7 @@ CREATE TABLE `agendatable` (
   `deskripsi` varchar(255) NOT NULL,
   `status` enum('publish','proses','gagal') DEFAULT NULL,
   PRIMARY KEY (`id_agenda`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `agendatable` (
 
 LOCK TABLES `agendatable` WRITE;
 /*!40000 ALTER TABLE `agendatable` DISABLE KEYS */;
+INSERT INTO `agendatable` VALUES (1,'2024-06-12','11:00:00','Aula','Senin','Rapat Koordinasi','Pertemuan mingguan','publish'),(2,'2024-06-12','11:00:00','Aula','Senin','Rapat Koordinasi','Pertemuan mingguan','publish'),(4,'2024-07-20','10:00:00','Pendopo Kelurahan Kalinyamat Kulon','Minggu','Posyandu Remaja','Posyandu dilaksanakan di ','publish'),(5,'2024-06-20','10:00:00','Test','Selasa','Test','Test','gagal');
 /*!40000 ALTER TABLE `agendatable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,20 +80,17 @@ DROP TABLE IF EXISTS `beritatable`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `beritatable` (
   `id_berita` int NOT NULL AUTO_INCREMENT,
-  `tgl` datetime NOT NULL,
+  `tgl` date DEFAULT NULL,
   `judul` varchar(255) NOT NULL,
   `artikel` text NOT NULL,
   `status` enum('publish','proses','gagal') DEFAULT NULL,
-  `img_berita` varchar(255) DEFAULT NULL,
+  `img_berita` blob,
   `id_kategori` int NOT NULL,
-  `id_user` int NOT NULL,
   PRIMARY KEY (`id_berita`),
   UNIQUE KEY `judul` (`judul`),
-  KEY `id_user` (`id_user`),
   KEY `id_kategori` (`id_kategori`),
-  CONSTRAINT `beritatable_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usertable` (`id_user`),
-  CONSTRAINT `beritatable_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `kategoritable` (`id_kategori`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `beritatable_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `kategoritable` (`id_kategori`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +99,7 @@ CREATE TABLE `beritatable` (
 
 LOCK TABLES `beritatable` WRITE;
 /*!40000 ALTER TABLE `beritatable` DISABLE KEYS */;
-INSERT INTO `beritatable` VALUES (2,'2024-06-12 00:00:00','Berita Baru','Ini adalah isi dari berita baru.','publish','path/to/image.jpg',2,1),(11,'2024-06-12 00:00:00','Berita Baru update','Ini adalah isi dari berita baru yang diupdate.','publish','path/to/image.jpg',2,1);
+INSERT INTO `beritatable` VALUES (1,'2024-06-26','Idul Adha','','publish','',4),(2,'2024-06-19','Orang warna pink','','proses','',4),(3,'2024-06-19','Anime kuning','ditorCKEditorCKEditorCKEditorCKEditorCKEditorCKE ditorCKEditorCKEd itorCKEditorCKEditorCKEditorCKEditor CKEdito rCKEditorCKE ditorCKEditorCKE ditorCKEditorCKEd','publish','',4),(7,'2024-06-19','Testing berita with image','<p>&nbsp; &nbsp; &nbsp; console.log(\"Data yang dikirim:\", formData);</p><p>&nbsp; &nbsp; &nbsp; navigate(\"/admin/agenda\"); &nbsp; &nbsp; &nbsp;console.log(\"Data yang dikirim:\", formData);</p><p>&nbsp; &nbsp; &nbsp; navigate(\"/admin/agenda\"); &nbsp; &nbsp; &nbsp;console.log(\"Data yang dikirim:\", formData);</p><p>&nbsp; &nbsp; &nbsp; navigate(\"/admin/agenda\"); &nbsp; &nbsp; &nbsp;console.log(\"Data yang dikirim:\", formData);</p><p>&nbsp; &nbsp; &nbsp; navigate(\"/admin/agenda\"); &nbsp; &nbsp; &nbsp;console.log(\"Data yang dikirim:\", formData);</p><p>&nbsp; &nbsp; &nbsp; navigate(\"/admin/agenda\");</p>','proses',NULL,4),(8,'2024-06-19','Testing 2','<p>Berapa hari Idul Adha 2024?</p><p>&nbsp;</p><p>Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal <strong>17 Juni 2024</strong>. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.6 hours agoBerapa hari Idul Adha 2024?</p><p>&nbsp;</p><p>Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal <strong>17 Juni 2024</strong>. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.6 hours agoBerapa hari Idul Adha 2024?</p><p>&nbsp;</p><p>Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal <strong>17 Juni 2024</strong>. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.6 hours agoBerapa hari Idul Adha 2024?</p><p>&nbsp;</p><p>Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal <strong>17 Juni 2024</strong>. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.6 hours ago</p>','proses',NULL,4),(9,'2024-06-20','Testing 3','<p>Berapa hari Idul Adha 2024?</p><p>&nbsp;</p><p>Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal <strong>17 Juni 2024</strong>. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.6 hours ago</p>','proses',NULL,4),(10,'2024-06-19','AKu anak sehat mentalku rusak','<p>&nbsp; const handleSubmit = async (<i>e</i>) =&gt; {</p><p>&nbsp; &nbsp;&nbsp;<i>e</i>.preventDefault();</p><p>&nbsp; &nbsp; try {</p><p>&nbsp; &nbsp; &nbsp; await axios.post(\"http://localhost:3000/berita/create\", formData);</p><p>&nbsp; &nbsp; &nbsp; console.log(\"Data yang dikirim:\", formData);</p><p>&nbsp; &nbsp; &nbsp; navigate(\"/admin/berita\");</p><p>&nbsp; &nbsp; } catch (error) {</p><p>&nbsp; &nbsp; &nbsp; console.log(error);</p><p>&nbsp; &nbsp; }</p><p>&nbsp; };</p>','proses',NULL,4),(11,'2024-06-19','Testing 4','<p>Berapa hari Idul Adha 2024?</p><p>&nbsp;</p><p>Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal <strong>17 Juni 2024</strong>. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.</p>','proses',_binary '/img_berita/img_berita-1718705251199-110615449.jpg',4),(12,'2024-06-19','Meme Patrick','<p>Berapa hari Idul Adha 2024?</p><p>&nbsp;</p><p>Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal <strong>17 Juni 2024</strong>. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.</p>','proses',_binary '/img_berita/img_berita-1718705974483-420686791.jpg',4),(13,'2024-06-19','Meme Patrick 2','<ol><li>Object<ol><li><strong>artikel</strong>: \"&lt;p&gt;Berapa hari Idul Adha 2024?&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;Idul Adha 2024 diperingati pada 10 Zulhijah 1445 Ha atau tepatnya tanggal &lt;strong&gt;17 Juni 2024&lt;/strong&gt;. Dengan demikian, Hari Tasyrik Idul Adha 1445 H/2024 M atau tiga hari setelah Idul Adha 2024 jatuh pada: Selasa, 18 Juni 2024 atau 11 Zulhijah 1445 H.&lt;/p&gt;\"</li></ol></li></ol>','gagal',_binary '/img_berita/img_berita-1718706049566-641199926.jpg',4),(14,'2024-06-20','Testing 5','<p>Testing 5</p>','proses',_binary '/img_berita/img_berita-1718763467078-990509018.jpg',4);
 /*!40000 ALTER TABLE `beritatable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +141,7 @@ CREATE TABLE `kategoritable` (
   `id_kategori` int NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) NOT NULL,
   PRIMARY KEY (`id_kategori`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +150,7 @@ CREATE TABLE `kategoritable` (
 
 LOCK TABLES `kategoritable` WRITE;
 /*!40000 ALTER TABLE `kategoritable` DISABLE KEYS */;
-INSERT INTO `kategoritable` VALUES (2,'kesehatan'),(4,'Hiburan'),(5,'test');
+INSERT INTO `kategoritable` VALUES (4,'Hiburan');
 /*!40000 ALTER TABLE `kategoritable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +200,7 @@ CREATE TABLE `penduduktable` (
   `keterangan` varchar(255) NOT NULL,
   `tgl` date DEFAULT NULL,
   PRIMARY KEY (`id_penduduk`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +209,7 @@ CREATE TABLE `penduduktable` (
 
 LOCK TABLES `penduduktable` WRITE;
 /*!40000 ALTER TABLE `penduduktable` DISABLE KEYS */;
-INSERT INTO `penduduktable` VALUES (2,2,'meninggal','A.n Rajawali meninggal dunia',NULL);
+INSERT INTO `penduduktable` VALUES (2,2,'meninggal','A.n Rajawali meninggal dunia',NULL),(3,1,'meninggal','Longsor','2024-05-26');
 /*!40000 ALTER TABLE `penduduktable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -259,8 +257,8 @@ CREATE TABLE `realisasitable` (
   `output` varchar(255) DEFAULT NULL,
   `status` enum('pengajuan','proses','selesai','gagal') NOT NULL,
   `lokasi` varchar(255) DEFAULT NULL,
-  `img_realisasi1` varchar(255) DEFAULT NULL,
-  `img_realisasi2` varchar(255) DEFAULT NULL,
+  `img_realisasi1` blob,
+  `img_realisasi2` blob,
   `sumber` enum('PBP','PBK','PBH','PAD','DD','ADD') DEFAULT NULL,
   `pembiayaan` double DEFAULT NULL,
   `tgl_mulai` date DEFAULT NULL,
@@ -278,7 +276,7 @@ CREATE TABLE `realisasitable` (
 
 LOCK TABLES `realisasitable` WRITE;
 /*!40000 ALTER TABLE `realisasitable` DISABLE KEYS */;
-INSERT INTO `realisasitable` VALUES (2,1,1001,'Contoh Kegiatan','Contoh Output','pengajuan','Contoh Lokasi','path/to/image1.jpg','path/to/image2.jpg','PAD',1000000,'2024-06-12','2024-06-20');
+INSERT INTO `realisasitable` VALUES (2,1,1001,'Contoh Kegiatan','Contoh Output','pengajuan','Contoh Lokasi',_binary 'path/to/image1.jpg',_binary 'path/to/image2.jpg','PAD',1000000,'2024-06-12','2024-06-20');
 /*!40000 ALTER TABLE `realisasitable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,7 +295,7 @@ CREATE TABLE `usertable` (
   `roles` enum('superadmin','admin','umum') DEFAULT 'umum',
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -306,7 +304,7 @@ CREATE TABLE `usertable` (
 
 LOCK TABLES `usertable` WRITE;
 /*!40000 ALTER TABLE `usertable` DISABLE KEYS */;
-INSERT INTO `usertable` VALUES (1,'massayu@gmail.com','massayu','P@55word','superadmin'),(2,'ari.updated@gmail.com','Ari updated','NewP@55word','admin'),(3,'raja@gmail.com','Raja','P@55word','umum'),(4,'halo@halo','halo','halo','admin'),(6,'massayu18@gmail.com','Test1','P@55word','umum'),(7,'testuser@example.com','testuser','$2b$12$j.CSLxPTy6lD8Cn7U2YBcOYcaM7u1HmtlIlX4aZ.1GxFBssDZoiLa','umum'),(9,'testuser2@example.com','testuser2','$2b$10$oDtH9nkzeVhaJezzGjmToOM/8wLf5wESlAQFLwgIRYXplIpvrzl2W','umum'),(10,'testuser3@example.com','testuser3','$2b$10$ZDyXL5dai/Ij83mdBVVizeyD8BirZHE8LupBsOpNaDtlhVYkJzFDm','umum'),(11,'admin@gmail.com','n_sarijati','P@55word','admin'),(12,'admin@gmail.com ','massayu','P@55word','admin'),(13,'jacob@gmail.com','jacob','P@55word','umum'),(14,'marina@gmail.com','marina','P@55word','umum'),(15,'papaw@gmail.com','papaw','P@55word','umum'),(16,'orange@gmail.com','orange','P@55word','umum'),(17,'manggo@gmail.com','manggo','P@55word','umum'),(18,'apple@gmail.com','apple','P@55word','umum'),(19,'starfruit@gmail.com','starfruit','$2b$12$OgGu4WVzoKtygxu4Rx63W.elyggx.L5duaGiDgT2Qtz5t83ly14GC','umum'),(20,'strawberry@gmail.com','strawberry','$2b$12$rV/F6X6HWtXW3t8v7CITUuTE8ED3x/idjqReqFwrlxIn3gNp6BGGG','umum'),(21,'banana@gmail.com','banana','$2b$12$xNEJ2de3XbN/TbVSrwrrjuGQLiBBGlLEq3MgwabhrQvqgdQ0XzTn2','umum');
+INSERT INTO `usertable` VALUES (1,'massayu@gmail.com','massayu','P@55word','superadmin'),(2,'ari.updated@gmail.com','Ari updated','NewP@55word','admin'),(3,'raja@gmail.com','Raja','P@55word','umum'),(4,'halo@halo','halo','halo','admin'),(6,'massayu18@gmail.com','Test1','P@55word','umum'),(7,'testuser@example.com','testuser','$2b$12$j.CSLxPTy6lD8Cn7U2YBcOYcaM7u1HmtlIlX4aZ.1GxFBssDZoiLa','umum'),(9,'testuser2@example.com','testuser2','$2b$10$oDtH9nkzeVhaJezzGjmToOM/8wLf5wESlAQFLwgIRYXplIpvrzl2W','umum'),(10,'testuser3@example.com','testuser3','$2b$10$ZDyXL5dai/Ij83mdBVVizeyD8BirZHE8LupBsOpNaDtlhVYkJzFDm','umum'),(11,'admin@gmail.com','n_sarijati','P@55word','admin'),(12,'admin@gmail.com ','massayu','P@55word','admin'),(13,'jacob@gmail.com','jacob','P@55word','umum'),(14,'marina@gmail.com','marina','P@55word','umum'),(15,'papaw@gmail.com','papaw','P@55word','umum'),(16,'orange@gmail.com','orange','P@55word','umum'),(17,'manggo@gmail.com','manggo','P@55word','umum'),(18,'apple@gmail.com','apple','P@55word','umum'),(19,'starfruit@gmail.com','starfruit','$2b$12$OgGu4WVzoKtygxu4Rx63W.elyggx.L5duaGiDgT2Qtz5t83ly14GC','umum'),(20,'strawberry@gmail.com','strawberry','$2b$12$rV/F6X6HWtXW3t8v7CITUuTE8ED3x/idjqReqFwrlxIn3gNp6BGGG','umum'),(21,'banana@gmail.com','banana','$2b$12$xNEJ2de3XbN/TbVSrwrrjuGQLiBBGlLEq3MgwabhrQvqgdQ0XzTn2','umum'),(22,'testing@testing.com','testing','$2b$12$04F4ykH4uCJVmsUc8pvbyu6KHzVNV/iWTS/BaeHXyTodmlCJNwLxO',NULL);
 /*!40000 ALTER TABLE `usertable` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -319,4 +317,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-17 14:16:57
+-- Dump completed on 2024-06-19  9:19:11
