@@ -11,6 +11,9 @@ dotenv.config();
 
 const router = express.Router();
 
+// Buat if untuk membatasi roles ketika user bukan admin ataupun superadmin -> redirect ke landing page (folder auth) (Navbar (ada conditional rendering)),  
+// I already have protected route
+
 // Passport Local Strategy
 passport.use(
   "local",
