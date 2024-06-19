@@ -3,7 +3,8 @@ import React from "react";
 import NavbarUser from "../../components/NavbarUser";
 import Footer from "../../components/Footer";
 import CardBerita from "../../components/CardBerita";
-import Timeline from "../../components/Timeline";
+
+import Agenda from "../../components/Agenda";
 
 const Berita = () => {
   return (
@@ -35,7 +36,7 @@ const Berita = () => {
         </div>
 
         <div className="my-10 relative z-20 lg:mx-70 mx-[20px] ">
-          <div className="w-4/5"><Timeline /></div>
+          <div className="w-4/5"><Agenda /></div>
           
         </div>
       </div>

@@ -45,12 +45,12 @@ const actionButtons = [
   {
     icon: <Trash2 className="w-4 h-4 text-danger" />,
     onClick: (item) => {
-      deleteAkunt(Akunt.id);
+      deleteAkun(item.id);
     },
   },
 ];
 
-const Akutansi = () => {
+const Akuntansi = () => {
   const [akun, setAkun] = useState([]);
 
   useEffect(() => {
@@ -66,11 +66,19 @@ const Akutansi = () => {
     }
   };
 
+  const deleteAkun = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/akun/${id}`);
+      fetchAkun(); // Refresh data setelah penghapusan
+    } catch (error) {
+      console.error("Terjadi kesalahan", error);
+    }
+  };
+
   const isi = akun.map((akun) => ({
     id: akun.id_akun,
     kode: akun.kode,
     uraian: akun.uraian,
-  
   }));
 
   return (
@@ -100,7 +108,8 @@ const Akutansi = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  tambahBeritaURL={"/admin/realisasi/akuntansi/tambah"}
+                  filterKeys={["id", "kode", "uraian"]} // Filter keys ditambahkan di sini
+                  tambahKegiatanURL={"/admin/realisasi/akuntansi/tambah"}
                   actionButtons={actionButtons}
                 />
               </div>
@@ -114,4 +123,4 @@ const Akutansi = () => {
   );
 };
 
-export default Akutansi;
+export default Akuntansi;

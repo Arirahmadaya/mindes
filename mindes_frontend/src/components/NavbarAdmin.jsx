@@ -16,7 +16,7 @@ export default function NavbarAdmin() {
   return (
     <Navbar isBordered className="bg-grayscale-10 rounded-b-lg">
       <NavbarContent justify="start">
-        <div className="relative max-w-full sm:max-w-md h-12">
+        <div className="relative max-w-full sm:max-w-md h-11">
           <Search
             size={20}
             className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"

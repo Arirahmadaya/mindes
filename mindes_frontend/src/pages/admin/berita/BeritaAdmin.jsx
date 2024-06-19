@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
-import TableProps from "../../../components/TableProps";
-import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Eye, Edit, Trash2 } from "react-feather";
+import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
+import TableProps from "../../../components/TableProps";
 import { format } from "date-fns"; // Import date-fns
 
 const statusColorMap = {
@@ -81,9 +81,7 @@ const BeritaAdmin = () => {
 
   const isi = news.map((item) => ({
     id: item.id_berita,
-
     tgl: formatDate(item.tgl),
-
     judul: item.judul,
     artikel: item.artikel,
     img_berita: item.img_berita,
@@ -116,6 +114,7 @@ const BeritaAdmin = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
+                  filterKeys={["tgl", "judul", "artikel", "nama"]}
                   tambahKegiatanURL="/admin/berita/tambah"
                   actionButtons={actionButtons}
                 />

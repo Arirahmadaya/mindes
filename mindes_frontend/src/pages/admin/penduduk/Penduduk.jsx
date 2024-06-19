@@ -74,7 +74,7 @@ const Penduduk = () => {
     {
       icon: <Edit className="w-4 h-4 text-warning" />,
       onClick: (penduduk) => {
-        navigate("/admin/penduduk/${id_penduduk}", { state: penduduk });
+        navigate(`/admin/penduduk/${penduduk.id}`, { state: penduduk });
         console.log("Edit penduduk:", penduduk);
       },
     },
@@ -90,8 +90,8 @@ const Penduduk = () => {
   const formatDate = (datetime) => {
     const date = new Date(datetime);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() is zero-based
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // getMonth() is zero-based
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
@@ -117,7 +117,7 @@ const Penduduk = () => {
         </Breadcrumbs>
 
         <div className="flex gap-5 my-5">
-          <div className=" flex w-full bg-white rounded-lg">
+          <div className="flex w-full bg-white rounded-lg">
             <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-blue-200">
               <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
               <div className="p-4">
@@ -127,6 +127,7 @@ const Penduduk = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
+                  filterKeys={["tgl", "mutasi", "keterangan"]}
                   tambahKegiatanURL="/admin/penduduk/mutasi"
                   actionButtons={actionButtons}
                 />

@@ -15,7 +15,7 @@ const BantuanAdmin = () => {
           <BreadcrumbItem href="/admin/bantuan">Bantuan</BreadcrumbItem>
         </Breadcrumbs>
         <div className="flex flex-col items-center ">
-          <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-4xl">
+          <div className="bg-white shadow-lg rounded-lg p-8 w-full ">
             <h2 className="text-4xl font-bold mb-8 text-center text-blue-600">
               Pusat Bantuan Admin
             </h2>
