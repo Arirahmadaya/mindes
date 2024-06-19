@@ -121,6 +121,7 @@ const KtgBerita = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
+                  filterKeys={["id", "nama"]} // filter keys untuk pencarian
                   tambahKegiatanURL="/admin/berita/kategori/tambah"
                   actionButtons={actionButtons}
                 />

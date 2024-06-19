@@ -1,67 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import { Monitor, User } from "react-feather";
 
 export default function CardBerita() {
-  const list = [
-    {
-      title: "KANTOR PELAYANAN MASYARAKAT",
-      artikel:
-        "Senin, 06 Mei 2024. Kantor Pelayanan Masyarakat Kalinyamat Kulon telah beroperasi kembali seperti pada hari biasanya, kembali dibukanya ini masyarakat dapat melakukan administrasi seperti biasanya ...",
-      img: "/img_berita/berita1.jpg",
-      kunjungan: "1.000",
-      penulis: "ferianta",
-      tanggal: "6 Mei 2025",
-    },
-    {
-      title: "KANTOR PELAYANAN MASYARAKAT",
-      artikel:
-        "Senin, 06 Mei 2024. Kantor Pelayanan Masyarakat Kalinyamat Kulon telah beroperasi kembali seperti pada hari biasanya, kembali dibukanya ini masyarakat dapat melakukan administrasi seperti biasanya ...",
-      img: "/img_berita/berita2.jpg",
-      kunjungan: "1.000",
-      penulis: "ferianta",
-      tanggal: "6 Mei 2025",
-    },
-    {
-      title: "KANTOR PELAYANAN MASYARAKAT",
-      artikel:
-        "Senin, 06 Mei 2024. Kantor Pelayanan Masyarakat Kalinyamat Kulon telah beroperasi kembali seperti pada hari biasanya, kembali dibukanya ini masyarakat dapat melakukan administrasi seperti biasanya ...",
-      img: "/img_berita/berita3.jpg",
-      kunjungan: "1.000",
-      penulis: "ferianta",
-      tanggal: "6 Mei 2025",
-    },
-    {
-      title: "KANTOR PELAYANAN MASYARAKAT",
-      artikel:
-        "Senin, 06 Mei 2024. Kantor Pelayanan Masyarakat Kalinyamat Kulon telah beroperasi kembali seperti pada hari biasanya, kembali dibukanya ini masyarakat dapat melakukan administrasi seperti biasanya ...",
-      img: "/img_berita/berita1.jpg",
-      kunjungan: "1.000",
-      penulis: "ferianta",
-      tanggal: "4 Mei 2025",
-    },
-    {
-      title: "KANTOR PELAYANAN MASYARAKAT",
-      artikel:
-        "Senin, 06 Mei 2024. Kantor Pelayanan Masyarakat Kalinyamat Kulon telah beroperasi kembali seperti pada hari biasanya, kembali dibukanya ini masyarakat dapat melakukan administrasi seperti biasanya ...",
-      img: "/img_berita/berita2.jpg",
-      kunjungan: "1.000",
-      penulis: "ferianta",
-      tanggal: "5 Mei 2025",
-    },
-    {
-      title: "KANTOR PELAYANAN MASYARAKAT",
-      artikel:
-        "Senin, 06 Mei 2024. Kantor Pelayanan Masyarakat Kalinyamat Kulon telah beroperasi kembali seperti pada hari biasanya, kembali dibukanya ini masyarakat dapat melakukan administrasi seperti biasanya ...",
-      img: "/img_berita/berita3.jpg",
-      kunjungan: "1.000",
-      penulis: "ferianta",
-      tanggal: "6 Mei 2025",
-    },
-  ];
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/berita");
+      setList(response.data.data);
+    } catch (error) {
+      console.error("Terjadi kesalahan", error);
+    }
+  };
+
+  const formatDate = (datetime) => {
+    const date = new Date(datetime);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // getMonth() is zero-based
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${day}-${month}-${year}`;
+  };
+
+  const truncateText = (text, maxWords) => {
+    const wordsArray = text.split(" ");
+    if (wordsArray.length > maxWords) {
+      return wordsArray.slice(0, maxWords).join(" ") + " <strong>Lihat selengkapnya...</strong>";
+    }
+    return text;
+  };
 
   return (
-    <div className=" gap-6 mx-16 grid md:grid-cols-2 lg:grid-cols-3 ">
+    <div className="gap-6 mx-16 grid md:grid-cols-2 lg:grid-cols-3 ">
       {list.map((item, index) => (
         <Card
           shadow="sm"
@@ -75,18 +50,21 @@ export default function CardBerita() {
               shadow="sm"
               radius="top-lg"
               width="100%"
-              alt={item.title}
+              alt={item.judul}
               className="w-full object-cover h-[240px] "
-              src={item.img}
+              src={URL.createObjectURL(new Blob([item.img_berita], { type: 'image/jpeg' }))}
             />
             <div className="px-3 py-5">
-              <b className="py-12">{item.title}</b>
+              <b className="py-12">{item.judul}</b>
               <div className="py-2">
-                <p className="text-default-500">{item.artikel}</p>
+                <p
+                  className="text-default-500"
+                  dangerouslySetInnerHTML={{ __html: truncateText(item.artikel, 20) }}
+                ></p>
               </div>
             </div>
           </CardBody>
-          <CardFooter className=" pr-0 pb-0">
+          <CardFooter className="pr-0 pb-0">
             <div className="items-center flex-grow -mt-2">
               <div className="flex gap-2">
                 <User size={15} />
@@ -101,8 +79,8 @@ export default function CardBerita() {
                 </div>
               </div>
             </div>
-            <div className="bg-primary-30 text-center text-body-2 font-semibold p-2 w-[80px] h-[60x] text-white rounded-tl-2xl rounded-br-2xl">
-              {item.tanggal}
+            <div className="bg-primary-30 text-center text-body-2 font-semibold p-2 w-[80px] h-[60x] text-white rounded-tl-3xl">
+              {formatDate(item.tgl)}
             </div>
           </CardFooter>
         </Card>

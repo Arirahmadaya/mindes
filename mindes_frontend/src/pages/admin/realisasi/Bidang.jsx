@@ -98,6 +98,7 @@ const Bidang = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
+                  filterKeys={["id", "bidang"]} // filterKey yang diperbaiki
                   tambahBeritaURL={"/admin/datamaster/bidang/tambah"}
                   actionButtons={actionButtons}
                 />

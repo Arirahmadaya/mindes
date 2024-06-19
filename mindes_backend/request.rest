@@ -1,5 +1,5 @@
 ### Agenda
-GET http://localhost:3000/berita
+GET http://localhost:3000/user
 Content-Type: application/json
 
 ### Agenda

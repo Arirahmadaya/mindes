@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Agenda = () => {
   const [agendatable, setAgenda] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAgenda();
@@ -92,7 +92,6 @@ const Agenda = () => {
     },
   ];
 
-
   const formatDate = (datetime) => {
     const date = new Date(datetime);
     const year = date.getFullYear();
@@ -104,7 +103,6 @@ const Agenda = () => {
   const isi = agendatable.map((agenda) => ({
     id: agenda.id_agenda,
     tgl: formatDate(agenda.tgl),
-
     jam: agenda.jam,
     hari: agenda.hari,
     tempat: agenda.tempat,
@@ -118,12 +116,10 @@ const Agenda = () => {
       <Sidebares />
       <div className="flex-1 mx-5">
         <NavbarAdmin />
-
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
           <BreadcrumbItem href="/admin/agenda">Agenda</BreadcrumbItem>
         </Breadcrumbs>
-
         <div className="flex gap-5 my-5">
           <div className="flex w-full bg-white rounded-lg">
             <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-blue-200">
@@ -135,6 +131,7 @@ const Agenda = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
+                  filterKeys={["tgl", "jam", "tempat", "hari", "kegiatan", "deskripsi"]}
                   tambahKegiatanURL="/admin/agenda/tambah"
                   actionButtons={actionButtons}
                 />

@@ -132,7 +132,7 @@ export default function NavbarUser() {
                   <p className="font-semibold">Login sebagai</p>
                   <p className="font-semibold">kofipah@gmail.com</p>
                 </DropdownItem>
-                <DropdownItem key="profile" as={Link} href="/profil/userprofil">
+                <DropdownItem key="profile" as={Link} href="/userprofil">
                   Profile
                 </DropdownItem>
 

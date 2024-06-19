@@ -14,7 +14,6 @@ const Realisasi = () => {
   const navigate = useNavigate();
   const [printItem, setPrintItem] = useState(null);
 
-
   useEffect(() => {
     getRealisasi();
   }, []);
@@ -26,7 +25,7 @@ const Realisasi = () => {
     } catch (error) {
       console.error("Terjadi kesalahan", error);
     }
-  };  
+  };
 
   const statusColorMap = {
     publish: "success",
@@ -36,11 +35,12 @@ const Realisasi = () => {
 
   const INITIAL_VISIBLE_COLUMNS = [
     "id",
-    "nama",
-    "tgl_mulai",
     "kode_kegiatan",
+    "nama",
+    "output",
     "kegiatan",
     "lokasi",
+    "sumber",
     "pembiayaan",
     "status",
     "actions",
@@ -129,11 +129,13 @@ const Realisasi = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
+                  filterKeys={["kode_kegiatan", "nama", "kegiatan", "lokasi", "sumber", "pembiayaan", "tgl_mulai", "tgl_selesai"]}
                   tambahKegiatanURL="/admin/realisasi/utama/tambah"
                   actionButtons={actionButtons}
                 />
+                
+    
               </div>
-
             </div>
           </div>
         </div>
@@ -145,6 +147,5 @@ const Realisasi = () => {
     </div>
   );
 };
-
 
 export default Realisasi;

@@ -5,7 +5,7 @@ import NavbarAdmin from "../../../components/NavbarAdmin";
 import { Eye, Edit, Trash2 } from "react-feather";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import TableProps from "../../../components/TableProps";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 const User = () => {
   const [usertable, setUser] = useState([]);
@@ -48,46 +48,39 @@ const User = () => {
     { name: "ACTIONS", uid: "actions" },
   ];
 
-
   const statusOptions = [
     { name: "Active", uid: "active" },
     { name: "Paused", uid: "paused" },
     { name: "Cuti", uid: "vacation" },
   ];
 
-  //masih error
   const actionButtons = [
     {
       icon: <Eye className="w-4 h-4 text-black" />,
       onClick: (user) => {
-        // console.log("View item:", item);
         // Implement your logic for viewing here
       },
     },
     {
       icon: <Edit className="w-4 h-4 text-warning" />,
       onClick: (user) => {
-        // console.log("Edit item:", item);
-        // Implement your logic for editing here
         navigate(`/admin/user/edit/${user.id}`);
       },
     },
     {
       icon: <Trash2 className="w-4 h-4 text-danger" />,
       onClick: (user) => {
-        // console.log("Delete item:", item);
         // Implement your logic for deleting here
       },
     },
   ];
 
-  //isi sesuai dengan struktur table
   const isi = usertable.map((user) => ({
     id: user.id_user,
     nama: user.username,
-    email:user.email,
+    email: user.email,
     roles: user.roles,
-    password: user.password
+    password: user.password,
   }));
 
   return (
@@ -114,8 +107,9 @@ const User = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
+                  filterKeys={["nama", "email"]}
                   actionButtons={actionButtons}
-                  tambahBeritaURL="/admin/user/tambah"
+                  tambahKegiatanURL="/admin/user/tambah"
                 />
               </div>
             </div>
@@ -126,4 +120,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default User

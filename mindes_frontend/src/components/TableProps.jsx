@@ -25,6 +25,7 @@ function TableProps({
   columns,
   statusOptions,
   isi,
+  filterKeys,
   tambahKegiatanURL,
   actionButtons,
 }) {
@@ -55,19 +56,22 @@ function TableProps({
     let filteredIsi = [...isi];
 
     if (filterValue) {
-      filteredIsi = filteredIsi.filter((user) =>
-        user.judul.toLowerCase().includes(filterValue.toLowerCase())
+      filteredIsi = filteredIsi.filter((item) =>
+        filterKeys.some((key) => {
+          const value = item[key]?.toString().toLowerCase();
+          return value && value.includes(filterValue.toLowerCase());
+        })
       );
     }
 
     if (!statusFilter.has("all")) {
-      filteredIsi = filteredIsi.filter((user) =>
-        Array.from(statusFilter).includes(user.status)
+      filteredIsi = filteredIsi.filter((item) =>
+        Array.from(statusFilter).includes(item.status)
       );
     }
 
     return filteredIsi;
-  }, [filterValue, statusFilter, isi]);
+  }, [filterValue, statusFilter, isi, filterKeys]);
 
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
@@ -85,18 +89,19 @@ function TableProps({
       return sortDescriptor.direction === "descending" ? -cmp : cmp;
     });
   }, [items, sortDescriptor]);
+
   const renderCell = React.useCallback(
-    (user, columnKey) => {
-      const cellValue = user[columnKey];
+    (item, columnKey) => {
+      const cellValue = item[columnKey];
 
       switch (columnKey) {
         case "judul":
-          return <div>{user.judul}</div>;
+          return <div>{item.judul}</div>;
         case "status":
           return (
             <Chip
               className="capitalize border-none gap-1 text-default-600"
-              color={statusColorMap[user.status]}
+              color={statusColorMap[item.status]}
               size="sm"
               variant="dot"
             >
@@ -113,7 +118,7 @@ function TableProps({
                   radius="full"
                   size="sm"
                   variant="light"
-                  onClick={() => action.onClick(user)}
+                  onClick={() => action.onClick(item)}
                 >
                   {action.icon}
                 </Button>
@@ -151,7 +156,7 @@ function TableProps({
               base: "w-full sm:max-w-[44%]",
               inputWrapper: "border-1",
             }}
-            placeholder="Search by title..."
+            placeholder={`Cari Data...`}
             size="sm"
             startContent={<Search className="w-5 h-5" />}
             value={filterValue}
@@ -211,13 +216,13 @@ function TableProps({
               </DropdownMenu>
             </Dropdown>
             <Button
-              className="bg-primary-30 text-white flex"
+              className="bg-primary-30 text-white flex gap-1 items-center"
               size="sm"
               variant="flat"
+              as={Link}
+              to={tambahKegiatanURL}
             >
-              <Link to={tambahKegiatanURL} className="flex gap-1 items-center">
-                Tambah <Plus className="w-5" />
-              </Link>
+              Tambah <Plus className="w-5" />
             </Button>
           </div>
         </div>
@@ -226,7 +231,7 @@ function TableProps({
             Total {isi.length} isi
           </span>
           <label className="flex items-center text-default-400 text-small">
-            Baris perhalaman:
+            Baris per halaman:
             <select
               className="bg-transparent outline-none text-default-400 text-small"
               onChange={onRowsPerPageChange}
@@ -344,6 +349,7 @@ TableProps.propTypes = {
   columns: PropTypes.array.isRequired,
   statusOptions: PropTypes.array.isRequired,
   isi: PropTypes.array.isRequired,
+  filterKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
   tambahKegiatanURL: PropTypes.string.isRequired,
   actionButtons: PropTypes.arrayOf(
     PropTypes.shape({

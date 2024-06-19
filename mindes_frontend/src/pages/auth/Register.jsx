@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { UserPlus } from "react-feather";
 import { Input } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify'
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -9,18 +12,18 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-
     // Simulasi logic untuk register
-    setTimeout(() => {
+    // setTimeout(() => {
       if (!validateEmail(email)) {
         setError("Email tidak valid");
         setIsLoading(false);
@@ -40,15 +43,28 @@ const Register = () => {
       }
 
       setError("");
-      console.log(
-        "Registrasi berhasil dengan username:",
+      
+    console.log("Data yang dikirim ke server:", { username, email, password });
+
+    try {
+      const response = await axios.post("http://localhost:3000/auth/register", {
         username,
-        "dan email:",
-        email
-      );
-      localStorage.setItem("isRegistered", "true");
-      window.location.href = "/login";
-    }, 1000);
+        email,
+        password,
+      });
+  
+      console.log("Respon dari server:", response.data);
+      toast.success("Registrasi berhasil! Silahkan login.");
+      navigate("/login");
+    } catch (err) {
+      console.error("Error saat registrasi:", err);
+      if (err.response && err.response.data && err.response.data.message) {
+        toast.error(err.response.data.message);
+      } else {
+        toast.error("Terjadi kesalahan saat registrasi.");
+      }
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -110,7 +126,7 @@ const Register = () => {
                 <button
                   type="submit"
                   className="gap-2 justify-center w-full flex bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300 disabled:bg-blue-300"
-                  disabled={isLoading}
+                  // disabled={isLoading}
                 >
                   {isLoading ? "Loading..." : "Daftar"} <UserPlus />
                 </button>
