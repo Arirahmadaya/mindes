@@ -3,30 +3,41 @@ import { LogIn } from "react-feather";
 import { Input } from "@nextui-org/react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  
-  const handleLogin = (e) => {
+
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Simulasi logic untuk login
-    setTimeout(() => {
-      if (username === "user@gmail.com" && password === "123456") {
-        localStorage.setItem("isLoggedIn", "true");
-        toast.success("Login Berhasil!, mengalihkan ke Beranda");
+    console.log("Data yang dikirim ke server:", { email, password });
 
-        // Redirect ke halaman dashboard setelah 2 detik
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 2000);
+    try {
+      const response = await axios.post("http://localhost:3000/auth/login", {
+        email,
+        password,
+      });
+
+      const { token } = response.data;
+      localStorage.setItem("token", token);
+      toast.success("Login Berhasil!, mengalihkan ke Beranda");
+
+      // Redirect ke halaman dashboard setelah 2 detik
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000);
+    } catch (err) {
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message);
+        toast.error(err.response.data.message);
       } else {
-        setError("Username atau password salah");
-        toast.error("Username atau password salah");
+        setError("Terjadi kesalahan saat login.");
+        toast.error("Terjadi kesalahan saat login.");
       }
-    });
+    }
   };
 
   return (
@@ -55,9 +66,9 @@ const Login = () => {
                   <Input
                     type="text"
                     variant="bordered"
-                    label="Email/Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    label="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                   <p className="text-caption-2 text-gray mt-1 absolute top-full left-3">
@@ -77,11 +88,12 @@ const Login = () => {
                     Enter your password
                   </p>
                 </div>
+                {error && <p className="text-red-500 text-sm">{error}</p>}
                 <button
                   type="submit"
                   className="gap-2 justify-center w-full flex bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300 disabled:bg-blue-300"
                 >
-                 Masuk <LogIn />
+                  Masuk <LogIn />
                 </button>
               </form>
               <div className="text-right mt-4">
