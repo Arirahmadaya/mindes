@@ -2,12 +2,12 @@ import React from "react";
 import {
   Navbar,
   NavbarContent,
-  Input,
   DropdownItem,
   DropdownTrigger,
   Dropdown,
   DropdownMenu,
   Avatar,
+  Link
 } from "@nextui-org/react";
 
 import { Search } from "react-feather";
