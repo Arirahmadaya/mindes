@@ -127,10 +127,7 @@ const FormBerita = () => {
       if (selectedImageFile) {
         data.append('img_berita', selectedImageFile);
       }
-      await axios.post("http://localhost:3000/berita/create", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        }});
+      await axios.post("http://localhost:3000/berita/create", data);
       console.log("Data yang dikirim:", formData);
       navigate("/admin/berita");
     } catch (error) {
@@ -240,7 +237,7 @@ const FormBerita = () => {
                         type="file"
                         label="Foto Berita"
                         className="w-full bg-white file-input file-input-bordered"
-                        value={formData.img_berita}
+                        value={FormData.img_berita}
                         onChange={handleImageChange}
                       />
                       {selectedImage && (
