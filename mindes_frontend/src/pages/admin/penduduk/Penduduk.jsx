@@ -6,9 +6,22 @@ import TableProps from "../../../components/TableProps";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Eye, Edit, Trash2 } from "react-feather";
 import { useNavigate } from "react-router-dom";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Penduduk = () => {
   const [penduduk, setPenduduk] = useState([]);
+  const [selectedPenduduk, setSelectedPenduduk] = useState(null);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,13 +37,23 @@ const Penduduk = () => {
     }
   };
 
-  const deletePenduduk = async (id) => {
-    console.log("Deleting mutasi with id:", id); // Debugging log
-    try {
-      await axios.delete(`http://localhost:3000/penduduk/${id}`);
-      fetchPenduduk();
-    } catch (error) {
-      console.error("Terjadi kesalahan", error);
+  const confirmDeletePenduduk = (penduduk) => {
+    setSelectedPenduduk(penduduk);
+    onOpen();
+  };
+
+  const deletePenduduk = async () => {
+    if (selectedPenduduk) {
+      try {
+        await axios.delete(
+          `http://localhost:3000/penduduk/${selectedPenduduk.id}`
+        );
+        fetchPenduduk();
+        toast.success("Penduduk berhasil dihapus!");
+        onOpenChange(false); // Close the modal
+      } catch (error) {
+        console.error("Terjadi kesalahan", error);
+      }
     }
   };
 
@@ -81,8 +104,7 @@ const Penduduk = () => {
     {
       icon: <Trash2 className="w-4 h-4 text-danger" />,
       onClick: (penduduk) => {
-        deletePenduduk(penduduk.id);
-        console.log("Delete penduduk:", penduduk);
+        confirmDeletePenduduk(penduduk);
       },
     },
   ];
@@ -137,6 +159,45 @@ const Penduduk = () => {
           </div>
         </div>
       </div>
+      <Modal
+        backdrop="opaque"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        radius="lg"
+        classNames={{
+          body: "py-6",
+          backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
+          base: "border-[#292f46] bg-white text-black",
+          header: "border-b-[1px] border-[#292f46]/10",
+          footer: "border-t-[1px] border-[#292f46]10",
+          closeButton: "hover:bg-white/5 active:bg-white/10",
+        }}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Konfirmasi Hapus
+              </ModalHeader>
+              <ModalBody>
+                <p>Apakah Anda yakin ingin menghapus penduduk ini?</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="foreground" variant="light" onPress={onClose}>
+                  Batal
+                </Button>
+                <Button
+                  className="bg-danger shadow-lg shadow-indigo-500/20 text-white"
+                  onPress={deletePenduduk}
+                >
+                  Hapus
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      <ToastContainer />
     </div>
   );
 };

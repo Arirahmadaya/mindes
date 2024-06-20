@@ -119,10 +119,10 @@ const FormRealisasi = () => {
         data.append(key, formData[key]);
       });
       if (selectedImageFile.img_realisasi1) {
-        data.append('img_realisasi1', selectedImageFile.img_realisasi1);
+        data.append("img_realisasi1", selectedImageFile.img_realisasi1);
       }
       if (selectedImageFile.img_realisasi2) {
-        data.append('img_realisasi2', selectedImageFile.img_realisasi2);
+        data.append("img_realisasi2", selectedImageFile.img_realisasi2);
       }
       await axios.post("http://localhost:3000/realisasi/create", formData);
       // headers: {
@@ -181,7 +181,6 @@ const FormRealisasi = () => {
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div>
-                
                 <label className="block mb-2 font-semibold text-gray-700">
                   Pilih Bidang
                 </label>

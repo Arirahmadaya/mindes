@@ -25,16 +25,34 @@ import {
   LogIn,
 } from "react-feather";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 export default function NavbarUser() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [profile, setProfile] = useState({});
   const location = useLocation();
 
   useEffect(() => {
     const loggedInStatus = localStorage.getItem("isLoggedIn");
     setIsLoggedIn(loggedInStatus === "true");
+
+    if (loggedInStatus === "true") {
+      fetchProfile();
+    }
   }, []);
+
+  const fetchProfile = async () => {
+    try {
+      const token = localStorage.getItem("token"); // Assuming you store a token on login
+      const response = await axios.get("http://localhost:3000/profil", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setProfile(response.data.data[0]);
+    } catch (error) {
+      console.error("Terjadi kesalahan", error);
+    }
+  };
 
   const handleMenuToggle = useCallback(() => {
     setIsMenuOpen((prev) => !prev);
@@ -42,7 +60,17 @@ export default function NavbarUser() {
 
   const handleLogout = () => {
     localStorage.setItem("isLoggedIn", "false");
+    localStorage.removeItem("token"); // Remove token on logout
     setIsLoggedIn(false);
+    setProfile({});
+  };
+
+  const handleLogin = () => {
+    localStorage.setItem("isLoggedIn", "true");
+    // Simpan token setelah login
+    localStorage.setItem("token", "userTokenHere");
+    setIsLoggedIn(true);
+    fetchProfile(); // Fetch profile after login
   };
 
   const menuItemsMain = [
@@ -57,8 +85,9 @@ export default function NavbarUser() {
     { name: "Profil", icon: User, href: "/profil" },
     { name: "Infografis", icon: BarChart2, href: "/infografis" },
     { name: "Berita", icon: BookOpen, href: "/berita" },
-    { name: "Log Out", icon: LogOut, href: "/login" },
-    { name: "Login", icon: Key, href: "/login" },
+    isLoggedIn
+      ? { name: "Log Out", icon: LogOut, href: "/login" }
+      : { name: "Login", icon: Key, href: "/login" },
   ];
 
   const isActive = (href) =>
@@ -117,12 +146,12 @@ export default function NavbarUser() {
                     as="button"
                     className="transition-transform"
                     color="primary"
-                    name="Kofipah Armaatus"
+                    name={profile.username}
                     size="sm"
-                    src="/img/opi.png"
+                    src={profile.img_user || '/img_desa_user.png'}
                   />
                   <p className="text-white font-semibold ml-3 hover:cursor-pointer">
-                    Kofipah Armaatus
+                    {profile.username}
                   </p>
                 </div>
               </DropdownTrigger>
@@ -130,25 +159,16 @@ export default function NavbarUser() {
               <DropdownMenu aria-label="Profile Actions" variant="flat">
                 <DropdownItem key="profile" className="h-14 gap-2">
                   <p className="font-semibold">Login sebagai</p>
-                  <p className="font-semibold">kofipah@gmail.com</p>
+                  <p className="font-semibold">{profile.email}</p>
                 </DropdownItem>
                 <DropdownItem key="profile" as={Link} href="/userprofil">
                   Profile
                 </DropdownItem>
 
-                <DropdownItem
-                  key="help"
-     
-                  as={Link}
-                  href="/bantuan"
-                >
+                <DropdownItem key="help" as={Link} href="/bantuan">
                   Bantuan
                 </DropdownItem>
-                <DropdownItem
-                  key="logout"
-                  color="danger"
-                  onClick={handleLogout}
-                >
+                <DropdownItem key="logout" color="danger" onClick={handleLogout}>
                   Log Out
                 </DropdownItem>
               </DropdownMenu>
@@ -161,6 +181,7 @@ export default function NavbarUser() {
               className="bg-primary-30 text-white rounded-md"
               href="/login"
               variant="flat"
+              onClick={handleLogin}
             >
               Login <LogIn />
             </Button>

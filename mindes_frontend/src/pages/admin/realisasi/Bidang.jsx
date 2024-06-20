@@ -83,8 +83,12 @@ const Bidang = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/bidang">Data Master</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/bidang">Bidang</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/datamaster/bidang">
+            Data Master
+          </BreadcrumbItem>
+          <BreadcrumbItem href="/admin/datamaster/bidang">
+            Bidang
+          </BreadcrumbItem>
         </Breadcrumbs>
 
         <div className="flex gap-5 my-5">

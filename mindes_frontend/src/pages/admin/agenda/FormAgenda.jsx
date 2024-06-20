@@ -3,19 +3,11 @@ import axios from "axios";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  Input,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Button
-} from "@nextui-org/react";
-import {
-  PaperAirplaneIcon,
-  ArrowUturnLeftIcon,
-} from "@heroicons/react/20/solid";
+import { Input, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
+import { PaperAirplaneIcon, ArrowUturnLeftIcon } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const FormAgenda = () => {
   const [formData, setFormData] = useState({
@@ -85,8 +77,10 @@ const FormAgenda = () => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:3000/agenda/create", formData);
-      console.log("Data yang dikirim:", formData);
-      navigate("/admin/agenda");
+      toast.success("Agenda berhasil ditambahkan!");
+      setTimeout(() => {
+        navigate("/admin/agenda");
+      }, 2000); // Navigate after 2 seconds to show the toast
     } catch (error) {
       console.log(error);
     }
@@ -271,6 +265,7 @@ const FormAgenda = () => {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };

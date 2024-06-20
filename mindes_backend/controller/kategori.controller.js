@@ -47,3 +47,18 @@ export const deleteKategori = async (req, res) => {
     }
 };
 
+
+export const updateKategori = async (req, res) => {
+    const { id } = req.params;
+    const { nama } = req.body;
+    try {
+        const result = await query("UPDATE kategoritable SET nama = ? WHERE id_kategori = ?", [nama, id]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ msg: "Kategori tidak ditemukan" });
+        }
+        return res.status(200).json({ msg: "Kategori diperbarui" });
+    } catch (error) {
+        console.error("Terjadi kesalahan:", error);
+        return res.status(500).json({ msg: "Terjadi kesalahan pada server" });
+    }
+};

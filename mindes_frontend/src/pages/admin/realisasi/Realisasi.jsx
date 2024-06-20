@@ -129,12 +129,19 @@ const Realisasi = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  filterKeys={["kode_kegiatan", "nama", "kegiatan", "lokasi", "sumber", "pembiayaan", "tgl_mulai", "tgl_selesai"]}
+                  filterKeys={[
+                    "kode_kegiatan",
+                    "nama",
+                    "kegiatan",
+                    "lokasi",
+                    "sumber",
+                    "pembiayaan",
+                    "tgl_mulai",
+                    "tgl_selesai",
+                  ]}
                   tambahKegiatanURL="/admin/realisasi/utama/tambah"
                   actionButtons={actionButtons}
                 />
-                
-    
               </div>
             </div>
           </div>

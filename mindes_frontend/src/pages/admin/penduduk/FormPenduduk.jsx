@@ -16,7 +16,8 @@ import {
   ArrowUturnLeftIcon,
 } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
-// DATE YET CEK CONSOLE.LOG
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const FormPenduduk = () => {
   const [selectedKey, setSelectedKey] = useState(new Set());
@@ -57,7 +58,10 @@ const FormPenduduk = () => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:3000/penduduk/create", formData);
-      navigate("/admin/penduduk");
+      toast.success("Data penduduk berhasil disimpan!");
+      setTimeout(() => {
+        navigate("/admin/penduduk");
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -178,6 +182,7 @@ const FormPenduduk = () => {
             </div>
           </div>
         </form>
+        <ToastContainer />
       </div>
     </div>
   );

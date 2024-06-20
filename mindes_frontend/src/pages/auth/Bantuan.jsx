@@ -1,7 +1,6 @@
-
-import React from 'react';
-import NavbarUser from '../../components/NavbarUser';
-import { Mail, HelpCircle, PhoneCall } from 'react-feather';
+import React from "react";
+import NavbarUser from "../../components/NavbarUser";
+import { Mail, HelpCircle, PhoneCall } from "react-feather";
 
 const Bantuan = () => {
   return (
@@ -9,11 +8,15 @@ const Bantuan = () => {
       <NavbarUser />
       <div className="flex-grow flex flex-col items-center py-12">
         <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-4xl">
-          <h2 className="text-4xl font-bold mb-8 text-center text-blue-600">Pusat Bantuan</h2>
+          <h2 className="text-4xl font-bold mb-8 text-center text-blue-600">
+            Pusat Bantuan
+          </h2>
 
           {/* FAQ Section */}
           <div className="mb-12">
-            <h3 className="text-2xl font-semibold mb-6 text-gray-800">Pertanyaan yang Sering Diajukan (FAQ)</h3>
+            <h3 className="text-2xl font-semibold mb-6 text-gray-800">
+              Pertanyaan yang Sering Diajukan (FAQ)
+            </h3>
             <div className="space-y-6">
               <FaqItem
                 question="Bagaimana cara mengakses data desa?"
@@ -32,7 +35,9 @@ const Bantuan = () => {
 
           {/* Contact Support Section */}
           <div className="mb-12">
-            <h3 className="text-2xl font-semibold mb-6 text-gray-800">Kontak Dukungan</h3>
+            <h3 className="text-2xl font-semibold mb-6 text-gray-800">
+              Kontak Dukungan
+            </h3>
             <div className="space-y-6">
               <ContactItem
                 icon={<PhoneCall className="w-6 h-6 mr-3 text-blue-600" />}
@@ -47,10 +52,15 @@ const Bantuan = () => {
 
           {/* User Guide Section */}
           <div className="text-center">
-            <h3 className="text-2xl font-semibold mb-6 text-gray-800">Panduan Pengguna</h3>
-            <p className="text-gray-700 mb-4">Anda dapat mengunduh panduan pengguna untuk mempelajari lebih lanjut tentang cara menggunakan sistem ini.</p>
+            <h3 className="text-2xl font-semibold mb-6 text-gray-800">
+              Panduan Pengguna
+            </h3>
+            <p className="text-gray-700 mb-4">
+              Anda dapat mengunduh panduan pengguna untuk mempelajari lebih
+              lanjut tentang cara menggunakan sistem ini.
+            </p>
             <button
-              onClick={() => window.location.href='/path/to/user-guide.pdf'}
+              onClick={() => (window.location.href = "/path/to/user-guide.pdf")}
               className="bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition duration-300"
             >
               Unduh Panduan Pengguna
@@ -80,8 +90,6 @@ const ContactItem = ({ icon, contact }) => (
 );
 
 export default Bantuan;
-
-
 
 // import React from "react";
 // import NavbarUser from "../../components/NavbarUser";

@@ -4,11 +4,24 @@ import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
-import { Eye, Edit, Trash2 } from "react-feather";
+import { Edit, Trash2 } from "react-feather";
 import { useNavigate } from "react-router-dom";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Agenda = () => {
   const [agendatable, setAgenda] = useState([]);
+  const [selectedAgenda, setSelectedAgenda] = useState(null);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,13 +37,21 @@ const Agenda = () => {
     }
   };
 
-  const deleteAgenda = async (id) => {
-    console.log("Deleting category with id:", id); // Debugging log
-    try {
-      await axios.delete(`http://localhost:3000/agenda/${id}`);
-      getAgenda();
-    } catch (error) {
-      console.error("Terjadi kesalahan", error);
+  const confirmDeleteAgenda = (agenda) => {
+    setSelectedAgenda(agenda);
+    onOpen();
+  };
+
+  const deleteAgenda = async () => {
+    if (selectedAgenda) {
+      try {
+        await axios.delete(`http://localhost:3000/agenda/${selectedAgenda.id}`);
+        toast.success("Agenda berhasil dihapus!");
+        getAgenda();
+        onOpenChange(false); // Close the modal
+      } catch (error) {
+        console.error("Terjadi kesalahan", error);
+      }
     }
   };
 
@@ -71,13 +92,6 @@ const Agenda = () => {
 
   const actionButtons = [
     {
-      icon: <Eye className="w-4 h-4 text-black" />,
-      onClick: (item) => {
-        console.log("View item:", item);
-        // Implement view logic here
-      },
-    },
-    {
       icon: <Edit className="w-4 h-4 text-warning" />,
       onClick: (item) => {
         navigate("/admin/agenda/edit", { state: item });
@@ -87,7 +101,7 @@ const Agenda = () => {
     {
       icon: <Trash2 className="w-4 h-4 text-danger" />,
       onClick: (item) => {
-        deleteAgenda(item.id);
+        confirmDeleteAgenda(item);
       },
     },
   ];
@@ -95,8 +109,8 @@ const Agenda = () => {
   const formatDate = (datetime) => {
     const date = new Date(datetime);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() is zero-based
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // getMonth() is zero-based
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
@@ -131,7 +145,14 @@ const Agenda = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  filterKeys={["tgl", "jam", "tempat", "hari", "kegiatan", "deskripsi"]}
+                  filterKeys={[
+                    "tgl",
+                    "jam",
+                    "tempat",
+                    "hari",
+                    "kegiatan",
+                    "deskripsi",
+                  ]}
                   tambahKegiatanURL="/admin/agenda/tambah"
                   actionButtons={actionButtons}
                 />
@@ -140,6 +161,46 @@ const Agenda = () => {
           </div>
         </div>
       </div>
+
+      <Modal
+        backdrop="opaque"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        radius="lg"
+        classNames={{
+          body: "py-6",
+          backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
+          base: "border-[#292f46] bg-white text-black",
+          header: "border-b-[1px] border-[#292f46]/10",
+          footer: "border-t-[1px] border-[#292f46]10",
+          closeButton: "hover:bg-white/5 active:bg-white/10",
+        }}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Konfirmasi Hapus
+              </ModalHeader>
+              <ModalBody>
+                <p>Apakah Anda yakin ingin menghapus agenda ini?</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="foreground" variant="light" onPress={onClose}>
+                  Batal
+                </Button>
+                <Button
+                  className="bg-danger shadow-lg shadow-indigo-500/20 text-white"
+                  onPress={deleteAgenda}
+                >
+                  Hapus
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      <ToastContainer />
     </div>
   );
 };

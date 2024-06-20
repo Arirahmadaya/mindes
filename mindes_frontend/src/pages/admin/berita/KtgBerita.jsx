@@ -45,7 +45,9 @@ const KtgBerita = () => {
   const deleteKategori = async () => {
     if (selectedKategori) {
       try {
-        await axios.delete(`http://localhost:3000/kategori/${selectedKategori.id}`);
+        await axios.delete(
+          `http://localhost:3000/kategori/${selectedKategori.id}`
+        );
         fetchKategori();
         toast.success("Kategori berhasil dihapus!");
         onOpenChange(false); // Close the modal
@@ -79,7 +81,9 @@ const KtgBerita = () => {
     {
       icon: <Edit className="w-4 h-4 text-warning" />,
       onClick: (kategori) => {
-        navigate(`/admin/berita/kategori/${kategori.id_kategori}`, { state: kategori });
+        navigate(`/admin/datamaster/kategori/edit/${kategori.id}`, {
+          state: kategori,
+        });
         console.log("Edit kategori:", kategori);
       },
     },
@@ -106,8 +110,12 @@ const KtgBerita = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/ktgberita">Data Master</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/ktgberita">Kategori Berita</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/datamaster/ktgberita">
+            Data Master
+          </BreadcrumbItem>
+          <BreadcrumbItem href="/admin/datamaster/ktgberita">
+            Kategori Berita
+          </BreadcrumbItem>
         </Breadcrumbs>
 
         <div className="flex gap-5 my-5">
@@ -121,8 +129,8 @@ const KtgBerita = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  filterKeys={["id", "nama"]} // filter keys untuk pencarian
-                  tambahKegiatanURL="/admin/berita/kategori/tambah"
+                  filterKeys={["id", "nama"]} 
+                  tambahKegiatanURL="/admin/datamaster/kategori/tambah"
                   actionButtons={actionButtons}
                 />
               </div>
@@ -150,7 +158,9 @@ const KtgBerita = () => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Konfirmasi Hapus</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">
+                Konfirmasi Hapus
+              </ModalHeader>
               <ModalBody>
                 <p>Apakah Anda yakin ingin menghapus kategori ini?</p>
               </ModalBody>
@@ -158,7 +168,10 @@ const KtgBerita = () => {
                 <Button color="foreground" variant="light" onPress={onClose}>
                   Batal
                 </Button>
-                <Button className="bg-danger shadow-lg shadow-indigo-500/20 text-white" onPress={deleteKategori}>
+                <Button
+                  className="bg-danger shadow-lg shadow-indigo-500/20 text-white"
+                  onPress={deleteKategori}
+                >
                   Hapus
                 </Button>
               </ModalFooter>

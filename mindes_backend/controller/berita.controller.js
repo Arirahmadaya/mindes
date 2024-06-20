@@ -88,16 +88,28 @@ export const updateBerita = async (req, res) => {
   }
 };
 
+
 export const deleteBerita = async (req, res) => {
-  const { id } = req.params;
+  const { id_berita } = req.params;
   try {
-    await query("DELETE FROM beritatable where id=?", [id]);
-    return res.status(200).json({ msg: "User Dihapus" });
+    await query("DELETE FROM beritatable WHERE id_berita = ?", [id_berita]);
+    return res.status(200).json({ msg: "Berita Dihapus" });
   } catch (error) {
-    console.log("Terjadi kesalahan", e);
+    console.log("Terjadi kesalahan", error);
     return res.status(500).json({ msg: "terjadi kesalahan pada server" });
   }
 };
+
+// export const deleteBerita = async (req, res) => {
+//   const { id } = req.params;
+//   try {
+//     await query("DELETE FROM beritatable where id=?", [id]);
+//     return res.status(200).json({ msg: "User Dihapus" });
+//   } catch (error) {
+//     console.log("Terjadi kesalahan", e);
+//     return res.status(500).json({ msg: "terjadi kesalahan pada server" });
+//   }
+// };
 
 export const getBeritaById = async (req, res) => {
   const { id } = req.params;

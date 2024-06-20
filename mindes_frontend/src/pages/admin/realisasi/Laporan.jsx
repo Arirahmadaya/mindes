@@ -9,7 +9,6 @@ import {
   PrinterIcon,
 } from "@heroicons/react/20/solid";
 
-
 const Laporan = () => {
   const [filter, setFilter] = useState("");
   const [showFilterForm, setShowFilterForm] = useState(false);
@@ -212,7 +211,7 @@ const Laporan = () => {
                   </div>
                 </div>
                 <button className="flex items-center gap-2 transition duration-300 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
-                <span>Print</span>
+                  <span>Print</span>
                   <PrinterIcon className="w-5 h-5" />
                 </button>
               </div>
@@ -242,7 +241,7 @@ const Laporan = () => {
                   </select>
                 </div>
                 <button className="flex gap-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
-                <span>Print</span>
+                  <span>Print</span>
                   <PrinterIcon className="w-5 h-5" />
                 </button>
               </div>

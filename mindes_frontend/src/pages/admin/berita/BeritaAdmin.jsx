@@ -5,6 +5,18 @@ import NavbarAdmin from "../../../components/NavbarAdmin";
 import { Eye, Edit, Trash2 } from "react-feather";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import TableProps from "../../../components/TableProps";
+import { useNavigate } from "react-router-dom";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const statusColorMap = {
   publish: "success",
@@ -30,32 +42,11 @@ const statusOptions = [
   { name: "Gagal", uid: "gagal" },
 ];
 
-const actionButtons = [
-  {
-    icon: <Eye className="w-4 h-4 text-black" />,
-    onClick: (item) => {
-      console.log("View item:", item);
-      // Implementasikan logika tampilan di sini
-    },
-  },
-  {
-    icon: <Edit className="w-4 h-4 text-warning" />,
-    onClick: (item) => {
-      console.log("Edit item:", item);
-      // Implementasikan logika edit di sini
-    },
-  },
-  {
-    icon: <Trash2 className="w-4 h-4 text-danger" />,
-    onClick: (item) => {
-      console.log("Delete item:", item);
-      // Implementasikan logika hapus di sini
-    },
-  },
-];
-
 const BeritaAdmin = () => {
   const [news, setNews] = useState([]);
+  const [selectedNews, setSelectedNews] = useState(null);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchNews();
@@ -70,6 +61,24 @@ const BeritaAdmin = () => {
     }
   };
 
+  const confirmDeleteNews = (newsItem) => {
+    setSelectedNews(newsItem);
+    onOpen();
+  };
+
+  const deleteNews = async () => {
+    if (selectedNews) {
+      try {
+        await axios.delete(`http://localhost:3000/berita/${selectedNews.id_berita}`);
+        fetchNews();
+        toast.success("Berita berhasil dihapus!");
+        onOpenChange(false); // Close the modal
+      } catch (error) {
+        console.error("Terjadi kesalahan", error);
+      }
+    }
+  };
+
   const formatDate = (datetime) => {
     const date = new Date(datetime);
     const year = date.getFullYear();
@@ -77,6 +86,30 @@ const BeritaAdmin = () => {
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
+
+  const actionButtons = [
+    {
+      icon: <Eye className="w-4 h-4 text-black" />,
+      onClick: (newsId) => {
+        console.log("View item:", newsId);
+        // Implementasikan logika tampilan di sini
+      },
+    },
+    {
+      icon: <Edit className="w-4 h-4 text-warning" />,
+      onClick: (newsId) => {
+        const newsItem = news.find((n) => n.id_berita === newsId);
+        navigate(`/admin/berita/edit/${newsId}`, { state: newsItem });
+      },
+    },
+    {
+      icon: <Trash2 className="w-4 h-4 text-danger" />,
+      onClick: (newsId) => {
+        const newsItem = news.find((n) => n.id_berita === newsId);
+        confirmDeleteNews(newsItem);
+      },
+    },
+  ];
 
   const isi = news.map((item) => ({
     id: item.id_berita,
@@ -87,23 +120,20 @@ const BeritaAdmin = () => {
     id_user: item.id_user,
     nama: item.nama,
     status: item.status,
+    actions: item.id_berita, // ID berita sebagai parameter untuk tombol aksi
   }));
 
   return (
     <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
       <Sidebares />
       <div className="flex-1 mx-5">
-        <div className="">
-          <NavbarAdmin />
-        </div>
-
+        <NavbarAdmin />
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
           <BreadcrumbItem href="/admin/berita">Berita</BreadcrumbItem>
         </Breadcrumbs>
-
         <div className="flex gap-5 my-5">
-          <div className=" flex w-full bg-white rounded-lg">
+          <div className="flex w-full bg-white rounded-lg">
             <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-blue-200">
               <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
               <div className="p-4">
@@ -119,11 +149,49 @@ const BeritaAdmin = () => {
                 />
               </div>
             </div>
-
-            <div className="flex justify-between"></div>
           </div>
         </div>
       </div>
+
+      <Modal
+        backdrop="opaque"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        radius="lg"
+        classNames={{
+          body: "py-6",
+          backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
+          base: "border-[#292f46] bg-white text-black",
+          header: "border-b-[1px] border-[#292f46]/10",
+          footer: "border-t-[1px] border-[#292f46]10",
+          closeButton: "hover:bg-white/5 active:bg-white/10",
+        }}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Konfirmasi Hapus
+              </ModalHeader>
+              <ModalBody>
+                <p>Apakah Anda yakin ingin menghapus berita ini?</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="foreground" variant="light" onPress={onClose}>
+                  Batal
+                </Button>
+                <Button
+                  className="bg-danger shadow-lg shadow-indigo-500/20 text-white"
+                  onPress={deleteNews}
+                >
+                  Hapus
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      <ToastContainer />
     </div>
   );
 };

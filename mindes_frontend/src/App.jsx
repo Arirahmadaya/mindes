@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import Home from "./pages/auth/Home";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -31,7 +36,8 @@ import Akuntansi from "./pages/admin/realisasi/Akuntansi";
 import Bidang from "./pages/admin/realisasi/Bidang";
 import UserProfile from "./pages/auth/UserProfile";
 import MindesTeam from "./pages/auth/MindesTeam";
-import FormKtgBerita from "./pages/admin/berita/FormKtgBerita";
+import FormKtgBeritaTambah from "./pages/admin/berita/FormKtgBeritaTambah";
+import KtgBeritaEdit from "./pages/admin/berita/KtgBeritaEdit";
 import FormAkuntansi from "./pages/admin/realisasi/FormAkuntansi";
 import FormBidang from "./pages/admin/realisasi/FormBidang";
 import FormRealisasi from "./pages/admin/realisasi/FormRealisasi";
@@ -44,11 +50,13 @@ import UserProfileAdmin from "./pages/admin/UserProfile";
 // Call image whatsapp
 import callImage from "../public/img/call.png";
 
+
 const Main = () => {
   const location = useLocation();
-  const hideElements = location.pathname.startsWith("/admin") || 
-                      location.pathname === "/login" || 
-                      location.pathname === "/register";
+  const hideElements =
+    location.pathname.startsWith("/admin") ||
+    location.pathname === "/login" ||
+    location.pathname === "/register";
 
   useEffect(() => {
     if (!hideElements) {
@@ -66,7 +74,9 @@ const Main = () => {
   const openWhatsApp = () => {
     const whatsappNumber = "6282269140660";
     const preFilledMessage = "Halo, Saya ingin melaporkan";
-    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(preFilledMessage)}`;
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      preFilledMessage
+    )}`;
     window.open(whatsappLink, "_blank");
   };
 
@@ -108,16 +118,38 @@ const Main = () => {
         <Route path="/admin/agenda/edit/:id" element={<EditAgenda />} />
         <Route path="/admin/berita/tambah" element={<FormBerita />} />
         <Route path="/admin/realisasi/utama" element={<Realisasi />} />
-        <Route path="/admin/realisasi/utama/tambah" element={<FormRealisasi />} />
+        <Route
+          path="/admin/realisasi/utama/tambah"
+          element={<FormRealisasi />}
+        />
         <Route path="/admin/realisasi/laporan" element={<Laporan />} />
-        <Route path="/admin/realisasi/utama/pencatatan" element={<FormPencatatan />} /> 
-        <Route path="/admin/realisasi/pencatatan/tambah" element={<TambahRealisasiForm />} /> 
+        <Route
+          path="/admin/realisasi/utama/pencatatan"
+          element={<FormPencatatan />}
+        />
+        <Route
+          path="/admin/realisasi/pencatatan/tambah"
+          element={<TambahRealisasiForm />}
+        />
         <Route path="/admin/datamaster/kategori" element={<KtgBerita />} />
-        <Route path="/admin/datamaster/kategori/tambah" element={<FormKtgBerita />} />
+        <Route
+          path="/admin/datamaster/kategori/tambah"
+          element={<FormKtgBeritaTambah />}
+        />
+        <Route
+          path="/admin/datamaster/kategori/edit/:id"
+          element={<KtgBeritaEdit />}
+        />
         <Route path="/admin/datamaster/akuntansi" element={<Akuntansi />} />
-        <Route path="/admin/datamaster/akuntansi/tambah" element={<FormAkuntansi />} />
+        <Route
+          path="/admin/datamaster/akuntansi/tambah"
+          element={<FormAkuntansi />}
+        />
         <Route path="/admin/datamaster/bidang" element={<Bidang />} />
-        <Route path="/admin/datamaster/bidang/tambah" element={<FormBidang />} />
+        <Route
+          path="/admin/datamaster/bidang/tambah"
+          element={<FormBidang />}
+        />
         <Route path="/admin/userprofil" element={<UserProfileAdmin />} />
         <Route path="/admin/bantuan" element={<BantuanAdmin />} />
         <Route path="/admin/login" element={<LoginAdmin />} />
@@ -137,11 +169,10 @@ const App = () => {
 
 export default App;
 
-
 // const Main = () => {
 //   const location = useLocation();
-//   const hideElements = location.pathname.startsWith("/admin") || 
-//                         location.pathname === "/login" || 
+//   const hideElements = location.pathname.startsWith("/admin") ||
+//                         location.pathname === "/login" ||
 //                         location.pathname === "/register";
 
 //   useEffect(() => {
@@ -209,8 +240,8 @@ export default App;
 //         <Route path="/admin/realisasi/bidang/tambah" element={<FormBidang />} />
 //         <Route path="/admin/realisasi/laporan" element={<Laporan />} />
 //         <Route path="/admin/login" element={<LoginAdmin />} />
-//         <Route path="/admin/realisasi/pencatatan" element={<FormPencatatan />} /> 
-//         <Route path="/admin/realisasi/pencatatan/tambah" element={<TambahRealisasiForm />} /> 
+//         <Route path="/admin/realisasi/pencatatan" element={<FormPencatatan />} />
+//         <Route path="/admin/realisasi/pencatatan/tambah" element={<TambahRealisasiForm />} />
 //         {/* FormPencatatan akan menuju ke menu edit di setiap record table, dan PencatatanDetail akan menuju ke tambah record di setiap pencatatannya yang anntinya akan berhubungan dengan isi yang ada di FormPencatatan */}x
 //       </Routes>
 //     </div>
@@ -227,11 +258,10 @@ export default App;
 
 // export default App;
 
-
 // const Main = () => {
 //   const location = useLocation();
-//   const hideElements = location.pathname.startsWith("/admin") || 
-//                         location.pathname === "/login" || 
+//   const hideElements = location.pathname.startsWith("/admin") ||
+//                         location.pathname === "/login" ||
 //                         location.pathname === "/register";
 
 //   useEffect(() => {
@@ -299,8 +329,8 @@ export default App;
 //         <Route path="/admin/realisasi/bidang/tambah" element={<FormBidang />} />
 //         <Route path="/admin/realisasi/laporan" element={<Laporan />} />
 //         <Route path="/admin/login" element={<LoginAdmin />} />
-//         <Route path="/admin/realisasi/pencatatan" element={<FormPencatatan />} /> 
-//         <Route path="/admin/realisasi/pencatatan/tambah" element={<TambahRealisasiForm />} /> 
+//         <Route path="/admin/realisasi/pencatatan" element={<FormPencatatan />} />
+//         <Route path="/admin/realisasi/pencatatan/tambah" element={<TambahRealisasiForm />} />
 //         {/* FormPencatatan akan menuju ke menu edit di setiap record table, dan PencatatanDetail akan menuju ke tambah record di setiap pencatatannya yang anntinya akan berhubungan dengan isi yang ada di FormPencatatan */}x
 //       </Routes>
 //     </div>

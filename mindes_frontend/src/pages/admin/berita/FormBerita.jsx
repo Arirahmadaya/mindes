@@ -19,6 +19,8 @@ import {
   ArrowUturnLeftIcon,
 } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const FormBerita = () => {
   const [formData, setFormData] = useState({
@@ -125,11 +127,13 @@ const FormBerita = () => {
         data.append(key, formData[key]);
       });
       if (selectedImageFile) {
-        data.append('img_berita', selectedImageFile);
+        data.append("img_berita", selectedImageFile);
       }
       await axios.post("http://localhost:3000/berita/create", data);
-      console.log("Data yang dikirim:", formData);
-      navigate("/admin/berita");
+      toast.success("Data berita berhasil disimpan!");
+      setTimeout(() => {
+        navigate("/admin/berita");
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -237,7 +241,7 @@ const FormBerita = () => {
                         type="file"
                         label="Foto Berita"
                         className="w-full bg-white file-input file-input-bordered"
-                        value={FormData.img_berita}
+                        value={formData.img_berita}
                         onChange={handleImageChange}
                       />
                       {selectedImage && (
@@ -314,6 +318,7 @@ const FormBerita = () => {
             </div>
           </div>
         </form>
+        <ToastContainer />
       </div>
     </div>
   );

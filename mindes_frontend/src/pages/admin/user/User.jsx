@@ -56,12 +56,6 @@ const User = () => {
 
   const actionButtons = [
     {
-      icon: <Eye className="w-4 h-4 text-black" />,
-      onClick: (user) => {
-        // Implement your logic for viewing here
-      },
-    },
-    {
       icon: <Edit className="w-4 h-4 text-warning" />,
       onClick: (user) => {
         navigate(`/admin/user/edit/${user.id}`);

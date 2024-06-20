@@ -16,6 +16,8 @@ import {
   ArrowUturnLeftIcon,
 } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const FormUser = () => {
   const [selectedKey, setSelectedKey] = useState(new Set());
@@ -55,7 +57,10 @@ const FormUser = () => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:3000/user/create", formData);
-      navigate("/admin/user");
+      toast.success("User berhasil dibuat!");
+      setTimeout(() => {
+        navigate("/admin/user");
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -175,6 +180,7 @@ const FormUser = () => {
             </div>
           </div>
         </form>
+        <ToastContainer />
       </div>
     </div>
   );

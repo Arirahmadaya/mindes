@@ -4,11 +4,13 @@ import { Input } from "@nextui-org/react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,8 +29,8 @@ const Login = () => {
 
       // Redirect ke halaman dashboard setelah 2 detik
       setTimeout(() => {
-        window.location.href = "/";
-      }, 2000);
+        navigate("/");
+      }, 2500);
     } catch (err) {
       if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);

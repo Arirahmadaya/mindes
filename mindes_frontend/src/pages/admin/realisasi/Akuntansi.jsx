@@ -91,7 +91,9 @@ const Akuntansi = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/akuntansi">Data Master</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/datamaster/akuntansi">
+            Data Master
+          </BreadcrumbItem>
           <BreadcrumbItem href="/admin/datamaster/akuntansi">
             Akuntansi
           </BreadcrumbItem>
