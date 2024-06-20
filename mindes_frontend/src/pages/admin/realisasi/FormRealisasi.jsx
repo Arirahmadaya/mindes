@@ -2,34 +2,51 @@ import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  Input,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+} from "@nextui-org/react";
 import {
   PaperAirplaneIcon,
   ArrowUturnLeftIcon,
 } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
+import ImageViewer from "react-simple-image-viewer";
 
 const FormRealisasi = () => {
   const [formData, setFormData] = useState({
-    lokasi: "",
-    idKegiatan: "",
+    id_bidang: "",
+    kode_kegiatan: "",
     kegiatan: "",
-    biaya: "",
     output: "",
-    tanggalMulai: "",
-    tanggalSelesai: "",
+    status: "",
+    lokasi: "",
+    img_realisasi1: "",
+    img_realisasi2: "",
+    sumber: "",
+    pembiayaan: "",
+    tgl_mulai: "",
+    tgl_selesai: "",
   });
-
-  const [selectedKey, setSelectedKey] = useState(new Set());
-  // const [selectedBidang, setSelectedBidang] = useState("");
+  //img
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage1, setSelectedImage1] = useState(null);
   const [selectedImageFile, setSelectedImageFile] = useState(null);
+  const [selectedImageFile1, setSelectedImageFile1] = useState(null);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState(0);
+  const [isViewerOpen1, setIsViewerOpen1] = useState(false);
+  //
+  const [selectedKey, setSelectedKey] = useState(new Set());
+  const [selectedBidangKey, setSelectedBidangKey] = useState(new Set());
+  // const [currentImage, setCurrentImage] = useState(0);
   // Choose
   const [bidang, setBidang] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState(new Set());
-  const [selectedSumber, setSelectedSumber] = useState(new Set());
 
   const navigate = useNavigate();
 
@@ -62,8 +79,24 @@ const FormRealisasi = () => {
       : "Pilih Status";
   }, [selectedStatus]);
 
+  const handleStatusSelectionChange = (keys) => {
+    setSelectedStatus(keys);
+    const status = [...keys].join(", ");
+    setFormData((prevData) => ({
+      ...prevData,
+      status: status,
+    }));
+  };
+
   // Sumber
-  const handleSumberSelectionChange = (keys) => {
+  const selectedSumberValue = React.useMemo(() => {
+    const key = [...selectedKey].join(", ");
+    return key
+      ? key.charAt(0).toUpperCase() + key.slice(1).replaceAll("_", " ")
+      : "Pilih Sumber Biaya";
+  }, [selectedKey]);
+
+  const handleSelectionChange = (keys) => {
     setSelectedKey(keys);
     const sumber = [...keys].join(", ");
     setFormData((prevData) => ({
@@ -72,9 +105,17 @@ const FormRealisasi = () => {
     }));
   };
 
-  // Bidang
-  const handleSelectionChange = (keys) => {
-    setSelectedKey(keys);
+  // Pilih Bidang
+  const selectedBidangValue = React.useMemo(() => {
+    const key = [...selectedBidangKey].join(", ");
+    return key
+      ? key.charAt(0).toUpperCase() + key.slice(1).replaceAll("_", " ")
+      : "Pilih Bidang";
+  }, [selectedBidangKey]);
+
+  // Bidang ad foreign
+  const handleBidangSelectionChange = (keys) => {
+    setSelectedBidangKey(keys);
     const id_bidang = [...keys].join(", ");
     setFormData((prevData) => ({
       ...prevData,
@@ -82,33 +123,48 @@ const FormRealisasi = () => {
     }));
   };
 
-  // const handleImageChange = (event) => {
-  //   if (event.target.files && event.target.files[0]) {
-  //     setSelectedImage(URL.createObjectURL(event.target.files[0]));
-  //     setSelectedImageFile(event.target.files[0]);
-  //   }
-  // };
   const handleImageChange = (event) => {
     const { name, files } = event.target;
     if (files && files[0]) {
-      setSelectedImage((prevImages) => ({
-        ...prevImages,
-        [name]: URL.createObjectURL(files[0]),
-      }));
-      setSelectedImageFile((prevFiles) => ({
-        ...prevFiles,
-        [name]: files[0],
-      }));
+      const imageUrl = URL.createObjectURL(files[0]);
+      if (name === "img_realisasi1") {
+        setSelectedImage(imageUrl);
+        setSelectedImageFile(files[0]);
+      } else if (name === "img_realisasi2") {
+        setSelectedImage1(imageUrl);
+        setSelectedImageFile1(files[0]);
+      }
     }
   };
+
+  // const handleImageChange = (event) => {
+  //   const { name, files } = event.target;
+  //   if (files && files[0]) {
+  //     setSelectedImage((prevImages) => ({
+  //       ...prevImages,
+  //       [name]: URL.createObjectURL(files[0]),
+  //     }));
+  //     setSelectedImageFile((prevFiles) => ({
+  //       ...prevFiles,
+  //       [name]: files[0],
+  //     }));
+  //   }
+  // };
 
   const openImageViewer = useCallback(() => {
     setIsViewerOpen(true);
   }, []);
+  const openImageViewer1 = useCallback(() => {
+    setIsViewerOpen1(true);
+  }, []);
 
   const closeImageViewer = () => {
-    setCurrentImage(0);
+    // setCurrentImage(0);
     setIsViewerOpen(false);
+  };
+  const closeImageViewer1 = () => {
+    // setCurrentImage1(0);
+    setIsViewerOpen1(false);
   };
 
   const handleSubmit = async (e) => {
@@ -118,42 +174,22 @@ const FormRealisasi = () => {
       Object.keys(formData).forEach((key) => {
         data.append(key, formData[key]);
       });
-      if (selectedImageFile.img_realisasi1) {
-        data.append('img_realisasi1', selectedImageFile.img_realisasi1);
+      if (selectedImageFile) {
+        data.append("img_realisasi1", selectedImageFile);
       }
-      if (selectedImageFile.img_realisasi2) {
-        data.append('img_realisasi2', selectedImageFile.img_realisasi2);
+      if (selectedImageFile1) {
+        data.append("img_realisasi2", selectedImageFile1);
       }
-      await axios.post("http://localhost:3000/realisasi/create", formData);
+      await axios.post("http://localhost:3000/realisasi/create", data);
+      console.log("Data yang dikirim:", formData);
       // headers: {
       //   "Content-Type": "multipart/form-data",
       // },
-      navigate("/admin/realisasi/pencatatan");
+      navigate("/admin/realisasi/utama");
     } catch (error) {
       console.log(error);
     }
   };
-
-  // Opsi bidang yang tersedia
-  // const bidangOptions = [
-  //   "- Pilih Bidang -",
-  //   "Bidang 1",
-  //   "Bidang 2",
-  // ];
-  // // Opsi status yang tersedia
-  // const statusOptions = [
-  //   "- Pilih Status -",
-  //   "Status 1",
-  //   "Status 2",
-  //   // Tambahkan opsi status lainnya sesuai kebutuhan
-  // ];
-  // Opsi sumber yang tersedia
-  // const sumberOptions = [
-  //   "- Pilih Sumber -",
-  //   "Sumber 1",
-  //   "Sumber 2",
-  //   // Tambahkan opsi sumber lainnya sesuai kebutuhan
-  // ];
 
   return (
     <div className="flex flex-row w-screen h-screen overflow-y-auto bg-secondary-10">
@@ -173,153 +209,278 @@ const FormRealisasi = () => {
         </Breadcrumbs>
 
         <div className="container p-5 mx-auto my-5 transition duration-300 ease-in-out bg-white rounded-lg shadow-md background-animate hover:shadow-lg hover:shadow-gray-500">
-          <h2 className="mb-5 text-3xl font-bold text-left text-blue-600">
+          {/*  <h2 className="mb-5 text-3xl font-bold text-left text-blue-600">
             Data Reliassi
-          </h2>
+          </h2>*/}
 
           {/* form start */}
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div>
-                
-                <label className="block mb-2 font-semibold text-gray-700">
-                  Pilih Bidang
-                </label>
-                <select
-                  value={handleSelectionChange}
-                  onChange={(e) => setSelectedKey(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                >
-                  {bidangOptions.map((bidang, index) => (
-                    <option key={index} value={bidang}>
-                      {bidang}
-                    </option>
-                  ))}
-                </select>
+              <div className="relative w-1/2 mb-0">
+                <p className="mt-1 mb-2 text-caption-2 text-gray">
+                  Pilih Kategori Bidang
+                </p>
+                <Dropdown>
+                  <DropdownTrigger>
+                    <Button
+                      variant="bordered"
+                      className="capitalize text-left w-50%"
+                    >
+                      {selectedBidangValue}
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu
+                    aria-label="Pilih kategori bidang"
+                    variant="flat"
+                    closeOnSelect={false}
+                    disallowEmptySelection
+                    selectionMode="multiple"
+                    selectedKeys={selectedBidangKey}
+                    onSelectionChange={handleBidangSelectionChange}
+                  >
+                    {bidang.map((bidang) => (
+                      <DropdownItem key={bidang.id_bidang}>
+                        {bidang.nama}
+                      </DropdownItem>
+                    ))}
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
+              <div className="relative w-full mb-0">
+                <p className="mt-1 mb-2 text-caption-2 text-gray">
+                  Pilih Status
+                </p>
+
+                <Dropdown backdrop="blur">
+                  <DropdownTrigger>
+                    <Button
+                      variant="bordered"
+                      className="capitalize text-left w-50%"
+                    >
+                      {selectedStatusValue}
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu
+                    aria-label="Multiple selection example"
+                    variant="flat"
+                    closeOnSelect={true}
+                    disallowEmptySelection
+                    selectionMode="multiple"
+                    selectedKeys={selectedStatus}
+                    onSelectionChange={handleStatusSelectionChange}
+                  >
+                    <DropdownItem key="pengajuan">Pengajuan</DropdownItem>
+                    <DropdownItem key="proses">Proses</DropdownItem>
+                    <DropdownItem key="selesai">Selesai</DropdownItem>
+                    <DropdownItem key="gagal">Gagal</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
               </div>
               <div>
-                <label className="block mb-2 font-semibold text-gray-700">
-                  Lokasi
-                </label>
-                <textarea
-                  name="lokasi"
-                  value={formData.lokasi}
-                  onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                  placeholder="Masukkan Lokasi"
-                ></textarea>
-              </div>
-              <div>
-                <label className="block mb-2 font-semibold text-gray-700">
-                  ID Kegiatan
-                </label>
-                <input
+                <p className="mt-1 mb-2 text-caption-2 text-gray">
+                  Masukkan ID Kegiatan
+                </p>
+                <Input
                   type="text"
-                  name="idKegiatan"
-                  value={formData.idKegiatan}
+                  variant="bordered"
+                  label="Masukkan ID Kegiatan"
+                  name="kode_kegiatan"
+                  value={formData.kode_kegiatan}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                  placeholder="Masukkan ID Kegiatan"
                 />
               </div>
-              <div>
-                <label className="block mb-2 font-semibold text-gray-700">
-                  Sumber
-                </label>
-                <select
-                  value={selectedSumber}
-                  onChange={(e) => setSelectedSumber(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                >
-                  {sumberOptions.map((sumber, index) => (
-                    <option key={index} value={sumber}>
-                      {sumber}
-                    </option>
-                  ))}
-                </select>
+
+              {/* Sumber Biaya */}
+              <div className="relative w-full mb-0">
+                <p className="mt-1 mb-2 text-caption-2 text-gray">
+                  Pilih Sumber Biaya
+                </p>
+                <Dropdown backdrop="">
+                  <DropdownTrigger>
+                    <Button
+                      variant="bordered"
+                      className="capitalize text-left w-50%"
+                    >
+                      {selectedSumberValue}
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu
+                    aria-label="Pilih Sumber Pembiayaan"
+                    variant="flat"
+                    closeOnSelect={false}
+                    disallowEmptySelection
+                    selectionMode="multiple"
+                    selectedKeys={selectedKey}
+                    onSelectionChange={handleSelectionChange}
+                  >
+                    {["PBP", "PBK", "PBH", "PAD", "DD", "ADD"].map((sumber) => (
+                      <DropdownItem key={sumber} eventKey={sumber}>
+                        {sumber}
+                      </DropdownItem>
+                    ))}
+                  </DropdownMenu>
+                </Dropdown>
               </div>
               <div>
-                <label className="block mb-2 font-semibold text-gray-700">
-                  Kegiatan
-                </label>
-                <textarea
+                <p className="mt-1 mb-2 text-caption-2 text-gray">
+                  Masukkan Nama Program
+                </p>
+                <Input
+                  type="text"
+                  variant="bordered"
+                  label="Nama Program"
                   name="kegiatan"
                   value={formData.kegiatan}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                  placeholder="Masukkan Kegiatan"
-                ></textarea>
+                />
               </div>
+
               <div>
-                <label className="block mb-2 font-semibold text-gray-700">
-                  Biaya
-                </label>
-                <input
+                <p className="mt-1 mb-2 text-caption-2 text-gray">
+                  Masukkan Besar Anggaran (tanpa tanda titik/koma)
+                </p>
+                <Input
                   type="number"
-                  name="biaya"
-                  value={formData.biaya}
+                  variant="bordered"
+                  label="Besar Anggaran"
+                  name="pembiayaan"
+                  value={formData.pembiayaan}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                  placeholder="Masukkan Biaya"
                 />
               </div>
               <div>
-                <label className="block mb-2 font-semibold text-gray-700">
-                  Output
-                </label>
-                <input
+                <p className="mt-1 mb-2 text-caption-2 text-gray">Lokasi</p>
+                <Input
                   type="text"
+                  variant="bordered"
+                  label="Masukkan Target Lokasi"
+                  name="lokasi"
+                  value={formData.lokasi}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="flex gap-5">
+                <div className="relative w-1/2 mb-0">
+                  <p className="mt-1 mb-2 text-caption-2 text-gray">
+                    Tanggal Mulai
+                  </p>
+                  <Input
+                    type="date"
+                    label="Tanggal Agenda"
+                    variant="bordered"
+                    name="tgl_mulai"
+                    value={formData.tgl_mulai}
+                    onChange={handleChange}
+                    // isRequired
+                  />
+                </div>
+                <div className="relative w-1/2 mb-0">
+                  <p className="mt-1 mb-2 text-caption-2 text-gray">
+                    Tanggal Selesai
+                  </p>
+                  <Input
+                    type="date"
+                    label="Tanggal Agenda"
+                    variant="bordered"
+                    name="tgl_selesai"
+                    value={formData.tgl_selesai}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <p className="mt-1 mb-2 text-caption-2 text-gray">
+                  Masukkan Output Kegiatan/Program
+                </p>
+                <Input
+                  type="text"
+                  variant="bordered"
+                  label="Hasil atau Output"
                   name="output"
                   value={formData.output}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                  placeholder="Masukkan Output Kegiatan"
                 />
               </div>
-              <div>
-                <label className="block mb-2 font-semibold text-gray-700">
-                  Tanggal Mulai
-                </label>
+
+              {/* image sebagai bukti bahwa kegiatan telah berlangsung, jadi hanya muncul ketika status sudah selesai/proses */}
+              <div className="flex flex-col p-10 gap-5"></div>
+            </div>
+            <br />
+            <h5 className="text-3xl font-bold mb-3 text-left text-blue-600">
+              Dokumentasi Bukti Realisasi Anggaran Desa
+            </h5>
+            <div className="flex gap-5">
+              <div className="relative w-1/2 mb-0">
+                <p className="mt-1 mb-2 text-caption-2 text-gray">
+                  Masukkan Foto Realisasi 1
+                </p>
                 <input
-                  type="date"
-                  name="tanggalMulai"
-                  value={formData.tanggalMulai}
-                  onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  type="file"
+                  label="Foto Berita"
+                  name="img_realisasi1"
+                  className="w-full bg-white file-input file-input-bordered"
+                  onChange={handleImageChange}
                 />
+                {selectedImage && (
+                  <div className="mt-4">
+                    <img
+                      src={selectedImage}
+                      onClick={openImageViewer}
+                      width="300"
+                      style={{ margin: "2px", cursor: "pointer" }}
+                      alt="Selected Preview"
+                    />
+                  </div>
+                )}
+                {isViewerOpen && (
+                  <ImageViewer
+                    src={[selectedImage]}
+                    currentIndex={0}
+                    onClose={closeImageViewer}
+                    // currentIndex={currentImage}
+                    disableScroll={false}
+                    closeOnClickOutside={true}
+                  />
+                )}
               </div>
-              <div>
-                <label className="block mb-2 font-semibold text-gray-700">
-                  Status
-                </label>
-                <select
-                  value={selectedStatus}
-                  onChange={(e) => setSelectedStatus(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                >
-                  {statusOptions.map((status, index) => (
-                    <option key={index} value={status}>
-                      {status}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label className="block mb-2 font-semibold text-gray-700">
-                  Tanggal Selesai
-                </label>
+              {/* IMG 2 */}
+              <div className="relative w-1/2 mb-0">
+                <p className="mt-1 mb-2 text-caption-2 text-gray">
+                  Masukkan Foto Realisasi 2
+                </p>
                 <input
-                  type="date"
-                  name="tanggalSelesai"
-                  value={formData.tanggalSelesai}
-                  onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  type="file"
+                  label="Foto Berita"
+                  className="w-full bg-white file-input file-input-bordered"
+                  onChange={handleImageChange}
                 />
+                {selectedImage1 && (
+                  <div className="mt-4">
+                    <img
+                      src={selectedImage1}
+                      onClick={openImageViewer1}
+                      width="300"
+                      style={{ margin: "2px", cursor: "pointer" }}
+                      alt="Selected Preview"
+                    />
+                  </div>
+                )}
+                {isViewerOpen1 && (
+                  <ImageViewer
+                    src={[selectedImage1]}
+                    onClose={closeImageViewer1}
+                    currentIndex={0}
+                    // currentIndex={currentImage}
+                    disableScroll={false}
+                    closeOnClickOutside={true}
+                  />
+                )}
               </div>
             </div>
             <div className="flex justify-between w-full mt-4">
               <Link
-                to="/admin/realisasi"
+                to="/admin/realisasi/utama"
                 className="flex items-center gap-2 px-4 py-2 text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-600"
               >
                 <ArrowUturnLeftIcon className="w-5 h-5" />
