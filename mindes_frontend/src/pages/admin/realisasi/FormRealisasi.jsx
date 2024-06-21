@@ -33,24 +33,21 @@ const FormRealisasi = () => {
     tgl_mulai: "",
     tgl_selesai: "",
   });
-  //img
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImage1, setSelectedImage1] = useState(null);
   const [selectedImageFile, setSelectedImageFile] = useState(null);
   const [selectedImageFile1, setSelectedImageFile1] = useState(null);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [isViewerOpen1, setIsViewerOpen1] = useState(false);
-  //
+
   const [selectedKey, setSelectedKey] = useState(new Set());
   const [selectedBidangKey, setSelectedBidangKey] = useState(new Set());
-  // const [currentImage, setCurrentImage] = useState(0);
-  // Choose
   const [bidang, setBidang] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState(new Set());
 
   const navigate = useNavigate();
 
-  // Get data from kategori berita
   useEffect(() => {
     const fetchBidang = async () => {
       try {
@@ -71,7 +68,6 @@ const FormRealisasi = () => {
     }));
   };
 
-  // Status
   const selectedStatusValue = React.useMemo(() => {
     const key = [...selectedStatus].join(", ");
     return key
@@ -88,7 +84,6 @@ const FormRealisasi = () => {
     }));
   };
 
-  // Sumber
   const selectedSumberValue = React.useMemo(() => {
     const key = [...selectedKey].join(", ");
     return key
@@ -105,7 +100,6 @@ const FormRealisasi = () => {
     }));
   };
 
-  // Pilih Bidang
   const selectedBidangValue = React.useMemo(() => {
     const key = [...selectedBidangKey].join(", ");
     return key
@@ -113,7 +107,6 @@ const FormRealisasi = () => {
       : "Pilih Bidang";
   }, [selectedBidangKey]);
 
-  // Bidang ad foreign
   const handleBidangSelectionChange = (keys) => {
     setSelectedBidangKey(keys);
     const id_bidang = [...keys].join(", ");
@@ -137,33 +130,19 @@ const FormRealisasi = () => {
     }
   };
 
-  // const handleImageChange = (event) => {
-  //   const { name, files } = event.target;
-  //   if (files && files[0]) {
-  //     setSelectedImage((prevImages) => ({
-  //       ...prevImages,
-  //       [name]: URL.createObjectURL(files[0]),
-  //     }));
-  //     setSelectedImageFile((prevFiles) => ({
-  //       ...prevFiles,
-  //       [name]: files[0],
-  //     }));
-  //   }
-  // };
-
   const openImageViewer = useCallback(() => {
     setIsViewerOpen(true);
   }, []);
+
+  const closeImageViewer = () => {
+    setIsViewerOpen(false);
+  };
+
   const openImageViewer1 = useCallback(() => {
     setIsViewerOpen1(true);
   }, []);
 
-  const closeImageViewer = () => {
-    // setCurrentImage(0);
-    setIsViewerOpen(false);
-  };
   const closeImageViewer1 = () => {
-    // setCurrentImage1(0);
     setIsViewerOpen1(false);
   };
 
@@ -180,12 +159,15 @@ const FormRealisasi = () => {
       if (selectedImageFile1) {
         data.append("img_realisasi2", selectedImageFile1);
       }
-      await axios.post("http://localhost:3000/realisasi/create", data);
+
+      await axios.post("http://localhost:3000/realisasi/create", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
       console.log("Data yang dikirim:", formData);
-      // headers: {
-      //   "Content-Type": "multipart/form-data",
-      // },
-      navigate("/admin/realisasi/utama");
+      navigate("/admin/realisasi");
     } catch (error) {
       console.log(error);
     }
@@ -388,7 +370,6 @@ const FormRealisasi = () => {
                   />
                 </div>
               </div>
-
               <div>
                 <p className="mt-1 mb-2 text-caption-2 text-gray">
                   Masukkan Output Kegiatan/Program
@@ -429,6 +410,7 @@ const FormRealisasi = () => {
                       onClick={openImageViewer}
                       width="300"
                       style={{ margin: "2px", cursor: "pointer" }}
+                      className="border border-gray-300 rounded-md"
                       alt="Selected Preview"
                     />
                   </div>
@@ -438,13 +420,14 @@ const FormRealisasi = () => {
                     src={[selectedImage]}
                     currentIndex={0}
                     onClose={closeImageViewer}
-                    // currentIndex={currentImage}
                     disableScroll={false}
                     closeOnClickOutside={true}
+                    backgroundStyle={{
+                      backgroundColor: "rgba(0,0,0,0.9)",
+                    }}
                   />
                 )}
               </div>
-              {/* IMG 2 */}
               <div className="relative w-1/2 mb-0">
                 <p className="mt-1 mb-2 text-caption-2 text-gray">
                   Masukkan Foto Realisasi 2
@@ -452,6 +435,7 @@ const FormRealisasi = () => {
                 <input
                   type="file"
                   label="Foto Berita"
+                  name="img_realisasi2"
                   className="w-full bg-white file-input file-input-bordered"
                   onChange={handleImageChange}
                 />
@@ -462,6 +446,7 @@ const FormRealisasi = () => {
                       onClick={openImageViewer1}
                       width="300"
                       style={{ margin: "2px", cursor: "pointer" }}
+                      className="border border-gray-300 rounded-md"
                       alt="Selected Preview"
                     />
                   </div>
@@ -469,18 +454,20 @@ const FormRealisasi = () => {
                 {isViewerOpen1 && (
                   <ImageViewer
                     src={[selectedImage1]}
-                    onClose={closeImageViewer1}
                     currentIndex={0}
-                    // currentIndex={currentImage}
+                    onClose={closeImageViewer1}
                     disableScroll={false}
                     closeOnClickOutside={true}
+                    backgroundStyle={{
+                      backgroundColor: "rgba(0,0,0,0.9)",
+                    }}
                   />
                 )}
               </div>
             </div>
             <div className="flex justify-between w-full mt-4">
               <Link
-                to="/admin/realisasi/utama"
+                to="/admin/realisasi"
                 className="flex items-center gap-2 px-4 py-2 text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-600"
               >
                 <ArrowUturnLeftIcon className="w-5 h-5" />

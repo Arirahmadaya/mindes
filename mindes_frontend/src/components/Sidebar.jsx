@@ -12,7 +12,6 @@ import {
   InboxStackIcon,
   PresentationChartBarIcon,
   ArrowLeftEndOnRectangleIcon,
-
 } from "@heroicons/react/20/solid";
 
 function Sidebares() {
@@ -50,7 +49,7 @@ function Sidebares() {
     {
       name: "Realisasi",
       icon: <BanknotesIcon width={18} className=" " />,
-      path: "/admin/realisasi/utama",
+      path: "/admin/realisasi",
     },
     {
       name: "Laporan",
@@ -76,7 +75,7 @@ function Sidebares() {
       path: "/admin/datamaster/bidang",
     },
   ];
-  
+
   const menu4 = [
     {
       name: "Logout",
@@ -123,11 +122,7 @@ function Sidebares() {
           />
         </div>
         <div className="border-b text-sm">
-          <Menus
-            menu={menu4}
-            title={{}}
-            location={location}
-          />
+          <Menus menu={menu4} title={{}} location={location} />
         </div>
       </section>
     </div>
@@ -143,25 +138,35 @@ function Menus({ menu, title, location }) {
       </h6>
       <ul className="sidebar-menu">
         {menu.map((val, index) => {
-         const isActive = location.pathname === val.path || location.pathname.startsWith(val.path + '/');
-          const menuActive = isActive 
+          const isActive =
+            location.pathname === val.path ||
+            location.pathname.startsWith(val.path + "/");
+          const menuActive = isActive
             ? "bg-[#1f308b] bg-opacity-95 text-white -ml-[5px]"
             : "";
 
           return (
-            <li key={index} className={`cursor-pointer px-5 ${menuActive ? "border-l-5  border-[#1f308b]" :  ""}  `}>
-             
-              <div className={`px-3 py-2 rounded-md flex items-center ${menuActive}`}>
+            <li
+              key={index}
+              className={`cursor-pointer px-5 ${
+                menuActive ? "border-l-5  border-[#1f308b]" : ""
+              }  `}
+            >
+              <div
+                className={`px-3 py-2 rounded-md flex items-center ${menuActive}`}
+              >
                 <Link to={val.path} className="flex items-center w-full">
                   {val.icon}
-                  
-                  <div className={`ml-2  ${isActive ? "text-white ml-3 " : "text-gray-700"} hidden sm:block`}>
+
+                  <div
+                    className={`ml-2  ${
+                      isActive ? "text-white ml-3 " : "text-gray-700"
+                    } hidden sm:block`}
+                  >
                     {val.name}
                   </div>
-               
                 </Link>
               </div>
-              
             </li>
           );
         })}

@@ -19,8 +19,6 @@ import {
 } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 
-
-// yet
 const EditBerita = () => {
   const [selectedKeys, setSelectedKeys] = useState(new Set());
   const [selectedImage, setSelectedImage] = useState(null);

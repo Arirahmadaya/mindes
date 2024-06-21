@@ -5,7 +5,7 @@ import { getPencatatan, getPencatatanById, insertPencatatan,  updatePencatatan, 
 const router = express.Router()
 
 router.get('/pencatatan', getPencatatan)
-router.get('/pencatatan/:id_realisasi', getPencatatanById)
+router.get('/pencatatan/:id', getPencatatanById)
 router.post('/pencatatan/create', insertPencatatan)
 router.put('/pencatatan/:id_pencatatan', updatePencatatan)
 router.delete('/pencatatan/:id_pencatatan', deletePencatatan)
