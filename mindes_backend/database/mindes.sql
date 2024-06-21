@@ -158,22 +158,24 @@ UNLOCK TABLES;
 -- Table structure for table `pencatatantable`
 --
 
-DROP TABLE IF EXISTS `pencatatantable`;
+DROP TABLE IF EXISTS `pencatatantable`; 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pencatatantable` (
   `id_pencatatan` int NOT NULL AUTO_INCREMENT,
-  `no` int NOT NULL,
-  `kode` int NOT NULL,
-  `nominal` double NOT NULL,
-  `total` double NOT NULL DEFAULT '0',
   `id_realisasi` int NOT NULL,
+  `id_akun` int NOT NULL,
+  `no` int NOT NULL,
+  `nominal` double NOT NULL,
+  `subtotal` double NOT NULL DEFAULT '0',
+  `uraian` varchar(255) DEFAULT NULL,
+  `kuantitas` int NOT NULL,
   PRIMARY KEY (`id_pencatatan`),
   KEY `id_realisasi` (`id_realisasi`),
-  KEY `kode` (`kode`),
+  KEY `id_akun` (`id_akun`),
   CONSTRAINT `pencatatantable_ibfk_1` FOREIGN KEY (`id_realisasi`) REFERENCES `realisasitable` (`id_realisasi`),
-  CONSTRAINT `pencatatantable_ibfk_2` FOREIGN KEY (`kode`) REFERENCES `akuntable` (`id_akun`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `pencatatantable_ibfk_2` FOREIGN KEY (`id_akun`) REFERENCES `akuntable` (`id_akun`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +184,6 @@ CREATE TABLE `pencatatantable` (
 
 LOCK TABLES `pencatatantable` WRITE;
 /*!40000 ALTER TABLE `pencatatantable` DISABLE KEYS */;
-INSERT INTO `pencatatantable` VALUES (12,2,2,25000,25000,2);
 /*!40000 ALTER TABLE `pencatatantable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,23 +252,23 @@ DROP TABLE IF EXISTS `realisasitable`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `realisasitable` (
   `id_realisasi` int NOT NULL AUTO_INCREMENT,
-  `id_bidang` int NOT NULL, //
-  `kode_kegiatan` int NOT NULL, // 
-  `kegiatan` varchar(255) NOT NULL, //
-  `output` varchar(255) DEFAULT NULL, //
-  `status` enum('pengajuan','proses','selesai','gagal') NOT NULL, //
-  `lokasi` varchar(255) DEFAULT NULL, //
+  `id_bidang` int NOT NULL,
+  `kode_kegiatan` int NOT NULL,
+  `kegiatan` varchar(255) NOT NULL,
+  `output` varchar(255) DEFAULT NULL,
+  `status` enum('pengajuan','proses','selesai','gagal') NOT NULL,
+  `lokasi` varchar(255) DEFAULT NULL,
   `img_realisasi1` blob,
   `img_realisasi2` blob,
-  `sumber` enum('PBP','PBK','PBH','PAD','DD','ADD') DEFAULT NULL, //
-  `pembiayaan` double DEFAULT NULL, //
-  `tgl_mulai` date DEFAULT NULL, //
-  `tgl_selesai` date DEFAULT NULL, //
+  `sumber` enum('PBP','PBK','PBH','PAD','DD','ADD') DEFAULT NULL,
+  `pembiayaan` double DEFAULT NULL,
+  `tgl_mulai` date DEFAULT NULL,
+  `tgl_selesai` date DEFAULT NULL,
   PRIMARY KEY (`id_realisasi`),
   UNIQUE KEY `kode_kegiatan` (`kode_kegiatan`),
   KEY `id_bidang` (`id_bidang`),
   CONSTRAINT `realisasitable_ibfk_1` FOREIGN KEY (`id_bidang`) REFERENCES `bidangtable` (`id_bidang`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,7 +277,7 @@ CREATE TABLE `realisasitable` (
 
 LOCK TABLES `realisasitable` WRITE;
 /*!40000 ALTER TABLE `realisasitable` DISABLE KEYS */;
-INSERT INTO `realisasitable` VALUES (2,1,1001,'Contoh Kegiatan','Contoh Output','pengajuan','Contoh Lokasi',_binary 'path/to/image1.jpg',_binary 'path/to/image2.jpg','PAD',1000000,'2024-06-12','2024-06-20');
+INSERT INTO `realisasitable` VALUES (2,1,1001,'Contoh Kegiatan','Contoh Output','pengajuan','Contoh Lokasi',_binary 'path/to/image1.jpg',_binary 'path/to/image2.jpg','PAD',1000000,'2024-06-12','2024-06-20'),(3,8,1234,'Test','Test','pengajuan','Test',_binary '/img_realisasi/img_realisasi1-1718882971285-440725879.jpg',NULL,'PBP',10000000,'2024-06-21','2024-06-23'),(7,6,1234567,'Test','Test','pengajuan','Test',_binary '/img_realisasi/img_realisasi1-1718899994000-316217499.jpg',NULL,'PBP',10000000,'2024-06-21','2024-06-25'),(8,9,564739,'drtyuiojp','sdxtyui','selesai','fghjbk',_binary '/img_realisasi/img_realisasi1-1718901680343-477218487.jpg',NULL,'PBH',234567,'2024-06-20','2024-06-26'),(9,13,9654,'Ooiuygbnmkiop','oiuyt','selesai','Kelurahan Kalinyamat Kulon',_binary '/img_realisasi/img_realisasi1-1718902018231-436470422.jpg',_binary '/img_realisasi/img_realisasi2-1718902018245-587392389.jpg','PBH',9545678,'2024-06-13','2024-06-25'),(10,9,456789,'Test Juamt','Tets','gagal','Jalan Ki Hajar Dewantoro Rt01 Rw02 Gang 14, Kalinyamat Kulon',_binary '/img_realisasi/img_realisasi1-1718902480939-718853266.png',_binary '/img_realisasi/img_realisasi2-1718902480944-798994289.png','ADD',98765,'2024-06-21','2024-06-24');
 /*!40000 ALTER TABLE `realisasitable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,10 +293,10 @@ CREATE TABLE `usertable` (
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `roles` enum('superadmin','admin','umum') DEFAULT 'umum',
+  `roles` enum('superadmin','admin','umum') NOT NULL DEFAULT 'umum',
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -304,7 +305,7 @@ CREATE TABLE `usertable` (
 
 LOCK TABLES `usertable` WRITE;
 /*!40000 ALTER TABLE `usertable` DISABLE KEYS */;
-INSERT INTO `usertable` VALUES (1,'massayu@gmail.com','massayu','P@55word','superadmin'),(2,'ari.updated@gmail.com','Ari updated','NewP@55word','admin'),(3,'raja@gmail.com','Raja','P@55word','umum'),(4,'halo@halo','halo','halo','admin'),(6,'massayu18@gmail.com','Test1','P@55word','umum'),(7,'testuser@example.com','testuser','$2b$12$j.CSLxPTy6lD8Cn7U2YBcOYcaM7u1HmtlIlX4aZ.1GxFBssDZoiLa','umum'),(9,'testuser2@example.com','testuser2','$2b$10$oDtH9nkzeVhaJezzGjmToOM/8wLf5wESlAQFLwgIRYXplIpvrzl2W','umum'),(10,'testuser3@example.com','testuser3','$2b$10$ZDyXL5dai/Ij83mdBVVizeyD8BirZHE8LupBsOpNaDtlhVYkJzFDm','umum'),(11,'admin@gmail.com','n_sarijati','P@55word','admin'),(12,'admin@gmail.com ','massayu','P@55word','admin'),(13,'jacob@gmail.com','jacob','P@55word','umum'),(14,'marina@gmail.com','marina','P@55word','umum'),(15,'papaw@gmail.com','papaw','P@55word','umum'),(16,'orange@gmail.com','orange','P@55word','umum'),(17,'manggo@gmail.com','manggo','P@55word','umum'),(18,'apple@gmail.com','apple','P@55word','umum'),(19,'starfruit@gmail.com','starfruit','$2b$12$OgGu4WVzoKtygxu4Rx63W.elyggx.L5duaGiDgT2Qtz5t83ly14GC','umum'),(20,'strawberry@gmail.com','strawberry','$2b$12$rV/F6X6HWtXW3t8v7CITUuTE8ED3x/idjqReqFwrlxIn3gNp6BGGG','umum'),(21,'banana@gmail.com','banana','$2b$12$xNEJ2de3XbN/TbVSrwrrjuGQLiBBGlLEq3MgwabhrQvqgdQ0XzTn2','umum'),(22,'testing@testing.com','testing','$2b$12$04F4ykH4uCJVmsUc8pvbyu6KHzVNV/iWTS/BaeHXyTodmlCJNwLxO',NULL),(23,'test20@gmail.com','Register1','$2b$12$vqh2AFOtnqOF6BndXLfMkeIvlXCOYaF63WIAT6ARyMc0Us1HSn4D.',NULL);
+INSERT INTO `usertable` VALUES (1,'massayu@gmail.com','massayu','P@55word','superadmin'),(2,'ari.updated@gmail.com','Ari updated','NewP@55word','admin'),(3,'raja@gmail.com','Raja','P@55word','umum'),(4,'halo@halo','halo','halo','admin'),(6,'massayu18@gmail.com','Test1','P@55word','umum'),(7,'testuser@example.com','testuser','$2b$12$j.CSLxPTy6lD8Cn7U2YBcOYcaM7u1HmtlIlX4aZ.1GxFBssDZoiLa','umum'),(9,'testuser2@example.com','testuser2','$2b$10$oDtH9nkzeVhaJezzGjmToOM/8wLf5wESlAQFLwgIRYXplIpvrzl2W','umum'),(10,'testuser3@example.com','testuser3','$2b$10$ZDyXL5dai/Ij83mdBVVizeyD8BirZHE8LupBsOpNaDtlhVYkJzFDm','umum'),(11,'admin@gmail.com','n_sarijati','P@55word','admin'),(12,'admin@gmail.com ','massayu','P@55word','admin'),(13,'jacob@gmail.com','jacob','P@55word','umum'),(14,'marina@gmail.com','marina','P@55word','umum'),(15,'papaw@gmail.com','papaw','P@55word','umum'),(16,'orange@gmail.com','orange','P@55word','umum'),(17,'manggo@gmail.com','manggo','P@55word','umum'),(18,'apple@gmail.com','apple','P@55word','umum'),(19,'starfruit@gmail.com','starfruit','$2b$12$OgGu4WVzoKtygxu4Rx63W.elyggx.L5duaGiDgT2Qtz5t83ly14GC','umum'),(20,'strawberry@gmail.com','strawberry','$2b$12$rV/F6X6HWtXW3t8v7CITUuTE8ED3x/idjqReqFwrlxIn3gNp6BGGG','umum'),(21,'banana@gmail.com','banana','$2b$12$xNEJ2de3XbN/TbVSrwrrjuGQLiBBGlLEq3MgwabhrQvqgdQ0XzTn2','umum'),(26,'blue@gmail.com','blue','$2b$12$HPAUTb5XtvMp8BKgrOtnH.k1fQAkY0GAHINKNIkXvYQ/xvyguU6yO','umum');
 /*!40000 ALTER TABLE `usertable` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -317,4 +318,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-19 23:42:42
+-- Dump completed on 2024-06-21  1:50:47
