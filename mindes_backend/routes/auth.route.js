@@ -94,8 +94,7 @@ router.post(
 
 router.post("/register", async (req, res) => {
   try {
-    const { username, email, password, roles } = req.body;
-
+    const { username, email, password } = req.body;
     const salt = await bcrypt.genSalt(12);
     const hash = await bcrypt.hash(password, salt);
     
@@ -107,8 +106,8 @@ router.post("/register", async (req, res) => {
     }
 
     await query(
-      "INSERT INTO usertable (username, password, email, roles) VALUES (?, ?, ?, ?)",
-      [username, hash, email, roles]
+      "INSERT INTO usertable (username, password, email) VALUES (?, ?, ?)",
+      [username, hash, email]
     );
 
     const newUser = await query("SELECT * FROM usertable WHERE email = ?", [
