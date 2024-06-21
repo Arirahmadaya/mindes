@@ -2,22 +2,20 @@ import { query } from "../database/db.js";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
+import fs from "fs/promises";
 
 // Setup __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// multer configurasi
+// multer konfigurasi
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, "../public/img_berita"));
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(
-      null,
-      `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`
-    );
+    cb(null, `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`);
   },
 });
 
@@ -26,20 +24,20 @@ const upload = multer({ storage });
 export const getBerita = async (req, res) => {
   try {
     const result = await query(`
-            SELECT 
-            beritatable.id_berita,
-            beritatable.id_kategori,
-            beritatable.tgl,
-            beritatable.judul,
-            beritatable.artikel,
-            beritatable.status,
-            beritatable.img_berita,
-            kategoritable.nama
-        FROM 
-            beritatable
-        JOIN 
-            kategoritable ON beritatable.id_kategori = kategoritable.id_kategori;
-            `);
+      SELECT 
+      beritatable.id_berita,
+      beritatable.id_kategori,
+      beritatable.tgl,
+      beritatable.judul,
+      beritatable.artikel,
+      beritatable.status,
+      beritatable.img_berita,
+      kategoritable.nama
+    FROM 
+      beritatable
+    JOIN 
+      kategoritable ON beritatable.id_kategori = kategoritable.id_kategori;
+    `);
     return res.status(200).json({ success: true, data: result });
   } catch (e) {
     console.log("Terjadi kesalahan", e);
@@ -48,7 +46,6 @@ export const getBerita = async (req, res) => {
 };
 
 export const insertBerita = [
-  // multer({ storage: storage }).single("img_berita"),
   upload.single("img_berita"), // Multer middleware for single file upload
   async (req, res) => {
     console.log(req.body);
@@ -73,7 +70,6 @@ export const insertBerita = [
 ];
 
 export const updateBerita = async (req, res) => {
-  // console.log(req.params)
   const { tgl, judul, artikel, id_kategori, status, img_berita } = req.body;
   const { id_berita } = req.params;
   try {
@@ -88,7 +84,6 @@ export const updateBerita = async (req, res) => {
   }
 };
 
-
 export const deleteBerita = async (req, res) => {
   const { id_berita } = req.params;
   try {
@@ -100,21 +95,54 @@ export const deleteBerita = async (req, res) => {
   }
 };
 
-// export const deleteBerita = async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     await query("DELETE FROM beritatable where id=?", [id]);
-//     return res.status(200).json({ msg: "User Dihapus" });
-//   } catch (error) {
-//     console.log("Terjadi kesalahan", e);
-//     return res.status(500).json({ msg: "terjadi kesalahan pada server" });
-//   }
-// };
-
 export const getBeritaById = async (req, res) => {
-  const { id } = req.params;
+  const { id_berita } = req.params;
   try {
-    const result = await query("Select * from beritatable where id=?", [id]);
+    const result = await query("SELECT * FROM beritatable WHERE id_berita = ?", [id_berita]);
+    if (result.length === 0) {
+      return res.status(404).json({ msg: "Berita tidak ditemukan" });
+    }
+    return res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.log("Terjadi kesalahan", error);
+    return res.status(500).json({ msg: "terjadi kesalahan pada server" });
+  }
+};
+
+export const getBeritaImage = async (req, res) => {
+  const { id_berita } = req.params;
+  try {
+    const result = await query("SELECT img_berita FROM beritatable WHERE id_berita = ?", [id_berita]);
+    if (result.length > 0) {
+      const imgPath = result[0].img_berita;
+      if (typeof imgPath === 'string') {
+        const fullPath = path.join(__dirname, "..", "public", imgPath);
+        try {
+          await fs.access(fullPath); // Check if the file exists
+          res.sendFile(fullPath);
+        } catch (error) {
+          res.status(404).json({ msg: "Image not found" });
+        }
+      } else {
+        res.status(400).json({ msg: "Invalid image path" });
+      }
+    } else {
+      res.status(404).json({ msg: "No image data found" });
+    }
+  } catch (error) {
+    console.log("Terjadi kesalahan", error);
+    res.status(500).json({ msg: "Terjadi kesalahan pada server" });
+  }
+};
+
+export const getRelatedBerita = async (req, res) => {
+  try {
+    const result = await query(`
+      SELECT id_berita, judul, img_berita, tgl, 'Penulis' AS penulis, 100 AS kunjungan 
+      FROM beritatable 
+      ORDER BY tgl DESC 
+      LIMIT 5
+    `);
     return res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.log("Terjadi kesalahan", error);

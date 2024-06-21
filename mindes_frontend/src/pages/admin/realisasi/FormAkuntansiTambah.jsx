@@ -11,7 +11,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 
-const FormAkuntansi = () => {
+const FormAkuntansiTambah = () => {
   const [formData, setFormData] = useState({
     kode: "",
     uraian: "",
@@ -31,7 +31,7 @@ const FormAkuntansi = () => {
     // console.log("Data yang akan dikirim:", formData);
     try {
       await axios.post("http://localhost:3000/akun/create", formData);
-      navigate("/admin/realisasi/akuntansi");
+      navigate("/admin/datamaster/akuntansi");
     } catch (error) {
       console.log(error);
     }
@@ -47,11 +47,11 @@ const FormAkuntansi = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi">Realisasi</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/akuntansi">
+          <BreadcrumbItem href="/admin/datamaster">Realisasi</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/datamaster/akuntansi">
             Akuntansi
           </BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/akuntansi/tambah">
+          <BreadcrumbItem href="/admin/datamaster/akuntansi/tambah">
             Tambah Akuntansi
           </BreadcrumbItem>
         </Breadcrumbs>
@@ -92,7 +92,7 @@ const FormAkuntansi = () => {
 
                     <div className="flex justify-between w-full mt-4">
                       <Link
-                        to="/admin/realisasi/akuntansi"
+                        to="/admin/datamaster/akuntansi"
                         className="flex items-center gap-2 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300"
                       >
                         <ArrowUturnLeftIcon className="w-5 h-5" />
@@ -117,4 +117,4 @@ const FormAkuntansi = () => {
   );
 };
 
-export default FormAkuntansi;
+export default FormAkuntansiTambah;

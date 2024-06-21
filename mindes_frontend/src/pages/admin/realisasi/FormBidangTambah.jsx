@@ -11,7 +11,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 
-const FormBidang = () => {
+const FormBidangTambah = () => {
   const [formData, setFormData] = useState({
     nama: "",
     parent_id: "",
@@ -31,7 +31,7 @@ const FormBidang = () => {
     // console.log("Data yang akan dikirim:", formData);
     try {
       await axios.post("http://localhost:3000/bidang/create", formData);
-      navigate("/admin/realisasi/bidang");
+      navigate("/admin/datamaster/bidang");
     } catch (error) {
       console.log(error);
     }
@@ -47,9 +47,9 @@ const FormBidang = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi">Realisasi</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/bidang">Bidang</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/bidang/tambah">
+          <BreadcrumbItem href="/admin/datamaster">Realisasi</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/datamaster/bidang">Bidang</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/datamaster/bidang/tambah">
             Tambah Bidang
           </BreadcrumbItem>
         </Breadcrumbs>
@@ -90,7 +90,7 @@ const FormBidang = () => {
 
                   <div className="flex justify-between w-full mt-4">
                     <Link
-                      to="/admin/realisasi/bidang"
+                      to="/admin/datamaster/bidang"
                       className="flex items-center gap-2 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300"
                     >
                       <ArrowUturnLeftIcon className="w-5 h-5" />
@@ -114,4 +114,4 @@ const FormBidang = () => {
   );
 };
 
-export default FormBidang;
+export default FormBidangTambah;

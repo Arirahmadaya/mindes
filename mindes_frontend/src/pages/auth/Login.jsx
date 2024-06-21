@@ -23,13 +23,17 @@ const Login = () => {
         password,
       });
 
-      const { token } = response.data;
+      const { token, role } = response.data;
       localStorage.setItem("token", token);
       toast.success("Login Berhasil!, mengalihkan ke Beranda");
 
-      // Redirect ke halaman dashboard setelah 2 detik
+      // Redirect ke halaman dashboard berdasarkan peran pengguna setelah 2.5 detik
       setTimeout(() => {
-        navigate("/");
+        if (role === "admin" || role === "superadmin") {
+          navigate("/admin/beranda");
+        } else {
+          navigate("/");
+        }
       }, 2500);
     } catch (err) {
       if (err.response && err.response.data && err.response.data.message) {
@@ -66,12 +70,13 @@ const Login = () => {
               <form onSubmit={handleLogin} className="space-y-8">
                 <div className="relative w-full mb-8">
                   <Input
-                    type="text"
+                    type="email"
                     variant="bordered"
                     label="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    errorMessage
                   />
                   <p className="text-caption-2 text-gray mt-1 absolute top-full left-3">
                     Enter your email
@@ -90,21 +95,21 @@ const Login = () => {
                     Enter your password
                   </p>
                 </div>
-                {error && <p className="text-red-500 text-sm">{error}</p>}
+                {error && <p className="text-danger text-caption-2 text-center">{error}</p>}
                 <button
                   type="submit"
-                  className="gap-2 justify-center w-full flex bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300 disabled:bg-blue-300"
+                  className=" gap-2 justify-center w-full flex bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300 disabled:bg-blue-300"
                 >
                   Masuk <LogIn />
                 </button>
               </form>
-              <div className="text-right mt-4">
-                <a href="#" className="text-blue text-caption-1">
+              <div className="text-right mt-1">
+                <a href="#" className="text-blue text-caption-2">
                   Lupa Password?
                 </a>
               </div>
-              <div className="text-center mt-6">
-                <p className="text-black mb-2 text-caption-1">
+              <div className="text-center mt-4">
+                <p className="text-black mb-2 text-caption-2">
                   Atau masuk dengan menggunakan:
                 </p>
                 <button className="w-full flex items-center justify-center border border-gray-300 py-1 rounded-lg mb-2 hover:bg-gray-100 transition duration-300">
@@ -117,9 +122,9 @@ const Login = () => {
                 </button>
               </div>
               <div className="text-center mt-4">
-                <p className="text-gray-600 text-caption-1">
+                <p className="text-gray-600 text-caption-2 ">
                   Belum memiliki akun?
-                  <a href="/register" className="text-blue font-semibold pl-1">
+                  <a href="/register" className="text-blue text-caption-1 font-semibold pl-1">
                     Daftar
                   </a>
                 </p>

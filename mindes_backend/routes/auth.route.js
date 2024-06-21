@@ -75,22 +75,22 @@ passport.use(
   )
 );
 
-router.post(
-  "/login",
-  passport.authenticate("local", { session: false }),
-  (req, res) => {
-    if (!req.user) {
-      return res.status(401).json({ message: "Authentication failed" });
-    }
+// router.post(
+//   "/login",
+//   passport.authenticate("local", { session: false }),
+//   (req, res) => {
+//     if (!req.user) {
+//       return res.status(401).json({ message: "Authentication failed" });
+//     }
 
-    const user = req.user;
-    const token = jwt.sign({ id: user.id_user }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+//     const user = req.user;
+//     const token = jwt.sign({ id: user.id_user }, process.env.JWT_SECRET, {
+//       expiresIn: "1h",
+//     });
 
-    res.json({ token });
-  }
-);
+//     res.json({ token });
+//   }
+// );
 
 router.post("/register", async (req, res) => {
   try {
@@ -141,5 +141,24 @@ passport.deserializeUser(async (id, done) => {
     done(err, null);
   }
 });
+
+
+router.post(
+  "/login",
+  passport.authenticate("local", { session: false }),
+  (req, res) => {
+    if (!req.user) {
+      return res.status(401).json({ message: "Authentication failed" });
+    }
+
+    const user = req.user;
+    const token = jwt.sign({ id: user.id_user }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    res.json({ token, role: user.roles }); 
+  }
+);
+
 
 export default router;
