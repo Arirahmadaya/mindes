@@ -9,10 +9,17 @@ import {
   Avatar,
   Link
 } from "@nextui-org/react";
-
 import { Search } from "react-feather";
+import { useNavigate } from "react-router-dom";
 
 export default function NavbarAdmin() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <Navbar isBordered className="bg-grayscale-10 rounded-b-lg">
       <NavbarContent justify="start">
@@ -23,12 +30,12 @@ export default function NavbarAdmin() {
           />
           <input
             className="
-       w-full h-full pl-12 pr-4 py-2 rounded-2xl
-       text-base text-gray-700 bg-white border border-gray-300
-       focus:outline-none focus:ring-2 focus:ring-primary-50/50 hover:primary focus:border-transparent
-       transition-all duration-200 ease-in-out shadow-primary
-        hover:shadow-lg
-     "
+              w-full h-full pl-12 pr-4 py-2 rounded-2xl
+              text-base text-gray-700 bg-white border border-gray-300
+              focus:outline-none focus:ring-2 focus:ring-primary-50/50 hover:primary focus:border-transparent
+              transition-all duration-200 ease-in-out shadow-primary
+              hover:shadow-lg
+            "
             placeholder="Cari data..."
             type="search"
           />
@@ -42,7 +49,7 @@ export default function NavbarAdmin() {
               <Avatar
                 isBordered
                 as="button"
-                className="transition-transform "
+                className="transition-transform"
                 color="default"
                 name="Ferianta"
                 size="sm"
@@ -58,13 +65,13 @@ export default function NavbarAdmin() {
               <p className="font-semibold">Login sebagai</p>
               <p className="font-semibold">ferianta@gmail.com</p>
             </DropdownItem>
-            <DropdownItem key="profile"  as={Link} href="/admin/userprofil">
+            <DropdownItem key="profile" as={Link} href="/admin/userprofil">
               Profile
             </DropdownItem>
             <DropdownItem key="help" as={Link} href="/admin/bantuan">
               Bantuan
             </DropdownItem>
-            <DropdownItem key="logout" color="danger">
+            <DropdownItem key="logout" color="danger" onClick={handleLogout}>
               Log Out
             </DropdownItem>
           </DropdownMenu>

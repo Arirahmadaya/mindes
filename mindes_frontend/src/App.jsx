@@ -38,8 +38,10 @@ import UserProfile from "./pages/auth/UserProfile";
 import MindesTeam from "./pages/auth/MindesTeam";
 import FormKtgBeritaTambah from "./pages/admin/berita/FormKtgBeritaTambah";
 import KtgBeritaEdit from "./pages/admin/berita/KtgBeritaEdit";
-import FormAkuntansi from "./pages/admin/realisasi/FormAkuntansi";
-import FormBidang from "./pages/admin/realisasi/FormBidang";
+import FormAkuntansiTambah from "./pages/admin/realisasi/FormAkuntansiTambah";
+import FormAkuntansiEdit from "./pages/admin/realisasi/FormAkuntansiEdit";
+import FormBidangTambah from "./pages/admin/realisasi/FormBidangTambah";
+import FormBidangEdit from "./pages/admin/realisasi/FormBidangEdit";
 import FormRealisasi from "./pages/admin/realisasi/FormRealisasi";
 import FormPencatatan from "./pages/admin/realisasi/FormPencatatan";
 import TambahRealisasiForm from "./components/TambahRealisasiForm";
@@ -49,6 +51,7 @@ import UserProfileAdmin from "./pages/admin/UserProfile";
 
 // Call image whatsapp
 import callImage from "../public/img/call.png";
+
 
 
 const Main = () => {
@@ -91,7 +94,7 @@ const Main = () => {
         {/* Authentication */}
         <Route path="/" element={<Home />} />
         <Route path="/berita" element={<Berita />} />
-        <Route path="/berita/judulberita" element={<DetailBerita />} />
+        <Route path="/berita/:id_berita" element={<DetailBerita />} />
         <Route path="/profil" element={<ProfilDesa />} />
         <Route path="/about/mindes" element={<Mindes />} />
         <Route path="/about/mindes/madilog-team" element={<MindesTeam />} />
@@ -143,12 +146,20 @@ const Main = () => {
         <Route path="/admin/datamaster/akuntansi" element={<Akuntansi />} />
         <Route
           path="/admin/datamaster/akuntansi/tambah"
-          element={<FormAkuntansi />}
+          element={<FormAkuntansiTambah />}
+        />
+         <Route
+          path="/admin/datamaster/akuntansi/edit/:id"
+          element={<FormAkuntansiEdit />}
         />
         <Route path="/admin/datamaster/bidang" element={<Bidang />} />
         <Route
           path="/admin/datamaster/bidang/tambah"
-          element={<FormBidang />}
+          element={<FormBidangTambah />}
+        />
+        <Route
+          path="/admin/datamaster/bidang/edit/:id"
+          element={<FormBidangEdit />}
         />
         <Route path="/admin/userprofil" element={<UserProfileAdmin />} />
         <Route path="/admin/bantuan" element={<BantuanAdmin />} />

@@ -32,3 +32,18 @@ export const deleteAkun = async(req,res)=>{
         return res.status(500).json({msg:"terjadi kesalahan pada server"})
     }
 }
+
+export const updateAkun = async (req, res) => {
+    const { id_akun } = req.params;
+    const { kode, uraian } = req.body;
+    try {
+        const result = await query("UPDATE akuntable SET kode = ?, uraian = ? WHERE id_akun = ?", [kode, uraian, id_akun]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ msg: "Akun tidak ditemukan" });
+        }
+        return res.status(200).json({ msg: "Akun diperbarui" });
+    } catch (error) {
+        console.log("Terjadi kesalahan", error);
+        return res.status(500).json({ msg: "Terjadi kesalahan pada server" });
+    }
+};
