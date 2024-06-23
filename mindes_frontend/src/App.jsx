@@ -119,9 +119,9 @@ const Main = () => {
         <Route path="/admin/agenda/tambah" element={<FormAgenda />} />
         <Route path="/admin/agenda/edit/:id" element={<EditAgenda />} />
         <Route path="/admin/berita/tambah" element={<FormBerita />} />
-        <Route path="/admin/realisasi" element={<Realisasi />} />
+        <Route path="/admin/realisasi/realisasi" element={<Realisasi />} />
         <Route
-          path="/admin/realisasi/tambah"
+          path="/admin/realisasi/realisasi/tambah"
           element={<FormRealisasi />}
         />
         <Route path="/admin/realisasi/laporan" element={<Laporan />} />

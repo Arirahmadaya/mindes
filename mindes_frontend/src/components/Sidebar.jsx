@@ -55,7 +55,7 @@ function Sidebares() {
     {
       name: "Realisasi",
       icon: <BanknotesIcon width={18} className=" " />,
-      path: "/admin/realisasi/utama",
+      path: "/admin/realisasi/realisasi",
     },
     {
       name: "Laporan",
