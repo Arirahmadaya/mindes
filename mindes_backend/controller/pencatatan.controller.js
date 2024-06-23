@@ -1,23 +1,33 @@
 import { query } from "../database/db.js";
 
 export const getPencatatan = async (req, res) => {
+  // try {
+  //   const result = await query(`SELECT * FROM pencatatantable`);
+  const { id_realisasi } = req.params;
   try {
-    const result = await query(`SELECT * FROM pencatatantable`);
-    // const result = await query(`
-    // SELECT 
-    //     pencatatantable.id_pencatatan,
-    //     pencatatantable.no,
-    //     pencatatantable.nominal,
-    //     pencatatantable.total,
-    //     pencatatantable.id_realisasi,
-    //     realisasitable.*
-    // FROM 
-    //     pencatatantable
-    // JOIN 
-    //     realisasitable ON pencatatantable.id_realisasi = realisasitable.id_realisasi
-    // JOIN
-    //     akuntable ON pencatatantable.kode = akuntable.kode;
-    // `);
+    const result = await query(
+      `
+      SELECT 
+        pencatatantable.id_pencatatan,
+        pencatatantable.no,
+        pencatatantable.nominal,
+        pencatatantable.subtotal,
+        pencatatantable.id_realisasi,
+        pencatatantable.uraian,
+        pencatatantable.kuantitas,
+        akuntable.kode
+      FROM 
+        pencatatantable
+      JOIN 
+        realisasitable ON pencatatantable.id_realisasi = realisasitable.id_realisasi
+      JOIN
+        akuntable ON pencatatantable.id_akun = akuntable.id_akun
+      WHERE
+        pencatatantable.id_realisasi = ?
+    `,
+      [id_realisasi]
+    );
+
     return res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.log("Terjadi kesalahan", error);
@@ -26,33 +36,34 @@ export const getPencatatan = async (req, res) => {
 };
 export const insertPencatatan = async (req, res) => {
   console.log(req.body);
-  const { no, kode, nominal, total, id_realisasi } = req.body;
+  const { no, nominal, subtotal, uraian, kuantitas, id_realisasi, id_akun } =
+    req.body;
 
   try {
-    // Validasi kode di akuntable dan dapatkan id_akun
-    const akunResult = await query(
-      "SELECT id_akun FROM akuntable WHERE kode = ?",
-      [kode]
-    );
-    if (akunResult.length === 0) {
-      return res.status(400).json({ msg: "Kode akun tidak ditemukan" });
-    }
+    // // Validasi kode di akuntable dan dapatkan id_akun
+    // const akunResult = await query(
+    //   "SELECT id_akun FROM akuntable WHERE kode = ?",
+    //   [kode]
+    // );
+    // if (akunResult.length === 0) {
+    //   return res.status(400).json({ msg: "Kode akun tidak ditemukan" });
+    // }
 
-    const id_akun = akunResult[0].id_akun;
+    // const id_akun = akunResult[0].id_akun;
 
-    // Validasi id_realisasi di realisasitable
-    const realisasiResult = await query(
-      "SELECT * FROM realisasitable WHERE id_realisasi = ?",
-      [id_realisasi]
-    );
-    if (realisasiResult.length === 0) {
-      return res.status(400).json({ msg: "ID realisasi tidak ditemukan" });
-    }
-
+    // // Validasi id_realisasi di realisasitable
+    // const realisasiResult = await query(
+    //   "SELECT * FROM realisasitable WHERE id_realisasi = ?",
+    //   [id_realisasi]
+    // );
+    // if (realisasiResult.length === 0) {
+    //   return res.status(400).json({ msg: "ID realisasi tidak ditemukan" });
+    // }
+    // ////
     // Insert data ke pencatatantable dengan id_akun yang sesuai
     await query(
-      "INSERT INTO pencatatantable (no, kode, nominal, total, id_realisasi) VALUES (?, ?, ?, ?, ?)",
-      [no, id_akun, nominal, total, id_realisasi]
+      "INSERT INTO pencatatantable (id_realisasi, no, id_akun, kuantitas, nominal, subtotal, uraian) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [no, id_akun, kuantitas, nominal, subtotal, id_realisasi, uraian]
     );
     return res.status(200).json({ msg: "Pencatatan ditambahkan" });
   } catch (error) {
@@ -66,7 +77,6 @@ export const insertPencatatan = async (req, res) => {
 export const updatePencatatan = async (req, res) => {
   const { no, kode, nominal, total, id_realisasi } = req.body;
   const { id_pencatatan } = req.params;
-
   try {
     // Validasi kode di akuntable dan dapatkan id_akun
     const akunResult = await query(
@@ -108,18 +118,20 @@ export const getPencatatanById = async (req, res) => {
     const result = await query(
       `SELECT 
          pencatatantable.id_pencatatan,
+         pencatatantable.id_realisasi,
+         pencatatantable.id_akun,
          pencatatantable.no,
          pencatatantable.nominal,
-         pencatatantable.total,
-         pencatatantable.id_realisasi,
-         realisasitable.*,
-         akuntable.kode
+         pencatatantable.subtotal,
+         pencatatantable.uraian,
+         pencatatantable.kuantitas,
+         realisasitable.*
        FROM 
          pencatatantable
        JOIN 
          realisasitable ON pencatatantable.id_realisasi = realisasitable.id_realisasi
        JOIN
-         akuntable ON pencatatantable.kode = akuntable.id_akun
+         akuntable ON pencatatantable.id_akun = akuntable.id_akun
        WHERE
          pencatatantable.id_realisasi = ?`,
       [id_realisasi]

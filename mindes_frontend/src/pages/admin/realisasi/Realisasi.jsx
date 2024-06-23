@@ -69,7 +69,7 @@ const Realisasi = () => {
     {
       icon: <Eye className="w-4 h-4 text-black" />,
       onClick: (item) => {
-        navigate("/admin/realisasi/utama/pencatatan", { state: item });
+        navigate("/admin/realisasi/pencatatan", { state: item });
         console.log("View item:", item);
       },
     },
@@ -139,7 +139,7 @@ const Realisasi = () => {
                     "tgl_mulai",
                     "tgl_selesai",
                   ]}
-                  tambahKegiatanURL="/admin/realisasi/utama/tambah"
+                  tambahKegiatanURL="/admin/realisasi/tambah"
                   actionButtons={actionButtons}
                 />
               </div>
