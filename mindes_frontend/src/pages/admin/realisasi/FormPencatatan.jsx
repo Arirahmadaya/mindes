@@ -28,7 +28,7 @@ const FormPencatatan = () => {
   const getPencatatan = async (id) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/pencatatan/${id}`
+        `http://data.mindes.my.id/pencatatan/${id}`
       );
       setPencatatan(response.data.data);
     } catch (error) {
@@ -51,7 +51,7 @@ const FormPencatatan = () => {
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
   //   try {
-  //     await axios.get("http://localhost:3000/pencatatan", formData);
+  //     await axios.get("http://data.mindes.my.id/pencatatan", formData);
   //     navigate("/admin/realisasi/pencatatan");
   //   } catch (error) {
   //     console.log(error);

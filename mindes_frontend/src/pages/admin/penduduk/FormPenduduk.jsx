@@ -57,7 +57,7 @@ const FormPenduduk = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/penduduk/create", formData);
+      await axios.post("http://data.mindes.my.id/penduduk/create", formData);
       toast.success("Data penduduk berhasil disimpan!");
       setTimeout(() => {
         navigate("/admin/penduduk");

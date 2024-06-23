@@ -16,11 +16,11 @@ export default function CardBerita() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/berita");
+      const response = await axios.get("http://data.mindes.my.id/berita");
       const dataWithBlobUrls = await Promise.all(response.data.data.map(async item => {
         if (item.img_berita) {
           try {
-            const imgResponse = await axios.get(`http://localhost:3000/berita/img/${item.id_berita}`, {
+            const imgResponse = await axios.get(`http://data.mindes.my.id/berita/img/${item.id_berita}`, {
               responseType: 'blob'
             });
             item.img_berita_url = URL.createObjectURL(imgResponse.data);

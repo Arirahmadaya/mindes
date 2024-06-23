@@ -30,7 +30,7 @@ const FormAkuntansiTambah = () => {
     e.preventDefault();
     // console.log("Data yang akan dikirim:", formData);
     try {
-      await axios.post("http://localhost:3000/akun/create", formData);
+      await axios.post("http://data.mindes.my.id/akun/create", formData);
       navigate("/admin/datamaster/akuntansi");
     } catch (error) {
       console.log(error);

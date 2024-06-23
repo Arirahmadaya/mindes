@@ -12,7 +12,7 @@ const RelatedNews = () => {
 
   const fetchRelatedPosts = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/berita/related');
+      const response = await axios.get('http://data.mindes.my.id/berita/related');
       setRelatedPosts(response.data.data);
     } catch (error) {
       console.error('Terjadi kesalahan', error);
@@ -28,7 +28,7 @@ const RelatedNews = () => {
         {relatedPosts.map((post, index) => (
           <div key={index} className="flex items-start mb-4" onClick={() => navigate(`/berita/${post.id_berita}`)}>
             <img
-              src={`http://localhost:3000${post.img_berita}`}
+              src={`http://data.mindes.my.id${post.img_berita}`}
               alt="Related post"
               className="w-[75px] h-[75px] rounded-lg mr-4 object-cover"
             />

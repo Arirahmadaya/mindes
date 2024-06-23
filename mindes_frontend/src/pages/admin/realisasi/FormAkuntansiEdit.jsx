@@ -24,7 +24,7 @@ const FormAkuntansiEdit = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/akun/${id}`);
+        const response = await axios.get(`http://data.mindes.my.id/akun/${id}`);
         setFormData({
           kode: response.data.data.kode,
           uraian: response.data.data.uraian,
@@ -47,7 +47,7 @@ const FormAkuntansiEdit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3000/akun/${id}`, formData);
+      await axios.put(`http://data.mindes.my.id/akun/${id}`, formData);
       toast.success("Akun berhasil diperbarui!");
       setTimeout(() => {
         navigate("/admin/datamaster/akuntansi");

@@ -51,7 +51,7 @@ const Bidang = () => {
 
   const fetchBidangData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/bidang");
+      const response = await axios.get("http://data.mindes.my.id/bidang");
       setBidangData(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
@@ -66,7 +66,7 @@ const Bidang = () => {
   const deleteBidang = async () => {
     if (selectedBidang) {
       try {
-        await axios.delete(`http://localhost:3000/bidang/${selectedBidang.id}`);
+        await axios.delete(`http://data.mindes.my.id/bidang/${selectedBidang.id}`);
         fetchBidangData();
         toast.success("Bidang berhasil dihapus!");
         onOpenChange(false); // Close the modal

@@ -16,7 +16,7 @@ const DetailBerita = () => {
 
   const fetchBerita = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/berita/${id_berita}`);
+      const response = await axios.get(`http://data.mindes.my.id/berita/${id_berita}`);
       setBerita(response.data.data[0]);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
@@ -61,7 +61,7 @@ const DetailBerita = () => {
             </div>
             <img
               className="w-full h-auto rounded-lg mb-4"
-              src={`http://localhost:3000${berita.img_berita}`}
+              src={`http://data.mindes.my.id${berita.img_berita}`}
               alt="Kegiatan monitoring"
             />
             <div className="text-black text-xs font-light text-center mb-4">

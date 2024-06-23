@@ -160,7 +160,7 @@ const FormRealisasi = () => {
         data.append("img_realisasi2", selectedImageFile1);
       }
 
-      await axios.post("http://localhost:3000/realisasi/create", data, {
+      await axios.post("http://data.mindes.my.id/realisasi/create", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

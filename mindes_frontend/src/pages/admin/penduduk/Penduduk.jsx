@@ -30,7 +30,7 @@ const Penduduk = () => {
 
   const fetchPenduduk = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/penduduk");
+      const response = await axios.get("http://data.mindes.my.id/penduduk");
       setPenduduk(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
@@ -46,7 +46,7 @@ const Penduduk = () => {
     if (selectedPenduduk) {
       try {
         await axios.delete(
-          `http://localhost:3000/penduduk/${selectedPenduduk.id}`
+          `http://data.mindes.my.id/penduduk/${selectedPenduduk.id}`
         );
         fetchPenduduk();
         toast.success("Penduduk berhasil dihapus!");

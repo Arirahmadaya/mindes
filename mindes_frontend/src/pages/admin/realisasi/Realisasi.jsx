@@ -20,7 +20,7 @@ const Realisasi = () => {
 
   const getRealisasi = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/realisasi");
+      const response = await axios.get("http://data.mindes.my.id/realisasi");
       setRealisasi(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);

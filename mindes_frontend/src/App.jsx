@@ -23,7 +23,6 @@ import Penduduk from "./pages/admin/penduduk/Penduduk";
 import Laporan from "./pages/admin/realisasi/Laporan";
 import Realisasi from "./pages/admin/realisasi/Realisasi";
 import User from "./pages/admin/user/User";
-import LoginAdmin from "./pages/admin/LoginAdmin";
 import TambahBerita from "./pages/admin/TambahBerita";
 import FormPenduduk from "./pages/admin/penduduk/FormPenduduk";
 import FormUser from "./pages/admin/user/FormUser";
@@ -163,7 +162,7 @@ const Main = () => {
         />
         <Route path="/admin/userprofil" element={<UserProfileAdmin />} />
         <Route path="/admin/bantuan" element={<BantuanAdmin />} />
-        <Route path="/admin/login" element={<LoginAdmin />} />
+        
         {/* FormPencatatan akan menuju ke menu edit di setiap record table, dan PencatatanDetail akan menuju ke tambah record di setiap pencatatannya yang anntinya akan berhubungan dengan isi yang ada di FormPencatatan */}
       </Routes>
     </div>

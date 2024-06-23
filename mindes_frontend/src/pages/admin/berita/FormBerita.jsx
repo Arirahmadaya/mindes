@@ -46,7 +46,7 @@ const FormBerita = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/kategori");
+        const response = await axios.get("http://data.mindes.my.id/kategori");
         setCategories(response.data.data);
       } catch (error) {
         console.log(error);
@@ -129,7 +129,7 @@ const FormBerita = () => {
       if (selectedImageFile) {
         data.append("img_berita", selectedImageFile);
       }
-      await axios.post("http://localhost:3000/berita/create", data);
+      await axios.post("http://data.mindes.my.id/berita/create", data);
       toast.success("Data berita berhasil disimpan!");
       setTimeout(() => {
         navigate("/admin/berita");

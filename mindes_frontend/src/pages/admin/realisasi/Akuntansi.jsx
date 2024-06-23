@@ -51,7 +51,7 @@ const Akuntansi = () => {
 
   const fetchAkun = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/akun");
+      const response = await axios.get("http://data.mindes.my.id/akun");
       setAkun(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
@@ -66,7 +66,7 @@ const Akuntansi = () => {
   const deleteAkun = async () => {
     if (selectedAkun) {
       try {
-        await axios.delete(`http://localhost:3000/akun/${selectedAkun.id}`);
+        await axios.delete(`http://data.mindes.my.id/akun/${selectedAkun.id}`);
         fetchAkun();
         toast.success("Akun berhasil dihapus!");
         onOpenChange(false); // Close the modal

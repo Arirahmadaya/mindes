@@ -30,7 +30,7 @@ const Agenda = () => {
 
   const getAgenda = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/agenda");
+      const response = await axios.get("http://data.mindes.my.id/agenda");
       setAgenda(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
@@ -45,7 +45,7 @@ const Agenda = () => {
   const deleteAgenda = async () => {
     if (selectedAgenda) {
       try {
-        await axios.delete(`http://localhost:3000/agenda/${selectedAgenda.id}`);
+        await axios.delete(`http://data.mindes.my.id/agenda/${selectedAgenda.id}`);
         toast.success("Agenda berhasil dihapus!");
         getAgenda();
         onOpenChange(false); // Close the modal

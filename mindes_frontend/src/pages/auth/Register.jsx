@@ -47,7 +47,7 @@ const Register = () => {
     console.log("Data yang dikirim ke server:", { username, email, password });
 
     try {
-      const response = await axios.post("http://localhost:3000/auth/register", {
+      const response = await axios.post("http://data.mindes.my.id/auth/register", {
         username,
         email,
         password,

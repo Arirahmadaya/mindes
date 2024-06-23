@@ -45,7 +45,7 @@ export default function NavbarUser() {
   const fetchProfile = async () => {
     try {
       const token = localStorage.getItem("token"); // Assuming you store a token on login
-      const response = await axios.get("http://localhost:3000/profil", {
+      const response = await axios.get("http://data.mindes.my.id/profil", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProfile(response.data.data[0]);

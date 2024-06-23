@@ -76,7 +76,7 @@ const FormAgenda = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/agenda/create", formData);
+      await axios.post("http://data.mindes.my.id/agenda/create", formData);
       toast.success("Agenda berhasil ditambahkan!");
       setTimeout(() => {
         navigate("/admin/agenda");

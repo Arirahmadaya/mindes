@@ -22,7 +22,7 @@ const KtgBeritaEdit = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/kategori/${id}`);
+        const response = await axios.get(`http://data.mindes.my.id/kategori/${id}`);
         setFormData({ nama: response.data.data.nama });
       } catch (error) {
         console.log(error);
@@ -42,7 +42,7 @@ const KtgBeritaEdit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3000/kategori/${id}`, formData);
+      await axios.put(`http://data.mindes.my.id/kategori/${id}`, formData);
       toast.success("Kategori berhasil diperbarui!");
       setTimeout(() => {
         navigate("/admin/datamaster/kategori");

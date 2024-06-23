@@ -18,7 +18,7 @@ const Login = () => {
     console.log("Data yang dikirim ke server:", { email, password });
 
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
+      const response = await axios.post("http://data.mindes.my.id/auth/login", {
         email,
         password,
       });
