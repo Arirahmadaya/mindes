@@ -54,7 +54,7 @@ const FormRealisasi = () => {
   useEffect(() => {
     const fetchBidang = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/bidang");
+        const response = await axios.get("http://data.mindes.my.id/bidang");
         setBidang(response.data.data);
       } catch (error) {
         console.log(error);
@@ -180,7 +180,7 @@ const FormRealisasi = () => {
       if (selectedImageFile1) {
         data.append("img_realisasi2", selectedImageFile1);
       }
-      await axios.post("http://localhost:3000/realisasi/create", data);
+      await axios.post("http://data.mindes.my.id/realisasi/create", data);
       console.log("Data yang dikirim:", formData);
       // headers: {
       //   "Content-Type": "multipart/form-data",

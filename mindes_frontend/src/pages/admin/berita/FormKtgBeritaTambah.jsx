@@ -30,7 +30,7 @@ const FormKtgBeritaTambah = () => {
     e.preventDefault();
     // console.log("Data yang akan dikirim:", formData);
     try {
-      await axios.post("http://localhost:3000/kategori/create", formData);
+      await axios.post("http://data.mindes.my.id/kategori/create", formData);
       toast.success("Kategori berhasil ditambahkan!");
       setTimeout(() => {
         navigate("/admin/datamaster/kategori");

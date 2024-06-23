@@ -30,7 +30,7 @@ const FormBidang = () => {
     e.preventDefault();
     // console.log("Data yang akan dikirim:", formData);
     try {
-      await axios.post("http://localhost:3000/bidang/create", formData);
+      await axios.post("http://data.mindes.my.id/bidang/create", formData);
       navigate("/admin/datamaster/bidang");
     } catch (error) {
       console.log(error);

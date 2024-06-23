@@ -30,7 +30,7 @@ const KtgBerita = () => {
 
   const fetchKategori = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/kategori");
+      const response = await axios.get("http://data.mindes.my.id/kategori");
       setKategori(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
@@ -46,7 +46,7 @@ const KtgBerita = () => {
     if (selectedKategori) {
       try {
         await axios.delete(
-          `http://localhost:3000/kategori/${selectedKategori.id}`
+          `http://data.mindes.my.id/kategori/${selectedKategori.id}`
         );
         fetchKategori();
         toast.success("Kategori berhasil dihapus!");

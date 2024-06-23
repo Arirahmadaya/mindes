@@ -8,7 +8,7 @@ const Agenda = () => {
   useEffect(() => {
     const fetchAgenda = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/agenda");
+        const response = await axios.get("http://data.mindes.my.id/agenda");
         setAgenda(response.data.data);
       } catch (error) {
         console.error("Terjadi kesalahan", error);

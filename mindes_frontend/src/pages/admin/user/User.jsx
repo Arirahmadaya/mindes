@@ -17,7 +17,7 @@ const User = () => {
 
   const getUser = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/user");
+      const response = await axios.get("http://data.mindes.my.id/user");
       setUser(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);

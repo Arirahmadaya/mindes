@@ -21,7 +21,7 @@ const FormPencatatan = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/pencatatan", formData);
+      await axios.post("http://data.mindes.my.id/pencatatan", formData);
       navigate("/admin/realisasi/pencatatan");
     } catch (error) {
       console.log(error);

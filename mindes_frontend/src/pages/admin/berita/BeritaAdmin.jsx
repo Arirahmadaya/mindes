@@ -54,7 +54,7 @@ const BeritaAdmin = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/berita");
+      const response = await axios.get("http://data.mindes.my.id/berita");
       setNews(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
@@ -69,7 +69,7 @@ const BeritaAdmin = () => {
   const deleteNews = async () => {
     if (selectedNews) {
       try {
-        await axios.delete(`http://localhost:3000/berita/${selectedNews.id_berita}`);
+        await axios.delete(`http://data.mindes.my.id/berita/${selectedNews.id_berita}`);
         fetchNews();
         toast.success("Berita berhasil dihapus!");
         onOpenChange(false); // Close the modal
