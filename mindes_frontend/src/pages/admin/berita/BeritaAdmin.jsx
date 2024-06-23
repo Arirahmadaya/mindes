@@ -14,9 +14,12 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
+  Tooltip,
 } from "@nextui-org/react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { DeleteIcon, EditIcon, EyeIcon } from "../../../components/Ikon";
+
 
 const statusColorMap = {
   publish: "success",
@@ -32,6 +35,7 @@ const columns = [
   { name: "Judul", uid: "judul" },
   { name: "Artikel", uid: "artikel" },
   { name: "Kategori", uid: "nama" },
+  { name: "Kunjungan", uid: "kunjungan" },
   { name: "Status", uid: "status" },
   { name: "Aksi", uid: "actions" },
 ];
@@ -61,20 +65,22 @@ const BeritaAdmin = () => {
     }
   };
 
-  const confirmDeleteNews = (newsItem) => {
-    setSelectedNews(newsItem);
+  const confirmDeleteNews = (news) => {
+    setSelectedNews(news);
     onOpen();
   };
 
   const deleteNews = async () => {
     if (selectedNews) {
       try {
+        console.log(`Menghapus berita dengan ID: ${selectedNews.id_berita}`);
         await axios.delete(`http://data.mindes.my.id/berita/${selectedNews.id_berita}`);
         fetchNews();
         toast.success("Berita berhasil dihapus!");
         onOpenChange(false); // Close the modal
       } catch (error) {
         console.error("Terjadi kesalahan", error);
+        toast.error("Terjadi kesalahan saat menghapus berita!");
       }
     }
   };
@@ -89,24 +95,38 @@ const BeritaAdmin = () => {
 
   const actionButtons = [
     {
-      icon: <Eye className="w-4 h-4 text-black" />,
-      onClick: (newsId) => {
-        console.log("View item:", newsId);
-        // Implementasikan logika tampilan di sini
+      icon: (
+        <Tooltip content="Lihat Detail">
+          <span className=" active:opacity-50">
+            <Eye className="w-4 h-4 " />
+          </span>
+        </Tooltip>
+      ),
+    },
+    {
+      icon: (
+        <Tooltip content="Edit">
+          <span className=" active:opacity-50">
+          <Edit className="w-4 h-4 text-warning" />
+
+          </span>
+        </Tooltip>
+      ),
+       onClick: (news) => {
+        navigate(`/admin/berita/edit/${news.id_berita}`, { state: news });
       },
     },
     {
-      icon: <Edit className="w-4 h-4 text-warning" />,
-      onClick: (newsId) => {
-        const newsItem = news.find((n) => n.id_berita === newsId);
-        navigate(`/admin/berita/edit/${newsId}`, { state: newsItem });
-      },
-    },
-    {
-      icon: <Trash2 className="w-4 h-4 text-danger" />,
-      onClick: (newsId) => {
-        const newsItem = news.find((n) => n.id_berita === newsId);
-        confirmDeleteNews(newsItem);
+      
+      icon: (
+        <Tooltip content="Hapus">
+          <span className=" active:opacity-50">
+          <Trash2 className="w-4 h-4 text-danger " />
+          </span>
+        </Tooltip>
+      ),
+      onClick: (news) => {
+        confirmDeleteNews(news);
       },
     },
   ];
@@ -119,8 +139,9 @@ const BeritaAdmin = () => {
     img_berita: item.img_berita,
     id_user: item.id_user,
     nama: item.nama,
+    kunjungan: item.kunjungan,
     status: item.status,
-    actions: item.id_berita, // ID berita sebagai parameter untuk tombol aksi
+    actions: item.id_berita, // Pass the entire item object to the action buttons
   }));
 
   return (
@@ -182,7 +203,7 @@ const BeritaAdmin = () => {
                 </Button>
                 <Button
                   className="bg-danger shadow-lg shadow-indigo-500/20 text-white"
-                  onPress={deleteNews}
+                  onPress={() => { deleteNews(); onClose(); }}
                 >
                   Hapus
                 </Button>

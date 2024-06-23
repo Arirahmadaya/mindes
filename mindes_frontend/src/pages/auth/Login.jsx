@@ -14,19 +14,21 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     console.log("Data yang dikirim ke server:", { email, password });
-
+  
     try {
       const response = await axios.post("http://data.mindes.my.id/auth/login", {
         email,
         password,
       });
-
+  
       const { token, role } = response.data;
+      console.log("Response dari server:", response.data); // Tambahkan ini untuk debugging
       localStorage.setItem("token", token);
+      localStorage.setItem("role", role); // Simpan role di localStorage
       toast.success("Login Berhasil!, mengalihkan ke Beranda");
-
+  
       // Redirect ke halaman dashboard berdasarkan peran pengguna setelah 2.5 detik
       setTimeout(() => {
         if (role === "admin" || role === "superadmin") {
@@ -45,6 +47,7 @@ const Login = () => {
       }
     }
   };
+  
 
   return (
     <div

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
 import NavbarUser from "../../components/NavbarUser";
 import RelatedNews from "../../components/RelatedNews";
@@ -12,6 +12,7 @@ const DetailBerita = () => {
 
   useEffect(() => {
     fetchBerita();
+    incrementKunjungan(); // Tambahkan ini untuk meningkatkan kunjungan setiap kali halaman berita dibuka
   }, [id_berita]);
 
   const fetchBerita = async () => {
@@ -21,6 +22,14 @@ const DetailBerita = () => {
     } catch (error) {
       console.error("Terjadi kesalahan", error);
       setError("Gagal memuat data berita.");
+    }
+  };
+
+  const incrementKunjungan = async () => {
+    try {
+      await axios.put(`http://data.mindes.my.id/berita/kunjungan/${id_berita}`);
+    } catch (error) {
+      console.error("Terjadi kesalahan saat meningkatkan jumlah kunjungan", error);
     }
   };
 
@@ -61,7 +70,7 @@ const DetailBerita = () => {
             </div>
             <img
               className="w-full h-auto rounded-lg mb-4"
-              src={`http://data.mindes.my.id${berita.img_berita}`}
+              src={`http://data.mindes.my.id/public${berita.img_berita}`}
               alt="Kegiatan monitoring"
             />
             <div className="text-black text-xs font-light text-center mb-4">
