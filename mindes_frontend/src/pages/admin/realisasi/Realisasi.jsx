@@ -69,7 +69,7 @@ const Realisasi = () => {
     {
       icon: <Eye className="w-4 h-4 text-black" />,
       onClick: (item) => {
-        navigate("/admin/realisasi/realisasi/pencatatan", { state: item });
+        navigate("/admin/realisasi/pencatatan", { state: item });
         console.log("View item:", item);
       },
     },
@@ -116,7 +116,7 @@ const Realisasi = () => {
         </div>
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/realisasi">Realisasi</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/realisasi">Realisasi</BreadcrumbItem>
         </Breadcrumbs>
         <div className="flex gap-5 my-5">
           <div className="flex w-full bg-white rounded-lg">
@@ -139,7 +139,7 @@ const Realisasi = () => {
                     "tgl_mulai",
                     "tgl_selesai",
                   ]}
-                  tambahKegiatanURL="/admin/realisasi/realisasi/tambah"
+                  tambahKegiatanURL="/admin/realisasi/tambah"
                   actionButtons={actionButtons}
                 />
               </div>

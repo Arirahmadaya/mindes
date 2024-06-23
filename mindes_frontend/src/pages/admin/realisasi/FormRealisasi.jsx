@@ -51,7 +51,7 @@ const FormRealisasi = () => {
   useEffect(() => {
     const fetchBidang = async () => {
       try {
-        const response = await axios.get("http://data.mindes.my.id:3000/bidang");
+        const response = await axios.get("http://data.mindes.my.id/bidang");
         setBidang(response.data.data);
       } catch (error) {
         console.log(error);
@@ -159,7 +159,6 @@ const FormRealisasi = () => {
       if (selectedImageFile1) {
         data.append("img_realisasi2", selectedImageFile1);
       }
-
       await axios.post("http://data.mindes.my.id/realisasi/create", data, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -167,7 +166,7 @@ const FormRealisasi = () => {
       });
 
       console.log("Data yang dikirim:", formData);
-      navigate("/admin/realisasi/realisasi");
+      navigate("/admin/realisasi");
     } catch (error) {
       console.log(error);
     }
@@ -183,9 +182,9 @@ const FormRealisasi = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/realisasi">Realisasi</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/realisasi">Realisasi</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/realisasi/tambah">
+          <BreadcrumbItem href="/admin/realisasi">Realisasi</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/realisasi/bidang">Utama</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/realisasi/bidang/tambah">
             Tambah Realisasi
           </BreadcrumbItem>
         </Breadcrumbs>
@@ -467,7 +466,7 @@ const FormRealisasi = () => {
             </div>
             <div className="flex justify-between w-full mt-4">
               <Link
-                to="/admin/realisasi/realisasi"
+                to="/admin/realisasi"
                 className="flex items-center gap-2 px-4 py-2 text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-600"
               >
                 <ArrowUturnLeftIcon className="w-5 h-5" />

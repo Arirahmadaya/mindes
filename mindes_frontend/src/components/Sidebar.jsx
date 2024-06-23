@@ -55,12 +55,12 @@ function Sidebares() {
     {
       name: "Realisasi",
       icon: <BanknotesIcon width={18} className=" " />,
-      path: "/admin/realisasi/realisasi",
+      path: "/admin/realisasi",
     },
     {
       name: "Laporan",
       icon: <PresentationChartBarIcon width={18} className="" />,
-      path: "/admin/realisasi/laporan",
+      path: "/admin/laporan",
     },
   ];
 

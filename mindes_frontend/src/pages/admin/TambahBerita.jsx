@@ -12,9 +12,6 @@ import {
 
 } from "@nextui-org/react";
 
-
-
-
 const TambahBerita = () => {
   const [selectedKeys, setSelectedKeys] = React.useState(new Set());
 

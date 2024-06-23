@@ -36,8 +36,8 @@ const Laporan = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi">Realisasi</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/realisasi/laporan">
+          <BreadcrumbItem href="/admin/laporan">Realisasi</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/laporan">
             Laporan
           </BreadcrumbItem>
         </Breadcrumbs>
