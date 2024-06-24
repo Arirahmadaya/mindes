@@ -25,7 +25,7 @@ const Login = () => {
 
       const { token, role } = response.data;
       localStorage.setItem("token", token);
-      toast.success("Login Berhasil!, mengalihkan ke Beranda");
+      toast.success("Login Berhasil! Mengalihkan Anda ke Beranda");
 
       // Redirect ke halaman dashboard berdasarkan peran pengguna setelah 2.5 detik
       setTimeout(() => {
