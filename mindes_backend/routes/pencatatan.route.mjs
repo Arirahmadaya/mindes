@@ -10,4 +10,4 @@ router.put('/pencatatan/:id_pencatatan', updatePencatatan)
 router.delete('/pencatatan/:id_pencatatan', deletePencatatan)
 
 
-export default router
+export default router 
