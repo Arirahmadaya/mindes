@@ -17,7 +17,7 @@ const User = () => {
 
   const getUser = async () => {
     try {
-      const response = await axios.get("http://data.mindes.my.id/user");
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/user`);
       setUser(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
@@ -114,4 +114,4 @@ const User = () => {
   );
 };
 
-export default User
+export default User;

@@ -51,7 +51,9 @@ const FormRealisasi = () => {
   useEffect(() => {
     const fetchBidang = async () => {
       try {
-        const response = await axios.get("http://data.mindes.my.id/bidang");
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/bidang`
+        );
         setBidang(response.data.data);
       } catch (error) {
         console.log(error);
@@ -159,11 +161,15 @@ const FormRealisasi = () => {
       if (selectedImageFile1) {
         data.append("img_realisasi2", selectedImageFile1);
       }
-      await axios.post("http://data.mindes.my.id/realisasi/create", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/realisasi/create`,
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       console.log("Data yang dikirim:", formData);
       navigate("/admin/realisasi");
@@ -384,10 +390,10 @@ const FormRealisasi = () => {
               </div>
 
               {/* image sebagai bukti bahwa kegiatan telah berlangsung, jadi hanya muncul ketika status sudah selesai/proses */}
-              <div className="flex flex-col p-10 gap-5"></div>
+              <div className="flex flex-col gap-5 p-10"></div>
             </div>
             <br />
-            <h5 className="text-3xl font-bold mb-3 text-left text-blue-600">
+            <h5 className="mb-3 text-3xl font-bold text-left text-blue-600">
               Dokumentasi Bukti Realisasi Anggaran Desa
             </h5>
             <div className="flex gap-5">

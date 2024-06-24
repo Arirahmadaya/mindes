@@ -45,9 +45,12 @@ export default function NavbarUser() {
   const fetchProfile = async () => {
     try {
       const token = localStorage.getItem("token"); // Assuming you store a token on login
-      const response = await axios.get("http://data.mindes.my.id/profil", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/profil`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setProfile(response.data.data[0]);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
@@ -148,7 +151,7 @@ export default function NavbarUser() {
                     color="primary"
                     name={profile.username}
                     size="sm"
-                    src={profile.img_user || '/img_desa_user.png'}
+                    src={profile.img_user || "/img_desa_user.png"}
                   />
                   <p className="text-white font-semibold ml-3 hover:cursor-pointer">
                     {profile.username}
@@ -168,7 +171,11 @@ export default function NavbarUser() {
                 <DropdownItem key="help" as={Link} href="/bantuan">
                   Bantuan
                 </DropdownItem>
-                <DropdownItem key="logout" color="danger" onClick={handleLogout}>
+                <DropdownItem
+                  key="logout"
+                  color="danger"
+                  onClick={handleLogout}
+                >
                   Log Out
                 </DropdownItem>
               </DropdownMenu>

@@ -22,7 +22,9 @@ const KtgBeritaEdit = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://data.mindes.my.id/kategori/${id}`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/kategori/${id}`
+        );
         setFormData({ nama: response.data.data.nama });
       } catch (error) {
         console.log(error);
@@ -42,7 +44,10 @@ const KtgBeritaEdit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://data.mindes.my.id/kategori/${id}`, formData);
+      await axios.put(
+        `${import.meta.env.VITE_API_URL}/kategori/${id}`,
+        formData
+      );
       toast.success("Kategori berhasil diperbarui!");
       setTimeout(() => {
         navigate("/admin/datamaster/kategori");

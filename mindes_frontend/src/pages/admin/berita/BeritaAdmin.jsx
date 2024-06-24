@@ -20,14 +20,21 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { DeleteIcon, EditIcon, EyeIcon } from "../../../components/Ikon";
 
-
 const statusColorMap = {
   publish: "success",
   proses: "secondary",
   gagal: "danger",
 };
 
-const INITIAL_VISIBLE_COLUMNS = ["tgl", "judul", "artikel", "nama", "img_berita", "status", "actions"];
+const INITIAL_VISIBLE_COLUMNS = [
+  "tgl",
+  "judul",
+  "artikel",
+  "nama",
+  "img_berita",
+  "status",
+  "actions",
+];
 
 const columns = [
   { name: "ID", uid: "id" },
@@ -58,7 +65,9 @@ const BeritaAdmin = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await axios.get("http://data.mindes.my.id/berita");
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/berita`
+      );
       setNews(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
@@ -74,7 +83,9 @@ const BeritaAdmin = () => {
     if (selectedNews) {
       try {
         console.log(`Menghapus berita dengan ID: ${selectedNews.id_berita}`);
-        await axios.delete(`http://data.mindes.my.id/berita/${selectedNews.id_berita}`);
+        await axios.delete(
+          `${import.meta.env.VITE_API_URL}/berita/${selectedNews.id_berita}`
+        );
         fetchNews();
         toast.success("Berita berhasil dihapus!");
         onOpenChange(false); // Close the modal
@@ -88,8 +99,8 @@ const BeritaAdmin = () => {
   const formatDate = (datetime) => {
     const date = new Date(datetime);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() is zero-based
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // getMonth() is zero-based
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
@@ -107,21 +118,19 @@ const BeritaAdmin = () => {
       icon: (
         <Tooltip content="Edit">
           <span className=" active:opacity-50">
-          <Edit className="w-4 h-4 text-warning" />
-
+            <Edit className="w-4 h-4 text-warning" />
           </span>
         </Tooltip>
       ),
-       onClick: (news) => {
+      onClick: (news) => {
         navigate(`/admin/berita/edit/${news.id_berita}`, { state: news });
       },
     },
     {
-      
       icon: (
         <Tooltip content="Hapus">
           <span className=" active:opacity-50">
-          <Trash2 className="w-4 h-4 text-danger " />
+            <Trash2 className="w-4 h-4 text-danger " />
           </span>
         </Tooltip>
       ),
@@ -145,7 +154,7 @@ const BeritaAdmin = () => {
   }));
 
   return (
-    <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
+    <div className="flex flex-row w-screen h-screen overflow-y-auto bg-secondary-10">
       <Sidebares />
       <div className="flex-1 mx-5">
         <NavbarAdmin />
@@ -155,7 +164,7 @@ const BeritaAdmin = () => {
         </Breadcrumbs>
         <div className="flex gap-5 my-5">
           <div className="flex w-full bg-white rounded-lg">
-            <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-blue-200">
+            <div className="w-full h-auto transition duration-300 ease-in-out bg-white rounded-lg shadow-md hover:shadow-lg hover:shadow-blue-200">
               <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
               <div className="p-4">
                 <TableProps
@@ -202,8 +211,11 @@ const BeritaAdmin = () => {
                   Batal
                 </Button>
                 <Button
-                  className="bg-danger shadow-lg shadow-indigo-500/20 text-white"
-                  onPress={() => { deleteNews(); onClose(); }}
+                  className="text-white shadow-lg bg-danger shadow-indigo-500/20"
+                  onPress={() => {
+                    deleteNews();
+                    onClose();
+                  }}
                 >
                   Hapus
                 </Button>

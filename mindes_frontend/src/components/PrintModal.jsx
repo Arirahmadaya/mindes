@@ -16,7 +16,7 @@ const PrintModal = ({ item, onClose }) => {
   const getPencatatanData = async (id_realisasi) => {
     try {
       const response = await axios.get(
-        `http://data.mindes.my.id/api/pencatatan/${id_realisasi}`
+        `${import.meta.env.VITE_API_URL}/api/pencatatan/${id_realisasi}`
       );
       console.log("Data Pencatatan Diterima:", response.data.data);
       setPencatatanData(response.data.data[id_realisasi] || []);
@@ -109,10 +109,12 @@ const PrintModal = ({ item, onClose }) => {
                       <span className="font-bold">Kode:</span> {pencatatan.kode}
                     </p>
                     <p>
-                      <span className="font-bold">Nominal:</span> {pencatatan.nominal}
+                      <span className="font-bold">Nominal:</span>{" "}
+                      {pencatatan.nominal}
                     </p>
                     <p>
-                      <span className="font-bold">Total:</span> {pencatatan.total}
+                      <span className="font-bold">Total:</span>{" "}
+                      {pencatatan.total}
                     </p>
                   </div>
                 ))

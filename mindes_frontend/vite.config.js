@@ -1,19 +1,23 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: 'dist', // Direktori output default
-    sourcemap: true, // Opsional: membantu debugging
+    outDir: 'dist',
+    sourcemap: true,
   },
   server: {
-    port: 3000, // Anda bisa menentukan port yang ingin digunakan untuk pengembangan
+    port: 5173,
   },
   resolve: {
     alias: {
-      '@': '/src', // Alias berguna untuk menghindari path relatif yang panjang
+      '@': '/src',
     },
   },
-  base: process.env.NODE_ENV === 'production' ? '/' : '/', // URL dasar
+  base: process.env.NODE_ENV === 'production' ? '/' : '/',
 });

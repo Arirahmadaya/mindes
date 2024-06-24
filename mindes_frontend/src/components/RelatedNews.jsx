@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RelatedNews = () => {
   const [relatedPosts, setRelatedPosts] = useState([]);
@@ -12,10 +12,12 @@ const RelatedNews = () => {
 
   const fetchRelatedPosts = async () => {
     try {
-      const response = await axios.get('http://data.mindes.my.id/berita/related');
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/berita/related`
+      );
       setRelatedPosts(response.data.data);
     } catch (error) {
-      console.error('Terjadi kesalahan', error);
+      console.error("Terjadi kesalahan", error);
     }
   };
 
@@ -26,13 +28,13 @@ const RelatedNews = () => {
       </div>
       <div className="space-y-4">
         {relatedPosts.map((post, index) => (
-          <div 
-            key={index} 
-            className="flex items-start mb-4 cursor-pointer" 
+          <div
+            key={index}
+            className="flex items-start mb-4 cursor-pointer"
             onClick={() => navigate(`/berita/${post.id_berita}`)}
           >
             <img
-              src={`http://data.mindes.my.id/public${post.img_berita}`}
+              src={`${import.meta.env.VITE_API_URL}/public${post.img_berita}`}
               alt="Related post"
               className="w-[75px] h-[75px] rounded-lg mr-4 object-cover"
             />
@@ -41,12 +43,12 @@ const RelatedNews = () => {
                 {post.judul}
               </h3>
               <p className="text-black/opacity-20 text-[10px] font-light font-['Open Sans'] uppercase tracking-wide">
-                {new Date(post.tgl).toLocaleDateString('id-ID', {
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit',
+                {new Date(post.tgl).toLocaleDateString("id-ID", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
                 })}
               </p>
               <div className="text-black/opacity-20 text-[10px] font-light font-['Open Sans']">

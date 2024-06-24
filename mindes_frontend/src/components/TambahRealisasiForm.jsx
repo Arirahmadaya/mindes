@@ -35,7 +35,7 @@ const TambahRealisasiForm = () => {
   useEffect(() => {
     const fetchAkun = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/akun");
+        const response = await axios.get(`${process.env.API_URL}/akun`);
         setAkun(response.data.data);
       } catch (error) {
         console.log(error);
@@ -72,7 +72,7 @@ const TambahRealisasiForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/pencatatan/create", {
+      await axios.post(`${process.env.API_URL}/pencatatan/create`, {
         ...formData,
         id_realisasi,
       });

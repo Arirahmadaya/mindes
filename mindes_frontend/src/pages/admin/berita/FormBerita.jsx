@@ -46,7 +46,9 @@ const FormBerita = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://data.mindes.my.id/kategori");
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/kategori`
+        );
         setCategories(response.data.data);
       } catch (error) {
         console.log(error);
@@ -129,7 +131,7 @@ const FormBerita = () => {
       if (selectedImageFile) {
         data.append("img_berita", selectedImageFile);
       }
-      await axios.post("http://data.mindes.my.id/berita/create", data);
+      await axios.post(`${import.meta.env.VITE_API_URL}/berita/create`, data);
       toast.success("Data berita berhasil disimpan!");
       setTimeout(() => {
         navigate("/admin/berita");

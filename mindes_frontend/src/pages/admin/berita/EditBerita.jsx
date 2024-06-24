@@ -35,8 +35,6 @@ const EditBerita = () => {
   });
   const navigate = useNavigate();
 
-
-
   const selectedValue = React.useMemo(() => {
     const items = Array.from(selectedKeys).map(
       (key) => key.charAt(0).toUpperCase() + key.slice(1).replaceAll("_", " ")
@@ -74,7 +72,10 @@ const EditBerita = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://data.mindes.my.id/berita/create", formData);
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/berita/create`,
+        formData
+      );
       navigate("/admin/berita");
     } catch (error) {
       console.log(error);

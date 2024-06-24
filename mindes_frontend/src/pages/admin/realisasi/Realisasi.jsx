@@ -20,7 +20,9 @@ const Realisasi = () => {
 
   const getRealisasi = async () => {
     try {
-      const response = await axios.get("http://data.mindes.my.id/realisasi");
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/realisasi`
+      );
       setRealisasi(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
@@ -108,7 +110,7 @@ const Realisasi = () => {
   }));
 
   return (
-    <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
+    <div className="flex flex-row w-screen h-screen overflow-y-auto bg-secondary-10">
       <Sidebares />
       <div className="flex-1 mx-5">
         <div>
@@ -120,7 +122,7 @@ const Realisasi = () => {
         </Breadcrumbs>
         <div className="flex gap-5 my-5">
           <div className="flex w-full bg-white rounded-lg">
-            <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-blue-200">
+            <div className="w-full h-auto transition duration-300 ease-in-out bg-white rounded-lg shadow-md hover:shadow-lg hover:shadow-blue-200">
               <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
               <div className="p-4">
                 <TableProps

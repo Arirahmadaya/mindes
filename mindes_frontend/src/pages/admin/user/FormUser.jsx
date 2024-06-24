@@ -56,7 +56,7 @@ const FormUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://data.mindes.my.id/user/create", formData);
+      await axios.post(`${import.meta.env.VITE_API_URL}/user/create`, formData);
       toast.success("User berhasil dibuat!");
       setTimeout(() => {
         navigate("/admin/user");

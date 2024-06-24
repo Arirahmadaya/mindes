@@ -16,7 +16,7 @@ const PrintLaporan = ({ item, onClose }) => {
   const getPencatatanData = async (id_realisasi) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/pencatatan/${id_realisasi}`
+        `${process.env.API_URL}/${id_realisasi}`
       );
       console.log("Data Pencatatan Diterima:", response.data.data);
       setPencatatanData(response.data.data[id_realisasi] || []);

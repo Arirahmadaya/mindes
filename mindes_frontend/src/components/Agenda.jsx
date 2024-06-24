@@ -8,7 +8,9 @@ const Agenda = () => {
   useEffect(() => {
     const fetchAgenda = async () => {
       try {
-        const response = await axios.get("http://data.mindes.my.id/agenda");
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/agenda`
+        );
         setAgenda(response.data.data);
       } catch (error) {
         console.error("Terjadi kesalahan", error);
@@ -21,23 +23,25 @@ const Agenda = () => {
   const formatDate = (datetime) => {
     const date = new Date(datetime);
     const year = date.getFullYear();
-    const month = date.toLocaleString('default', { month: 'long' });
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = date.toLocaleString("default", { month: "long" });
+    const day = String(date.getDate()).padStart(2, "0");
     return { day, month, year };
   };
 
   return (
-    <div className="flex justify-center items-center w-full h-full">
+    <div className="flex items-center justify-center w-full h-full">
       <ul className="timeline timeline-vertical lg:w-auto lg:m-0 -ml-28">
         {agenda.map((item, index) => {
           const { day, month, year } = formatDate(item.tgl);
           const isLastItem = index === agenda.length - 1;
 
           return (
-            <li className={`gap-x-5 ${!isLastItem ? 'mb-3' : ''}`} key={index}>
-              <div className="timeline-start text-center">
-                <p className="lg:text-heading-5 text-body-1 font-bold">{day}</p>
-                <p className="lg:text-heading-5 text-body-1">{month} {year}</p>
+            <li className={`gap-x-5 ${!isLastItem ? "mb-3" : ""}`} key={index}>
+              <div className="text-center timeline-start">
+                <p className="font-bold lg:text-heading-5 text-body-1">{day}</p>
+                <p className="lg:text-heading-5 text-body-1">
+                  {month} {year}
+                </p>
               </div>
               <div className="timeline-middle">
                 <svg
@@ -54,28 +58,28 @@ const Agenda = () => {
                 </svg>
               </div>
               <div className="timeline-end text-white bg-primary-40 rounded-xl w-full min-h-[210px] p-4 mb-3">
-                <div className="flex justify-between gap-10 text-center items-center">
-                  <h1 className="lg:text-heading-3 text-heading-6 font-semibold">
+                <div className="flex items-center justify-between gap-10 text-center">
+                  <h1 className="font-semibold lg:text-heading-3 text-heading-6">
                     {item.kegiatan}
                   </h1>
-                  <p className="lg:text-caption-1 text-caption-2 font-bold">
+                  <p className="font-bold lg:text-caption-1 text-caption-2">
                     {item.jam} WIB - Selesai
                   </p>
                 </div>
 
-                <p className="caption-2">
-                  {item.deskripsi}
-                </p>
+                <p className="caption-2">{item.deskripsi}</p>
                 <div className="flex gap-5 mt-5">
-                  <div className="flex gap-2 items-center">
+                  <div className="flex items-center gap-2">
                     <MapPin size={20} /> {item.tempat}
                   </div>
-                  <div className="flex gap-2 items-center">
+                  <div className="flex items-center gap-2">
                     <Calendar size={20} /> {item.hari}
                   </div>
                 </div>
               </div>
-              {!isLastItem && <hr className="w-full border-t-2 border-gray-300 my-1" />}
+              {!isLastItem && (
+                <hr className="w-full my-1 border-t-2 border-gray-300" />
+              )}
             </li>
           );
         })}

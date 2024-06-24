@@ -17,7 +17,9 @@ const DetailBerita = () => {
 
   const fetchBerita = async () => {
     try {
-      const response = await axios.get(`http://data.mindes.my.id/berita/${id_berita}`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/berita/${id_berita}`
+      );
       setBerita(response.data.data[0]);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
@@ -27,9 +29,14 @@ const DetailBerita = () => {
 
   const incrementKunjungan = async () => {
     try {
-      await axios.put(`http://data.mindes.my.id/berita/kunjungan/${id_berita}`);
+      await axios.put(
+        `${import.meta.env.VITE_API_URL}/berita/kunjungan/${id_berita}`
+      );
     } catch (error) {
-      console.error("Terjadi kesalahan saat meningkatkan jumlah kunjungan", error);
+      console.error(
+        "Terjadi kesalahan saat meningkatkan jumlah kunjungan",
+        error
+      );
     }
   };
 
@@ -70,7 +77,7 @@ const DetailBerita = () => {
             </div>
             <img
               className="w-full h-auto rounded-lg mb-4"
-              src={`http://data.mindes.my.id/public${berita.img_berita}`}
+              src={`${import.meta.env.VITE_API_URL}/public${berita.img_berita}`}
               alt="Kegiatan monitoring"
             />
             <div className="text-black text-xs font-light text-center mb-4">
@@ -79,9 +86,15 @@ const DetailBerita = () => {
             <p className="mb-4">{berita.artikel}</p>
             <div className="flex space-x-4 mb-8">
               <span>Bagikan ke:</span>
-              <a href="#"><i className="fab fa-facebook"></i></a>
-              <a href="#"><i className="fab fa-twitter"></i></a>
-              <a href="#"><i className="fab fa-whatsapp"></i></a>
+              <a href="#">
+                <i className="fab fa-facebook"></i>
+              </a>
+              <a href="#">
+                <i className="fab fa-twitter"></i>
+              </a>
+              <a href="#">
+                <i className="fab fa-whatsapp"></i>
+              </a>
             </div>
           </article>
 
@@ -90,11 +103,15 @@ const DetailBerita = () => {
             <h2 className="text-2xl font-semibold mb-4">Komentar</h2>
             <div className="space-y-4">
               <div className="bg-gray-100 p-4 rounded-md">
-                <p className="text-gray-800"><strong>John Doe</strong> - 1 jam yang lalu</p>
+                <p className="text-gray-800">
+                  <strong>John Doe</strong> - 1 jam yang lalu
+                </p>
                 <p>Artikel yang sangat informatif!</p>
               </div>
               <div className="bg-gray-100 p-4 rounded-md">
-                <p className="text-gray-800"><strong>Jane Smith</strong> - 2 jam yang lalu</p>
+                <p className="text-gray-800">
+                  <strong>Jane Smith</strong> - 2 jam yang lalu
+                </p>
                 <p>Terima kasih atas informasinya.</p>
               </div>
             </div>

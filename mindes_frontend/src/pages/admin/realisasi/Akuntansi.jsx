@@ -51,7 +51,7 @@ const Akuntansi = () => {
 
   const fetchAkun = async () => {
     try {
-      const response = await axios.get("http://data.mindes.my.id/akun");
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/akun`);
       setAkun(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
@@ -66,7 +66,9 @@ const Akuntansi = () => {
   const deleteAkun = async () => {
     if (selectedAkun) {
       try {
-        await axios.delete(`http://data.mindes.my.id/akun/${selectedAkun.id}`);
+        await axios.delete(
+          `${import.meta.env.VITE_API_URL}/akun/${selectedAkun.id}`
+        );
         fetchAkun();
         toast.success("Akun berhasil dihapus!");
         onOpenChange(false); // Close the modal
@@ -101,7 +103,7 @@ const Akuntansi = () => {
   }));
 
   return (
-    <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
+    <div className="flex flex-row w-screen h-screen overflow-y-auto bg-secondary-10">
       <Sidebares />
       <div className="flex-1 mx-5">
         <div className="">
@@ -119,8 +121,8 @@ const Akuntansi = () => {
         </Breadcrumbs>
 
         <div className="flex gap-5 my-5">
-          <div className=" flex w-full bg-white rounded-lg">
-            <div className="bg-white rounded-lg w-full h-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-blue-200  ">
+          <div className="flex w-full bg-white rounded-lg ">
+            <div className="w-full h-auto transition duration-300 ease-in-out bg-white rounded-lg shadow-md hover:shadow-lg hover:shadow-blue-200 ">
               <div className="bg-blue-100/20 rounded-b-[20px] w-auto "></div>
               <div className="p-4 ">
                 <TableProps
@@ -169,7 +171,7 @@ const Akuntansi = () => {
                   Batal
                 </Button>
                 <Button
-                  className="bg-danger shadow-lg shadow-indigo-500/20 text-white"
+                  className="text-white shadow-lg bg-danger shadow-indigo-500/20"
                   onPress={deleteAkun}
                 >
                   Hapus

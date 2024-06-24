@@ -26,17 +26,17 @@ const Berita = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://data.mindes.my.id/berita");
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/berita`);
       const dataWithImgUrls = response.data.data.map((item) => {
         if (item.img_berita) {
-          item.img_berita_url = `http://data.mindes.my.id/public${item.img_berita}`;
+          item.img_berita_url = `${import.meta.env.VITE_API_URL}/public${item.img_berita}`;
         } else {
           item.img_berita_url = null;
         }
         return item;
       });
       setList(dataWithImgUrls);
-      setFilteredList(dataWithImgUrls); // Initialize filteredList
+      setFilteredList(dataWithImgUrls); 
     } catch (error) {
       console.error("Terjadi kesalahan saat memuat data berita", error);
     }
@@ -44,7 +44,7 @@ const Berita = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("https://data.mindes.my.id/kategori");
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/kategori`);
       setCategories(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan saat memuat kategori", error);
@@ -66,12 +66,12 @@ const Berita = () => {
   return (
     <>
       <NavbarUser className="absolute" />
-      <div className="mb-28 mt-5">
-        <div className="lg:mx-70 mx-10">
-          <div className="mb-0 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20">
+      <div className="mt-5 mb-28">
+        <div className="mx-10 lg:mx-70">
+          <div className="relative z-20 mb-0 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl">
             Berita Kalinyamat Kulon
           </div>
-          <div className="mb-5 font-regular text-center text-heading-6 text-black relative z-20">
+          <div className="relative z-20 mb-5 text-center text-black font-regular text-heading-6">
             Menyajikan informasi terbaru tentang peristiwa, berita terkini, dan
             artikel-artikel jurnalistik dari Kalinyamat Kulon
           </div>
@@ -79,7 +79,13 @@ const Berita = () => {
           <div className="flex justify-end mb-4">
             <Dropdown>
               <DropdownTrigger>
-                <Button variant="bordered" className="bg-primary-30 text-white font-semibold"> <Filter /> Kategori</Button>
+                <Button
+                  variant="bordered"
+                  className="font-semibold text-white bg-primary-30"
+                >
+                  {" "}
+                  <Filter /> Kategori
+                </Button>
               </DropdownTrigger>
               <DropdownMenu aria-label="Kategori Berita">
                 <DropdownItem
@@ -100,17 +106,18 @@ const Berita = () => {
             </Dropdown>
           </div>
           <div className="w-full h-auto"> </div>
-          <div className="w-full h-auto flex justify-center border-2"> <CardBerita list={filteredList} /> </div>
-
-          
+          <div className="flex justify-center w-full h-auto">
+            {" "}
+            <CardBerita list={filteredList} />{" "}
+          </div>
         </div>
       </div>
 
-      <div className="lg:mx-70 mx-10">
+      <div className="mx-10 lg:mx-70">
         <div className="mb-2 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl relative z-20 lg:mx-70 mx-[20px]">
           Agenda Desa Kalinyamat Kulon
         </div>
-        <div className="mb-0 text-center text-heading-6 text-black">
+        <div className="mb-0 text-center text-black text-heading-6">
           Lihat Agenda Desa yang bisa anda ketahui lebih lanjut di sini
         </div>
 
