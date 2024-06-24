@@ -26,9 +26,13 @@ const RelatedNews = () => {
       </div>
       <div className="space-y-4">
         {relatedPosts.map((post, index) => (
-          <div key={index} className="flex items-start mb-4" onClick={() => navigate(`/berita/${post.id_berita}`)}>
+          <div 
+            key={index} 
+            className="flex items-start mb-4 cursor-pointer" 
+            onClick={() => navigate(`/berita/${post.id_berita}`)}
+          >
             <img
-              src={`http://data.mindes.my.id${post.img_berita}`}
+              src={`http://data.mindes.my.id/public${post.img_berita}`}
               alt="Related post"
               className="w-[75px] h-[75px] rounded-lg mr-4 object-cover"
             />

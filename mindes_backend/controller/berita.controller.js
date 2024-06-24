@@ -15,7 +15,10 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`);
+    cb(
+      null,
+      `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`
+    );
   },
 });
 
@@ -98,7 +101,10 @@ export const deleteBerita = async (req, res) => {
 export const getBeritaById = async (req, res) => {
   const { id_berita } = req.params;
   try {
-    const result = await query("SELECT * FROM beritatable WHERE id_berita = ?", [id_berita]);
+    const result = await query(
+      "SELECT * FROM beritatable WHERE id_berita = ?",
+      [id_berita]
+    );
     if (result.length === 0) {
       return res.status(404).json({ msg: "Berita tidak ditemukan" });
     }
@@ -112,10 +118,13 @@ export const getBeritaById = async (req, res) => {
 export const getBeritaImage = async (req, res) => {
   const { id_berita } = req.params;
   try {
-    const result = await query("SELECT img_berita FROM beritatable WHERE id_berita = ?", [id_berita]);
+    const result = await query(
+      "SELECT img_berita FROM beritatable WHERE id_berita = ?",
+      [id_berita]
+    );
     if (result.length > 0) {
       const imgPath = result[0].img_berita;
-      if (typeof imgPath === 'string') {
+      if (typeof imgPath === "string") {
         const fullPath = path.join(__dirname, "..", "public", imgPath);
         try {
           await fs.access(fullPath); // Check if the file exists
@@ -144,6 +153,23 @@ export const getRelatedBerita = async (req, res) => {
       LIMIT 5
     `);
     return res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.log("Terjadi kesalahan", error);
+    return res.status(500).json({ msg: "terjadi kesalahan pada server" });
+  }
+};
+
+export const incrementKunjungan = async (req, res) => {
+  const { id_berita } = req.params;
+  try {
+    const result = await query(
+      "UPDATE beritatable SET kunjungan = kunjungan + 1 WHERE id_berita = ?",
+      [id_berita]
+    );
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ msg: "Berita tidak ditemukan" });
+    }
+    return res.status(200).json({ msg: "Kunjungan ditingkatkan" });
   } catch (error) {
     console.log("Terjadi kesalahan", error);
     return res.status(500).json({ msg: "terjadi kesalahan pada server" });

@@ -241,6 +241,7 @@ const FormBerita = () => {
                         type="file"
                         label="Foto Berita"
                         className="w-full bg-white file-input file-input-bordered"
+                        value={formData.img_berita}
                         onChange={handleImageChange}
                       />
                       {selectedImage && (
