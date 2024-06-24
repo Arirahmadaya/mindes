@@ -100,7 +100,7 @@ const Berita = () => {
             </Dropdown>
           </div>
           <div className="w-full h-auto"> </div>
-          <div className="w-full h-auto flex justify-center border-2"> <CardBerita list={filteredList} /> </div>
+          <div className="w-full h-auto flex justify-center "> <CardBerita list={filteredList} /> </div>
 
           
         </div>
