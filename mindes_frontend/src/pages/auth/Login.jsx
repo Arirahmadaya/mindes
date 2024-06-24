@@ -26,9 +26,10 @@ const Login = () => {
       const { token, role } = response.data;
       console.log("Response dari server:", response.data); // Tambahkan ini untuk debugging
       localStorage.setItem("token", token);
-      localStorage.setItem("role", role); // Simpan role di localStorage
-      toast.success("Login Berhasil!, mengalihkan ke Beranda");
-  
+      //localStorage.setItem("role", role);
+      toast.success("Login Berhasil! Mengalihkan Anda ke Beranda");
+
+
       // Redirect ke halaman dashboard berdasarkan peran pengguna setelah 2.5 detik
       setTimeout(() => {
         if (role === "admin" || role === "superadmin") {

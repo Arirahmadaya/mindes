@@ -105,8 +105,8 @@ export const updatePencatatan = async (req, res) => {
     // Update data di pencatatantable dengan id_akun yang sesuai
     await query(
       `UPDATE pencatatantable 
-       SET no = ?, kode = ?, nominal = ?, total = ?, id_realisasi = ?
-       WHERE id_pencatatan = ?`,
+      SET no = ?, kode = ?, nominal = ?, total = ?, id_realisasi = ?
+      WHERE id_pencatatan = ?`,
       [no, id_akun, nominal, total, id_realisasi, id_pencatatan]
     );
     return res.status(200).json({ msg: "Pencatatan diubah" });
