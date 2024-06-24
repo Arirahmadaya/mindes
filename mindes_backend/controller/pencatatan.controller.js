@@ -1,39 +1,41 @@
 import { query } from "../database/db.js";
 
 export const getPencatatan = async (req, res) => {
-  // try {
-  //   const result = await query(`SELECT * FROM pencatatantable`);
-  const { id_realisasi } = req.params;
   try {
-    const result = await query(
-      `
-      SELECT 
-        pencatatantable.id_pencatatan,
-        pencatatantable.no,
-        pencatatantable.nominal,
-        pencatatantable.subtotal,
-        pencatatantable.id_realisasi,
-        pencatatantable.uraian,
-        pencatatantable.kuantitas,
-        akuntable.kode
-      FROM 
-        pencatatantable
-      LEFT JOIN 
-        realisasitable ON pencatatantable.id_realisasi = realisasitable.id_realisasi
-      LEFT JOIN
-        akuntable ON pencatatantable.id_akun = akuntable.id_akun
-      WHERE
-        pencatatantable.id_realisasi = ?
-    `,
-      [id_realisasi]
-    );
-    console.log(`Hasil pencatatan: ${JSON.stringify(result)}`);
+    const result = await query(`SELECT * FROM pencatatantable`);
+  // const { id_realisasi } = req.params;
+  // console.log(`Received id_realisasi: ${id_realisasi}`);
+  // try {
+  //   const result = await query(
+  //     `
+  //     SELECT 
+  //       pencatatantable.id_pencatatan,
+  //       pencatatantable.no,
+  //       pencatatantable.nominal,
+  //       pencatatantable.subtotal,
+  //       pencatatantable.id_realisasi,
+  //       pencatatantable.uraian,
+  //       pencatatantable.kuantitas,
+  //       realisasitable.*,
+  //       akuntable.kode
+  //     FROM 
+  //       pencatatantable
+  //     JOIN 
+  //       realisasitable ON pencatatantable.id_realisasi = realisasitable.id_realisasi
+  //     JOIN
+  //       akuntable ON pencatatantable.id_akun = akuntable.id_akun
+  //     WHERE
+  //       pencatatantable.id_realisasi = ?
+  //   `,
+  //     [id_realisasi]
+  //   );
+  //   console.log(`Hasil pencatatan: ${JSON.stringify(result)}`);
 
-    if (result.length === 0) {
-      return res
-        .status(404)
-        .json({ success: false, msg: "Pencatatan tidak ditemukan" });
-    }
+  //   if (result.length === 0) {
+  //     return res
+  //       .status(404)
+  //       .json({ success: false, msg: "Pencatatan tidak ditemukan" });
+  //   }
     return res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.log("Terjadi kesalahan", error);
@@ -105,8 +107,8 @@ export const updatePencatatan = async (req, res) => {
     // Update data di pencatatantable dengan id_akun yang sesuai
     await query(
       `UPDATE pencatatantable 
-       SET no = ?, kode = ?, nominal = ?, total = ?, id_realisasi = ?
-       WHERE id_pencatatan = ?`,
+      SET no = ?, kode = ?, nominal = ?, total = ?, id_realisasi = ?
+      WHERE id_pencatatan = ?`,
       [no, id_akun, nominal, total, id_realisasi, id_pencatatan]
     );
     return res.status(200).json({ msg: "Pencatatan diubah" });
@@ -116,30 +118,30 @@ export const updatePencatatan = async (req, res) => {
   }
 };
 
-
 // Tidak terpakai karna cukup dengan get pencatatan di atas karena mengambil dari semua id
 export const getPencatatanById = async (req, res) => {
   const { id_realisasi } = req.params;
   try {
     const result = await query(
       `SELECT 
-         pencatatantable.id_pencatatan,
-         pencatatantable.id_realisasi,
-         pencatatantable.id_akun,
-         pencatatantable.no,
-         pencatatantable.nominal,
-         pencatatantable.subtotal,
-         pencatatantable.uraian,
-         pencatatantable.kuantitas,
-         realisasitable.*
-       FROM 
-         pencatatantable
-       JOIN 
-         realisasitable ON pencatatantable.id_realisasi = realisasitable.id_realisasi
-       JOIN
-         akuntable ON pencatatantable.id_akun = akuntable.id_akun
-       WHERE
-         pencatatantable.id_realisasi = ?`,
+        pencatatantable.id_pencatatan,
+        pencatatantable.id_realisasi,
+        pencatatantable.id_akun,
+        pencatatantable.no,
+        pencatatantable.nominal,
+        pencatatantable.subtotal,
+        pencatatantable.uraian,
+        pencatatantable.kuantitas,
+        realisasitable.*,
+        akuntable.kode
+      FROM 
+        pencatatantable
+      JOIN 
+        realisasitable ON pencatatantable.id_realisasi = realisasitable.id_realisasi
+      JOIN
+        akuntable ON pencatatantable.id_akun = akuntable.id_akun
+      WHERE
+        pencatatantable.id_realisasi = ?`,
       [id_realisasi]
     );
 
