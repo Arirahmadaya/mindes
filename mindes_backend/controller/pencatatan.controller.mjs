@@ -1,5 +1,52 @@
 import { query } from "../database/db.mjs";
 
+export const getPencatatanById = async (req, res) => {
+  const { id_realisasi } = req.params;
+  try {
+    const result = await query(
+      `SELECT 
+        pencatatantable.id_pencatatan,
+        pencatatantable.id_realisasi,
+        pencatatantable.id_akun,
+        pencatatantable.no,
+        pencatatantable.nominal,
+        pencatatantable.subtotal,
+        pencatatantable.uraian,
+        pencatatantable.kuantitas,
+        realisasitable.*,
+        akuntable.kode
+      FROM 
+        pencatatantable
+      JOIN 
+        realisasitable ON pencatatantable.id_realisasi = realisasitable.id_realisasi
+      JOIN
+        akuntable ON pencatatantable.id_akun = akuntable.id_akun
+      WHERE
+        pencatatantable.id_realisasi = ?`,
+      [id_realisasi]
+    );
+
+    if (result.length === 0) {
+      return res.status(404).json({ msg: "Pencatatan tidak ditemukan" });
+    }
+
+    const groupedResult = result.reduce((acc, pencatatan) => {
+      const { id_realisasi, ...data } = pencatatan;
+      if (!acc[id_realisasi]) {
+        acc[id_realisasi] = [];
+      }
+      acc[id_realisasi].push(data);
+      return acc;
+    }, {});
+
+    return res.status(200).json({ success: true, data: groupedResult });
+  } catch (error) {
+    console.log("Terjadi kesalahan", error);
+    return res.status(500).json({ msg: "terjadi kesalahan pada server" });
+  }
+};
+
+
 export const getPencatatan = async (req, res) => {
   try {
     const result = await query(`SELECT * FROM pencatatantable`);
@@ -86,51 +133,6 @@ export const updatePencatatan = async (req, res) => {
 };
 
 // Tidak terpakai karna cukup dengan get pencatatan di atas karena mengambil dari semua id
-export const getPencatatanById = async (req, res) => {
-  const { id_realisasi } = req.params;
-  try {
-    const result = await query(
-      `SELECT 
-        pencatatantable.id_pencatatan,
-        pencatatantable.id_realisasi,
-        pencatatantable.id_akun,
-        pencatatantable.no,
-        pencatatantable.nominal,
-        pencatatantable.subtotal,
-        pencatatantable.uraian,
-        pencatatantable.kuantitas,
-        realisasitable.*,
-        akuntable.kode
-      FROM 
-        pencatatantable
-      JOIN 
-        realisasitable ON pencatatantable.id_realisasi = realisasitable.id_realisasi
-      JOIN
-        akuntable ON pencatatantable.id_akun = akuntable.id_akun
-      WHERE
-        pencatatantable.id_realisasi = ?`,
-      [id_realisasi]
-    );
-
-    if (result.length === 0) {
-      return res.status(404).json({ msg: "Pencatatan tidak ditemukan" });
-    }
-
-    const groupedResult = result.reduce((acc, pencatatan) => {
-      const { id_realisasi, ...data } = pencatatan;
-      if (!acc[id_realisasi]) {
-        acc[id_realisasi] = [];
-      }
-      acc[id_realisasi].push(data);
-      return acc;
-    }, {});
-
-    return res.status(200).json({ success: true, data: groupedResult });
-  } catch (error) {
-    console.log("Terjadi kesalahan", error);
-    return res.status(500).json({ msg: "terjadi kesalahan pada server" });
-  }
-};
 
 export const deletePencatatan = async (req, res) => {
   const { id_pencatatan } = req.params;

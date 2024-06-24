@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const RelatedNews = () => {
+const Beritalainnya = () => {
   const [relatedPosts, setRelatedPosts] = useState([]);
   const navigate = useNavigate();
 
@@ -58,21 +58,8 @@ const RelatedNews = () => {
           </div>
         ))}
       </div>
-      <div className="mt-6">
-        <div className="text-black text-sm font-normal font-['Open Sans'] leading-tight mb-2">
-          ADVERTISEMENT
-        </div>
-        <div className="relative">
-          <div className="w-full h-[310px] bg-gray-200 rounded-lg" />
-          <img
-            className="w-[309px] h-[314px] rounded-lg absolute top-1 left-0"
-            src="/img_berita/berita1.jpg"
-            alt="Ad"
-          />
-        </div>
-      </div>
     </div>
   );
 };
 
-export default RelatedNews;
+export default Beritalainnya;

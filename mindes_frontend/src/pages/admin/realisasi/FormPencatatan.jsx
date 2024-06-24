@@ -11,8 +11,6 @@ import {
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 // import TambahRealisasiForm from "../../../components/TambahRealisasiForm";
 
-// isi datanya diambil dari setiap id_realisasi (kaya edit)
-
 const FormPencatatan = () => {
   const [pencatatan, setPencatatan] = useState([]);
   const navigate = useNavigate();

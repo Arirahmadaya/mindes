@@ -76,15 +76,16 @@ const Berita = () => {
             artikel-artikel jurnalistik dari Kalinyamat Kulon
           </div>
 
-          <div className="flex justify-end mb-4">
+          <div className="flex mb-4">
             <Dropdown>
               <DropdownTrigger>
                 <Button
                   variant="bordered"
                   className="font-semibold text-white bg-primary-30"
+                  color="secondary"
                 >
                   {" "}
-                  <Filter /> Kategori
+                  <Filter /> Filter
                 </Button>
               </DropdownTrigger>
               <DropdownMenu aria-label="Kategori Berita">
