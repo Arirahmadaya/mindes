@@ -67,11 +67,11 @@ const Berita = () => {
     <>
       <NavbarUser className="absolute" />
       <div className="mt-5 mb-28">
-        <div className="mx-10 lg:mx-70">
+        <div className="mx-5 lg:mx-70">
           <div className="relative z-20 mb-0 font-bold text-center text-heading-2 md:text-display-2 text-blue hover:text-bluenight hover:drop-shadow-2xl">
             Berita Kalinyamat Kulon
           </div>
-          <div className="relative z-20 mb-5 text-center text-black font-regular text-heading-6">
+          <div className="relative z-20 mb-5 text-center text-black font-regular lg:text-heading-6 text-body-2">
             Menyajikan informasi terbaru tentang peristiwa, berita terkini, dan
             artikel-artikel jurnalistik dari Kalinyamat Kulon
           </div>

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import NavbarUser from "../../components/NavbarUser";
-import RelatedNews from "../../components/Beritalainnya";
+import Beritalainnya from "../../components/Beritalainnya";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Textarea } from "@nextui-org/react";
 import * as Icon from "react-feather";
@@ -30,14 +30,6 @@ const DetailBerita = () => {
     }
   };
 
-  const truncateText = (text, maxWords) => {
-    const wordsArray = text.split(" ");
-    if (wordsArray.length > maxWords) {
-      return wordsArray.slice(0, maxWords).join(" ") + "...";
-    }
-    return text;
-  };
-
   const incrementKunjungan = async () => {
     try {
       await axios.put(
@@ -51,6 +43,40 @@ const DetailBerita = () => {
     }
   };
 
+  const timeSince = (date) => {
+    const now = new Date();
+    const secondsPast = Math.floor((now - date) / 1000);
+
+    if (secondsPast < 60) {
+      return `${secondsPast} detik yang lalu`;
+    }
+    if (secondsPast < 3600) {
+      const minutes = Math.floor(secondsPast / 60);
+      return `${minutes} menit yang lalu`;
+    }
+    if (secondsPast < 86400) {
+      const hours = Math.floor(secondsPast / 3600);
+      return `${hours} jam yang lalu`;
+    }
+    const days = Math.floor(secondsPast / 86400);
+    return `${days} hari yang lalu`;
+  };
+
+  const formatBeritaDate = (dateString) => {
+    const beritaDate = new Date(dateString);
+    const formattedDate = beritaDate.toLocaleDateString("id-ID", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    const timeSincePosted = timeSince(beritaDate);
+
+    return `${formattedDate} - ${timeSincePosted}`;
+  };
+
   if (error) {
     return <div>{error}</div>;
   }
@@ -62,7 +88,7 @@ const DetailBerita = () => {
   return (
     <div>
       <NavbarUser />
-      <div className="flex justify-between mx-70 flex-col md:flex-row gap-4">
+      <div className="flex justify-between lg:mx-70 mx-5 flex-col md:flex-row gap-4">
         <div className="w-full">
           <article className="bg-white p-6 rounded-lg shadow-md mb-8">
             <Breadcrumbs className="my-5">
@@ -70,28 +96,27 @@ const DetailBerita = () => {
               <BreadcrumbItem href="/berita">Berita</BreadcrumbItem>
               <BreadcrumbItem href="/berita/">{berita.judul}</BreadcrumbItem>
             </Breadcrumbs>
-            <div className="text-black text-[30px] font-bold leading-[40px]">
+            <div className="text-black text-heading-3 font-bold leading-[40px] mb-2">
               {berita.judul}
             </div>
-            <div className="flex items-center text-gray-600 text-sm mb-2">
-              <div className="text-black/caption-2 text-xs font-light">
-                {new Date(berita.tgl).toLocaleDateString("id-ID", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}{" "}
-                - {berita.kunjungan} kali dilihat
+            <div className="flex items-center text-gray-600 text-caption-1 mb-2">
+              <div className="flex gap-2 text-black/caption-2 text-xs font-light">
+                <Icon.Clock className="w-5 h-5" />{" "}
+                <span>{formatBeritaDate(berita.tgl)}</span>
               </div>
             </div>
-            <div className="flex items-center text-gray-600 text-sm mb-4">
-              <span className="mr-4">Ditulis oleh - Ferianta</span>
+
+            <div className="flex justify-between text-gray-600 text-caption-1 ">
+              <div className="flex gap-2 text-black/caption-2 text-xs font-light mb-2">
+                <Icon.User className="w-5 h-5" />
+                <span className="mr-4">Ditulis oleh - Ferianta</span>
+              </div>
+
+              <div className="flex gap-2 items-center text-gray-600 text-caption-1 mb-2">
+               <Icon.Eye className="w-5 h-5" /> <span >{berita.kunjungan} kali dilihat</span>
+              </div>
             </div>
-            <div className="flex items-center text-gray-600 text-sm mb-4">
-              <span className="mr-4">Kategori Berita - {berita.nama}</span>
-            </div>
-            
+
             <img
               className="w-full h-auto rounded-lg mb-4"
               src={`${import.meta.env.VITE_API_URL}/public${berita.img_berita}`}
@@ -103,7 +128,7 @@ const DetailBerita = () => {
             <p
               className="text-body-2"
               dangerouslySetInnerHTML={{
-                __html: truncateText(berita.artikel, 2000),
+                __html: berita.artikel,
               }}
             ></p>
             <div className="flex space-x-4 mb-8 mt-4">
@@ -145,12 +170,6 @@ const DetailBerita = () => {
           <div className="bg-white p-6 rounded-lg shadow-md mt-8">
             <h2 className="text-2xl font-semibold mb-4">Komentar</h2>
             <div className="space-y-4">
-              {/* <div className="bg-gray-100 p-4 rounded-md">
-                <p className="text-gray-800">
-                  <strong>John Doe</strong> - 1 jam yang lalu
-                </p>
-                <p>Artikel yang sangat informatif!</p>
-              </div> */}
               <div className="bg-gray-100 p-4 rounded-md">
                 <p className="text-gray-800">
                   <strong>Iwan RX</strong> - 2 jam yang lalu
@@ -159,7 +178,6 @@ const DetailBerita = () => {
               </div>
             </div>
             <div className="mt-6">
-              
               <form>
                 <Textarea
                   label="Komentar"
@@ -169,7 +187,7 @@ const DetailBerita = () => {
                   disableAutosize
                   classNames={{
                     base: "w-full",
-                    input: "resize-y min-h-[40px]",
+                    input: "resize-y min-h-[100px]",
                   }}
                 />
                 <button
@@ -182,8 +200,8 @@ const DetailBerita = () => {
             </div>
           </div>
         </div>
-        <aside className="w-1/3">
-          <RelatedNews />
+        <aside className="lg:w-1/3">
+          <Beritalainnya />
         </aside>
       </div>
       <Footer />

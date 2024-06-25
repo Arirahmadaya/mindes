@@ -53,7 +53,7 @@ export const insertBerita = [
   upload.single("img_berita"), // Multer middleware for single file upload
   async (req, res) => {
     console.log(req.body);
-    const { tgl, judul, artikel, id_kategori, status } = req.body;
+    const { tgl, judul, artikel, id_kategori, status} = req.body;
     let img_berita = null;
 
     if (req.file) {
@@ -62,7 +62,7 @@ export const insertBerita = [
 
     try {
       await query(
-        "INSERT INTO beritatable(tgl, judul, artikel, id_kategori, status, img_berita, kunjungan,) values (?, ?, ?, ?, ?, ?)",
+        "INSERT INTO beritatable(tgl, judul, artikel, id_kategori, status, img_berita) values (?, ?, ?, ?, ?, ?)",
         [tgl, judul, artikel, id_kategori, status, img_berita]
       );
       return res.status(200).json({ msg: "Berita ditambahkan" });
@@ -145,20 +145,6 @@ export const getBeritaImage = async (req, res) => {
   }
 };
 
-export const getBeritaLainnya = async (req, res) => {
-  try {
-    const result = await query(`
-      SELECT id_berita, judul, img_berita, tgl, kunjungan 
-      FROM beritatable 
-      ORDER BY tgl DESC 
-      LIMIT 5
-    `);
-    return res.status(200).json({ success: true, data: result });
-  } catch (error) {
-    console.log("Terjadi kesalahan", error);
-    return res.status(500).json({ msg: "terjadi kesalahan pada server" });
-  }
-};
 
 export const incrementKunjungan = async (req, res) => {
   const { id_berita } = req.params;
@@ -176,3 +162,4 @@ export const incrementKunjungan = async (req, res) => {
     return res.status(500).json({ msg: "terjadi kesalahan pada server" });
   }
 };
+

@@ -30,6 +30,7 @@ const FormBerita = () => {
     artikel: "",
     img_berita: "",
     status: "",
+    // kunjungan: "",
   });
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -132,12 +133,14 @@ const FormBerita = () => {
         data.append("img_berita", selectedImageFile);
       }
       await axios.post(`${import.meta.env.VITE_API_URL}/berita/create`, data);
+      console.log("Data yang dikirim:", formData);
       toast.success("Data berita berhasil disimpan!");
       setTimeout(() => {
         navigate("/admin/berita");
       }, 2000);
     } catch (error) {
       console.log(error);
+
     }
   };
 

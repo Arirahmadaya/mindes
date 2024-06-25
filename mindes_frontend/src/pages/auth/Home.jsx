@@ -4,13 +4,14 @@ import Footer from "../../components/Footer";
 import Carousel from "../../components/CarouselHome";
 import CardBerita from "../../components/CardBerita";
 import CarouselPerangkatDesa from "../../components/CarouselPD";
-import Maps from "../../components/Maps";
+
 import Galery from "../../components/CardGalery";
 import PendudukHome from "../../components/Pendudukan";
 import Jelajahi from "../../components/Jelajahi";
 import NavbarUser from "../../components/NavbarUser";
 import { Button, Link } from "@nextui-org/react";
 import { LogIn } from "react-feather";
+import { MapsMain } from "../../components/Maps";
 
 const Home = () => {
   return (
@@ -65,7 +66,7 @@ const Home = () => {
             Demografi Kalinyamat Kulon
           </div>
           <div>
-            <Maps />
+            <MapsMain />
           </div>
         </div>
       </div>

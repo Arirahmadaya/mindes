@@ -1,9 +1,10 @@
 import React from "react";
 
 import Footer from "../../components/Footer";
-import { MapsKecil } from "../../components/Maps";
+
 import NavbarUser from "../../components/NavbarUser";
 import StrukturPD from "../../components/StrukturPD";
+import { MapsKecil } from "../../components/Maps";
 
 const ProfilDesa = () => {
   return (

@@ -11,7 +11,7 @@ const Jelajahi = () => {
             y1="15%"
             x2="65%"
             y2="15%"
-            stroke="#97C1E4"
+            stroke="#3A0507"
             strokeWidth="3"
           />
           <line
@@ -19,7 +19,7 @@ const Jelajahi = () => {
             y1="25%"
             x2="17%"
             y2="75%"
-            stroke="#97C1E4"
+            stroke="#3A0507"
             strokeWidth="3"
           />
           <line
@@ -27,7 +27,7 @@ const Jelajahi = () => {
             y1="15%"
             x2="83%"
             y2="75%"
-            stroke="#97C1E4"
+            stroke="#3A0507"
             strokeWidth="3"
           />
           <line
@@ -35,7 +35,7 @@ const Jelajahi = () => {
             y1="85%"
             x2="65%"
             y2="85%"
-            stroke="#97C1E4"
+            stroke="#3A0507"
             strokeWidth="3"
           />
         </svg>

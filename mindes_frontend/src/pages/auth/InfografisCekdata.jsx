@@ -1,5 +1,4 @@
 import React from "react";
-
 import Footer from "../../components/Footer";
 import NavbarUser from "../../components/NavbarUser";
 import NavbarGrafis from "../../components/NavbarGrafis";
@@ -13,7 +12,7 @@ const InfografisCekData = () => {
       <div className=" lg:my-[30px] my-[10px]">
         <div className="flex flex-col md:flex-row lg:justify-between justify-center items-center lg:mx-70 mx-5 ">
           <h1 className="font-bold text-center lg:text-start md:text-heading-1 text-heading-4 text-blue hover:text-bluenight hover:drop-shadow-2xl leading-tight mb-5 md:mb-0">
-          Cek Data Masyarakat Desa
+            Cek Data Masyarakat Desa
           </h1>
           <div className="flex justify-center">
             <NavbarGrafis />
@@ -39,6 +38,7 @@ const InfografisCekData = () => {
               className="bg-primary-30 lg:text-heading-5 text-body-2 font-semibold text-white rounded-md px-5 lg:py-7 py-5 hover:underline"
               href="https://simpbb.tegalkota.go.id/"
               variant="flat"
+              target="_blank"
             >
               Cek Bansos <ExternalLink />
             </Button>
@@ -71,6 +71,7 @@ const InfografisCekData = () => {
               className="bg-primary-30 lg:text-heading-5 text-body-2 font-semibold text-white rounded-md px-5 lg:py-7 hover:underline"
               href="https://disdukcapil.tegalkab.go.id/data/jumlah_penduduk"
               variant="flat"
+              target="_blank"
             >
               Cek Penduduk <ExternalLink />
             </Button>
@@ -103,6 +104,7 @@ const InfografisCekData = () => {
               className="bg-primary-30 lg:text-heading-5 text-body-2 font-semibold text-white rounded-md px-5 lg:py-7 hover:underline"
               href="https://cekpajak.com/jawa-tengah/tegal"
               variant="flat"
+              target="_blank"
             >
               Cek Pajak PBB <ExternalLink />
             </Button>
@@ -135,6 +137,7 @@ const InfografisCekData = () => {
               className="bg-primary-30 text-heading-5 font-semibold text-white rounded-md px-5 lg:py-7 hover:underline"
               href="https://cekpajak.com/jawa-tengah/tegal"
               variant="flat"
+              target="_blank"
             >
               Cek Pajak Kendaraan <ExternalLink />
             </Button>

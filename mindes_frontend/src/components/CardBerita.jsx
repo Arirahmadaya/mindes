@@ -3,13 +3,13 @@ import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import { Calendar, Monitor, User } from "react-feather";
 import { useNavigate } from "react-router-dom";
 
-export default function CardBerita({ list = [] }) { // default value for list
+export default function CardBerita({ list = [] }) {
   const navigate = useNavigate();
 
   const formatDate = (datetime) => {
     const date = new Date(datetime);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // getMonth() is zero-based
+    const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
     return `${day}-${month}-${year}`;
   };
@@ -52,7 +52,7 @@ export default function CardBerita({ list = [] }) { // default value for list
               <div className="py-2">
                 <p
                   className="text-caption-1"
-                  dangerouslySetInnerHTML={{ __html: truncateText(item.artikel, 20) }}
+                  dangerouslySetInnerHTML={{ __html: truncateText(item.artikel, 25) }}
                 ></p>
               </div>
             </div>
