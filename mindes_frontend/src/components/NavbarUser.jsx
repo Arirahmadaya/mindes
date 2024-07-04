@@ -35,6 +35,7 @@ export default function NavbarUser() {
 
   useEffect(() => {
     const loggedInStatus = localStorage.getItem("isLoggedIn");
+    console.log("Status Login dari LocalStorage:", loggedInStatus);
     setIsLoggedIn(loggedInStatus === "true");
 
     if (loggedInStatus === "true") {
@@ -44,16 +45,24 @@ export default function NavbarUser() {
 
   const fetchProfile = async () => {
     try {
-      const token = localStorage.getItem("token"); // Assuming you store a token on login
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.log("Token tidak ditemukan");
+        setIsLoggedIn(false);
+        return;
+      }
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/profil`,
+        `${import.meta.env.VITE_API_URL}/profile`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      setProfile(response.data.data[0]);
+      console.log("Response dari server untuk profile:", response.data);
+      setProfile(response.data.data);
+      setIsLoggedIn(true);
     } catch (error) {
-      console.error("Terjadi kesalahan", error);
+      console.error("Terjadi kesalahan saat mengambil profile", error);
+      setIsLoggedIn(false);
     }
   };
 
@@ -63,17 +72,16 @@ export default function NavbarUser() {
 
   const handleLogout = () => {
     localStorage.setItem("isLoggedIn", "false");
-    localStorage.removeItem("token"); // Remove token on logout
+    localStorage.removeItem("token");
     setIsLoggedIn(false);
     setProfile({});
   };
 
   const handleLogin = () => {
     localStorage.setItem("isLoggedIn", "true");
-    // Simpan token setelah login
     localStorage.setItem("token", "userTokenHere");
     setIsLoggedIn(true);
-    fetchProfile(); // Fetch profile after login
+    fetchProfile();
   };
 
   const menuItemsMain = [
@@ -110,17 +118,17 @@ export default function NavbarUser() {
           onClick={handleMenuToggle}
           className="sm:hidden text-white"
         />
-        <NavbarBrand className="flex">
+         <NavbarBrand className="flex">
           <img
             src="/public/logo/logo_light.png"
             alt="logo"
-            className="md:w-12 md:h-12 pr-2 blok w-10 h-10"
+            className="lg:w-12 lg:h-12 pr-2 blok md:w-10 md:h-10 w-9 h-9"
           />
-          <div className="text-white hover:text-white/80">
-            <p className="font-bold lg:text-heading-6 text-body-2">
+          <div className="text-white hover:text-white/80 ">
+            <p className="font-bold lg:text-heading-6 md:text-body-2 text-caption-2 -mb-1 ">
               Desa Kalinyamat Kulon
             </p>
-            <p className="md:text-body-2 text-caption-1">Kota Tegal</p>
+            <p className="lg:text-body-1 md:text-body-2 text-[10px]">Kota Tegal</p>
           </div>
         </NavbarBrand>
       </NavbarContent>
@@ -139,7 +147,7 @@ export default function NavbarUser() {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        {isLoggedIn ? (
+        {isLoggedIn && profile ? (
           <NavbarContent as="div" className="items-center" justify="center">
             <Dropdown placement="bottom-end">
               <DropdownTrigger>
@@ -147,34 +155,34 @@ export default function NavbarUser() {
                   <Avatar
                     isBordered
                     as="button"
-                    className="transition-transform"
-                    color="primary"
+                    className="transition-transform w-6 h-6 md:w-8 md:h-8 text-tiny"
+                    color="default"
                     name={profile.username}
                     size="sm"
-                    src={profile.img_user || "/img_desa_user.png"}
+                    src={profile.img_user || "/img_desa/user.png"}
                   />
-                  <p className="text-white font-semibold ml-3 hover:cursor-pointer">
+                  <p className="text-white md:text-caption-1 text-caption-2 hover:font-semibold ml-3 hover:cursor-pointer">
                     {profile.username}
                   </p>
                 </div>
               </DropdownTrigger>
 
               <DropdownMenu aria-label="Profile Actions" variant="flat">
-                <DropdownItem key="profile" className="h-14 gap-2">
+                <DropdownItem key="login-as" className="h-14 gap-2" textValue={`Login sebagai ${profile.email}`}>
                   <p className="font-semibold">Login sebagai</p>
                   <p className="font-semibold">{profile.email}</p>
                 </DropdownItem>
-                <DropdownItem key="profile" as={Link} href="/userprofil">
+                <DropdownItem key="user-profile" as={Link} href="/userprofil" textValue="Profile">
                   Profile
                 </DropdownItem>
-
-                <DropdownItem key="help" as={Link} href="/bantuan">
+                <DropdownItem key="help" as={Link} href="/bantuan" textValue="Bantuan">
                   Bantuan
                 </DropdownItem>
                 <DropdownItem
                   key="logout"
                   color="danger"
                   onClick={handleLogout}
+                  textValue="Log Out"
                 >
                   Log Out
                 </DropdownItem>

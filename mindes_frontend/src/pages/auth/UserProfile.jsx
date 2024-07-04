@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavbarUser from "../../components/NavbarUser";
 import { PaperAirplaneIcon, XMarkIcon } from "@heroicons/react/20/solid";
+import axios from "axios";
 
 const UserProfile = () => {
+  const [profile, setProfile] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+  });
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/userprofile`, // Update the endpoint accordingly
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        const userData = response.data.data[0];
+        setProfile({
+          firstName: userData.firstName || "",
+          lastName: userData.lastName || "",
+          email: userData.email || "",
+          phoneNumber: userData.phoneNumber || "",
+        });
+      } catch (error) {
+        console.error("Terjadi kesalahan", error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
       <NavbarUser />
@@ -14,7 +47,9 @@ const UserProfile = () => {
               alt="Opi"
               className="w-24 h-24 rounded-full mb-2"
             />
-            <h1 className="text-[30px] font-bold">Kofipah Armaatus</h1>
+            <h1 className="text-[30px] font-bold">
+              {profile.firstName} {profile.lastName}
+            </h1>
           </div>
           <form className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -23,7 +58,7 @@ const UserProfile = () => {
                 <input
                   type="text"
                   className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value="Kofipah"
+                  value={profile.firstName}
                   readOnly
                 />
               </div>
@@ -32,7 +67,7 @@ const UserProfile = () => {
                 <input
                   type="text"
                   className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value="Armaatus"
+                  value={profile.lastName}
                   readOnly
                 />
               </div>
@@ -43,7 +78,7 @@ const UserProfile = () => {
                 <input
                   type="email"
                   className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value="kofipah78@gmail.com"
+                  value={profile.email}
                   readOnly
                 />
               </div>
@@ -52,7 +87,7 @@ const UserProfile = () => {
                 <input
                   type="text"
                   className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value="08123123123"
+                  value={profile.phoneNumber}
                   readOnly
                 />
               </div>

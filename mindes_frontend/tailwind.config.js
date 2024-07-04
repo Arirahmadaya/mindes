@@ -39,6 +39,12 @@ export default {
       "display-2": "54px",
       "display-1": "72px",
     },
+    screens: {
+      sm: "480px",
+      md: "768px",
+      lg: "976px",
+      xl: "1440px",
+    },
 
     extend: {
       margin: {

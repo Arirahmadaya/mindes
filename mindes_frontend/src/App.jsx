@@ -17,6 +17,7 @@ import InfografisCekdata from "./pages/auth/InfografisCekdata";
 import InfografisPenduduk from "./pages/auth/InfografisPenduduk";
 import InfografisSDGs from "./pages/auth/InfografisSDGs";
 import InfografisStunting from "./pages/auth/InfografisStunting";
+import TermsAndConditions from "./pages/auth/TermsAndConditions";
 import Beranda from "./pages/admin/Beranda";
 import BeritaAdmin from "./pages/admin/berita/BeritaAdmin";
 import Penduduk from "./pages/admin/penduduk/Penduduk";
@@ -107,6 +108,7 @@ const Main = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/userprofil" element={<UserProfile />} />
         <Route path="/bantuan" element={<Bantuan />} />
+        <Route path="/syaratdanketentuan" element={<TermsAndConditions />} />
         {/* Admin */}
         <Route path="/admin/beranda" element={<Beranda />} />
         <Route path="/admin/berita" element={<BeritaAdmin />} />
