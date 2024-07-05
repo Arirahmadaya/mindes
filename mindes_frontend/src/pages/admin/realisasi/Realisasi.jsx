@@ -7,6 +7,7 @@ import { Eye, Edit, Trash2, Printer } from "react-feather";
 import TableProps from "../../../components/TableProps";
 import { useNavigate } from "react-router-dom";
 import PrintLaporan from "../../../components/PrintLaporan";
+import { Tooltip } from "@nextui-org/react";
 
 const Realisasi = () => {
   const [realisasitable, setRealisasi] = useState([]);
@@ -76,13 +77,25 @@ const Realisasi = () => {
       },
     },
     {
-      icon: <Edit className="w-4 h-4 text-warning" />,
+      icon: (
+        <Tooltip content="Edit">
+          <span className=" active:opacity-50">
+            <Edit className="w-4 h-4 text-warning" />
+          </span>
+        </Tooltip>
+      ),
       onClick: (item) => {
         console.log("Edit item:", item);
       },
     },
     {
-      icon: <Trash2 className="w-4 h-4 text-danger" />,
+      icon: (
+        <Tooltip content="Hapus">
+          <span className=" active:opacity-50">
+            <Trash2 className="w-4 h-4 text-danger " />
+          </span>
+        </Tooltip>
+      ),
       onClick: (item) => {
         console.log("Delete item:", item);
       },

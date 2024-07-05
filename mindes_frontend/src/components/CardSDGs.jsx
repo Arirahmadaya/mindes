@@ -5,6 +5,7 @@ import {
   ModalHeader,
   ModalBody,
   useDisclosure,
+  Tooltip,
 } from "@nextui-org/react";
 
 const Card = ({ title, image, value, onClick }) => {
@@ -48,7 +49,7 @@ const Judul = () => {
     <div className=" rounded-lg flex flex-col justify-between lg:w-[700px]">
       <div>
         <div className="font-bold md:text-heading-3 text-heading-4 mb-2 text-black hover:drop-shadow-xl">
-        Sustainable Development Goals/Tujuan Pembangunan Berkelanjutan
+          Sustainable Development Goals/Tujuan Pembangunan Berkelanjutan
         </div>
         <p className="text-body-2">
           SDGs Desa adalah upaya terpadu mewujudkan Desa tanpa kemiskinan dan
@@ -137,8 +138,7 @@ const CardSDgs = () => {
       title: "Desa Tanpa Kesenjangan",
       image: "/sdgs/10.png",
       value: 58.71,
-      description:
-        "Mengurangi ketimpangan di dalam dan antar negara.",
+      description: "Mengurangi ketimpangan di dalam dan antar negara.",
     },
     {
       title: "Kawasan Permukiman Desa Aman & Nyaman",
@@ -151,8 +151,7 @@ const CardSDgs = () => {
       title: "Konsumsi dan Produksi Desa Sadar Lingkungan",
       image: "/sdgs/12.png",
       value: 58.71,
-      description:
-        "Menjamin pola konsumsi dan produksi yang berkelanjutan.",
+      description: "Menjamin pola konsumsi dan produksi yang berkelanjutan.",
     },
     {
       title: "Desa Tanggap Perubahan Iklim",
@@ -190,7 +189,6 @@ const CardSDgs = () => {
         "Menguatkan sarana pelaksanaan dan merevitalisasi kemitraan global untuk pembangunan berkelanjutan.",
     },
   ];
-  
 
   const handleCardClick = (card) => {
     setModalContent(card);
@@ -206,7 +204,10 @@ const CardSDgs = () => {
   return (
     <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 lg:text-start text-center">
       <Judul />
-      <TotalScoreCard score={totalScore.toFixed(2)} className="justify-center" />
+      <TotalScoreCard
+        score={totalScore.toFixed(2)}
+        className="justify-center"
+      />
       {cardsData.map((card, index) => (
         <Card
           key={index}
@@ -234,7 +235,6 @@ const CardSDgs = () => {
                 <p className=" text-heading-3">{modalContent.title}</p>
               </ModalHeader>
               <ModalBody>
-                
                 <p>{modalContent.description}</p>
               </ModalBody>
             </>

@@ -67,7 +67,8 @@ export default function Tablenih() {
     if (hasSearchFilter) {
       filteredUsers = filteredUsers.filter((user) =>
         user.name.toLowerCase().includes(filterValue.toLowerCase())
-      );t
+      );
+      t;
     }
     if (
       statusFilter !== "all" &&
@@ -142,10 +143,18 @@ export default function Tablenih() {
               <Eye className="w-4 h-4 text-black " />
             </Button>
             <Button isIconOnly radius="full" size="sm" variant="light">
-              <Edit className="w-4 h-4 text-warning" />
+              <Tooltip content="Edit">
+                <span className=" active:opacity-50">
+                  <Edit className="w-4 h-4 text-warning" />
+                </span>
+              </Tooltip>
             </Button>
             <Button isIconOnly radius="full" size="sm" variant="light">
-              <Trash2 className="w-4 h-4 text-danger" />
+              <Tooltip content="Hapus">
+                <span className=" active:opacity-50">
+                  <Trash2 className="w-4 h-4 text-danger " />
+                </span>
+              </Tooltip>
             </Button>
           </div>
         );
@@ -374,7 +383,6 @@ const columns = [
   { name: "ACTIONS", uid: "actions" },
 ];
 
-
 const statusOptions = [
   { name: "Active", uid: "active" },
   { name: "Paused", uid: "paused" },
@@ -499,4 +507,3 @@ const users = [
     email: "joko.susanto@example.com",
   },
 ];
-

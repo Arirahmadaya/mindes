@@ -118,7 +118,11 @@ const BeritaAdmin = () => {
       icon: (
         <Tooltip content="Edit">
           <span className=" active:opacity-50">
-            <Edit className="w-4 h-4 text-warning" />
+            <Tooltip content="Edit">
+              <span className=" active:opacity-50">
+                <Edit className="w-4 h-4 text-warning" />
+              </span>
+            </Tooltip>
           </span>
         </Tooltip>
       ),

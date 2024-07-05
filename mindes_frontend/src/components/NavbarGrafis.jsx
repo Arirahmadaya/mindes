@@ -9,15 +9,15 @@ export default function NavbarGrafis() {
   const linkClassName = (path) =>
     `flex flex-col items-center group hover:font-semibold ${
       location.pathname === path
-        ? "underline underline-offset-[10px] decoration-[3px] decoration-primary-30 font-semibold"
+        ? "underline underline-offset-[10px] decoration-[3px] decoration-primary-30 font-semibold "
         : ""
-    } whitespace-nowrap`;
+    } whitespace-nowrap lg:text-[16px] text-[14px] text-black hover:text-[#1F308B] hover:drop-shadow-2xl leading-tight mb-1 md:mb-0`;
 
   const iconClassName = (path) =>
-    `h-6 w-6 mb-1 ${location.pathname === path ? "stroke-2" : "stroke-1"} group-hover:stroke-2`;
+    `lg:h-6 lg:w-6 h-5 w-5 mb-1 ${location.pathname === path ? "stroke-2" : "stroke-1"} group-hover:stroke-2`;
 
   return (
-    <div className="flex gap-4 ">
+    <div className="flex lg:gap-4 gap-3 ">
       <Link href="/infografis" className={linkClassName("/infografis")}>
         <CreditCard className={iconClassName("/infografis")} />
         APBDes

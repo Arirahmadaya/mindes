@@ -7,6 +7,8 @@ import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import TableProps from "../../../components/TableProps";
 import { useNavigate } from "react-router-dom";
 
+import { Tooltip } from "@nextui-org/react";
+
 const User = () => {
   const [usertable, setUser] = useState([]);
   const navigate = useNavigate();
@@ -56,13 +58,25 @@ const User = () => {
 
   const actionButtons = [
     {
-      icon: <Edit className="w-4 h-4 text-warning" />,
+      icon: (
+        <Tooltip content="Edit">
+          <span className=" active:opacity-50">
+            <Edit className="w-4 h-4 text-warning" />
+          </span>
+        </Tooltip>
+      ),
       onClick: (user) => {
         navigate(`/admin/user/edit/${user.id}`);
       },
     },
     {
-      icon: <Trash2 className="w-4 h-4 text-danger" />,
+      icon: (
+        <Tooltip content="Hapus">
+          <span className=" active:opacity-50">
+            <Trash2 className="w-4 h-4 text-danger " />
+          </span>
+        </Tooltip>
+      ),
       onClick: (user) => {
         // Implement your logic for deleting here
       },

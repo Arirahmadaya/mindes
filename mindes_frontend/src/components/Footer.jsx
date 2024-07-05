@@ -5,14 +5,16 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <footer className="flex flex-wrap justify-between bg-primary-40 text-white rounded-t-3xl py-5 px-8 md:px-70">
-        <div className="w-full xl:w-auto flex-shrink-0 mb-4 xl:mb-0">
-          <Logo />
-          <div className="hidden xl:block">
+      <footer className="flex flex-wrap justify-between bg-primary-40 text-white rounded-t-3xl lg:px-70 p-5 ">
+        <div className="w-auto mb-4 ">
+          <div>
+            <Logo />
+          </div>
+          <div className="hidden lg:block">
             <Medsos />
           </div>
         </div>
-        <div className="w-full md:hidden text-body-2 ">
+        <div className="w-full lg:hidden text-body-2 ">
           <Dropdown title="Kontak Kelurahan">
             <KontakKelurahan />
           </Dropdown>
@@ -26,18 +28,18 @@ const Footer = () => {
             <Medsos />
           </div>
         </div>
-        <div className="hidden md:flex w-full md:w-auto flex-shrink-0 mb-4 md:mb-0">
+        <div className="hidden lg:flex w-full md:w-auto flex-shrink-0 mb-4 md:mb-0">
           <KontakKelurahan />
         </div>
-        <div className="hidden md:flex w-full md:w-auto flex-shrink-0 mb-4 md:mb-0">
+        <div className="hidden lg:flex w-full md:w-auto flex-shrink-0 mb-4 md:mb-0">
           <KontakPenting />
         </div>
-        <div className="hidden md:flex w-full md:w-auto flex-shrink-0 mb-4 md:mb-0">
+        <div className="hidden lg:flex w-full md:w-auto flex-shrink-0 mb-4 md:mb-0">
           <Jelajahi />
         </div>
       </footer>
       <div className="bg-primary-10 text-center py-2">
-      © 2024 Madilog. All Rights Reserved.
+        © 2024 Madilog. All Rights Reserved.
       </div>
     </>
   );
@@ -48,12 +50,12 @@ export default Footer;
 export const Logo = () => {
   return (
     <div className="flex items-center xl:mb-5">
-      <img src="logo/logo_light.png" alt="Logo" className="w-24 h-24 pr-3" />
-      <div className="-space-y-2">
-        <p className="text-heading-3 font-bold">Kalinyamat Kulon</p>
-        <p className="text-body-2">
-          Kecamatan Margadana
-          <br />
+      <img src="logo/logo_light.png" alt="Logo" className="lg:w-24 lg:h-24 w-18 h-18 pr-3" />
+      <div className="-space-y-2 -mt-1">
+        <p className="lg:text-heading-5 text-body-2 font-bold mb-1">Kalinyamat Kulon</p>
+        <p className="lg:text-body-2 text-caption-2">
+          Kecamatan Margadana,
+       
           Kota Tegal
           <br />
           Provinsi Jawa Tengah
@@ -75,13 +77,25 @@ export const Medsos = () => {
         >
           <Icon.Facebook className="text-white w-6 h-6 " />
         </Link>
-        <Link to="https://twitter.com" target="_blank" className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 hover:border-primary-20 hover:bg-gradient-50">
+        <Link
+          to="https://twitter.com"
+          target="_blank"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 hover:border-primary-20 hover:bg-gradient-50"
+        >
           <Icon.Twitter className="text-white w-6 h-6" />
         </Link>
-        <Link to="https://instagram.com" target="_blank" className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 hover:border-primary-20 hover:bg-gradient-50">
+        <Link
+          to="https://instagram.com"
+          target="_blank"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 hover:border-primary-20 hover:bg-gradient-50"
+        >
           <Icon.Instagram className="text-white w-6 h-6 " />
         </Link>
-        <Link to="https://youtube.com" target="_blank" className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 hover:border-primary-20 hover:bg-gradient-50">
+        <Link
+          to="https://youtube.com"
+          target="_blank"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 hover:border-primary-20 hover:bg-gradient-50"
+        >
           <Icon.Youtube className="text-white w-6 h-6 " />
         </Link>
       </div>
@@ -92,10 +106,10 @@ export const Medsos = () => {
 export const KontakKelurahan = () => {
   return (
     <div>
-      <p className="text-body-1 font-bold mb-4 hidden md:block">
+      <p className="text-body-2 font-bold mb-4 hidden md:block">
         Kontak Kelurahan
       </p>
-      <div className="text-body-2">
+      <div className="text-caption-1">
         <div className="flex items-center space-x-2 py-2">
           <Icon.Phone className="text-white w-6 h-6" />
           <p>+62283 311354</p>
@@ -159,12 +173,12 @@ const ListKontak = [
 export const KontakPenting = () => {
   return (
     <div>
-      <p className="text-body-1 font-bold mb-4 hidden md:block ">
+      <p className="text-body-2 font-bold mb-4 hidden md:block ">
         Kontak Penting
       </p>
-      <div className="space-y-4">
+      <div className="space-y-4 ">
         {ListKontak.map((kontak, index) => (
-          <div key={index} className="flex items-center space-x-2">
+          <div key={index} className="flex items-center space-x-2 text-caption-2">
             <img src={kontak.icon} alt={kontak.title} className="w-6 h-6" />
             <div>
               <p className="text-body-2 font-semibold">{kontak.title}</p>
@@ -180,14 +194,38 @@ export const KontakPenting = () => {
 export const Jelajahi = () => {
   return (
     <div>
-      <p className="text-body-1 font-bold mb-4 hidden md:block">Jelajahi</p>
+      <p className="text-body-2 font-bold mb-4 hidden md:block">Jelajahi</p>
       <div className="space-y-2 text-body-2">
-        <Link to="/" className="hover:font-bold hover:underline">Beranda</Link><br />
-        <Link to="/profil" className="hover:font-bold hover:underline">Profil Desa</Link><br />
-        <Link to="/berita" className="hover:font-bold hover:underline">Berita</Link><br />
-        <Link to="/infografis/penduduk" className="hover:font-bold hover:underline">Infografis</Link><br />
-        <Link to="/infografis/cekdata" className="hover:font-bold hover:underline">Cek Data</Link><br />
-        <Link to="/login" className="hover:font-bold hover:underline">Masuk</Link><br />
+        <Link to="/" className="hover:font-bold hover:underline">
+          Beranda
+        </Link>
+        <br />
+        <Link to="/profil" className="hover:font-bold hover:underline">
+          Profil Desa
+        </Link>
+        <br />
+        <Link to="/berita" className="hover:font-bold hover:underline">
+          Berita
+        </Link>
+        <br />
+        <Link
+          to="/infografis/penduduk"
+          className="hover:font-bold hover:underline"
+        >
+          Infografis
+        </Link>
+        <br />
+        <Link
+          to="/infografis/cekdata"
+          className="hover:font-bold hover:underline"
+        >
+          Cek Data
+        </Link>
+        <br />
+        <Link to="/login" className="hover:font-bold hover:underline">
+          Masuk
+        </Link>
+        <br />
       </div>
     </div>
   );

@@ -57,6 +57,32 @@ export const getUserById = async(req,res)=>{
     }
 }
 
+export const getAuthenticatedUser = async (req, res) => {
+    try {
+        const result = await query('SELECT * FROM usertable WHERE id_user = ?', [req.user.id_user]);
+        if (result.length === 0) {
+            return res.status(404).json({ msg: "User not found" });
+        }
+        return res.status(200).json({ success: true, data: result[0] });
+    } catch (e) {
+        console.log("Terjadi kesalahan", e);
+        return res.status(500).json({ msg: "Terjadi kesalahan pada server" });
+    }
+};
+// export const getProfile = async (req, res) => {
+//     const userId = req.user.id_user;
+//     try {
+//       const result = await query('SELECT * FROM usertable WHERE id_user = ?', [userId]);
+//       if (result.length === 0) {
+//         return res.status(404).json({ success: false, message: "User not found" });
+//       }
+//       return res.status(200).json({ success: true, data: result });
+//     } catch (e) {
+//       console.log("Terjadi kesalahan", e);
+//       return res.status(500).json({ msg: "Terjadi kesalahan pada server" });
+//     }
+//   };
+
 // export const getUserTest = async(req,res)=>{
 //     const {id_user, username} = req.query
 //     console.log(id, username)

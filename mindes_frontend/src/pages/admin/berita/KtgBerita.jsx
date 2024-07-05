@@ -14,6 +14,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
+  Tooltip,
 } from "@nextui-org/react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -81,7 +82,17 @@ const KtgBerita = () => {
 
   const actionButtons = [
     {
-      icon: <Edit className="w-4 h-4 text-warning" />,
+      icon: (
+        <Tooltip content="Edit">
+          <span className=" active:opacity-50">
+            <Tooltip content="Edit">
+              <span className=" active:opacity-50">
+                <Edit className="w-4 h-4 text-warning" />
+              </span>
+            </Tooltip>
+          </span>
+        </Tooltip>
+      ),
       onClick: (kategori) => {
         navigate(`/admin/datamaster/kategori/edit/${kategori.id}`, {
           state: kategori,
@@ -90,7 +101,13 @@ const KtgBerita = () => {
       },
     },
     {
-      icon: <Trash2 className="w-4 h-4 text-danger" />,
+      icon: (
+        <Tooltip content="Hapus">
+          <span className=" active:opacity-50">
+            <Trash2 className="w-4 h-4 text-danger " />
+          </span>
+        </Tooltip>
+      ),
       onClick: (kategori) => {
         confirmDeleteKategori(kategori);
       },

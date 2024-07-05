@@ -14,6 +14,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
+  Tooltip,
 } from "@nextui-org/react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -80,7 +81,13 @@ const Akuntansi = () => {
 
   const actionButtons = [
     {
-      icon: <Edit className="w-4 h-4 text-warning" />,
+      icon: (
+        <Tooltip content="Edit">
+          <span className=" active:opacity-50">
+            <Edit className="w-4 h-4 text-warning" />
+          </span>
+        </Tooltip>
+      ),
       onClick: (item) => {
         navigate(`/admin/datamaster/akuntansi/edit/${item.id}`, {
           state: item,
@@ -89,7 +96,13 @@ const Akuntansi = () => {
       },
     },
     {
-      icon: <Trash2 className="w-4 h-4 text-danger" />,
+      icon: (
+        <Tooltip content="Hapus">
+          <span className=" active:opacity-50">
+            <Trash2 className="w-4 h-4 text-danger " />
+          </span>
+        </Tooltip>
+      ),
       onClick: (item) => {
         confirmDeleteAkun(item);
       },
