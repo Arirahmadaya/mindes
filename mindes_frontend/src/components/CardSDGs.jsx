@@ -16,15 +16,15 @@ const Card = ({ title, image, value, onClick }) => {
     >
       <div className="flex flex-col ">
         <div className="mb-2">
-          <h3 className="text-lg font-bold text-heading-3">{title}</h3>
+          <h3 className="font-bold lg:text-heading-3 text-body-1">{title}</h3>
         </div>
         <div>
-          <img src={image} alt={title} className="w-[120px] h-[120px]" />
+          <img src={image} alt={title} className="lg:w-[120px] lg:h-[120px] w-[80px] h-[80px]" />
         </div>
       </div>
       <div className="text-right flex flex-col justify-center items-end self-end">
-        <p className="text-heading-4 text-gray-500 -mb-5">Nilai</p>
-        <p className="text-display-2 font-bold">{value}</p>
+        <p className="lg:text-heading-4 text-heading-6 text-gray-500 lg:-mb-5 -mb-1">Nilai</p>
+        <p className="lg:text-display-2  text-heading-4 font-bold">{value}</p>
       </div>
     </div>
   );
@@ -34,11 +34,11 @@ const TotalScoreCard = ({ score }) => {
   return (
     <div className="bg-gradient-20 rounded-lg p-4 flex flex-col justify-end md:w-2/3 w-full ml-auto transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
       <div>
-        <h3 className="text-lg font-bold text-heading-3">Skor Total SDGs</h3>
-        <p className="text-lg text-heading-3 font-bold">Kalinyamat Kulon</p>
+        <h3 className="font-bold lg:text-heading-3 text-heading-5">Skor Total SDGs</h3>
+        <p className=" lg:text-heading-3 text-heading-6 font-bold">Kalinyamat Kulon</p>
       </div>
       <div className="lg:text-left text-center">
-        <p className="text-display-1 font-bold">{score}</p>
+        <p className="lg:text-display-1 text-heading-1 font-bold">{score}</p>
       </div>
     </div>
   );
@@ -48,10 +48,10 @@ const Judul = () => {
   return (
     <div className=" rounded-lg flex flex-col justify-between lg:w-[700px]">
       <div>
-        <div className="font-bold md:text-heading-3 text-heading-4 mb-2 text-black hover:drop-shadow-xl">
+        <div className="font-bold md:text-heading-3 text-heading-6 mb-2 text-black hover:drop-shadow-xl">
           Sustainable Development Goals/Tujuan Pembangunan Berkelanjutan
         </div>
-        <p className="text-body-2">
+        <p className="text-caption-1 lg:text-body-2 text-justify">
           SDGs Desa adalah upaya terpadu mewujudkan Desa tanpa kemiskinan dan
           kelaparan, Desa ekonomi tumbuh merata, Desa peduli kesehatan, Desa
           peduli lingkungan, Desa peduli pendidikan, Desa ramah perempuan, Desa
@@ -232,7 +232,7 @@ const CardSDgs = () => {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col">
-                <p className=" text-heading-3">{modalContent.title}</p>
+                <p className=" lg:text-heading-3 text-heading-6">{modalContent.title}</p>
               </ModalHeader>
               <ModalBody>
                 <p>{modalContent.description}</p>

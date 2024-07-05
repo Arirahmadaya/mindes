@@ -157,7 +157,7 @@ export default function ChartAPBDes() {
             Anggaran Pendapatan dan Belanja Desa
           </Typography>
         </div>
-        <div className="p-4">
+        <div className="lg:p-4 py-2">
           <Chart
             options={chartConfig.options}
             series={chartConfig.series}
