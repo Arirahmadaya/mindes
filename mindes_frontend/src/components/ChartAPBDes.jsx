@@ -25,38 +25,6 @@ const chartConfig = {
       toolbar: {
         show: false,
       },
-      responsive: [
-        {
-          breakpoint: 1024,
-          options: {
-            plotOptions: {
-              bar: {
-                columnWidth: "50%",
-              },
-            },
-          },
-        },
-        {
-          breakpoint: 768,
-          options: {
-            plotOptions: {
-              bar: {
-                columnWidth: "60%",
-              },
-            },
-          },
-        },
-        {
-          breakpoint: 480,
-          options: {
-            plotOptions: {
-              bar: {
-                columnWidth: "70%",
-              },
-            },
-          },
-        },
-      ],
     },
     title: {
       show: false,
@@ -81,7 +49,7 @@ const chartConfig = {
       labels: {
         style: {
           colors: "#616161",
-          fontSize: "12px",
+          fontSize: "10px",
           fontFamily: "inherit",
           fontWeight: 400,
         },
@@ -104,7 +72,7 @@ const chartConfig = {
       labels: {
         style: {
           colors: "#616161",
-          fontSize: "12px",
+          fontSize: "10px",
           fontFamily: "inherit",
           fontWeight: 400,
         },
@@ -145,12 +113,71 @@ const chartConfig = {
     tooltip: {
       theme: "dark",
     },
+    responsive: [
+      {
+        breakpoint: 1024,
+        options: {
+          xaxis: {
+            labels: {
+              style: {
+                fontSize: "12px",
+              },
+            },
+          },
+          yaxis: {
+            labels: {
+              style: {
+                fontSize: "12px",
+              },
+            },
+          },
+        },
+      },
+      {
+        breakpoint: 768,
+        options: {
+          xaxis: {
+            labels: {
+              style: {
+                fontSize: "10px",
+              },
+            },
+          },
+          yaxis: {
+            labels: {
+              style: {
+                fontSize: "10px",
+              },
+            },
+          },
+        },
+      },
+      {
+        breakpoint: 480,
+        options: {
+          xaxis: {
+            labels: {
+              style: {
+                fontSize: "8px",
+              },
+            },
+          },
+          yaxis: {
+            labels: {
+              style: {
+                fontSize: "8px",
+              },
+            },
+          },
+        },
+      },
+    ],
   },
 };
 
 export default function ChartAPBDes() {
   return (
-    <div className="flex justify-center  ">
+    <div className="flex justify-center">
       <div className="bg-white rounded-lg w-full transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
         <div className="bg-blue-100 rounded-tl-lg rounded-br-[20px] inline-block min-w-max">
           <Typography className="text-heading-4 font-semibold text-center text-blue p-5">
@@ -169,6 +196,3 @@ export default function ChartAPBDes() {
     </div>
   );
 }
-
-
-

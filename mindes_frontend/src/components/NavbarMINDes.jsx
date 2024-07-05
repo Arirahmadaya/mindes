@@ -61,7 +61,7 @@ export default function NavbarMINDes() {
             className="md:w-auto md:h-11 lg:pr-2 pr-1  blok w-auto h-10 "
 
           />
-          <div className="text-blue hover:text-blue/80 mt-1">
+          <div className="text-blue hover:text-blue/80 mt-1 hidden lg:block">
             <p className="font-bold lg:text-heading-6 ">
               ADILOG
             </p>
