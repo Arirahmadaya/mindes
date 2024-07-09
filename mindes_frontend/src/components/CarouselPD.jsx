@@ -49,11 +49,11 @@ const CarouselPerangkatDesa = () => {
   }, []);
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? initialSlides.length - visibleCount : prevIndex - visibleCount));
+    setCurrentIndex((prevIndex) => (prevIndex - visibleCount + initialSlides.length) % initialSlides.length);
   };
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === initialSlides.length - visibleCount ? 0 : prevIndex + visibleCount));
+    setCurrentIndex((prevIndex) => (prevIndex + visibleCount) % initialSlides.length);
   };
 
   const visibleSlides = (startIndex) => {
@@ -71,9 +71,9 @@ const CarouselPerangkatDesa = () => {
           <div
             key={index}
             style={{ backgroundImage: `url(${slide.url})` }}
-            className="transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500 bg-center bg-cover w-full lg:w-[320px] h-[370px] rounded-2xl flex lg:mx-0 mx-10"
+            className="transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500 bg-center bg-cover w-full lg:w-[320px] lg:h-[370px] h-[290px] rounded-2xl flex lg:mx-0 mx-10"
           >
-            <div className="w-full lg:w-[320px] h-[80px] bg-primary-10 rounded-b-2xl flex flex-col justify-center items-center text-center self-end">
+            <div className="w-full lg:w-[320px] lg:h-[80px] h-[60px] bg-primary-10 rounded-b-2xl flex flex-col justify-center items-center text-center self-end">
               <p className="text-heading-6">{slide.name}</p>
               <p className="text-caption-2">{slide.jabatan}</p>
             </div>

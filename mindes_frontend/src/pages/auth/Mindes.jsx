@@ -1,6 +1,5 @@
 import React from "react";
 import { Input, Button } from "@nextui-org/react";
-import { Mail, Phone, MapPin } from "react-feather";
 import NavbarMINDes from "../../components/NavbarMINDes";
 
 const Mindes = () => {
@@ -17,7 +16,7 @@ const Mindes = () => {
                 className="w-2/3 lg:h-[307px] "
               />
             </div>
-            <DrawerWithForm />
+
             <div className="w-1/2 lg:h-[410px] h-auto bg-blue-900 rounded-bl-[20px] flex items-center justify-end lg:p-16 py-10 px-10">
               <div className="text-left text-white">
                 <div className="w-full lg:text-display-2 md:text-heading-4 text-heading-6 font-bold lg:leading-[64.80px] lg:mt-12 mt-5">
@@ -180,86 +179,80 @@ const Mindes = () => {
             </div>
           </section>
 
-          <section
-            id="contact"
-            className="mt-12 text-black p-6 rounded-lg"
-          >
-            <h2 className="lg:text-heading-1 text-heading-4 font-bold lg:w-1/2 w-full ">
-              Want to own the same app? Leave us a message
-            </h2>
-            <div className="flex flex-col lg:flex-row items-center ">
-              <div className="flex-1 border-2 h-[500px]">
-                <p className="mt-4 text-body-1">
-                  We'd love to hear from you. Please fill out this form or shoot
-                  us an email.
-                </p>
-                <div className="mt-6 space-y-4 text-body-2 ">
-                  <div className="flex items-center gap-7">
-                    <div className="items-center">
-                      <div className="flex-col gap-2 ">
-                        <Mail className="h-6 w-6" />
-                        <p>Email</p>
-                      </div>
-                      
-                      <div className="">mindes@gmail.com</div>
-                    </div>
-                    <div className="items-center">
-                      <div className="flex-col gap-2 ">
-                        <Phone className="h-6 w-6" />
-                        <p>Phone</p>
-                      </div>
-                      <div className="">0878-7577-0909</div>
-                    </div>
-                  </div>
-
-                  <div className=" items-center">
-                    <div className="flex-col gap-2 ">
-                      <MapPin className="h-6 w-6" />
-                      <p>Location</p>
-                    </div>
-                    <div className="">
-                      Jl. Hang Lekiu, Sambau, Kecamatan Nongsa, Kota Batam,
-                      Kepulauan Riau 29465
-                    </div>
-                  </div>
+          <section id="contact" className="mt-12 text-black p-6 rounded-lg ">
+      <h2 className="lg:text-heading-1 text-heading-4 font-bold lg:w-1/2 w-full text-left lg:leading-[55.80px] leading-[35.80px]">
+        Want to own the same app? Leave us a message
+      </h2>
+      <div className="flex flex-col lg:flex-row text-left mt-5">
+        <div className="flex-1 h-[500px]">
+          <p className="mt-4 text-body-1">
+            We'd love to hear from you. Please fill out this form or shoot us an email.
+          </p>
+          <div className="mt-6 space-y-4 text-body-2">
+            <div className="flex gap-10 mb-5">
+              <div className="items-center">
+                <div className="flex-col gap-2 text-left ">
+                  <EnvelopeIcon className="h-6 w-6" />
+                  <p>Email</p>
                 </div>
+                <div className="">mindes@gmail.com</div>
               </div>
-              <div className="bg-blue-900 text-white p-6 rounded-lg mt-8 lg:mt-0 lg:ml-8 flex-1 lg:w-1/2 w-full mx-auto">
-                <form className="flex flex-col gap-4">
-                  <Input
-                    variant="underlined"
-                    label="My name is"
-                    placeholder="Your Name"
-                    required
-                  />
-                  <Input
-                    variant="underlined"
-                    label="From"
-                    placeholder="Your Company"
-                  />
-                  <Input
-                    variant="underlined"
-                    label="Reach out to me at"
-                    placeholder="Your Email"
-                    required
-                  />
-                  <Input
-                    variant="underlined"
-                    label="and whatsapp me at"
-                    placeholder="Your WhatsApp Number"
-                  />
-                  <Input
-                    variant="underlined"
-                    label="I have a project that"
-                    placeholder="Project Details"
-                  />
-                  <Button type="submit" className="bg-blue-500 text-white mt-4">
-                    Send
-                  </Button>
-                </form>
+              <div className="items-center">
+                <div className="flex-col gap-2 text-left">
+                  <PhoneArrowUpRightIcon className="h-6 w-6" />
+                  <p>Phone</p>
+                </div>
+                <div className="">0878-7577-0909</div>
               </div>
             </div>
-          </section>
+
+            <div className="items-center text-left">
+              <div className="flex-col gap-2">
+                <MapPinIcon className="h-6 w-6" />
+                <p>Location</p>
+              </div>
+              <div className="">
+                Jl. Hang Lekiu, Sambau, Kecamatan Nongsa, Kota Batam, Kepulauan Riau 29465
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-blue-900 text-white p-6 rounded-lg mt-8 lg:mt-0 lg:ml-8 flex-1 lg:w-1/2 w-full mx-auto">
+          <form className="flex flex-col gap-4">
+            <Input
+              variant="underlined"
+              label="My name is"
+              placeholder="Your Name"
+              required
+            />
+            <Input
+              variant="underlined"
+              label="From"
+              placeholder="Your Company"
+            />
+            <Input
+              variant="underlined"
+              label="Reach out to me at"
+              placeholder="Your Email"
+              required
+            />
+            <Input
+              variant="underlined"
+              label="and whatsapp me at"
+              placeholder="Your WhatsApp Number"
+            />
+            <Input
+              variant="underlined"
+              label="I have a project that"
+              placeholder="Project Details"
+            />
+            <Button type="submit" className="bg-blue-500 text-white mt-4">
+              Send
+            </Button>
+          </form>
+        </div>
+      </div>
+    </section>
         </div>
       </main>
       <footer className="bg-blue-900 text-white text-center py-4">
@@ -273,6 +266,7 @@ export default Mindes;
 
 import { Typography } from "@material-tailwind/react";
 import { DrawerWithForm } from "../../components/FromSide";
+import { EnvelopeIcon, MapPinIcon, PhoneArrowUpRightIcon } from "@heroicons/react/20/solid";
 
 const LINKS = [
   {

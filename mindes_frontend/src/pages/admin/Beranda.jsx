@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Sidebares from "../../components/Sidebar";
 import NavbarAdmin from "../../components/NavbarAdmin";
 import {
@@ -13,7 +14,35 @@ import { Link, Button } from "@nextui-org/react";
 import {Breadcrumbs, BreadcrumbItem} from "@nextui-org/breadcrumbs";
 
 const Beranda = () => {
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [totalNews, setTotalNews] = useState(0);
+  const [totalBelanja, setTotalBelanja] = useState(0);
 
+  useEffect(() => {
+    axios.get("/api/users/total")
+      .then((response) => {
+        setTotalUsers(response.data.total);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the total users!", error);
+      });
+
+    axios.get("/api/news/total")
+      .then((response) => {
+        setTotalNews(response.data.total);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the total news!", error);
+      });
+
+    axios.get("/api/belanja/total")
+      .then((response) => {
+        setTotalBelanja(response.data.total);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the total belanja!", error);
+      });
+  }, []);
   return (
     <div className="flex flex-row bg-secondary-10 h-screen w-screen overflow-y-auto">
       <Sidebares />
@@ -67,7 +96,7 @@ const Beranda = () => {
               </div>
               <div className="flex-1 text-right md:text-center">
                 <p className="font-bold text-heading-6 items-end">
-                  99 Pengguna
+                12 Pengguna
                 </p>
               </div>
             </div>

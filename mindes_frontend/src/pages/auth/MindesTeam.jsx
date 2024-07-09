@@ -8,14 +8,14 @@ const MindesTeam = () => {
   };
 
   const hackers = [
-    { name: "Ari Rahmadaya", image: "/img_desa/kepala_desa.png" },
-    { name: "Rajawali Adigraha", image: "/img/massayu.png" },
-    { name: "Nunut Willian", image: "/img/massayu.png" },
+    { name: "Ari Rahmadaya", image: "/img/ari.png" },
+    { name: "Rajawali Adigraha", image: "/img/raj.png" },
+    { name: "Nunut Willian", image: "/img/nut.png" },
   ];
 
   const hipsters = [
-    { name: "Rafis Darul Prasetyo", image: "/img/massayu.png" },
-    { name: "Muhammad Thoriq Azhari", image: "/img/massayu.png" },
+    { name: "Rafis Darul Prasetyo", image: "/img/raf.png" },
+    { name: "Muhammad Thoriq Azhari", image: "/img/haji.png" },
   ];
 
   return (
@@ -29,36 +29,36 @@ const MindesTeam = () => {
           </a>
         </div>
         <section className="mb-16">
-          <div className="text-secondary-50 text-blue text-[54px] font-bold font-['Open Sans'] leading-[64.80px]">
+          <div className="text-secondary-50 text-blue text-[54px] font-bold leading-[64.80px]">
             HUSTLER
           </div>
           <div className="">
             <img
-              className="w-[400px] h-[334px] rounded-[20px]"
+              className="max-w-[340px] h-[334px] rounded-[20px]"
               src={hustler.image}
             />
             <div className="ml-4">
-              <h3 className="w-[400px] text-black text-2xl font-normal font-['Open Sans'] leading-[28.80px] mt-2">
+              <h3 className="max-w-[340px] text-black text-2xl font-normal leading-[28.80px] mt-2">
                 {hustler.name}
               </h3>
             </div>
           </div>
         </section>
         <section className="mb-16">
-          <h2 className="text-secondary-50 text-blue text-[54px] font-bold font-['Open Sans'] leading-[64.80px]">
+          <h2 className="text-secondary-50 text-blue text-[54px] font-bold leading-[64.80px]">
             HACKER
           </h2>
-          <div className="text-black text-sm font-semibold font-['Open Sans'] leading-tight">
+          <div className="text-black text-sm font-semibold leading-tight">
            
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {hackers.map((hacker, index) => (
               <div key={index} className="">
                 <img
-                  className="w-[400px] h-[334px] rounded-[20px]"
+                  className="max-w-[340px] h-[334px] rounded-[20px]"
                   src={hacker.image}
                 />
-                <h3 className="w-[400px] text-black text-2xl font-normal font-['Open Sans'] leading-[28.80px] mt-2">
+                <h3 className="max-w-[340px] text-black text-2xl font-normal leading-[28.80px] mt-2">
                   {hacker.name}
                 </h3>
               </div>
@@ -66,20 +66,20 @@ const MindesTeam = () => {
           </div>
         </section>
         <section className="mb-16">
-          <h2 className="text-secondary-50 text-blue text-[54px] font-bold font-['Open Sans'] leading-[64.80px]">
+          <h2 className="text-secondary-50 text-blue text-[54px] font-bold leading-[64.80px]">
             HIPSTER
           </h2>
-          <div className="text-black text-sm font-semibold font-['Open Sans'] leading-tight">
+          <div className="text-black text-sm font-semibold leading-tight">
            
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {hipsters.map((hipster, index) => (
               <div key={index} className="">
                 <img
-                  className="w-[400px] h-[334px] rounded-[20px]"
+                  className="max-w-[340px] h-[334px] rounded-[20px]"
                   src={hipster.image}
                 />
-                <h3 className="w-[400px] text-black text-2xl font-normal font-['Open Sans'] leading-[28.80px] mt-2">
+                <h3 className="max-w-[340px] text-black text-2xl font-normal leading-[28.80px] mt-2">
                   {hipster.name}
                 </h3>
               </div>

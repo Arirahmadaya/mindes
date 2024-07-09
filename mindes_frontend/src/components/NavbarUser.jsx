@@ -14,6 +14,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Avatar,
+  Image,
 } from "@nextui-org/react";
 import {
   Home,
@@ -101,9 +102,12 @@ export default function NavbarUser() {
       : { name: "Login", icon: Key, href: "/login" },
   ];
 
-  const isActive = (href) =>
-    location.pathname === href ||
-    (href === "/infografis" && location.pathname.startsWith(href));
+  const isActive = (href) => {
+    if (href === "/") {
+      return location.pathname === href;
+    }
+    return location.pathname.startsWith(href);
+  };
 
   return (
     <Navbar
@@ -118,17 +122,22 @@ export default function NavbarUser() {
           onClick={handleMenuToggle}
           className="sm:hidden text-white"
         />
-         <NavbarBrand className="flex">
-          <img
-            src="/public/logo/logo_light.png"
-            alt="logo"
-            className="lg:w-12 lg:h-12 pr-2 blok md:w-10 md:h-10 w-9 h-9"
-          />
-          <div className="text-white hover:text-white/80 ">
-            <p className="font-bold lg:text-heading-6 md:text-body-2 text-caption-2 -mb-1 ">
+          <NavbarBrand className="flex">
+          <div className="lg:w-10 mr-2 w-8 ">
+            <Image
+              src="/logo/logo_light.png"
+              alt="logo"
+              className="w-full h-full"
+            />
+          </div>
+
+          <div className="text-[#D4E9FA] hover:text-[#BBDEFB] ">
+            <p className="font-semibold lg:text-body-1 text-caption-2 -mb-[6px] lg:-mb-[2px]">
               Desa Kalinyamat Kulon
             </p>
-            <p className="lg:text-body-1 md:text-body-2 text-[10px]">Kota Tegal</p>
+            <p className="lg:text-body-2 md:text-caption-1 text-[10px]">
+              Kota Tegal
+            </p>
           </div>
         </NavbarBrand>
       </NavbarContent>
@@ -139,7 +148,11 @@ export default function NavbarUser() {
       >
         {menuItemsMain.map((item, index) => (
           <NavbarItem key={index} isActive={isActive(item.href)}>
-            <Link color="foreground" href={item.href}>
+            <Link
+              color="foreground"
+              href={item.href}
+              className={isActive(item.href) ? "text-primary-30" : ""}
+            >
               {item.name}
             </Link>
           </NavbarItem>
@@ -168,14 +181,28 @@ export default function NavbarUser() {
               </DropdownTrigger>
 
               <DropdownMenu aria-label="Profile Actions" variant="flat">
-                <DropdownItem key="login-as" className="h-14 gap-2" textValue={`Login sebagai ${profile.email}`}>
+                <DropdownItem
+                  key="login-as"
+                  className="h-14 gap-2"
+                  textValue={`Login sebagai ${profile.email}`}
+                >
                   <p className="font-semibold">Login sebagai</p>
                   <p className="font-semibold">{profile.email}</p>
                 </DropdownItem>
-                <DropdownItem key="user-profile" as={Link} href="/userprofil" textValue="Profile">
+                <DropdownItem
+                  key="user-profile"
+                  as={Link}
+                  href="/userprofil"
+                  textValue="Profile"
+                >
                   Profile
                 </DropdownItem>
-                <DropdownItem key="help" as={Link} href="/bantuan" textValue="Bantuan">
+                <DropdownItem
+                  key="help"
+                  as={Link}
+                  href="/bantuan"
+                  textValue="Bantuan"
+                >
                   Bantuan
                 </DropdownItem>
                 <DropdownItem
@@ -215,7 +242,7 @@ export default function NavbarUser() {
                   ? "danger"
                   : "foreground"
               }
-              className="w-full flex items-center py-2 px-4"
+              className={`w-full flex items-center py-2 px-4 ${isActive(item.href) ? "text-primary-30" : ""}`}
               href={item.href}
               size="lg"
             >

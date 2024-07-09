@@ -50,7 +50,7 @@ export default Footer;
 export const Logo = () => {
   return (
     <div className="flex items-center xl:mb-5">
-      <img src="logo/logo_light.png" alt="Logo" className="lg:w-24 lg:h-24 w-18 h-18 pr-3" />
+      <img src="/logo/logo_light.png" alt="Logo" className="lg:w-24 lg:h-24 w-18 h-18 pr-3" />
       <div className="-space-y-2 -mt-1">
         <p className="lg:text-heading-5 text-body-2 font-bold mb-1">Kalinyamat Kulon</p>
         <p className="lg:text-body-2 text-caption-2">
@@ -139,32 +139,32 @@ export const KontakKelurahan = () => {
 };
 const ListKontak = [
   {
-    icon: "/src/assets/icon/flame.svg",
+    icon: "/logo/flame.svg",
     title: "Pemadam Kebakaran",
     number: "(0283) 325429",
   },
   {
-    icon: "/src/assets/icon/police.svg",
+    icon: "/logo/police.svg",
     title: "Polsek Sumur Panggang",
     number: "(0283) 353453",
   },
   {
-    icon: "/src/assets/icon/hospital.svg",
+    icon: "/logo/hospital.svg",
     title: "Puskesmas Margadana",
     number: "(0283) 358604",
   },
   {
-    icon: "/src/assets/icon/tuyul.svg",
+    icon: "/logo/tuyul.svg",
     title: "KPAI",
     number: "021-319015",
   },
   {
-    icon: "/src/assets/icon/pregnant.svg",
+    icon: "/logo/pregnant.svg",
     title: "KOMNAS Perempuan",
     number: "021-3903963",
   },
   {
-    icon: "/src/assets/icon/ham.svg",
+    icon: "/logo/ham.svg",
     title: "KOMNAS HAM",
     number: "021-3925230",
   },

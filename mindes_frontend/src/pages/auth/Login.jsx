@@ -77,8 +77,8 @@ const Login = () => {
           />
         </div>
         <div className="flex items-center w-4/5 lg:w-1/2 lg:right-0 ">
-          <div className="bg-white flex flex-row justify-center w-full h-[500px] items-center rounded-lg shadow-2xl">
-            <div className="w-full h-full py-8 mx-[100px]">
+          <div className="bg-white flex flex-row justify-center w-full h-[500px] items-center rounded-lg shadow-2xl px-[30px] md:px-[60px] lg:px-[100px]">
+            <div className="w-full h-full py-8">
               <div className="text-center">
                 <h5 className="mb-2 font-bold text-black text-heading-4">
                   Login
@@ -130,7 +130,7 @@ const Login = () => {
                 </a>
               </div>
               <div className="mt-4 text-center">
-                <p className="mb-2 text-black text-caption-2">
+                <p className="mb-2 text-black text-caption-1">
                   Atau Login dengan menggunakan:
                 </p>
                 <Button
@@ -140,7 +140,7 @@ const Login = () => {
                   onClick={handleGoogleLogin}
                 >
                   <Image
-                    className="w-6 h-6 mr-2"
+                    className=" h-6 mr-2"
                     alt="Google"
                     src="logo/google.png"
                   />
@@ -148,7 +148,7 @@ const Login = () => {
                 </Button>
               </div>
               <div className="mt-4 text-center">
-                <p className="text-gray-600 text-caption-2 ">
+                <p className="text-gray-600 text-caption-1 ">
                   Belum memiliki akun?
                   <a
                     href="/register"

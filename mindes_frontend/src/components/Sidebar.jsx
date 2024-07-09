@@ -95,11 +95,13 @@ function Sidebares() {
       <section className="w-full sm:w-64 bg-white h-100%">
         <div className="border-b px-5 py-3 text-center sm:text-left">
           <div className="flex">
+            <span className="flex h-10 items-center">
             <img
               src="/logo/icon_dark.png"
               alt="logo"
-              className="h-10 pr-2 block w-auto"
+              className="lg:h-full h-8 pr-2 block w-auto"
             />
+            </span>
             <div className="text-black hover:text-black/80 hidden sm:block -mt-[2px]">
               <span className="font-bold text-body-1 text-blue">MINDES</span>
               <p className="text-caption-2">Desa Kalinyamat Kulon</p>
