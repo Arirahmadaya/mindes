@@ -11,7 +11,7 @@ import {
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 // import TambahRealisasiForm from "../../../components/TambahRealisasiForm";
 
-const FormPencatatan = () => {
+const Pencatatan = () => {
   const [pencatatan, setPencatatan] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
@@ -226,4 +226,4 @@ const FormPencatatan = () => {
   );
 };
 
-export default FormPencatatan;
+export default Pencatatan;

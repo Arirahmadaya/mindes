@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import { Link, useNavigate } from "react-router-dom";
 import { Input } from "@nextui-org/react";
-import {
-  PaperAirplaneIcon,
-  ArrowUturnLeftIcon,
-} from "@heroicons/react/20/solid";
+import { PaperAirplaneIcon, ArrowUturnLeftIcon } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const FormBidangTambah = () => {
+const TambahBidang = () => {
   const [formData, setFormData] = useState({
     nama: "",
     parent_id: "",
@@ -30,13 +28,14 @@ const FormBidangTambah = () => {
     e.preventDefault();
     // console.log("Data yang akan dikirim:", formData);
     try {
-      await axios.post(
-        `${import.meta.env.VITE_API_URL}/bidang/create`,
-        formData
-      );
-      navigate("/admin/datamaster/bidang");
+      await axios.post(`${import.meta.env.VITE_API_URL}/bidang`, formData);
+      toast.success("Bidang berhasil ditambahkan!");
+      setTimeout(() => {
+        navigate("/admin/bidang");
+      }, 2000); // Navigate after 2 seconds to show the toast
     } catch (error) {
       console.log(error);
+      toast.error("Terjadi kesalahan saat menambahkan bidang.");
     }
   };
 
@@ -44,58 +43,52 @@ const FormBidangTambah = () => {
     <div className="flex flex-row w-screen h-screen overflow-y-auto bg-secondary-10">
       <Sidebares />
       <div className="flex-1 mx-5">
-        <div className="">
+        <div>
           <NavbarAdmin />
         </div>
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster">Realisasi</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/bidang">
-            Bidang
-          </BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/bidang/tambah">
-            Tambah Bidang
-          </BreadcrumbItem>
+          <BreadcrumbItem href="/admin">Realisasi</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/bidang">Bidang</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/bidang/tambah">Tambah Bidang</BreadcrumbItem>
         </Breadcrumbs>
 
         {/* Form start */}
         <form onSubmit={handleSubmit}>
           <div className="flex gap-5 my-5">
-            <div className="flex w-full bg-white rounded-lg ">
+            <div className="flex w-full bg-white rounded-lg">
               <div className="w-full h-auto transition duration-300 ease-in-out bg-white rounded-lg shadow-md hover:shadow-lg hover:shadow-gray-500">
                 <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
                 <div className="flex flex-col gap-5 p-10">
                   <div className="relative w-full mb-0">
-                    <p className="mt-1 mb-2 text-caption-2 text-gray">
-                      Masukkan Bidang
-                    </p>
+                    <p className="mt-1 mb-2 text-caption-2 text-gray">Masukkan Bidang</p>
                     <Input
                       type="text"
                       variant="bordered"
                       label="Bidang"
-                      name="parent_id"
-                      value={formData.parent_id}
+                      name="nama"
+                      value={formData.nama}
                       onChange={handleChange}
+                      required
                     />
                   </div>
                   <div className="relative w-full mb-0">
-                    <p className="mt-1 mb-2 text-caption-2 text-gray">
-                      Masukkan Sub Bidang
-                    </p>
+                    <p className="mt-1 mb-2 text-caption-2 text-gray">Masukkan Sub Bidang</p>
                     <Input
                       type="text"
                       variant="bordered"
                       label="Sub Bidang"
-                      name="nama"
-                      value={formData.nama}
+                      name="parent_id"
+                      value={formData.parent_id}
                       onChange={handleChange}
+                      required
                     />
                   </div>
 
                   <div className="flex justify-between w-full mt-4">
                     <Link
-                      to="/admin/datamaster/bidang"
+                      to="/admin/bidang"
                       className="flex items-center gap-2 px-4 py-2 text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-600"
                     >
                       <ArrowUturnLeftIcon className="w-5 h-5" />
@@ -115,8 +108,9 @@ const FormBidangTambah = () => {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
 
-export default FormBidangTambah;
+export default TambahBidang;

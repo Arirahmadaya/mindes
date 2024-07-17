@@ -6,12 +6,15 @@ import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { Eye, Edit, Trash2, Printer } from "react-feather";
 import TableProps from "../../../components/TableProps";
 import { useNavigate } from "react-router-dom";
-import PrintLaporan from "../../../components/PrintLaporan";
-import { Tooltip } from "@nextui-org/react";
+import PrintLaporan from "./PrintLaporan"; 
+import { Tooltip, Modal, useDisclosure, Button, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Realisasi = () => {
   const [realisasitable, setRealisasi] = useState([]);
-
+  const [selectedRealisasi, setSelectedRealisasi] = useState(null);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
   const [printItem, setPrintItem] = useState(null);
 
@@ -27,6 +30,27 @@ const Realisasi = () => {
       setRealisasi(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
+    }
+  };
+
+  const confirmDeleteRealisasi = (realisasi) => {
+    setSelectedRealisasi(realisasi);
+    onOpen();
+  };
+
+  const deleteRealisasi = async () => {
+    if (selectedRealisasi) {
+      try {
+        await axios.delete(
+          `${import.meta.env.VITE_API_URL}/realisasi/${selectedRealisasi.id}`
+        );
+        getRealisasi();
+        toast.success("Realisasi berhasil dihapus!");
+        onOpenChange(false); // Close the modal
+      } catch (error) {
+        console.error("Terjadi kesalahan", error);
+        toast.error("Terjadi kesalahan saat menghapus realisasi.");
+      }
     }
   };
 
@@ -85,6 +109,7 @@ const Realisasi = () => {
         </Tooltip>
       ),
       onClick: (item) => {
+        navigate(`/admin/realisasi/edit/${item.id}`, { state: item });
         console.log("Edit item:", item);
       },
     },
@@ -97,7 +122,7 @@ const Realisasi = () => {
         </Tooltip>
       ),
       onClick: (item) => {
-        console.log("Delete item:", item);
+        confirmDeleteRealisasi(item);
       },
     },
     {
@@ -107,6 +132,14 @@ const Realisasi = () => {
       },
     },
   ];
+
+  const formatDate = (datetime) => {
+    const date = new Date(datetime);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // getMonth() is zero-based
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
 
   const isi = realisasitable.map((realisasi) => ({
     id: realisasi.id_realisasi,
@@ -118,8 +151,8 @@ const Realisasi = () => {
     lokasi: realisasi.lokasi,
     sumber: realisasi.sumber,
     pembiayaan: realisasi.pembiayaan,
-    tgl_mulai: realisasi.tgl_mulai,
-    tgl_selesai: realisasi.tgl_selesai,
+    tgl_mulai: formatDate(realisasi.tgl_mulai),
+    tgl_selesai: formatDate(realisasi.tgl_selesai),
   }));
 
   return (
@@ -163,6 +196,45 @@ const Realisasi = () => {
         </div>
       </div>
 
+      <Modal
+        backdrop="opaque"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        radius="lg"
+        classNames={{
+          body: "py-6",
+          backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
+          base: "border-[#292f46] bg-white text-black",
+          header: "border-b-[1px] border-[#292f46]/10",
+          footer: "border-t-[1px] border-[#292f46]10",
+          closeButton: "hover:bg-white/5 active:bg-white/10",
+        }}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Konfirmasi Hapus
+              </ModalHeader>
+              <ModalBody>
+                <p>Apakah Anda yakin ingin menghapus realisasi ini?</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="foreground" variant="light" onPress={onClose}>
+                  Batal
+                </Button>
+                <Button
+                  className="text-white shadow-lg bg-danger shadow-indigo-500/20"
+                  onPress={deleteRealisasi}
+                >
+                  Hapus
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      <ToastContainer />
       {printItem && (
         <PrintLaporan item={printItem} onClose={() => setPrintItem(null)} />
       )}

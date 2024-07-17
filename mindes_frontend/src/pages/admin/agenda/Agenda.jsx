@@ -56,14 +56,15 @@ const Agenda = () => {
         onOpenChange(false); // Close the modal
       } catch (error) {
         console.error("Terjadi kesalahan", error);
+        toast.error("Terjadi kesalahan saat menghapus agenda.");
       }
     }
   };
 
   const statusColorMap = {
-    publish: "success",
-    proses: "secondary",
-    gagal: "danger",
+    selesai: "success",
+    proses: "warning",
+    batal: "danger",
   };
 
   const INITIAL_VISIBLE_COLUMNS = [
@@ -78,7 +79,6 @@ const Agenda = () => {
   ];
 
   const columns = [
-    { name: "ID", uid: "id" },
     { name: "Tanggal", uid: "tgl" },
     { name: "Waktu", uid: "jam" },
     { name: "Tempat", uid: "tempat" },
@@ -90,30 +90,30 @@ const Agenda = () => {
   ];
 
   const statusOptions = [
-    { name: "Selesai", uid: "publish" },
+    { name: "Selesai", uid: "selesai" },
     { name: "Proses", uid: "proses" },
-    { name: "Gagal", uid: "gagal" },
+    { name: "Batal", uid: "batal" },
   ];
 
   const actionButtons = [
     {
       icon: (
         <Tooltip content="Edit">
-          <span className=" active:opacity-50">
+          <span className="active:opacity-50">
             <Edit className="w-4 h-4 text-warning" />
           </span>
         </Tooltip>
       ),
       onClick: (item) => {
-        navigate("/admin/agenda/edit", { state: item });
+        navigate(`/admin/agenda/edit/${item.id}`, { state: item });
         console.log("Edit item:", item);
       },
     },
     {
       icon: (
         <Tooltip content="Hapus">
-          <span className=" active:opacity-50">
-            <Trash2 className="w-4 h-4 text-danger " />
+          <span className="active:opacity-50">
+            <Trash2 className="w-4 h-4 text-danger" />
           </span>
         </Tooltip>
       ),
@@ -160,7 +160,6 @@ const Agenda = () => {
                   statusColorMap={statusColorMap}
                   INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS}
                   columns={columns}
-                  statusOptions={statusOptions}
                   isi={isi}
                   filterKeys={[
                     "tgl",
@@ -169,9 +168,11 @@ const Agenda = () => {
                     "hari",
                     "kegiatan",
                     "deskripsi",
+                    "status",
                   ]}
                   tambahKegiatanURL="/admin/agenda/tambah"
                   actionButtons={actionButtons}
+                  statusOptions={statusOptions} // Tambahkan statusOptions di sini
                 />
               </div>
             </div>

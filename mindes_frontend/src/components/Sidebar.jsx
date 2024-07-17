@@ -68,17 +68,17 @@ function Sidebares() {
     {
       name: "Kategori Berita",
       icon: <TableCellsIcon width={18} className=" " />,
-      path: "/admin/datamaster/kategori",
+      path: "/admin/kategori",
     },
     {
       name: "Akuntansi",
       icon: <CreditCardIcon width={18} className=" " />,
-      path: "/admin/datamaster/akuntansi",
+      path: "/admin/akuntansi",
     },
     {
       name: "Bidang",
       icon: <InboxStackIcon width={18} className=" " />,
-      path: "/admin/datamaster/bidang",
+      path: "/admin/bidang",
     },
   ];
 

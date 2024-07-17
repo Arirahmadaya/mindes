@@ -18,7 +18,7 @@ import {
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import ImageViewer from "react-simple-image-viewer";
 
-const FormRealisasi = () => {
+const TambahRealisasi = () => {
   const [formData, setFormData] = useState({
     id_bidang: "",
     kode_kegiatan: "",
@@ -221,7 +221,7 @@ const FormRealisasi = () => {
                     variant="flat"
                     closeOnSelect={false}
                     disallowEmptySelection
-                    selectionMode="multiple"
+                    selectionMode="single"
                     selectedKeys={selectedBidangKey}
                     onSelectionChange={handleBidangSelectionChange}
                   >
@@ -248,11 +248,11 @@ const FormRealisasi = () => {
                     </Button>
                   </DropdownTrigger>
                   <DropdownMenu
-                    aria-label="Multiple selection example"
+                    aria-label="Pilih status"
                     variant="flat"
                     closeOnSelect={true}
                     disallowEmptySelection
-                    selectionMode="multiple"
+                    selectionMode="single"
                     selectedKeys={selectedStatus}
                     onSelectionChange={handleStatusSelectionChange}
                   >
@@ -296,7 +296,7 @@ const FormRealisasi = () => {
                     variant="flat"
                     closeOnSelect={false}
                     disallowEmptySelection
-                    selectionMode="multiple"
+                    selectionMode="single"
                     selectedKeys={selectedKey}
                     onSelectionChange={handleSelectionChange}
                   >
@@ -493,4 +493,4 @@ const FormRealisasi = () => {
   );
 };
 
-export default FormRealisasi;
+export default TambahRealisasi;

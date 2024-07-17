@@ -4,7 +4,7 @@ import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import TableProps from "../../../components/TableProps";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
-import { Eye, Edit, Trash2 } from "react-feather";
+import { Edit, Trash2 } from "react-feather";
 import { useNavigate } from "react-router-dom";
 import {
   Modal,
@@ -95,17 +95,12 @@ const Penduduk = () => {
       icon: (
         <Tooltip content="Edit">
           <span className=" active:opacity-50">
-            <Tooltip content="Edit">
-              <span className=" active:opacity-50">
-                <Edit className="w-4 h-4 text-warning" />
-              </span>
-            </Tooltip>
+            <Edit className="w-4 h-4 text-warning" />
           </span>
         </Tooltip>
       ),
       onClick: (penduduk) => {
-        navigate(`/admin/penduduk/${penduduk.id}`, { state: penduduk });
-        console.log("Edit penduduk:", penduduk);
+        navigate(`/admin/penduduk/edit/${penduduk.id}`, { state: penduduk });
       },
     },
     {

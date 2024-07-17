@@ -6,11 +6,14 @@ import { Eye, Edit, Trash2 } from "react-feather";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import TableProps from "../../../components/TableProps";
 import { useNavigate } from "react-router-dom";
-
-import { Tooltip } from "@nextui-org/react";
+import { Tooltip, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const User = () => {
   const [usertable, setUser] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,41 +22,44 @@ const User = () => {
 
   const getUser = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/user`);
+      const token = localStorage.getItem("token");
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/user`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setUser(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
     }
   };
 
-  const statusColorMap = {
-    active: "success",
-    paused: "secondary",
-    vacation: "danger",
+  const handleDelete = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(`${import.meta.env.VITE_API_URL}/user/${selectedUser.id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setUser(usertable.filter((item) => item.id_user !== selectedUser.id));
+      toast.success("User berhasil dihapus!");
+      onOpenChange(false);
+    } catch (error) {
+      console.error("Terjadi kesalahan saat menghapus user", error);
+      toast.error("Terjadi kesalahan saat menghapus user.");
+    }
   };
 
-  const INITIAL_VISIBLE_COLUMNS = [
-    "id",
-    "nama",
-    "email",
-    "roles",
-    "password",
-    "actions",
-  ];
+  const confirmDelete = (user) => {
+    setSelectedUser(user);
+    onOpenChange(true);
+  };
+
+  const INITIAL_VISIBLE_COLUMNS = ["id", "nama", "email", "roles", "actions"];
 
   const columns = [
     { name: "ID", uid: "id", sortable: true },
     { name: "NAMA", uid: "nama", sortable: true },
     { name: "EMAIL", uid: "email" },
     { name: "ROLE", uid: "roles", sortable: true },
-    { name: "PASSWORD", uid: "password", sortable: true },
     { name: "ACTIONS", uid: "actions" },
-  ];
-
-  const statusOptions = [
-    { name: "Active", uid: "active" },
-    { name: "Paused", uid: "paused" },
-    { name: "Cuti", uid: "vacation" },
   ];
 
   const actionButtons = [
@@ -77,9 +83,7 @@ const User = () => {
           </span>
         </Tooltip>
       ),
-      onClick: (user) => {
-        // Implement your logic for deleting here
-      },
+      onClick: confirmDelete,
     },
   ];
 
@@ -88,7 +92,6 @@ const User = () => {
     nama: user.username,
     email: user.email,
     roles: user.roles,
-    password: user.password,
   }));
 
   return (
@@ -110,20 +113,59 @@ const User = () => {
               <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
               <div className="p-4">
                 <TableProps
-                  statusColorMap={statusColorMap}
                   INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS}
                   columns={columns}
-                  statusOptions={statusOptions}
                   isi={isi}
                   filterKeys={["nama", "email"]}
-                  actionButtons={actionButtons}
                   tambahKegiatanURL="/admin/user/tambah"
+                  actionButtons={actionButtons}
+                  hideStatus={true} // Hide status for this page
                 />
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <Modal
+        backdrop="opaque"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        radius="lg"
+        classNames={{
+          body: "py-6",
+          backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
+          base: "border-[#292f46] bg-white text-black",
+          header: "border-b-[1px] border-[#292f46]/10",
+          footer: "border-t-[1px] border-[#292f46]10",
+          closeButton: "hover:bg-white/5 active:bg-white/10",
+        }}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Konfirmasi Hapus
+              </ModalHeader>
+              <ModalBody>
+                <p>Apakah Anda yakin ingin menghapus user ini?</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="foreground" variant="light" onPress={onClose}>
+                  Batal
+                </Button>
+                <Button
+                  className="text-white shadow-lg bg-danger shadow-indigo-500/20"
+                  onPress={handleDelete}
+                >
+                  Hapus
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      <ToastContainer />
     </div>
   );
 };

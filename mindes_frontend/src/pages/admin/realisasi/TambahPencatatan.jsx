@@ -14,7 +14,7 @@ import {
   PaperAirplaneIcon,
 } from "@heroicons/react/20/solid";
 
-const TambahRealisasiForm = () => {
+const TambahPencatatan = () => {
   const [formData, setFormData] = useState({
     // id_realisasi: "", //foreign
     id_akun: "", //foreign
@@ -213,7 +213,7 @@ const TambahRealisasiForm = () => {
   );
 };
 
-export default TambahRealisasiForm;
+export default TambahPencatatan;
 
 // OLD
 // import React from "react";

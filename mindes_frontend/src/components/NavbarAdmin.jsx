@@ -3,6 +3,7 @@ import axios from "axios";
 import { Navbar, NavbarContent, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar, Link, Button, NavbarItem } from "@nextui-org/react";
 import { Search, LogIn } from "react-feather";
 import { useNavigate } from "react-router-dom";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
 
 export default function NavbarAdmin() {
   const [profile, setProfile] = useState(null);
@@ -74,6 +75,13 @@ export default function NavbarAdmin() {
               <DropdownItem key="login-as" className="h-14 gap-2" textValue={`Login sebagai ${profile.email}`}>
                 <p className="font-semibold">Login sebagai</p>
                 <p className="font-semibold">{profile.email}</p>
+              </DropdownItem>
+              <DropdownItem
+          
+                href="/"
+              >
+              <Link><ArrowTopRightOnSquareIcon  className="w-5 h-5" /></Link>
+
               </DropdownItem>
               <DropdownItem key="profile" as={Link} href="/admin/userprofil" textValue="Profile">
                 Profile

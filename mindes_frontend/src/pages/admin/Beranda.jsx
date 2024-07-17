@@ -7,11 +7,11 @@ import {
   UsersIcon,
   NewspaperIcon,
   ChevronRightIcon,
-  PrinterIcon,
+  ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/20/solid";
 import ChartAPBDes from "../../components/ChartAPBDes";
 import { Link, Button } from "@nextui-org/react";
-import {Breadcrumbs, BreadcrumbItem} from "@nextui-org/breadcrumbs";
+import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 
 const Beranda = () => {
   const [totalUsers, setTotalUsers] = useState(0);
@@ -19,7 +19,8 @@ const Beranda = () => {
   const [totalBelanja, setTotalBelanja] = useState(0);
 
   useEffect(() => {
-    axios.get("/api/users/total")
+    axios
+      .get("/api/users/total")
       .then((response) => {
         setTotalUsers(response.data.total);
       })
@@ -27,7 +28,8 @@ const Beranda = () => {
         console.error("There was an error fetching the total users!", error);
       });
 
-    axios.get("/api/news/total")
+    axios
+      .get("/api/news/total")
       .then((response) => {
         setTotalNews(response.data.total);
       })
@@ -35,7 +37,8 @@ const Beranda = () => {
         console.error("There was an error fetching the total news!", error);
       });
 
-    axios.get("/api/belanja/total")
+    axios
+      .get("/api/belanja/total")
       .then((response) => {
         setTotalBelanja(response.data.total);
       })
@@ -55,11 +58,10 @@ const Beranda = () => {
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
         </Breadcrumbs>
 
-
         <div className="flex gap-5 my-5">
           <div className="w-full h-auto bg-gradient-10 background-animate rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
             <div className="m-7">
-            <div className="text-heading-6  font-semibold">
+              <div className="text-heading-6  font-semibold">
                 Selamat Datang User 1
               </div>
               <div className="flex justify-between">
@@ -72,7 +74,7 @@ const Beranda = () => {
                   href="/"
                   variant="flat"
                 >
-                  Cetak Laporan <PrinterIcon />
+                  Beranda User <ArrowTopRightOnSquareIcon className="w-5 h-5" />
                 </Button>
               </div>
             </div>
@@ -83,9 +85,13 @@ const Beranda = () => {
           <div className="w-full h-[150px] bg-white border-l-4 border-green-600 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
             <div className="flex justify-end">
               <div className="bg-blue-100 rounded-tr-lg rounded-bl-[20px] inline-block w-auto">
-                <p className="flex lg:text-body-2 text-caption-2 font-semibold text-center text-blue p-3 items-center">
-                  Pengguna <ChevronRightIcon className="w-5 h-5 text-blue-600 ml-1" />
-                </p>
+                <Link
+                  className="flex lg:text-body-2 text-caption-2 font-semibold text-center text-blue p-3 items-center"
+                  href="/admin/user"
+                >
+                  Pengguna{" "}
+                  <ChevronRightIcon className="w-5 h-5 text-blue-600 ml-1" />
+                </Link>
               </div>
             </div>
             <div className="flex flex-row items-center p-4">
@@ -96,7 +102,7 @@ const Beranda = () => {
               </div>
               <div className="flex-1 text-right md:text-center">
                 <p className="font-bold text-heading-6 items-end">
-                12 Pengguna
+                  12 Pengguna
                 </p>
               </div>
             </div>
@@ -105,15 +111,22 @@ const Beranda = () => {
           <div className="w-full h-[150px] bg-white border-l-4 border-danger rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
             <div className="flex justify-end">
               <div className="bg-blue-100 rounded-tr-lg rounded-bl-[20px] inline-block w-auto">
-                <p className="flex lg:text-body-2 text-caption-2 font-semibold text-center text-blue p-3 items-center">
-                  Belanja Desa <ChevronRightIcon className="w-5 h-5 text-blue-600 ml-1" />
-                </p>
+                <Link
+                  className="flex lg:text-body-2 text-caption-2 font-semibold text-center text-blue p-3 items-center"
+                  href="/admin/realisasi"
+                >
+                  Belanja Desa{" "}
+                  <ChevronRightIcon className="w-5 h-5 text-blue-600 ml-1" />
+                </Link>
               </div>
             </div>
             <div className="flex flex-row items-center p-4">
               <div className="flex-shrink-0 pr-4">
                 <div className="rounded-full p-3 bg-red-600">
-                  <PresentationChartLineIcon width={32} className="text-white" />
+                  <PresentationChartLineIcon
+                    width={32}
+                    className="text-white"
+                  />
                 </div>
               </div>
               <div className="flex-1 text-right md:text-center">
@@ -127,9 +140,13 @@ const Beranda = () => {
           <div className="w-full h-[150px] bg-white border-l-4 border-blue-600 rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-gray-500">
             <div className="flex justify-end">
               <div className="bg-blue-100 rounded-tr-lg rounded-bl-[20px] inline-block w-auto">
-                <p className="flex lg:text-body-2 text-caption-2 font-semibold text-center text-blue p-3 items-center">
-                  Berita <ChevronRightIcon className="w-5 h-5 text-blue-600 ml-1" />
-                </p>
+                <Link
+                  className="flex lg:text-body-2 text-caption-2 font-semibold text-center text-blue p-3 items-center"
+                  href="/admin/berita"
+                >
+                  Berita{" "}
+                  <ChevronRightIcon className="w-5 h-5 text-blue-600 ml-1" />
+                </Link>
               </div>
             </div>
             <div className="flex flex-row items-center p-4">

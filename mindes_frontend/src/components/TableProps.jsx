@@ -28,6 +28,7 @@ function TableProps({
   filterKeys,
   tambahKegiatanURL,
   actionButtons,
+  hideStatus, // Add hideStatus as a prop
 }) {
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
@@ -64,14 +65,14 @@ function TableProps({
       );
     }
 
-    if (!statusFilter.has("all")) {
+    if (!hideStatus && !statusFilter.has("all")) {
       filteredIsi = filteredIsi.filter((item) =>
         Array.from(statusFilter).includes(item.status)
       );
     }
 
     return filteredIsi;
-  }, [filterValue, statusFilter, isi, filterKeys]);
+  }, [filterValue, statusFilter, isi, filterKeys, hideStatus]);
 
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
@@ -98,7 +99,7 @@ function TableProps({
         case "judul":
           return <div>{item.judul}</div>;
         case "status":
-          return (
+          return !hideStatus ? (
             <Chip
               className="capitalize border-none gap-1 text-default-600"
               color={statusColorMap[item.status]}
@@ -107,7 +108,7 @@ function TableProps({
             >
               {cellValue}
             </Chip>
-          );
+          ) : null;
         case "actions":
           return (
             <div className="flex items-center justify-start -ml-5">
@@ -129,7 +130,7 @@ function TableProps({
           return cellValue;
       }
     },
-    [statusColorMap, actionButtons]
+    [statusColorMap, actionButtons, hideStatus]
   );
 
   const onRowsPerPageChange = React.useCallback((e) => {
@@ -165,31 +166,33 @@ function TableProps({
             onValueChange={onSearchChange}
           />
           <div className="flex gap-3">
-            <Dropdown>
-              <DropdownTrigger className="hidden sm:flex">
-                <Button
-                  endContent={<ChevronDown className="w-5 h-5" />}
-                  size="sm"
-                  variant="flat"
+            {!hideStatus && (
+              <Dropdown>
+                <DropdownTrigger className="hidden sm:flex">
+                  <Button
+                    endContent={<ChevronDown className="w-5 h-5" />}
+                    size="sm"
+                    variant="flat"
+                  >
+                    Status
+                  </Button>
+                </DropdownTrigger>
+                <DropdownMenu
+                  disallowEmptySelection
+                  aria-label="Table Columns"
+                  closeOnSelect={false}
+                  selectedKeys={statusFilter}
+                  selectionMode="multiple"
+                  onSelectionChange={setStatusFilter}
                 >
-                  Status
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu
-                disallowEmptySelection
-                aria-label="Table Columns"
-                closeOnSelect={false}
-                selectedKeys={statusFilter}
-                selectionMode="multiple"
-                onSelectionChange={setStatusFilter}
-              >
-                {statusOptions.map((status) => (
-                  <DropdownItem key={status.uid} className="capitalize">
-                    {capitalize(status.name)}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
+                  {statusOptions.map((status) => (
+                    <DropdownItem key={status.uid} className="capitalize">
+                      {capitalize(status.name)}
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </Dropdown>
+            )}
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
                 <Button
@@ -251,6 +254,7 @@ function TableProps({
     visibleColumns,
     onRowsPerPageChange,
     isi.length,
+    hideStatus,
   ]);
 
   const bottomContent = React.useMemo(() => {
@@ -344,10 +348,10 @@ function capitalize(str) {
 }
 
 TableProps.propTypes = {
-  statusColorMap: PropTypes.object.isRequired,
+  statusColorMap: PropTypes.object,
   INITIAL_VISIBLE_COLUMNS: PropTypes.array.isRequired,
   columns: PropTypes.array.isRequired,
-  statusOptions: PropTypes.array.isRequired,
+  statusOptions: PropTypes.array,
   isi: PropTypes.array.isRequired,
   filterKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
   tambahKegiatanURL: PropTypes.string.isRequired,
@@ -357,6 +361,12 @@ TableProps.propTypes = {
       onClick: PropTypes.func.isRequired,
     })
   ).isRequired,
+  hideStatus: PropTypes.bool, // Add hideStatus to PropTypes
+};
+
+TableProps.defaultProps = {
+  statusOptions: [],
+  hideStatus: false, // Add default value for hideStatus
 };
 
 export default TableProps;

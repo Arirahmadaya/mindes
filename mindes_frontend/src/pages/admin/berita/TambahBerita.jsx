@@ -22,7 +22,7 @@ import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const FormBerita = () => {
+const TambahBerita = () => {
   const [formData, setFormData] = useState({
     id_kategori: "", //foreign
     tgl: "",
@@ -200,7 +200,7 @@ const FormBerita = () => {
                             variant="flat"
                             closeOnSelect={false}
                             disallowEmptySelection
-                            selectionMode="multiple"
+                            selectionMode="single"
                             selectedKeys={selectedKey}
                             onSelectionChange={handleSelectionChange}
                           >
@@ -290,7 +290,7 @@ const FormBerita = () => {
                           variant="flat"
                           closeOnSelect={true}
                           disallowEmptySelection
-                          selectionMode="multiple"
+                          selectionMode="single"
                           selectedKeys={selectedStatus}
                           onSelectionChange={handleStatusSelectionChange}
                         >
@@ -329,4 +329,4 @@ const FormBerita = () => {
   );
 };
 
-export default FormBerita;
+export default TambahBerita;

@@ -1,12 +1,27 @@
-import express from 'express'
-import { getAkun, insertAkun, deleteAkun } from '../controller/akun.controller.mjs'
-// import { authenticateToken } from '../middleware/validate.middleware.js'
+import express from "express";
+import {
+  getAkun,
+  getAkunById,
+  insertAkun,
+  updateAkun,
+  deleteAkun
+} from "../controller/akun.controller.mjs";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/akun', getAkun)
-router.post('/akun/create', insertAkun)
-router.delete('/akun/:id_akun', deleteAkun)
+// Route to get all accounts
+router.get("/akun", getAkun);
 
+// Route to get a account by ID
+router.get("/akun/:id", getAkunById);
 
-export default router
+// Route to create a new account
+router.post("/akun", insertAkun);
+
+// Route to update a account by ID
+router.put("/akun/:id", updateAkun);
+
+// Route to delete a account by ID
+router.delete("/akun/:id", deleteAkun);
+
+export default router;

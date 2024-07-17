@@ -19,61 +19,40 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const statusColorMap = {
-  publish: "success",
-  proses: "secondary",
-  gagal: "danger",
-};
-
-const INITIAL_VISIBLE_COLUMNS = ["id", "bidang", "parent_id", "actions"];
-
-const columns = [
-  { name: "ID", uid: "id" },
-  { name: "BIDANG", uid: "bidang" },
-  { name: "SUB BIDANG", uid: "parent_id" },
-  { name: "Aksi", uid: "actions" },
-];
-
-const statusOptions = [
-  { name: "Publish", uid: "publish" },
-  { name: "Proses", uid: "proses" },
-  { name: "Gagal", uid: "gagal" },
-];
-
-const Bidang = () => {
-  const [bidangData, setBidangData] = useState([]);
-  const [selectedBidang, setSelectedBidang] = useState(null);
+const KtgBerita = () => {
+  const [kategori, setKategori] = useState([]);
+  const [selectedKategori, setSelectedKategori] = useState(null);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchBidangData();
+    fetchKategori();
   }, []);
 
-  const fetchBidangData = async () => {
+  const fetchKategori = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/bidang`
+        `${import.meta.env.VITE_API_URL}/kategori`
       );
-      setBidangData(response.data.data);
+      setKategori(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
     }
   };
 
-  const confirmDeleteBidang = (bidang) => {
-    setSelectedBidang(bidang);
+  const confirmDeleteKategori = (kategori) => {
+    setSelectedKategori(kategori);
     onOpen();
   };
 
-  const deleteBidang = async () => {
-    if (selectedBidang) {
+  const deleteKategori = async () => {
+    if (selectedKategori) {
       try {
         await axios.delete(
-          `${import.meta.env.VITE_API_URL}/bidang/${selectedBidang.id}`
+          `${import.meta.env.VITE_API_URL}/kategori/${selectedKategori.id}`
         );
-        fetchBidangData();
-        toast.success("Bidang berhasil dihapus!");
+        fetchKategori();
+        toast.success("Kategori berhasil dihapus!");
         onOpenChange(false); // Close the modal
       } catch (error) {
         console.error("Terjadi kesalahan", error);
@@ -81,20 +60,44 @@ const Bidang = () => {
     }
   };
 
+  const statusColorMap = {
+    publish: "success",
+    proses: "secondary",
+    gagal: "danger",
+  };
+
+  const INITIAL_VISIBLE_COLUMNS = ["id", "nama", "actions"];
+
+  const columns = [
+    { name: "ID", uid: "id", sortable: true },
+    { name: "Kategori", uid: "nama" },
+    { name: "Aksi", uid: "actions" },
+  ];
+
+  const statusOptions = [
+    { name: "Publish", uid: "publish" },
+    { name: "Proses", uid: "proses" },
+    { name: "Gagal", uid: "gagal" },
+  ];
+
   const actionButtons = [
     {
       icon: (
         <Tooltip content="Edit">
           <span className=" active:opacity-50">
-            <Edit className="w-4 h-4 text-warning" />
+            <Tooltip content="Edit">
+              <span className=" active:opacity-50">
+                <Edit className="w-4 h-4 text-warning" />
+              </span>
+            </Tooltip>
           </span>
         </Tooltip>
       ),
-      onClick: (bidang) => {
-        navigate(`/admin/datamaster/bidang/edit/${bidang.id}`, {
-          state: bidang,
+      onClick: (kategori) => {
+        navigate(`/admin/kategori/edit/${kategori.id}`, {
+          state: kategori,
         });
-        console.log("Edit bidang:", bidang);
+        console.log("Edit kategori:", kategori);
       },
     },
     {
@@ -105,16 +108,15 @@ const Bidang = () => {
           </span>
         </Tooltip>
       ),
-      onClick: (bidang) => {
-        confirmDeleteBidang(bidang);
+      onClick: (kategori) => {
+        confirmDeleteKategori(kategori);
       },
     },
   ];
 
-  const isi = bidangData.map((bidang) => ({
-    id: bidang.id_bidang,
-    bidang: bidang.nama,
-    parent_id: bidang.parent_id,
+  const isi = kategori.map((kategori) => ({
+    id: kategori.id_kategori,
+    nama: kategori.nama,
   }));
 
   return (
@@ -127,11 +129,11 @@ const Bidang = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/bidang">
+          <BreadcrumbItem href="/admin/ktgberita">
             Data Master
           </BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/bidang">
-            Bidang
+          <BreadcrumbItem href="/admin/ktgberita">
+            Kategori Berita
           </BreadcrumbItem>
         </Breadcrumbs>
 
@@ -146,8 +148,8 @@ const Bidang = () => {
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  filterKeys={["id", "bidang"]}
-                  tambahBeritaURL="/admin/datamaster/bidang/tambah"
+                  filterKeys={["id", "nama"]}
+                  tambahKegiatanURL="/admin/kategori/tambah"
                   actionButtons={actionButtons}
                 />
               </div>
@@ -179,7 +181,7 @@ const Bidang = () => {
                 Konfirmasi Hapus
               </ModalHeader>
               <ModalBody>
-                <p>Apakah Anda yakin ingin menghapus bidang ini?</p>
+                <p>Apakah Anda yakin ingin menghapus kategori ini?</p>
               </ModalBody>
               <ModalFooter>
                 <Button color="foreground" variant="light" onPress={onClose}>
@@ -187,7 +189,7 @@ const Bidang = () => {
                 </Button>
                 <Button
                   className="text-white shadow-lg bg-danger shadow-indigo-500/20"
-                  onPress={deleteBidang}
+                  onPress={deleteKategori}
                 >
                   Hapus
                 </Button>
@@ -201,4 +203,4 @@ const Bidang = () => {
   );
 };
 
-export default Bidang;
+export default KtgBerita;

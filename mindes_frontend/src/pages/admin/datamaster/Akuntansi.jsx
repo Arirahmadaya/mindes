@@ -19,40 +19,59 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const KtgBerita = () => {
-  const [kategori, setKategori] = useState([]);
-  const [selectedKategori, setSelectedKategori] = useState(null);
+const statusColorMap = {
+  publish: "success",
+  proses: "secondary",
+  gagal: "danger",
+};
+
+const INITIAL_VISIBLE_COLUMNS = ["id", "kode", "uraian", "actions"];
+
+const columns = [
+  { name: "ID", uid: "id" },
+  { name: "Kode", uid: "kode" },
+  { name: "Uraian", uid: "uraian" },
+  { name: "Aksi", uid: "actions" },
+];
+
+const statusOptions = [
+  { name: "Publish", uid: "publish" },
+  { name: "Proses", uid: "proses" },
+  { name: "Gagal", uid: "gagal" },
+];
+
+const Akuntansi = () => {
+  const [akun, setAkun] = useState([]);
+  const [selectedAkun, setSelectedAkun] = useState(null);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchKategori();
+    fetchAkun();
   }, []);
 
-  const fetchKategori = async () => {
+  const fetchAkun = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/kategori`
-      );
-      setKategori(response.data.data);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/akun`);
+      setAkun(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
     }
   };
 
-  const confirmDeleteKategori = (kategori) => {
-    setSelectedKategori(kategori);
+  const confirmDeleteAkun = (akun) => {
+    setSelectedAkun(akun);
     onOpen();
   };
 
-  const deleteKategori = async () => {
-    if (selectedKategori) {
+  const deleteAkun = async () => {
+    if (selectedAkun) {
       try {
         await axios.delete(
-          `${import.meta.env.VITE_API_URL}/kategori/${selectedKategori.id}`
+          `${import.meta.env.VITE_API_URL}/akun/${selectedAkun.id}`
         );
-        fetchKategori();
-        toast.success("Kategori berhasil dihapus!");
+        fetchAkun();
+        toast.success("Akun berhasil dihapus!");
         onOpenChange(false); // Close the modal
       } catch (error) {
         console.error("Terjadi kesalahan", error);
@@ -60,44 +79,20 @@ const KtgBerita = () => {
     }
   };
 
-  const statusColorMap = {
-    publish: "success",
-    proses: "secondary",
-    gagal: "danger",
-  };
-
-  const INITIAL_VISIBLE_COLUMNS = ["id", "nama", "actions"];
-
-  const columns = [
-    { name: "ID", uid: "id", sortable: true },
-    { name: "Kategori", uid: "nama" },
-    { name: "Aksi", uid: "actions" },
-  ];
-
-  const statusOptions = [
-    { name: "Publish", uid: "publish" },
-    { name: "Proses", uid: "proses" },
-    { name: "Gagal", uid: "gagal" },
-  ];
-
   const actionButtons = [
     {
       icon: (
         <Tooltip content="Edit">
           <span className=" active:opacity-50">
-            <Tooltip content="Edit">
-              <span className=" active:opacity-50">
-                <Edit className="w-4 h-4 text-warning" />
-              </span>
-            </Tooltip>
+            <Edit className="w-4 h-4 text-warning" />
           </span>
         </Tooltip>
       ),
-      onClick: (kategori) => {
-        navigate(`/admin/datamaster/kategori/edit/${kategori.id}`, {
-          state: kategori,
+      onClick: (item) => {
+        navigate(`/admin/akuntansi/edit/${item.id}`, {
+          state: item,
         });
-        console.log("Edit kategori:", kategori);
+        console.log("Edit item:", item);
       },
     },
     {
@@ -108,15 +103,16 @@ const KtgBerita = () => {
           </span>
         </Tooltip>
       ),
-      onClick: (kategori) => {
-        confirmDeleteKategori(kategori);
+      onClick: (item) => {
+        confirmDeleteAkun(item);
       },
     },
   ];
 
-  const isi = kategori.map((kategori) => ({
-    id: kategori.id_kategori,
-    nama: kategori.nama,
+  const isi = akun.map((akun) => ({
+    id: akun.id_akun,
+    kode: akun.kode,
+    uraian: akun.uraian,
   }));
 
   return (
@@ -129,33 +125,33 @@ const KtgBerita = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/ktgberita">
+          <BreadcrumbItem href="/admin/akuntansi">
             Data Master
           </BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/ktgberita">
-            Kategori Berita
+          <BreadcrumbItem href="/admin/akuntansi">
+            Akuntansi
           </BreadcrumbItem>
         </Breadcrumbs>
 
         <div className="flex gap-5 my-5">
-          <div className="flex w-full bg-white rounded-lg">
-            <div className="w-full h-auto transition duration-300 ease-in-out bg-white rounded-lg shadow-md hover:shadow-lg hover:shadow-blue-200">
-              <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
-              <div className="p-4">
+          <div className="flex w-full bg-white rounded-lg ">
+            <div className="w-full h-auto transition duration-300 ease-in-out bg-white rounded-lg shadow-md hover:shadow-lg hover:shadow-blue-200 ">
+              <div className="bg-blue-100/20 rounded-b-[20px] w-auto "></div>
+              <div className="p-4 ">
                 <TableProps
                   statusColorMap={statusColorMap}
                   INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS}
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  filterKeys={["id", "nama"]}
-                  tambahKegiatanURL="/admin/datamaster/kategori/tambah"
+                  filterKeys={["id", "kode", "uraian"]}
+                  tambahKegiatanURL={"/admin/akuntansi/tambah"}
                   actionButtons={actionButtons}
                 />
               </div>
             </div>
 
-            <div className="flex justify-between"></div>
+            <div className="flex justify-between "></div>
           </div>
         </div>
       </div>
@@ -181,7 +177,7 @@ const KtgBerita = () => {
                 Konfirmasi Hapus
               </ModalHeader>
               <ModalBody>
-                <p>Apakah Anda yakin ingin menghapus kategori ini?</p>
+                <p>Apakah Anda yakin ingin menghapus akun ini?</p>
               </ModalBody>
               <ModalFooter>
                 <Button color="foreground" variant="light" onPress={onClose}>
@@ -189,7 +185,7 @@ const KtgBerita = () => {
                 </Button>
                 <Button
                   className="text-white shadow-lg bg-danger shadow-indigo-500/20"
-                  onPress={deleteKategori}
+                  onPress={deleteAkun}
                 >
                   Hapus
                 </Button>
@@ -203,4 +199,4 @@ const KtgBerita = () => {
   );
 };
 
-export default KtgBerita;
+export default Akuntansi;

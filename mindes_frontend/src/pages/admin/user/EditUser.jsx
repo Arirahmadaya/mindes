@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   Dropdown,
   DropdownTrigger,
@@ -19,23 +19,47 @@ import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const FormPenduduk = () => {
+const EditUser = () => {
+  const { id } = useParams(); // Ambil ID dari URL
   const [selectedKey, setSelectedKey] = useState(new Set());
   const [formData, setFormData] = useState({
-    tgl: "",
-    jumlah: "",
-    mutasi: "",
-    keterangan: "",
+    username: "",
+    email: "",
+    password: "",
+    roles: "",
   });
+  const navigate = useNavigate();
 
-  const selectedValue = React.useMemo(() => {
+  useEffect(() => {
+    // Fungsi untuk mengambil data pengguna berdasarkan ID
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/user/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const userData = response.data.data[0];
+        setFormData({
+          username: userData.username,
+          email: userData.email,
+          password: "", // Password tidak ditampilkan untuk keamanan
+          roles: userData.roles,
+        });
+        setSelectedKey(new Set([userData.roles]));
+      } catch (error) {
+        console.error("Terjadi kesalahan saat mengambil data pengguna", error);
+      }
+    };
+
+    fetchUserData();
+  }, [id]);
+
+  const selectedValue = useMemo(() => {
     const key = [...selectedKey].join(", ");
     return key
       ? key.charAt(0).toUpperCase() + key.slice(1).replaceAll("_", " ")
-      : "Pilih Jenis Mutasi";
+      : "Pilih Role";
   }, [selectedKey]);
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,25 +71,30 @@ const FormPenduduk = () => {
 
   const handleSelectionChange = (keys) => {
     setSelectedKey(keys);
-    const mutasi = keys.values().next().value;
+    const role = keys.values().next().value;
     setFormData((prevData) => ({
       ...prevData,
-      mutasi: mutasi,
+      roles: role,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      await axios.post(
-        `${import.meta.env.VITE_API_URL}/penduduk/create`,
-        formData
-      );
-      toast.success("Data penduduk berhasil disimpan!");
+      const payload = { ...formData };
+      const token = localStorage.getItem("token");
+
+      await axios.put(`${import.meta.env.VITE_API_URL}/user/${id}`, payload, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      toast.success("User berhasil diupdate!");
       setTimeout(() => {
-        navigate("/admin/penduduk");
+        navigate("/admin/user");
       }, 2000);
     } catch (error) {
+      toast.error("Terjadi kesalahan saat mengupdate user. Silakan coba lagi.");
       console.log(error);
     }
   };
@@ -80,10 +109,8 @@ const FormPenduduk = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/penduduk">Penduduk</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/penduduk/tambah">
-            Tambah Mutasi Penduduk
-          </BreadcrumbItem>
+          <BreadcrumbItem href="/admin/user">User</BreadcrumbItem>
+          <BreadcrumbItem href={`/admin/user/edit/${id}`}>Edit User</BreadcrumbItem>
         </Breadcrumbs>
 
         {/* Form start */}
@@ -93,25 +120,51 @@ const FormPenduduk = () => {
               <div className="w-full h-auto transition duration-300 ease-in-out bg-white rounded-lg shadow-md hover:shadow-lg hover:shadow-gray-500">
                 <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
                 <div className="flex flex-col gap-5 p-10">
-                  <div className="relative w-1/4 mb-0">
+                  <div className="relative w-full mb-0">
                     <p className="mt-1 mb-2 text-caption-2 text-gray">
-                      Masukkan Tanggal Mutasi
+                      Masukkan Username
                     </p>
                     <Input
-                      type="date"
-                      label="Tanggal Agenda"
+                      type="text"
                       variant="bordered"
-                      name="tgl"
-                      value={formData.tgl}
+                      label="Username"
+                      name="username"
+                      value={formData.username}
                       onChange={handleChange}
                     />
                   </div>
-                  {/* select nya udah bener */}
                   <div className="relative w-full mb-0">
                     <p className="mt-1 mb-2 text-caption-2 text-gray">
-                      Pilih Jenis Mutasi
+                      Masukkan Email
                     </p>
-                    <Dropdown>
+                    <Input
+                      type="email"
+                      variant="bordered"
+                      label="Email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="relative w-full mb-0">
+                    <p className="mt-1 mb-2 text-caption-2 text-gray">
+                      Masukkan Password
+                    </p>
+                    <Input
+                      type="password"
+                      variant="bordered"
+                      label="Password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="relative w-full mb-0">
+                    <p className="mt-1 mb-2 text-caption-2 text-gray">
+                      Pilih Role
+                    </p>
+
+                    <Dropdown backdrop="blur">
                       <DropdownTrigger>
                         <Button
                           variant="bordered"
@@ -121,52 +174,27 @@ const FormPenduduk = () => {
                         </Button>
                       </DropdownTrigger>
                       <DropdownMenu
-                        aria-label="Multiple selection example"
+                        aria-label="Single selection example"
                         variant="flat"
-                        closeOnSelect={false}
+                        closeOnSelect={true}
                         disallowEmptySelection
-                        selectionMode="multiple"
-                        selectedKey={selectedKey}
+                        selectionMode="single"
+                        selectedKeys={selectedKey}
                         onSelectionChange={handleSelectionChange}
                       >
-                        <DropdownItem key="lahir">Lahir</DropdownItem>
-                        <DropdownItem key="meninggal">Meninggal</DropdownItem>
-                        <DropdownItem key="datang">Datang</DropdownItem>
-                        <DropdownItem key="pindah">Pindah</DropdownItem>
+                        <DropdownItem key="superadmin">
+                          Super Admin
+                        </DropdownItem>
+                        <DropdownItem key="admin">Admin</DropdownItem>
+                        <DropdownItem key="umum">Umum</DropdownItem>
                       </DropdownMenu>
                     </Dropdown>
                   </div>
-                  {/* input number */}
-                  <div className="relative w-1/2 mb-0">
-                    <p className="mt-1 mb-2 text-caption-2 text-gray">
-                      Jumlah Orang
-                    </p>
-                    <Input
-                      type="number"
-                      variant="bordered"
-                      label="Jumlah Mutasi"
-                      name="jumlah"
-                      value={formData.jumlah}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="relative w-full mb-0">
-                    <p className="mt-1 mb-2 text-caption-2 text-gray">
-                      Keterangan
-                    </p>
-                    <Input
-                      type="text"
-                      variant="bordered"
-                      label="Masukkan Keterangan Tambahan"
-                      name="keterangan"
-                      value={formData.keterangan}
-                      onChange={handleChange}
-                    />
-                  </div>
 
+                  {/* button */}
                   <div className="flex justify-between w-full mt-4">
                     <Link
-                      to="/admin/penduduk"
+                      to="/admin/user"
                       className="flex items-center gap-2 px-4 py-2 text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-600"
                     >
                       <ArrowUturnLeftIcon className="w-5 h-5" />
@@ -191,4 +219,4 @@ const FormPenduduk = () => {
   );
 };
 
-export default FormPenduduk;
+export default EditUser;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
-import { Eye, Edit, Trash2 } from "react-feather";
+import { Edit, Trash2 } from "react-feather";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import TableProps from "../../../components/TableProps";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +18,6 @@ import {
 } from "@nextui-org/react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { DeleteIcon, EditIcon, EyeIcon } from "../../../components/Ikon";
 
 const statusColorMap = {
   publish: "success",
@@ -65,9 +64,7 @@ const BeritaAdmin = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/berita`
-      );
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/berita`);
       setNews(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
@@ -82,10 +79,8 @@ const BeritaAdmin = () => {
   const deleteNews = async () => {
     if (selectedNews) {
       try {
-        console.log(`Menghapus berita dengan ID: ${selectedNews.id_berita}`);
-        await axios.delete(
-          `${import.meta.env.VITE_API_URL}/berita/${selectedNews.id_berita}`
-        );
+        console.log(`Menghapus berita dengan ID: ${selectedNews.id}`);
+        await axios.delete(`${import.meta.env.VITE_API_URL}/berita/${selectedNews.id}`);
         fetchNews();
         toast.success("Berita berhasil dihapus!");
         onOpenChange(false); // Close the modal
@@ -107,34 +102,21 @@ const BeritaAdmin = () => {
   const actionButtons = [
     {
       icon: (
-        <Tooltip content="Lihat Detail">
-          <span className=" active:opacity-50">
-            <Eye className="w-4 h-4 " />
-          </span>
-        </Tooltip>
-      ),
-    },
-    {
-      icon: (
         <Tooltip content="Edit">
-          <span className=" active:opacity-50">
-            <Tooltip content="Edit">
-              <span className=" active:opacity-50">
-                <Edit className="w-4 h-4 text-warning" />
-              </span>
-            </Tooltip>
+          <span className="active:opacity-50">
+            <Edit className="w-4 h-4 text-warning" />
           </span>
         </Tooltip>
       ),
       onClick: (news) => {
-        navigate(`/admin/berita/edit/${news.id_berita}`, { state: news });
+        navigate(`/admin/berita/edit/${news.id}`, { state: news });
       },
     },
     {
       icon: (
         <Tooltip content="Hapus">
-          <span className=" active:opacity-50">
-            <Trash2 className="w-4 h-4 text-danger " />
+          <span className="active:opacity-50">
+            <Trash2 className="w-4 h-4 text-danger" />
           </span>
         </Tooltip>
       ),
@@ -154,7 +136,7 @@ const BeritaAdmin = () => {
     nama: item.nama,
     kunjungan: item.kunjungan,
     status: item.status,
-    actions: item.id_berita, // Pass the entire item object to the action buttons
+    actions: item, // Pass the entire item object to the action buttons
   }));
 
   return (

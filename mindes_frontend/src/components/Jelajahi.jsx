@@ -54,7 +54,7 @@ const Jelajahi = () => {
           </Link>
 
           <Link to="/infografis/cekdata" className="relative bg-secondary-40 w-60 h-40 lg:w-[250px] flex flex-col items-center justify-center rounded-[20px] shadow-lg transition-transform transform hover:scale-105 hover:shadow-blue-500 hover:shadow-2xl">
-            <div className="absolute lg:-top-10 -top-7 bg-primary-40 w-16 h-16 lg:w-24 lg:h-24 flex items-center justify-center rounded-[20px] transition-transform transform hover:rotate-12">
+            <div className="absolute lg:-top-10 -top-7 bg-primary-40 w-16 h-16 lg:w-24 lg:h-24 flex items-center justify-center rounded-[20px] transition-transform transform hover:-rotate-12">
               <FileText className="text-white" size={48} />
             </div>
             <div className="mt-10 text-white font-semibold text-center text-body-2 lg:text-heading-4">
@@ -74,7 +74,7 @@ const Jelajahi = () => {
           </Link>
 
           <Link to="/berita" className="relative bg-secondary-40 w-60 h-40 lg:w-[250px] flex flex-col items-center justify-center rounded-[20px] shadow-lg transition-transform transform hover:scale-105 hover:shadow-blue-500 hover:shadow-2xl">
-            <div className="absolute lg:-top-10 -top-7 bg-primary-40 w-16 h-16 lg:w-24 lg:h-24 flex items-center justify-center rounded-[20px] transition-transform transform hover:rotate-12">
+            <div className="absolute lg:-top-10 -top-7 bg-primary-40 w-16 h-16 lg:w-24 lg:h-24 flex items-center justify-center rounded-[20px] transition-transform transform hover:-rotate-12">
               <BookOpen className="text-white" size={48} />
             </div>
             <div className="mt-10 text-white font-semibold text-center text-body-2 lg:text-heading-4">

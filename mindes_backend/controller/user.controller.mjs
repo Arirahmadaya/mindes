@@ -1,20 +1,24 @@
-import { query } from "../database/db.mjs"
+import bcrypt from 'bcrypt';
+import { query } from "../database/db.mjs";
 
-export const getUser = async(req,res)=>{
-    try{
-        const result = await query('Select * from usertable')
-        return res.status(200).json({success:true, data:result})
-    }catch(e){
-        console.log("Terjadi kesalahan", e)
-        return res.status(500).json({msg:"terjadi kesalahan pada server"})
+export const getUser = async(req, res) => {
+    try {
+        const result = await query('Select * from usertable');
+        return res.status(200).json({ success: true, data: result });
+    } catch (e) {
+        console.log("Terjadi kesalahan", e);
+        return res.status(500).json({ msg: "terjadi kesalahan pada server" });
     }
-}
+};
 
 export const insertUser = async (req, res) => {
-    // console.log(req.body);  // Log the request body to the console
-    const {username, password, email,roles } = req.body;
+    const { username, password, email, roles } = req.body;
     try {
-        await query("INSERT INTO usertable (username, password, email, roles) VALUES (?, ?, ?, ?)", [username, password, email, roles]);
+        // Enkripsi password sebelum menyimpannya
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        await query("INSERT INTO usertable (username, password, email, roles) VALUES (?, ?, ?, ?)", [username, hashedPassword, email, roles]);
         return res.status(200).json({ msg: "User ditambahkan" });
     } catch (error) {
         console.log("Terjadi kesalahan", error);
@@ -22,40 +26,63 @@ export const insertUser = async (req, res) => {
     }
 };
 
-export const updateUser = async(req,res)=>{
-    const {username, password, email, roles}= req.body
-    const {id_user}=req.params
+// export const updateUser = async (req, res) => {
+//     const { username, password, email, roles } = req.body;
+//     const { id_user } = req.params;
+//     try {
+//         // Enkripsi password sebelum memperbaruinya
+//         const salt = await bcrypt.genSalt(10);
+//         const hashedPassword = await bcrypt.hash(password, salt);
+
+//         await query("UPDATE usertable SET username=?, password=?, email=?, roles=? WHERE id_user=?", [username, hashedPassword, email, roles, id_user]);
+//         return res.status(200).json({ msg: "User Diubah" });
+//     } catch (error) {
+//         console.log("Terjadi kesalahan", error);
+//         return res.status(500).json({ msg: "Terjadi kesalahan pada server" });
+//     }
+// };
+
+export const updateUser = async (req, res) => {
+    const { username, password, email, roles } = req.body;
+    const { id_user } = req.params;
     try {
-        await query("UPDATE usertable SET username=?, password=?, email=?, roles=? where id_user=?", [username, password, email, roles, id_user])
-        return res.status(200).json({msg:"User Diubah"})
-    } catch (error) {
-        console.log("Terjadi kesalahan", e)
-        return res.status(500).json({msg:"terjadi kesalahan pada server"})
-    }
-}
+        let hashedPassword = password;
 
-export const deleteUser = async(req,res)=>{
-    const {id_user} = req.params;
+        // Jika password diubah, enkripsi password baru
+        if (password) {
+            const salt = await bcrypt.genSalt(10);
+            hashedPassword = await bcrypt.hash(password, salt);
+        }
+
+        await query("UPDATE usertable SET username=?, password=?, email=?, roles=? WHERE id_user=?", [username, hashedPassword, email, roles, id_user]);
+        return res.status(200).json({ msg: "User Diubah" });
+    } catch (error) {
+        console.log("Terjadi kesalahan", error);
+        return res.status(500).json({ msg: "Terjadi kesalahan pada server" });
+    }
+};
+
+export const deleteUser = async (req, res) => {
+    const { id_user } = req.params;
     try {
-        await query("DELETE FROM usertable where id_user=?", [id_user])
-        return res.status(200).json({msg:"User Dihapus"})
+        await query("DELETE FROM usertable WHERE id_user=?", [id_user]);
+        return res.status(200).json({ msg: "User Dihapus" });
     } catch (error) {
-        console.log("Terjadi kesalahan", e)
-        return res.status(500).json({msg:"terjadi kesalahan pada server"})
+        console.log("Terjadi kesalahan", error);
+        return res.status(500).json({ msg: "Terjadi kesalahan pada server" });
     }
-}
+};
 
-
-export const getUserById = async(req,res)=>{
-    const {id_user}=req.params
-    try{
-        const result = await query('Select * from usertable where id_user=?', [id_user])
-        return res.status(200).json({success:true, data:result})
-    }catch(e){
-        console.log("Terjadi kesalahan", e)
-        return res.status(500).json({msg:"terjadi kesalahan pada server"})
+export const getUserById = async (req, res) => {
+    const { id_user } = req.params;
+    try {
+        const result = await query('Select * from usertable where id_user=?', [id_user]);
+        return res.status(200).json({ success: true, data: result });
+    } catch (e) {
+        console.log("Terjadi kesalahan", e);
+        return res.status(500).json({ msg: "terjadi kesalahan pada server" });
     }
-}
+};
 
 export const getAuthenticatedUser = async (req, res) => {
     try {
@@ -69,6 +96,17 @@ export const getAuthenticatedUser = async (req, res) => {
         return res.status(500).json({ msg: "Terjadi kesalahan pada server" });
     }
 };
+
+export const getTotalUsers = async (req, res) => {
+    try {
+        const [rows] = await query('SELECT COUNT(*) AS total FROM usertable');
+        res.status(200).json({ success: true, total: rows[0].total });
+    } catch (err) {
+        res.status(500).json({ error: 'Database query failed' });
+    }
+};
+
+
 // export const getProfile = async (req, res) => {
 //     const userId = req.user.id_user;
 //     try {

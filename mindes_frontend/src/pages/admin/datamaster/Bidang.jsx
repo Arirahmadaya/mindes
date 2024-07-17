@@ -25,12 +25,12 @@ const statusColorMap = {
   gagal: "danger",
 };
 
-const INITIAL_VISIBLE_COLUMNS = ["id", "kode", "uraian", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["id", "bidang", "parent_id", "actions"];
 
 const columns = [
   { name: "ID", uid: "id" },
-  { name: "Kode", uid: "kode" },
-  { name: "Uraian", uid: "uraian" },
+  { name: "BIDANG", uid: "bidang" },
+  { name: "SUB BIDANG", uid: "parent_id" },
   { name: "Aksi", uid: "actions" },
 ];
 
@@ -40,41 +40,45 @@ const statusOptions = [
   { name: "Gagal", uid: "gagal" },
 ];
 
-const Akuntansi = () => {
-  const [akun, setAkun] = useState([]);
-  const [selectedAkun, setSelectedAkun] = useState(null);
+const Bidang = () => {
+  const [bidangData, setBidangData] = useState([]);
+  const [selectedBidang, setSelectedBidang] = useState(null);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchAkun();
+    fetchBidangData();
   }, []);
 
-  const fetchAkun = async () => {
+  const fetchBidangData = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/akun`);
-      setAkun(response.data.data);
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/bidang`
+      );
+      setBidangData(response.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan", error);
+      toast.error("Terjadi kesalahan saat memuat data.");
     }
   };
 
-  const confirmDeleteAkun = (akun) => {
-    setSelectedAkun(akun);
+  const confirmDeleteBidang = (bidang) => {
+    setSelectedBidang(bidang);
     onOpen();
   };
 
-  const deleteAkun = async () => {
-    if (selectedAkun) {
+  const deleteBidang = async () => {
+    if (selectedBidang) {
       try {
         await axios.delete(
-          `${import.meta.env.VITE_API_URL}/akun/${selectedAkun.id}`
+          `${import.meta.env.VITE_API_URL}/bidang/${selectedBidang.id}`
         );
-        fetchAkun();
-        toast.success("Akun berhasil dihapus!");
+        fetchBidangData();
+        toast.success("Bidang berhasil dihapus!");
         onOpenChange(false); // Close the modal
       } catch (error) {
         console.error("Terjadi kesalahan", error);
+        toast.error("Terjadi kesalahan saat menghapus bidang.");
       }
     }
   };
@@ -88,11 +92,11 @@ const Akuntansi = () => {
           </span>
         </Tooltip>
       ),
-      onClick: (item) => {
-        navigate(`/admin/datamaster/akuntansi/edit/${item.id}`, {
-          state: item,
+      onClick: (bidang) => {
+        navigate(`/admin/bidang/edit/${bidang.id}`, {
+          state: bidang,
         });
-        console.log("Edit item:", item);
+        console.log("Edit bidang:", bidang);
       },
     },
     {
@@ -103,55 +107,51 @@ const Akuntansi = () => {
           </span>
         </Tooltip>
       ),
-      onClick: (item) => {
-        confirmDeleteAkun(item);
+      onClick: (bidang) => {
+        confirmDeleteBidang(bidang);
       },
     },
   ];
 
-  const isi = akun.map((akun) => ({
-    id: akun.id_akun,
-    kode: akun.kode,
-    uraian: akun.uraian,
+  const isi = bidangData.map((bidang) => ({
+    id: bidang.id_bidang,
+    bidang: bidang.nama,
+    parent_id: bidang.parent_id,
   }));
 
   return (
     <div className="flex flex-row w-screen h-screen overflow-y-auto bg-secondary-10">
       <Sidebares />
       <div className="flex-1 mx-5">
-        <div className="">
+        <div>
           <NavbarAdmin />
         </div>
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/akuntansi">
-            Data Master
-          </BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/akuntansi">
-            Akuntansi
-          </BreadcrumbItem>
+          <BreadcrumbItem href="/admin/bidang">Data Master</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/bidang">Bidang</BreadcrumbItem>
         </Breadcrumbs>
 
         <div className="flex gap-5 my-5">
-          <div className="flex w-full bg-white rounded-lg ">
-            <div className="w-full h-auto transition duration-300 ease-in-out bg-white rounded-lg shadow-md hover:shadow-lg hover:shadow-blue-200 ">
-              <div className="bg-blue-100/20 rounded-b-[20px] w-auto "></div>
-              <div className="p-4 ">
+          <div className="flex w-full bg-white rounded-lg">
+            <div className="w-full h-auto transition duration-300 ease-in-out bg-white rounded-lg shadow-md hover:shadow-lg hover:shadow-blue-200">
+              <div className="bg-blue-100/20 rounded-b-[20px] w-auto"></div>
+              <div className="p-4">
                 <TableProps
                   statusColorMap={statusColorMap}
                   INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS}
                   columns={columns}
                   statusOptions={statusOptions}
                   isi={isi}
-                  filterKeys={["id", "kode", "uraian"]}
-                  tambahKegiatanURL={"/admin/datamaster/akuntansi/tambah"}
+                  filterKeys={["id", "bidang"]}
+                  tambahKegiatanURL="/admin/bidang/tambah" // Properti ditambahkan di sini
                   actionButtons={actionButtons}
                 />
               </div>
             </div>
 
-            <div className="flex justify-between "></div>
+            <div className="flex justify-between"></div>
           </div>
         </div>
       </div>
@@ -177,7 +177,7 @@ const Akuntansi = () => {
                 Konfirmasi Hapus
               </ModalHeader>
               <ModalBody>
-                <p>Apakah Anda yakin ingin menghapus akun ini?</p>
+                <p>Apakah Anda yakin ingin menghapus bidang ini?</p>
               </ModalBody>
               <ModalFooter>
                 <Button color="foreground" variant="light" onPress={onClose}>
@@ -185,7 +185,7 @@ const Akuntansi = () => {
                 </Button>
                 <Button
                   className="text-white shadow-lg bg-danger shadow-indigo-500/20"
-                  onPress={deleteAkun}
+                  onPress={deleteBidang}
                 >
                   Hapus
                 </Button>
@@ -199,4 +199,4 @@ const Akuntansi = () => {
   );
 };
 
-export default Akuntansi;
+export default Bidang;

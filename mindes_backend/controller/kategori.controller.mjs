@@ -10,6 +10,21 @@ export const getKategori = async (req, res) => {
     }
 }
 
+export const getKategoriById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await query('SELECT * FROM kategoritable WHERE id_kategori = ?', [id]);
+        if (result.length === 0) {
+            return res.status(404).json({ msg: "Kategori tidak ditemukan" });
+        }
+        return res.status(200).json({ success: true, data: result[0] });
+    } catch (error) {
+        console.error("Terjadi kesalahan:", error);
+        return res.status(500).json({ msg: "Terjadi kesalahan pada server" });
+    }
+}
+
+
 export const insertKategori = async (req, res) => {
     // console.log(req.body)
     const { nama } = req.body;

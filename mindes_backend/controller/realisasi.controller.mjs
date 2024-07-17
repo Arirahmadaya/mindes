@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// multer configurasi
+// multer konfigurasi
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, "../public/img_realisasi"));
@@ -53,13 +53,26 @@ export const getRealisasi = async (req, res) => {
   }
 };
 
+export const getRealisasiById = async (req, res) => {
+  const { id_realisasi } = req.params;
+  try {
+    const result = await query(
+      "SELECT * FROM realisasitable WHERE id_realisasi=?",
+      [id_realisasi]
+    );
+    return res.status(200).json({ success: true, data: result });
+  } catch (e) {
+    console.log("Terjadi kesalahan", e);
+    return res.status(500).json({ msg: "terjadi kesalahan pada server" });
+  }
+};
+
 export const insertRealisasi = [
   upload.fields([
     { name: "img_realisasi1", maxCount: 1 },
     { name: "img_realisasi2", maxCount: 1 },
   ]),
   async (req, res) => {
-    // console.log(req.body);
     const {
       id_bidang,
       kode_kegiatan,
@@ -185,26 +198,12 @@ export const updateRealisasi = [
 export const deleteRealisasi = async (req, res) => {
   const { id_realisasi } = req.params;
   try {
-    await query("DELETE FROM realisasitable where id_realisasi=?", [
+    await query("DELETE FROM realisasitable WHERE id_realisasi=?", [
       id_realisasi,
     ]);
     return res.status(200).json({ msg: "Realisasi Dihapus" });
   } catch (error) {
-    console.log("Terjadi kesalahan", e);
-    return res.status(500).json({ msg: "terjadi kesalahan pada server" });
-  }
-};
-
-export const getRealisasiById = async (req, res) => {
-  const { id_realisasi } = req.params;
-  try {
-    const result = await query(
-      "Select * from realisasitable where id_realisasi=?",
-      [id_realisasi]
-    );
-    return res.status(200).json({ success: true, data: result });
-  } catch (e) {
-    console.log("Terjadi kesalahan", e);
+    console.log("Terjadi kesalahan", error);
     return res.status(500).json({ msg: "terjadi kesalahan pada server" });
   }
 };

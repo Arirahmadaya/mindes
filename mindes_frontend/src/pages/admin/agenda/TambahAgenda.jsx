@@ -19,7 +19,7 @@ import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const FormAgenda = () => {
+const TambahAgenda = () => {
   const [formData, setFormData] = useState({
     tgl: "",
     jam: "",
@@ -167,9 +167,9 @@ const FormAgenda = () => {
                         <DropdownMenu
                           aria-label="Pilih Hari"
                           variant="flat"
-                          closeOnSelect={false}
+                          closeOnSelect={true}
                           disallowEmptySelection
-                          selectionMode="multiple"
+                          selectionMode="single"
                           selectedKeys={selectedKey}
                           onSelectionChange={handleSelectionChange}
                         >
@@ -246,13 +246,13 @@ const FormAgenda = () => {
                           variant="flat"
                           closeOnSelect={true}
                           disallowEmptySelection
-                          selectionMode="multiple"
+                          selectionMode="single"
                           selectedKeys={selectedStatus}
                           onSelectionChange={handleStatusSelectionChange}
                         >
-                          <DropdownItem key="publish">Publish</DropdownItem>
-                          <DropdownItem key="proses">Draft</DropdownItem>
-                          <DropdownItem key="gagal">Archived</DropdownItem>
+                          <DropdownItem key="selesai ">Selesai</DropdownItem>
+                          <DropdownItem key="proses">Proses</DropdownItem>
+                          <DropdownItem key="bata">Batal</DropdownItem>
                         </DropdownMenu>
                       </Dropdown>
                     </div>
@@ -285,4 +285,4 @@ const FormAgenda = () => {
   );
 };
 
-export default FormAgenda;
+export default TambahAgenda;

@@ -53,7 +53,7 @@ export const insertBerita = [
   upload.single("img_berita"), // Multer middleware for single file upload
   async (req, res) => {
     console.log(req.body);
-    const { tgl, judul, artikel, id_kategori, status} = req.body;
+    const { tgl, judul, artikel, id_kategori, status } = req.body;
     let img_berita = null;
 
     if (req.file) {
@@ -73,20 +73,29 @@ export const insertBerita = [
   },
 ];
 
-export const updateBerita = async (req, res) => {
-  const { tgl, judul, artikel, id_kategori, status, img_berita } = req.body;
-  const { id_berita } = req.params;
-  try {
-    await query(
-      "UPDATE beritatable SET tgl = ?, judul = ?, artikel = ?, id_kategori = ?, status = ?, img_berita = ? WHERE id_berita = ?",
-      [tgl, judul, artikel, id_kategori, status, img_berita, id_berita]
-    );
-    return res.status(200).json({ msg: "Berita diubah" });
-  } catch (error) {
-    console.log("Terjadi kesalahan", error);
-    return res.status(500).json({ msg: "Terjadi kesalahan pada server" });
+export const updateBerita = [
+  upload.single("img_berita"), // Multer middleware for single file upload
+  async (req, res) => {
+    const { tgl, judul, artikel, id_kategori, status } = req.body;
+    const { id_berita } = req.params;
+    let img_berita = req.body.img_berita;
+
+    if (req.file) {
+      img_berita = `/img_berita/${req.file.filename}`;
+    }
+
+    try {
+      await query(
+        "UPDATE beritatable SET tgl = ?, judul = ?, artikel = ?, id_kategori = ?, status = ?, img_berita = ? WHERE id_berita = ?",
+        [tgl, judul, artikel, id_kategori, status, img_berita, id_berita]
+      );
+      return res.status(200).json({ msg: "Berita diubah" });
+    } catch (error) {
+      console.log("Terjadi kesalahan", error);
+      return res.status(500).json({ msg: "Terjadi kesalahan pada server" });
+    }
   }
-};
+];
 
 export const deleteBerita = async (req, res) => {
   const { id_berita } = req.params;
@@ -145,7 +154,6 @@ export const getBeritaImage = async (req, res) => {
   }
 };
 
-
 export const incrementKunjungan = async (req, res) => {
   const { id_berita } = req.params;
   try {
@@ -162,4 +170,3 @@ export const incrementKunjungan = async (req, res) => {
     return res.status(500).json({ msg: "terjadi kesalahan pada server" });
   }
 };
-

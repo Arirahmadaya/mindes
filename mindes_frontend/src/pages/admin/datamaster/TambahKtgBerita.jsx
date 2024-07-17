@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-
 import Sidebares from "../../../components/Sidebar";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,11 +9,12 @@ import {
   ArrowUturnLeftIcon,
 } from "@heroicons/react/20/solid";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const FormBidang = () => {
+const TambahKtgBerita = () => {
   const [formData, setFormData] = useState({
     nama: "",
-    parent_id: "",
   });
   const navigate = useNavigate();
 
@@ -28,15 +28,20 @@ const FormBidang = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("Data yang akan dikirim:", formData);
+    console.log("Data yang akan dikirim:", formData); // Log data for debugging
     try {
-      await axios.post(
-        `${import.meta.env.VITE_API_URL}/bidang/create`,
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/kategori`,
         formData
       );
-      navigate("/admin/datamaster/bidang");
+      console.log("Response dari server:", response); // Log response for debugging
+      toast.success("Kategori berhasil ditambahkan!");
+      setTimeout(() => {
+        navigate("/admin/kategori");
+      }, 2000); // Navigate after 2 seconds to show the toast
     } catch (error) {
-      console.log(error);
+      console.error("Terjadi kesalahan saat menambahkan kategori:", error);
+      toast.error("Terjadi kesalahan saat menambahkan kategori.");
     }
   };
 
@@ -50,12 +55,9 @@ const FormBidang = () => {
 
         <Breadcrumbs className="my-5">
           <BreadcrumbItem href="/admin/beranda">Beranda</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster">Realisasi</BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/bidang">
-            Bidang
-          </BreadcrumbItem>
-          <BreadcrumbItem href="/admin/datamaster/bidang/tambah">
-            Tambah Bidang
+          <BreadcrumbItem href="/admin">Data Master</BreadcrumbItem>
+          <BreadcrumbItem href="/admin/berita/tambah">
+            Tambah Kategori Berita
           </BreadcrumbItem>
         </Breadcrumbs>
 
@@ -68,34 +70,22 @@ const FormBidang = () => {
                 <div className="flex flex-col gap-5 p-10">
                   <div className="relative w-full mb-0">
                     <p className="mt-1 mb-2 text-caption-2 text-gray">
-                      Masukkan Bidang
+                      Masukkan Kategori Berita
                     </p>
                     <Input
                       type="text"
                       variant="bordered"
-                      label="Bidang"
-                      name="parent_id"
-                      value={formData.parent_id}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="relative w-full mb-0">
-                    <p className="mt-1 mb-2 text-caption-2 text-gray">
-                      Masukkan Sub Bidang
-                    </p>
-                    <Input
-                      type="text"
-                      variant="bordered"
-                      label="Sub Bidang"
+                      label="Kategori Berita"
                       name="nama"
                       value={formData.nama}
                       onChange={handleChange}
+                      required
                     />
                   </div>
 
                   <div className="flex justify-between w-full mt-4">
                     <Link
-                      to="/admin/datamaster/bidang"
+                      to="/admin/kategori"
                       className="flex items-center gap-2 px-4 py-2 text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-600"
                     >
                       <ArrowUturnLeftIcon className="w-5 h-5" />
@@ -115,8 +105,9 @@ const FormBidang = () => {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
 
-export default FormBidang;
+export default TambahKtgBerita;
